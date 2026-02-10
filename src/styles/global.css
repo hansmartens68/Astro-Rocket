@@ -579,6 +579,76 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
   }
+
+  /* Input error shake */
+  .animate-shake {
+    animation: shake 400ms var(--ease-default);
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+  }
+
+  /* Tab content crossfade */
+  .animate-tab-enter {
+    animation: tab-enter var(--transition-normal) var(--ease-out);
+  }
+
+  @keyframes tab-enter {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Toast slide-in */
+  .animate-toast-in {
+    animation: toast-in 350ms var(--ease-spring);
+  }
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    60% { transform: translateX(-4px); }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Tooltip scale-in */
+  .animate-tooltip-in {
+    animation: tooltip-in var(--transition-fast) var(--ease-out);
+  }
+
+  @keyframes tooltip-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Reduced motion: disable micro-animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-shake,
+    .animate-tab-enter,
+    .animate-toast-in,
+    .animate-tooltip-in {
+      animation: none;
+    }
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -774,9 +844,9 @@
     visibility: hidden;
     transform: scale(0.96);
     transition:
-      opacity 150ms ease-out,
-      transform 150ms ease-out,
-      visibility 150ms ease-out;
+      opacity var(--transition-fast) var(--ease-out),
+      transform var(--transition-fast) var(--ease-out),
+      visibility var(--transition-fast) var(--ease-out);
   }
 
   .dark .tooltip-bubble {

@@ -35,7 +35,10 @@ const { content, position = 'top', delay = 200, class: className, ...attrs } = A
 
 <script>
   function initTooltips() {
-    document.querySelectorAll('[data-tooltip]').forEach((wrapper) => {
+    document.querySelectorAll<HTMLElement>('[data-tooltip]').forEach((wrapper) => {
+      if (wrapper.dataset.tooltipInit) return;
+      wrapper.dataset.tooltipInit = 'true';
+
       const tooltip = wrapper.querySelector<HTMLElement>('[data-tooltip-content]');
       const delay = parseInt(wrapper.getAttribute('data-tooltip-delay') || '200', 10);
       let timeout: ReturnType<typeof setTimeout>;

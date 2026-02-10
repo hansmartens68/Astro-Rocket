@@ -24,8 +24,8 @@ export function Input({ ref, label, error, hint, leadingIcon, trailingIcon, size
   const inputStyles = cn(
     inputVariants({ size }),
     error && 'border-destructive focus-visible:ring-destructive',
-    leadingIcon ? config.leadingPadding : config.basePadding,
-    trailingIcon ? config.trailingPadding : config.basePadding
+    leadingIcon ? config.leadingPadding : config.baseLeftPadding,
+    trailingIcon ? config.trailingPadding : config.baseRightPadding
   );
 
   const iconStyles = cn(

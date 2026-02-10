@@ -92,7 +92,10 @@ const iconMap: Record<string, string> = {
 
 <script>
   function initDropdowns() {
-    document.querySelectorAll('[data-dropdown]').forEach((dropdown) => {
+    document.querySelectorAll<HTMLElement>('[data-dropdown]').forEach((dropdown) => {
+      if (dropdown.dataset.dropdownInit) return;
+      dropdown.dataset.dropdownInit = 'true';
+
       const trigger = dropdown.querySelector('[data-dropdown-trigger]');
       const menu = dropdown.querySelector<HTMLElement>('[data-dropdown-menu]');
       const items = dropdown.querySelectorAll<HTMLElement>('[data-dropdown-item]');
@@ -121,7 +124,6 @@ const iconMap: Record<string, string> = {
         items[index]?.focus();
       }
 
-      // Trigger click
       trigger?.addEventListener('click', (e) => {
         e.stopPropagation();
         if (isOpen) {
@@ -131,7 +133,6 @@ const iconMap: Record<string, string> = {
         }
       });
 
-      // Keyboard navigation on trigger
       trigger?.addEventListener('keydown', (event) => {
         const e = event as KeyboardEvent;
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
@@ -140,7 +141,6 @@ const iconMap: Record<string, string> = {
         }
       });
 
-      // Keyboard navigation in menu
       menu?.addEventListener('keydown', (event) => {
         const e = event as KeyboardEvent;
         switch (e.key) {
@@ -171,12 +171,10 @@ const iconMap: Record<string, string> = {
         }
       });
 
-      // Close on outside click
       document.addEventListener('click', (e) => {
         if (!dropdown.contains(e.target as Node)) close();
       });
 
-      // Close on escape anywhere
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isOpen) close();
       });

@@ -29,19 +29,22 @@ export const inputSizeConfig = {
     iconWrapper: 'w-8',
     leadingPadding: 'pl-8',
     trailingPadding: 'pr-8',
-    basePadding: 'px-3',
+    baseLeftPadding: 'pl-3',
+    baseRightPadding: 'pr-3',
   },
   md: {
     iconWrapper: 'w-10',
     leadingPadding: 'pl-10',
     trailingPadding: 'pr-10',
-    basePadding: 'px-4',
+    baseLeftPadding: 'pl-4',
+    baseRightPadding: 'pr-4',
   },
   lg: {
     iconWrapper: 'w-12',
     leadingPadding: 'pl-12',
     trailingPadding: 'pr-12',
-    basePadding: 'px-4',
+    baseLeftPadding: 'pl-4',
+    baseRightPadding: 'pr-4',
   },
 } as const;
 

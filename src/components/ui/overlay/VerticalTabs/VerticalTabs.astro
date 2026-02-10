@@ -399,7 +399,10 @@ const defaultTab = tabs.find(t => t.id === defaultValue);
 
 <script>
   function initVerticalTabs() {
-    document.querySelectorAll('[data-vtabs]').forEach((container) => {
+    document.querySelectorAll<HTMLElement>('[data-vtabs]').forEach((container) => {
+      if (container.dataset.vtabsInit) return;
+      container.dataset.vtabsInit = 'true';
+
       const componentId = container.getAttribute('data-component-id');
       const defaultTab = container.getAttribute('data-default');
       const mobileVariant = container.getAttribute('data-mobile-variant') || 'dropdown';
@@ -636,7 +639,16 @@ const defaultTab = tabs.find(t => t.id === defaultValue);
         // Update content panels
         contentElements.forEach((el) => {
           const isActive = el.getAttribute('data-tab-content') === id;
-          el.classList.toggle('hidden', !isActive);
+          if (isActive) {
+            el.classList.remove('hidden');
+            el.classList.add('animate-tab-enter');
+            el.addEventListener('animationend', () => {
+              el.classList.remove('animate-tab-enter');
+            }, { once: true });
+          } else {
+            el.classList.add('hidden');
+            el.classList.remove('animate-tab-enter');
+          }
         });
 
         // Close dropdown

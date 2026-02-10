@@ -103,6 +103,9 @@ const sizes = {
 <script>
   function initDialogs() {
     document.querySelectorAll<HTMLElement>('[data-dialog]').forEach((dialog) => {
+      if (dialog.dataset.dialogInit) return;
+      dialog.dataset.dialogInit = 'true';
+
       const backdrop = dialog.querySelector<HTMLElement>('[data-dialog-backdrop]');
       const panel = dialog.querySelector<HTMLElement>('[data-dialog-panel]');
       const closeButtons = dialog.querySelectorAll('[data-dialog-close]');
