@@ -24,7 +24,7 @@ const inputStyles = cn(
   inputVariants({ size }),
   error && 'border-destructive focus-visible:ring-destructive',
   leadingIcon ? config.leadingPadding : config.basePadding,
-  trailingIcon && config.trailingPadding
+  trailingIcon ? config.trailingPadding : config.basePadding
 );
 
 const iconStyles = cn(

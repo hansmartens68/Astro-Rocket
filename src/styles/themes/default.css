@@ -33,10 +33,10 @@
   --background-tertiary: var(--gray-100);
   --background-elevated: var(--gray-0);
 
-  --foreground: var(--gray-900);
-  --foreground-secondary: var(--gray-700);
-  --foreground-muted: var(--gray-600);
-  --foreground-subtle: var(--gray-500);
+  --foreground: var(--gray-900);           /* ~18:1 on white — WCAG AAA */
+  --foreground-secondary: var(--gray-700); /* ~13:1 on white — WCAG AAA */
+  --foreground-muted: var(--gray-600);     /* ~10:1 on white — WCAG AA  */
+  --foreground-subtle: var(--gray-500);    /*  ~8:1 on white — WCAG AA  */
 
   --border: var(--gray-200);
   --border-strong: var(--gray-300);

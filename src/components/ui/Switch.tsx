@@ -73,7 +73,6 @@ export function Switch({
             <label
               htmlFor={switchId}
               className={cn('text-sm font-medium text-foreground cursor-pointer', disabled && 'cursor-not-allowed')}
-              onClick={handleClick}
             >
               {label}
             </label>

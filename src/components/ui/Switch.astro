@@ -45,11 +45,6 @@ const thumbSizes = {
   lg: 'h-6 w-6',
 };
 
-const thumbTranslate = {
-  sm: 'translate-x-4',
-  md: 'translate-x-5',
-  lg: 'translate-x-6',
-};
 ---
 
 <div class={cn('flex items-start gap-3', className)}>
@@ -85,10 +80,10 @@ const thumbTranslate = {
         class={cn(
           'rounded-full bg-background shadow-sm transition-transform duration-200 ease-in-out',
           'translate-x-0',
-          `peer-checked:${thumbTranslate[size]}`,
           thumbSizes[size]
         )}
         data-thumb
+        data-size={size}
       />
     </div>
   </label>
@@ -108,9 +103,15 @@ const thumbTranslate = {
 </div>
 
 <style>
-  /* Use :has() for checked state styling since peer classes don't work across elements */
-  label:has(input:checked) [data-thumb] {
-    --tw-translate-x: var(--switch-translate);
+  /* Use :has() for checked state since peer-checked can't reach nested thumb */
+  label:has(input:checked) [data-thumb][data-size="sm"] {
+    --tw-translate-x: 1rem;    /* translate-x-4 */
+  }
+  label:has(input:checked) [data-thumb][data-size="md"] {
+    --tw-translate-x: 1.25rem; /* translate-x-5 */
+  }
+  label:has(input:checked) [data-thumb][data-size="lg"] {
+    --tw-translate-x: 1.5rem;  /* translate-x-6 */
   }
   label:has(input:checked) > div {
     background-color: var(--foreground);
