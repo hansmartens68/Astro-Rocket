@@ -84,6 +84,7 @@ const isStrict = consentEnabled && consentMode === 'strict';
   <>
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
     <script is:inline define:vars={{ gaId }}>
+      /* global gtag */
       window.dataLayer = window.dataLayer || [];
       // eslint-disable-next-line prefer-rest-params
       function gtag(){window.dataLayer.push(arguments);}
