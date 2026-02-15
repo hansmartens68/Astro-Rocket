@@ -33,27 +33,6 @@ export default defineConfig({
 
   security: {
     checkOrigin: true,
-    csp: {
-      scriptDirective: {
-        resources: [
-          "'self'",
-          'https://www.googletagmanager.com',
-          'https://www.google-analytics.com',
-          'https://vercel.live',
-        ],
-      },
-      styleDirective: {
-        resources: [
-          "'self'",
-          "'unsafe-inline'",
-        ],
-      },
-      directives: [
-        "font-src 'self' data:",
-        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://vercel.live",
-        "img-src 'self' data: https://www.googletagmanager.com https://i.pravatar.cc https://www.southwellmedia.com",
-      ],
-    },
   },
 
   markdown: {
