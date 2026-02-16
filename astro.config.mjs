@@ -21,6 +21,10 @@ export default defineConfig({
     },
   },
 
+  image: {
+    layout: 'constrained',
+  },
+
   integrations: [
     react(),
     mdx(),
@@ -42,8 +46,4 @@ export default defineConfig({
     },
   },
 
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
-  },
 });

@@ -4,6 +4,7 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
+import { ClientRouter } from 'astro:transitions';
 import { createWebsiteSchema, createOrganizationSchema } from '@/lib/schema';
 import type { WebSite, Organization, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -76,6 +77,9 @@ if (includeOrgSchema) {
 
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
+
+    <!-- Client-side routing for view transitions -->
+    <ClientRouter />
 
     <!-- Theme script (runs before render to prevent flash) -->
     <script is:inline>

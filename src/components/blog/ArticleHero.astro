@@ -114,6 +114,9 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
         <Image
           src={image}
           alt={imageAlt || title}
+          layout="full-width"
+          widths={[640, 960, 1280, 1920]}
+          sizes="100vw"
           class="aspect-video w-full object-cover"
           loading="eager"
         />
