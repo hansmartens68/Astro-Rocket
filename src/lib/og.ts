@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import satori from 'satori';
 import { html } from 'satori-html';
 import sharp from 'sharp';
@@ -10,17 +12,21 @@ export interface OGImageOptions {
 }
 
 // Load Inter font for OG images (Satori requires TTF/OTF, not WOFF2)
-async function loadFont(): Promise<ArrayBuffer> {
-  // Using Inter Regular TTF from jsDelivr CDN (fontsource)
-  const fontUrl = 'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.ttf';
-  const response = await fetch(fontUrl);
-  return response.arrayBuffer();
+// Bundled locally in public/fonts/ to avoid CDN dependency during builds
+let fontCache: ArrayBuffer | null = null;
+
+function loadFont(): ArrayBuffer {
+  if (!fontCache) {
+    const fontPath = resolve(process.cwd(), 'public/fonts/inter-latin-400-normal.ttf');
+    fontCache = readFileSync(fontPath).buffer as ArrayBuffer;
+  }
+  return fontCache;
 }
 
 export async function generateOGImage(options: OGImageOptions): Promise<Buffer> {
   const { title, description, type = 'website' } = options;
 
-  const fontData = await loadFont();
+  const fontData = loadFont();
 
   const truncatedDescription = description
     ? description.length > 120

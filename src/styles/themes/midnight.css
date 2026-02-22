@@ -1,8 +1,8 @@
 /* =============================================================================
    Velocity Theme - Midnight
    =============================================================================
-   Deep purple atmosphere with electric violet accents. DM Sans for body,
-   Sora for display — geometric, modern, nocturnal.
+   Deep purple atmosphere with electric violet accents. Manrope for body,
+   Outfit for display — geometric, modern, nocturnal.
 
    Dark mode is the hero. Light mode carries the purple tint gracefully.
 
@@ -89,7 +89,7 @@
   --border-invert-strong: oklch(32% 0.025 285);
 
   /* -------------------------------------------------------------------------
-     Typography — DM Sans (body) + Sora (display)
+     Typography — Manrope (body) + Outfit (display)
      ------------------------------------------------------------------------- */
   --theme-font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',

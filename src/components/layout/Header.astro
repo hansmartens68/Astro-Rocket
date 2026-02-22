@@ -9,19 +9,21 @@
  * - size: 'sm' | 'md' | 'lg'
  * - variant: 'default' | 'solid' | 'transparent'
  * - colorScheme: 'default' | 'invert' (use 'invert' for dark backgrounds)
+ * - shape: 'bar' | 'floating' (use 'floating' for capsule header)
  *
  * Features:
- * - Dynamic navigation from routes.ts (default) or custom nav prop
+ * - Dynamic navigation from nav.config.ts (default) or custom nav prop
  * - Optional CTA button with customization
  * - Mobile menu with Escape key support
  * - Theme toggle
  * - GitHub/action buttons
  * - Full slot support for customization
  * - Inverted color scheme for use on dark/image backgrounds
+ * - Floating capsule shape with scroll-reactive bg + color flip
  */
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { getNavRoutes, type NavRoute } from '@/config/routes';
+import { getNavItems, type NavItem as NavConfigItem } from '@/config/nav.config';
 import { headerVariants, headerInnerVariants } from './header.variants';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -53,6 +55,8 @@ interface Props extends HTMLAttributes<'header'> {
   variant?: 'default' | 'solid' | 'transparent';
   /** Color scheme for text/icons - use 'invert' for dark backgrounds */
   colorScheme?: 'default' | 'invert';
+  /** Shape: 'bar' (full-width, default) or 'floating' (centered capsule) */
+  shape?: 'bar' | 'floating';
   /** Override default navigation (replaces getNavRoutes()) */
   nav?: NavItem[];
   /** Additional navigation items (e.g., #features for landing pages) */
@@ -73,6 +77,8 @@ interface Props extends HTMLAttributes<'header'> {
   logoText?: string;
   /** Hide logo entirely */
   hideLogo?: boolean;
+  /** Show language switcher */
+  showLanguageSwitcher?: boolean;
 }
 
 const {
@@ -81,6 +87,7 @@ const {
   size = 'md',
   variant = 'default',
   colorScheme = 'default',
+  shape = 'bar',
   nav,
   extraNav = [],
   showCta = false,
@@ -95,13 +102,14 @@ const {
   ...attrs
 } = Astro.props;
 
-// Color scheme helpers
+// Shape + color scheme helpers
+const isFloating = shape === 'floating';
 const isInvert = colorScheme === 'invert';
 
 // Get navigation items
-const defaultNav = getNavRoutes().map((route: NavRoute) => ({
-  label: route.label,
-  href: route.path,
+const defaultNav = getNavItems().map((item: NavConfigItem) => ({
+  label: item.label,
+  href: item.href,
 }));
 const navItems: NavItem[] = nav || [...extraNav, ...defaultNav];
 
@@ -121,10 +129,14 @@ const hasActionsSlot = Astro.slots.has('actions');
 const hasMobileMenuSlot = Astro.slots.has('mobile-menu');
 
 // Compute header classes
-const headerClasses = cn(headerVariants({ position, variant }), isInvert && 'invert-section', className);
+const headerClasses = cn(
+  headerVariants({ position, variant, shape }),
+  isInvert && !isFloating && 'invert-section',
+  className
+);
 
 // Compute inner container classes
-const innerClasses = headerInnerVariants({ size });
+const innerClasses = headerInnerVariants({ size, shape });
 
 // Check if a nav item is active
 function isActive(href: string): boolean {
@@ -138,7 +150,15 @@ const menuId = `mobile-menu-${Math.random().toString(36).slice(2, 9)}`;
 const buttonId = `${menuId}-button`;
 ---
 
-<header class={headerClasses} data-menu-id={menuId} data-button-id={buttonId} {...attrs}>
+<header
+  class={headerClasses}
+  data-menu-id={menuId}
+  data-button-id={buttonId}
+  data-header-shape={shape}
+  data-header-variant={variant}
+  data-header-color-scheme={colorScheme}
+  {...attrs}
+>
   <div class={innerClasses}>
     {/* Logo */}
     {
@@ -151,7 +171,7 @@ const buttonId = `${menuId}-button`;
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isInvert ? 'text-on-invert' : 'text-brand-500'
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500')
               )}
             >
               {logoText || siteConfig.name}
@@ -173,11 +193,16 @@ const buttonId = `${menuId}-button`;
               <a
                 href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
                 class={cn(
-                  'nav-link rounded-md px-3 py-2 text-sm',
+                  'nav-link relative rounded-md px-3 py-2 text-sm',
                   'transition-all duration-(--transition-fast)',
-                  isActive(href)
-                    ? 'nav-link-active font-semibold text-foreground bg-secondary'
-                    : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                  isFloating && 'hdr-invert-text',
+                  isFloating
+                    ? (isActive(href)
+                        ? 'hdr-nav-active font-semibold'
+                        : 'font-medium opacity-80 hover:opacity-100')
+                    : (isActive(href)
+                        ? 'nav-link-active font-semibold text-foreground bg-secondary'
+                        : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
                 )}
                 aria-current={isActive(href) ? 'page' : undefined}
               >
@@ -195,7 +220,9 @@ const buttonId = `${menuId}-button`;
           <slot name="actions" />
         ) : (
           <>
-            {showThemeToggle && <ThemeToggle />}
+            {showThemeToggle && (
+              <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
+            )}
 
             {actions.map((action) => (
               <Button
@@ -205,6 +232,7 @@ const buttonId = `${menuId}-button`;
                 href={action.href}
                 target={action.target}
                 aria-label={action.label}
+                class={isFloating ? 'hdr-invert-text' : undefined}
               >
                 <Icon name={action.icon} size="sm" />
                 {!action.iconOnly && action.label}
@@ -212,7 +240,12 @@ const buttonId = `${menuId}-button`;
             ))}
 
             {showCta && (
-              <Button size="sm" href={ctaHref} target="_blank">
+              <Button
+                size="sm"
+                href={ctaHref}
+                target="_blank"
+                class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
+              >
                 {cta.label}
               </Button>
             )}
@@ -228,9 +261,11 @@ const buttonId = `${menuId}-button`;
             id={buttonId}
             class={cn(
               'inline-flex items-center justify-center rounded-md p-2 md:hidden',
-              'text-foreground-muted hover:text-foreground hover:bg-secondary',
               'transition-colors',
-              'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none'
+              'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+              isFloating
+                ? 'hdr-invert-text'
+                : 'text-foreground-muted hover:text-foreground hover:bg-secondary'
             )}
             aria-expanded="false"
             aria-controls={menuId}
@@ -255,7 +290,12 @@ const buttonId = `${menuId}-button`;
       (hasMobileMenuSlot ? (
         <div
           id={menuId}
-          class="border-border bg-background hidden origin-top scale-y-0 border-t opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden"
+          class={cn(
+            'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
+            isFloating
+              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
+              : 'border-border bg-background border-t'
+          )}
           role="navigation"
           aria-label="Mobile navigation"
         >
@@ -264,11 +304,19 @@ const buttonId = `${menuId}-button`;
       ) : (
         <div
           id={menuId}
-          class="border-border bg-background hidden origin-top scale-y-0 border-t opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden"
+          class={cn(
+            'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
+            isFloating
+              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
+              : 'border-border bg-background border-t'
+          )}
           role="navigation"
           aria-label="Mobile navigation"
         >
-          <div class="mx-auto max-w-6xl space-y-1 px-6 py-4">
+          <div class={cn(
+            'space-y-1 py-4',
+            isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6'
+          )}>
             {navItems.map(({ label, href }) => (
               <a
                 href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
@@ -314,6 +362,7 @@ const buttonId = `${menuId}-button`;
     document.querySelectorAll<HTMLElement>('header[data-menu-id]').forEach((header) => {
       const menuId = header.dataset.menuId!;
       const buttonId = header.dataset.buttonId!;
+      const isFloating = header.dataset.headerShape === 'floating';
 
       const button = document.getElementById(buttonId);
       const menu = document.getElementById(menuId);
@@ -337,8 +386,14 @@ const buttonId = `${menuId}-button`;
         menuIcon!.classList.add('hidden');
         closeIcon!.classList.remove('hidden');
 
-        // Add solid background to header
-        header.classList.add('!bg-background');
+        if (isFloating) {
+          // Force scrolled state + flatten bottom corners
+          header.setAttribute('data-scrolled', '');
+          header.classList.remove('rounded-2xl');
+          header.classList.add('rounded-t-2xl');
+        } else {
+          header.classList.add('!bg-background');
+        }
 
         // Fade out and blur the page content
         const mainContent = document.querySelector('main');
@@ -385,11 +440,22 @@ const buttonId = `${menuId}-button`;
           if (backdrop) {
             backdrop.classList.add('pointer-events-none');
           }
-          // Remove solid background from header
-          header.classList.remove('!bg-background');
+
+          if (isFloating) {
+            // Restore rounded corners
+            header.classList.remove('rounded-t-2xl');
+            header.classList.add('rounded-2xl');
+            // Only remove scrolled if actually at top
+            if (window.scrollY <= 60) {
+              header.removeAttribute('data-scrolled');
+            }
+          } else {
+            header.classList.remove('!bg-background');
+          }
+
           isOpen = false;
           isAnimating = false;
-        }, 200); // Match transition duration
+        }, 200);
       }
 
       function toggle() {
@@ -426,10 +492,141 @@ const buttonId = `${menuId}-button`;
   document.addEventListener('astro:after-swap', initMobileMenu);
 </script>
 
+<script>
+  const SCROLL_THRESHOLD = 60;
+
+  function initScrollWatcher() {
+    document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"]').forEach((header) => {
+      if (header.dataset.scrollInit) return;
+      header.dataset.scrollInit = 'true';
+
+      let ticking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+          if (window.scrollY > SCROLL_THRESHOLD) {
+            header.setAttribute('data-scrolled', '');
+          } else {
+            // Don't remove if mobile menu is open
+            const menuId = header.dataset.menuId;
+            const menu = menuId ? document.getElementById(menuId) : null;
+            const menuOpen = menu && !menu.classList.contains('hidden');
+            if (!menuOpen) {
+              header.removeAttribute('data-scrolled');
+            }
+          }
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Set initial state
+      onScroll();
+    });
+  }
+
+  initScrollWatcher();
+  document.addEventListener('astro:page-load', initScrollWatcher);
+  document.addEventListener('astro:after-swap', initScrollWatcher);
+</script>
+
 <style is:global>
   .mobile-menu-blur {
     opacity: 0.3;
     filter: blur(4px);
     transition: opacity 200ms, filter 200ms;
+  }
+
+  /* ===== Floating header: scroll state ===== */
+  [data-header-shape="floating"][data-scrolled] {
+    background: color-mix(in oklch, var(--color-background) 92%, transparent);
+    backdrop-filter: blur(24px);
+    border-color: var(--color-border);
+    box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ===== Floating header: color flip (invert → normal on scroll) ===== */
+
+  /* Text elements: on-invert → foreground */
+  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-text {
+    color: var(--color-on-invert);
+    transition: color 300ms;
+  }
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-text {
+    color: var(--color-foreground);
+  }
+
+  /* Logo text: on-invert → brand-500 */
+  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-logo-text {
+    color: var(--color-on-invert);
+    transition: color 300ms;
+  }
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-500);
+  }
+
+  /* Non-invert floating: use normal colors */
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-brand-500);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+    color: var(--color-foreground-muted);
+    transition: color 300ms;
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+    color: var(--color-foreground);
+  }
+
+  /* ===== Floating nav link underline indicators ===== */
+  [data-header-shape="floating"] .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: left 200ms, right 200ms;
+  }
+
+  [data-header-shape="floating"] .nav-link:hover::after,
+  [data-header-shape="floating"] .nav-link.hdr-nav-active::after {
+    left: 12px;
+    right: 12px;
+  }
+
+  /* ===== CTA: invert color flip ===== */
+  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
+    background: white;
+    color: #111;
+    border-color: transparent;
+    transition: background 300ms, color 300ms, border-color 300ms;
+  }
+  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border-color: transparent;
+  }
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta:hover {
+    opacity: 0.9;
+  }
+
+  /* ===== Reduced motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    [data-header-shape="floating"],
+    [data-header-shape="floating"] .hdr-invert-text,
+    [data-header-shape="floating"] .hdr-logo-text,
+    [data-header-shape="floating"] .hdr-invert-cta,
+    [data-header-shape="floating"] .nav-link::after {
+      transition: none !important;
+    }
   }
 </style>

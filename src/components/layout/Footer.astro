@@ -10,7 +10,7 @@
  * - stacked: Vertically stacked logo, nav, copyright
  *
  * Features:
- * - Dynamic navigation from routes.ts (default) or custom nav prop
+ * - Dynamic navigation from nav.config.ts (default) or custom nav prop
  * - Social links with icon support
  * - Copyright with {year} placeholder
  * - Legal links section
@@ -18,7 +18,7 @@
  */
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { getNavRoutes, type NavRoute } from '@/config/routes';
+import { getNavItems, type NavItem as NavConfigItem } from '@/config/nav.config';
 import { footerVariants, footerColumnGridVariants } from './footer.variants';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -91,9 +91,9 @@ const {
 } = Astro.props;
 
 // Get navigation items
-const defaultNav: NavItem[] = getNavRoutes().map((route: NavRoute) => ({
-  label: route.label,
-  href: route.path,
+const defaultNav: NavItem[] = getNavItems().map((item: NavConfigItem) => ({
+  label: item.label,
+  href: item.href,
 }));
 const navItems: NavItem[] = nav || defaultNav;
 
