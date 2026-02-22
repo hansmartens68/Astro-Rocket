@@ -19,10 +19,12 @@
       ".gitignore",
       "vercel.json",
       "netlify.toml",
-      "wrangler.toml"
+      "wrangler.toml",
+      "src/config/nav.config.ts"
     ],
     "protected": [
-      "src/config/",
+      "src/config/site.config.ts",
+      "src/config/consent.config.ts",
       "src/pages/",
       "src/content/",
       "src/assets/",
@@ -87,6 +89,12 @@
       "title": "Rename textareaSize to size on Textarea",
       "description": "The `textareaSize` prop on Textarea has been renamed to `size`. Update all usages: `textareaSize=\"sm\"` → `size=\"sm\"`.",
       "pattern": "textareaSize\\s*[=:]"
+    },
+    {
+      "title": "Migrate routes.ts to nav.config.ts",
+      "description": "The `src/config/routes.ts` route registry has been replaced with `src/config/nav.config.ts`, a simple navigation-only config. Astro handles routing via the filesystem — nav.config.ts only controls which pages appear in menus. Delete routes.ts and update any custom imports.",
+      "pattern": "config/routes",
+      "searchPaths": ["src/"]
     }
   ]
 }
