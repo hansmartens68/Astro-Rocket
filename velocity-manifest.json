@@ -68,7 +68,7 @@
     },
     {
       "title": "Enable CSP",
-      "description": "Add `security: { csp: true }` to astro.config.mjs with external resource allowlists"
+      "description": "Add `security: { csp: true }` to astro.config.mjs. GA4/GTM require: script-src https://*.googletagmanager.com https://*.google-analytics.com https://analytics.google.com; connect-src https://*.google-analytics.com https://analytics.google.com https://*.googletagmanager.com. The wildcard on *.google-analytics.com is critical — GA4 uses regional endpoints (region1, region2, etc.) that are silently blocked without it."
     },
     {
       "title": "Remove colorScheme prop from Button",

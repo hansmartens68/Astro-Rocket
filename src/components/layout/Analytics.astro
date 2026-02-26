@@ -17,6 +17,23 @@
  * CSP: All is:inline scripts here are STATIC (no define:vars). Dynamic values are
  * passed via <script type="application/json"> data elements. Pin each script's
  * sha256 hash in astro.config.mjs → security.csp.scriptDirective.hashes.
+ *
+ * Required CSP directives for GA4/GTM:
+ *
+ *   script-src:
+ *     https://*.googletagmanager.com
+ *     https://*.google-analytics.com
+ *     https://analytics.google.com
+ *
+ *   connect-src:
+ *     https://*.google-analytics.com      (covers region1, region2, etc.)
+ *     https://analytics.google.com         (separate domain, not a subdomain)
+ *     https://*.googletagmanager.com
+ *
+ * IMPORTANT: GA4 sends data to regional endpoints like
+ * https://region1.google-analytics.com/g/s/collect — whitelisting only
+ * www.google-analytics.com will silently drop all tracking requests with
+ * no console errors. The wildcard *.google-analytics.com is required.
  */
 import { PUBLIC_GA_MEASUREMENT_ID, PUBLIC_GTM_ID, PUBLIC_CONSENT_ENABLED } from 'astro:env/client';
 import consentConfig from '@/config/consent.config';
