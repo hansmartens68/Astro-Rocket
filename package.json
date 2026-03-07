@@ -1,6 +1,6 @@
 {
   "name": "velocity",
-  "version": "1.0.0",
+  "version": "0.5.0-beta",
   "description": "Southwell Astro Boilerplate - A production-ready starter template built on Astro 6 and Tailwind CSS v4",
   "type": "module",
   "author": "Southwell Media",
