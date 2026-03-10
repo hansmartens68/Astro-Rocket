@@ -58,7 +58,7 @@ const siteConfig: SiteConfig = {
     'Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites for businesses and creators.',
   url: SITE_URL || 'https://hansmartens.dev',
   ogImage: '/og-default.png',
-  author: 'Hans Martens',
+  author: 'Astro Rocket',
   email: 'hello@hansmartens.dev',
   address: {
     street: '',
@@ -83,7 +83,7 @@ const siteConfig: SiteConfig = {
   authorImage: '/avatar.svg',
   branding: {
     logo: {
-      alt: 'Hans Martens',
+      alt: 'Astro Rocket',
       imageUrl: '/favicon.svg',
     },
     favicon: {

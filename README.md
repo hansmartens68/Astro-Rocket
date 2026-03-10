@@ -29,7 +29,7 @@ Velocity accelerates Astro project delivery with a comprehensive foundation that
 | **57 Components** | 31 UI, 7 patterns, 1 hero, 4 layout, 4 blog, 7 landing, 3 SEO — all accessible with TypeScript |
 | **SEO Toolkit** | Meta tags, JSON-LD structured data, sitemap, and robots.txt |
 | **Dynamic OG Images** | Auto-generated Open Graph images using Satori |
-| **Dark Mode** | System preference detection with localStorage persistence |
+| **Dark Mode** | Dark-first design with sessionStorage persistence (resets to dark on new session) |
 | **Content Collections** | Type-safe blog, pages, authors, and FAQs with Zod validation |
 | **API Routes** | Contact form and newsletter endpoints with validation |
 | **React Islands** | Optional client-side interactivity where needed |
@@ -208,14 +208,13 @@ OKLCH values are `oklch(lightness chroma hue)`. To shift your brand to blue, cha
 
 ### Switching Themes
 
-Velocity ships with two themes: `default` and `midnight`. To switch, edit `src/styles/tokens/colors.css` line 9:
+This fork ships with four themes. To switch, edit `src/styles/tokens/colors.css` and uncomment the theme you want:
 
 ```css
-/* Default theme */
-@import '../themes/default.css';
-
-/* Or use midnight */
-@import '../themes/midnight.css';
+@import '../themes/amethyst.css';    /* Amethyst    — true violet-purple (default) */
+/* @import '../themes/ember.css'; */ /* Ember       — International Orange + gray  */
+/* @import '../themes/nord.css'; */  /* Nord        — arctic blue-gray             */
+/* @import '../themes/tokyo-night.css'; */ /* Tokyo Night — deep navy + electric blue */
 ```
 
 ### Creating a New Theme
@@ -243,7 +242,9 @@ Velocity ships with two themes: `default` and `midnight`. To switch, edit `src/s
 
 ### Dark Mode
 
-Dark mode toggles via the `.dark` class on `<html>`. FOUC is prevented by an inline script that reads `localStorage` before first paint. Use the included `ThemeToggle` component:
+Dark mode toggles via the `.dark` class on `<html>`. The default is **dark** — the design was built dark-first and the target audience (developers) skews heavily toward dark mode.
+
+FOUC is prevented by an inline script that reads `sessionStorage` before first paint. Use the included `ThemeToggle` component:
 
 ```astro
 ---
@@ -254,6 +255,8 @@ import ThemeToggle from '@/components/layout/ThemeToggle.astro';
 ```
 
 To opt out of dark mode, remove the `.dark { ... }` block from your theme file.
+
+> **Why `sessionStorage` instead of `localStorage`?** This is a deliberate choice. `sessionStorage` persists the user's preference during their visit but resets when the tab is closed — so every new visit starts with the intended dark design. For a portfolio or marketing site this is the right call. For a product users return to daily (a SaaS dashboard, editor, etc.), switch to `localStorage` so the preference survives across sessions. Read the full reasoning in [this blog post](https://hansmartens.dev/blog/dark-mode-sessionstorage).
 
 ### WCAG Contrast Requirements
 
