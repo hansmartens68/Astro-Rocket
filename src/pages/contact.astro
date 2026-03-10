@@ -8,39 +8,30 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
-import siteConfig from '@/config/site.config';
 
 const channels = [
   {
-    icon: 'mail',
-    label: 'Email',
-    value: siteConfig.email,
-    note: 'Best for project inquiries',
-    href: `mailto:${siteConfig.email}`,
-    external: false,
-  },
-  {
     icon: 'bluesky',
     label: 'Bluesky',
-    value: '@hansmartens-online.bsky.social',
+    value: 'bsky.app',
     note: 'Follow for updates',
-    href: 'https://bsky.app/profile/hansmartens-online.bsky.social',
+    href: 'https://bsky.app',
     external: true,
   },
   {
     icon: 'github',
     label: 'GitHub',
-    value: 'github.com/hansmartens-dev',
+    value: 'github.com',
     note: 'See what I\'m building',
-    href: 'https://github.com/hansmartens-dev',
+    href: 'https://github.com',
     external: true,
   },
   {
     icon: 'x-twitter',
     label: 'X / Twitter',
-    value: '@hansmartens_dev',
+    value: 'x.com',
     note: 'Follow for updates',
-    href: 'https://x.com/hansmartens_dev',
+    href: 'https://x.com',
     external: true,
   },
 ];
