@@ -42,7 +42,7 @@
     "@astrojs/mdx": "5.0.0",
     "@astrojs/react": "5.0.0",
     "@astrojs/sitemap": "^3.7.1",
-    "@astrojs/vercel": "^8.0.0",
+    "@astrojs/vercel": "^10.0.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@fontsource-variable/outfit": "^5.2.8",
