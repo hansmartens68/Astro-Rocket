@@ -2,11 +2,14 @@
    Velocity Design Tokens - Colors
    =============================================================================
    This file aggregates primitive color scales and the active theme.
-   To switch themes, change the theme import below.
+   To switch themes, uncomment the theme you want and comment out the others.
    ============================================================================= */
 
 @import './primitives.css';
-@import '../themes/default.css';
-/* To use the midnight theme, replace the line above with:
-   @import '../themes/midnight.css';
-*/
+
+/* -----------------------------------------------------------------------
+   ACTIVE THEME — change this to switch the entire site color scheme
+   ----------------------------------------------------------------------- */
+@import '../themes/amethyst.css';   /* Amethyst — true violet-purple (DEFAULT) */
+/* @import '../themes/default.css'; */  /* Default  — International Orange + gray  */
+/* @import '../themes/midnight.css'; */ /* Midnight — electric violet, dark-first  */
