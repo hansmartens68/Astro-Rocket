@@ -2,65 +2,36 @@
 import LandingLayout from '@/layouts/LandingLayout.astro';
 import { Hero } from '@/components/hero';
 import Button from '@/components/ui/form/Button/Button.astro';
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import SocialProof from '@/components/ui/marketing/SocialProof/SocialProof.astro';
-import { TerminalDemo } from '@/components/ui/marketing/TerminalDemo';
 import TechStack from '@/components/landing/TechStack.astro';
-import FeatureTabs from '@/components/landing/FeatureTabs.tsx';
-import LighthouseScores from '@/components/landing/LighthouseScores.astro';
-import Credibility from '@/components/landing/Credibility.astro';
 import CTA from '@/components/landing/CTA.astro';
 ---
 
 <LandingLayout
-  title="The Complete Astro Starter"
-  description="Design tokens, accessible components, SEO, and i18n configured from the first commit. Velocity ships what other starters leave as homework."
+  title="Astro Rocket"
+  description="A production-ready Astro 6 theme with design tokens, accessible components, SEO, and dark mode."
 >
-  <Hero layout="split" size="lg" showGrid showBlob blobPosition="right">
-    <Badge slot="badge" pill pulse>v1.0 Public Beta is Live</Badge>
-
+  <Hero layout="centered" size="lg" showGrid showBlob>
     <h1 slot="title">
-      Your next site <span class="text-brand-500">starts here.</span>
+      Launch your next site <span class="text-brand-500">faster.</span>
     </h1>
 
     <p slot="description">
-      Design tokens, accessible components, SEO, and i18n configured from the first commit. Velocity
-      ships what other starters leave as homework.
+      A production-ready Astro 6 theme with design tokens, accessible components, SEO, and dark
+      mode — configured from the first commit.
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href="https://docs.deployvelocity.com" target="_blank">
-        View Docs
+      <Button size="lg" href="/blog">
+        Read the Blog
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button
-        size="lg"
-        variant="outline"
-        href="https://github.com/southwellmedia/velocity"
-        target="_blank"
-      >
-        <Icon name="github" size="sm" />
-        View on GitHub
+      <Button size="lg" variant="outline" href="/contact">
+        Get in Touch
       </Button>
     </Fragment>
-
-    <TerminalDemo slot="aside" client:load />
-
-    <SocialProof
-      class="mt-[var(--space-stack-lg)]"
-      text="Shipped to production weekly."
-      avatars={[
-        'https://i.pravatar.cc/150?img=12',
-        'https://i.pravatar.cc/150?img=33',
-        'https://www.southwellmedia.com/_vercel/image?url=%2Fassets%2FMichaelFroseth2025.jpg&w=828&q=90',
-      ]}
-    />
   </Hero>
 
   <TechStack />
-  <FeatureTabs client:visible />
-  <LighthouseScores />
-  <Credibility />
   <CTA />
 </LandingLayout>

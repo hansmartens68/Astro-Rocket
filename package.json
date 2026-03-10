@@ -1,9 +1,9 @@
 {
-  "name": "velocity",
+  "name": "astro-rocket",
   "version": "1.0.0",
-  "description": "Southwell Astro Boilerplate - A production-ready starter template built on Astro 6 and Tailwind CSS v4",
+  "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
   "type": "module",
-  "author": "Southwell Media",
+  "author": "",
   "license": "MIT",
   "keywords": [
     "astro",
@@ -19,11 +19,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/southwellmedia/velocity"
+    "url": "https://github.com/hansmartens68/astro--rocket"
   },
-  "homepage": "https://github.com/southwellmedia/velocity#readme",
+  "homepage": "https://github.com/hansmartens68/astro--rocket#readme",
   "bugs": {
-    "url": "https://github.com/southwellmedia/velocity/issues"
+    "url": "https://github.com/hansmartens68/astro--rocket/issues"
   },
   "scripts": {
     "dev": "astro dev",

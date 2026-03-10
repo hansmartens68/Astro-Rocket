@@ -49,24 +49,14 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Velocity',
+  name: 'Astro Rocket',
   description: 'A modern website built with Astro and Tailwind CSS',
   url: SITE_URL || 'https://example.com',
   ogImage: '/og-default.png',
-  author: 'Southwell Media',
-  // Demo contact info - replace with your actual business details
+  author: '',
+  // Contact info - replace with your actual details
   email: 'hello@example.com',
-  phone: '+1 (555) 123-4567',
-  address: {
-    street: '123 Main St',
-    city: 'Dallas',
-    state: 'TX',
-    zip: '75001',
-    country: 'US',
-  },
-  socialLinks: [
-    'https://github.com/southwellmedia',
-  ],
+  socialLinks: [],
   // Twitter metadata - update with your actual handles or remove
   // twitter: {
   //   site: '@yourhandle',
@@ -80,7 +70,7 @@ const siteConfig: SiteConfig = {
   // Replace the SVG files there with your own branding
   branding: {
     logo: {
-      alt: 'Velocity',
+      alt: 'Astro Rocket',
     },
     favicon: {
       svg: '/favicon.svg',
