@@ -1,5 +1,8 @@
+export const prerender = false;
+
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
+import { Resend } from 'resend';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -35,42 +38,54 @@ export const POST: APIRoute = async ({ request }) => {
       }
 
       return new Response(
-        JSON.stringify({
-          success: false,
-          errors: fieldErrors,
-        }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }
+        JSON.stringify({ success: false, errors: fieldErrors }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     // Honeypot check (bot detection)
     if (result.data.honeypot) {
-      // Pretend success but don't process
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // Process the submission
-    // In a real application, you would:
-    // - Send an email notification
-    // - Store in a database
-    // - Forward to a CRM
-    // - etc.
+    // Send email via Resend
+    const apiKey = import.meta.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('RESEND_API_KEY is not set');
+      return new Response(
+        JSON.stringify({ success: false, errors: { form: ['Email service is not configured'] } }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
-    // For now, we just log it (in production, replace with actual handling)
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log('Contact form submission:', {
-        name: result.data.name,
-        email: result.data.email,
-        subject: result.data.subject,
-        message: result.data.message,
-      });
+    const resend = new Resend(apiKey);
+
+    const subject = result.data.subject
+      ? `[hansmartens.dev] ${result.data.subject}`
+      : `[hansmartens.dev] New contact from ${result.data.name}`;
+
+    const { error } = await resend.emails.send({
+      from: 'Contact Form <hello@hansmartens.dev>',
+      to: 'info.martens@gmail.com',
+      replyTo: result.data.email,
+      subject,
+      html: `
+        <p><strong>Name:</strong> ${result.data.name}</p>
+        <p><strong>Email:</strong> ${result.data.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${result.data.message.replace(/\n/g, '<br>')}</p>
+      `,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return new Response(
+        JSON.stringify({ success: false, errors: { form: [error.message || 'Failed to send email'] } }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -81,14 +96,8 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('Contact form error:', error);
 
     return new Response(
-      JSON.stringify({
-        success: false,
-        errors: { form: ['An unexpected error occurred'] },
-      }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
+      JSON.stringify({ success: false, errors: { form: ['An unexpected error occurred'] } }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };

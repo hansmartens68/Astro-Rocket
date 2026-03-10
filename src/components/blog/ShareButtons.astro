@@ -11,7 +11,7 @@ const encodedUrl = encodeURIComponent(url);
 
 const shareLinks = {
   twitter: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+  bluesky: `https://bsky.app/intent/compose?text=${encodedTitle}%20${encodedUrl}`,
 };
 ---
 
@@ -24,7 +24,7 @@ const shareLinks = {
       href={shareLinks.twitter}
       target="_blank"
       rel="noopener noreferrer"
-      class="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-background-secondary border border-border transition-all hover:bg-[#1DA1F2] hover:border-[#1DA1F2] hover:text-white"
+      class="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-background-secondary border border-border transition-all hover:bg-brand-500 hover:border-brand-500 hover:text-white"
       aria-label="Share on Twitter"
     >
       <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -32,16 +32,16 @@ const shareLinks = {
       </svg>
     </a>
 
-    <!-- LinkedIn -->
+    <!-- Bluesky -->
     <a
-      href={shareLinks.linkedin}
+      href={shareLinks.bluesky}
       target="_blank"
       rel="noopener noreferrer"
-      class="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-background-secondary border border-border transition-all hover:bg-[#0077B5] hover:border-[#0077B5] hover:text-white"
-      aria-label="Share on LinkedIn"
+      class="group inline-flex h-9 w-9 items-center justify-center rounded-full bg-background-secondary border border-border transition-all hover:bg-brand-500 hover:border-brand-500 hover:text-white"
+      aria-label="Share on Bluesky"
     >
-      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 20">
+        <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.505 6.744.132.994.799 1.679 1.485 1.768.724.094 2.143.027 2.894-.004.013 0 .027 0 .04-.001C3.939 12 3 12.573 3 13.5 3 14.872 4.745 16 7.5 16c1.012 0 1.944-.252 2.7-.686C11.767 17.4 12 20 12 20s.233-2.6 1.8-4.686c.756.434 1.688.686 2.7.686 2.755 0 4.5-1.128 4.5-2.5 0-.927-.939-1.5-1.924-1.5.013 0 .027.001.04.001.751.031 2.17.098 2.894.004.686-.089 1.353-.774 1.485-1.768C23.622 9.418 24 4.458 24 3.768c0-.688-.139-1.86-.902-2.203-.659-.299-1.664-.621-4.3 1.24C16.046 4.747 13.087 8.686 12 10.8z"/>
       </svg>
     </a>
 

@@ -52,10 +52,13 @@ public/pagefind/
 # Claude Code
 .claude/
 
-
 # npm lockfile (pnpm only)
 package-lock.json
 
 # Internal docs
 southwell-astro-boilerplate-docs.md
 southwell-astro-boilerplate-prd.md
+claude-ai-web-design.png
+dark-mode-sessionstorage.png
+domain-email-vercel-setup.png
+why-i-build-with-astro.png

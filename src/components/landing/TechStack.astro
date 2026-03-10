@@ -1,65 +1,54 @@
 ---
 /**
- * TechStack — Component & Token Showcase
+ * TechStack — MDX-driven stack showcase
  *
- * Demonstrates Card, Badge, Icon components with design tokens
- * and CSS utilities from the Astro Rocket design system.
- *
- * To customize: edit the stack array below and add a matching
- * [data-tech="your-id"] rule in the <style> block to set
- * --tech-color and --tech-bg for your technology's brand.
+ * Content lives in src/content/stack/*.mdx — add, remove, or
+ * edit a tool there without touching this component.
  */
+import { getCollection } from 'astro:content';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 
-const stack = [
-  {
-    id: 'astro',
-    name: 'Astro',
-    desc: 'Server islands, content layer, zero-JS by default',
-    icon: 'brand-astro' as const,
-    version: 'v6',
-  },
-  {
-    id: 'tailwind',
-    name: 'Tailwind CSS',
-    desc: 'Lightning CSS engine, @theme API, OKLCH colors',
-    icon: 'brand-tailwind' as const,
-    version: 'v4',
-  },
-  {
-    id: 'typescript',
-    name: 'TypeScript',
-    desc: 'Strict mode, path aliases, full type inference',
-    icon: 'brand-typescript' as const,
-    version: '5.8+',
-  },
-  {
-    id: 'react',
-    name: 'React',
-    desc: 'Server components, actions, use() hook support',
-    icon: 'brand-react' as const,
-    version: '19+',
-  },
-];
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const items = await getCollection('stack');
+const stack = items.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="border-y border-border bg-background-secondary py-[var(--space-section-sm)]">
+<section class="border-y border-border bg-background-secondary py-[var(--space-section-md)]">
   <div class="mx-auto max-w-6xl px-6">
+    {(title || description) && (
+      <div class="mb-[var(--space-section-header)] text-center">
+        {title && (
+          <h2 class="font-display text-4xl font-bold text-foreground mb-4">{title}</h2>
+        )}
+        {description && (
+          <p class="text-lg text-foreground-muted max-w-2xl mx-auto">{description}</p>
+        )}
+      </div>
+    )}
     <div class="grid grid-cols-2 gap-[var(--space-content-gap)] md:grid-cols-4">
       {stack.map((item, i) => (
-        <div data-tech={item.id} class={`animate-slide-up delay-${i}`}>
-          <Card variant="elevated" padding="md" hover={true} class="h-full text-center md:text-left">
+        <div
+          class={`animate-slide-up delay-${i}`}
+          style={`--tech-color: oklch(${item.data.colorOklch}); --tech-bg: oklch(${item.data.colorOklch} / 0.1);`}
+        >
+          <Card variant="elevated" padding="md" hover={true} href={item.data.url} target="_blank" rel="noopener noreferrer" class="h-full text-center md:text-left">
             <div class="flex flex-col items-center gap-[var(--space-stack-sm)] md:items-start">
               <div class="flex w-full items-start justify-between">
                 <div class="tech-icon-wrap">
-                  <Icon name={item.icon} size="lg" />
+                  <Icon name={item.data.icon} size="lg" />
                 </div>
-                <Badge variant="brand" size="sm" pill>{item.version}</Badge>
+                <Badge variant="brand" size="sm" pill>{item.data.version}</Badge>
               </div>
-              <span class="font-display text-lg font-bold text-foreground">{item.name}</span>
-              <p class="text-sm text-foreground-muted">{item.desc}</p>
+              <span class="font-display text-lg font-bold text-foreground">{item.data.name}</span>
+              <p class="text-sm text-foreground-muted">{item.data.description}</p>
             </div>
           </Card>
         </div>
@@ -69,31 +58,6 @@ const stack = [
 </section>
 
 <style>
-  /* ─── Per-tech brand theming ───────────────────────────────
-     Each [data-tech] sets --tech-color and --tech-bg.
-     To add a tech: define a new data attribute rule below.
-     Lightning CSS processes these → fallbacks are automatic. */
-
-  [data-tech='astro'] {
-    --tech-color: oklch(62.5% 0.22 38);
-    --tech-bg: oklch(62.5% 0.22 38 / 0.1);
-  }
-
-  [data-tech='tailwind'] {
-    --tech-color: oklch(72% 0.14 210);
-    --tech-bg: oklch(72% 0.14 210 / 0.1);
-  }
-
-  [data-tech='typescript'] {
-    --tech-color: oklch(52% 0.15 260);
-    --tech-bg: oklch(52% 0.15 260 / 0.1);
-  }
-
-  [data-tech='react'] {
-    --tech-color: oklch(68% 0.15 230);
-    --tech-bg: oklch(68% 0.15 230 / 0.1);
-  }
-
   /* ─── Shared icon container ─────────────────────────────── */
   .tech-icon-wrap {
     display: flex;

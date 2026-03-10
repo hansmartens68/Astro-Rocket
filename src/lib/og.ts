@@ -50,8 +50,8 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
         </div>
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); border-radius: 12px;">
-              <span style="font-size: 24px; font-weight: 700; color: #18181b;">V</span>
+            <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #F94C10; border-radius: 10px;">
+              <span style="font-size: 26px; font-weight: 700; color: white;">M</span>
             </div>
             <span style="font-size: 20px; font-weight: 600; color: #fafafa;">${siteConfig.name}</span>
           </div>

@@ -5,8 +5,8 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { ClientRouter } from 'astro:transitions';
-import { createWebsiteSchema, createOrganizationSchema } from '@/lib/schema';
-import type { WebSite, Organization, WithContext } from 'schema-dts';
+import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
+import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
 
 interface Props {
@@ -23,6 +23,8 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
+  includePersonSchema?: boolean;
+  includeProfessionalServiceSchema?: boolean;
 }
 
 const {
@@ -34,17 +36,25 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
+  includePersonSchema = false,
+  includeProfessionalServiceSchema = false,
 } = Astro.props;
 
 // Build JSON-LD schemas
-const schemas: Array<WithContext<WebSite> | WithContext<Organization>> = [createWebsiteSchema()];
+const schemas: Array<WithContext<WebSite> | WithContext<Organization> | WithContext<Person>> = [createWebsiteSchema()];
 if (includeOrgSchema) {
   schemas.push(createOrganizationSchema());
+}
+if (includePersonSchema) {
+  schemas.push(createPersonSchema());
+}
+if (includeProfessionalServiceSchema) {
+  schemas.push(createProfessionalServiceSchema());
 }
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,16 +88,37 @@ if (includeOrgSchema) {
     <!-- Client-side routing for view transitions -->
     <ClientRouter />
 
-    <!-- Theme script (runs before render to prevent flash) -->
+    <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
-        const theme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        function applyTheme(el) {
+          try {
+            if (sessionStorage.getItem('theme') === 'light') {
+              el.classList.remove('dark');
+            } else {
+              el.classList.add('dark');
+            }
+          } catch (_) {
+            // sessionStorage blocked — keep server default (dark)
+          }
+        }
 
-        if (theme === 'dark' || (!theme && systemDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+        // Fix on current document (removes dark if user previously chose light)
+        applyTheme(document.documentElement);
+
+        // Register transition listeners only once across re-runs
+        if (!window.__themeListenersInit) {
+          window.__themeListenersInit = true;
+
+          // before-swap: set correct class on the INCOMING document (prevents flash)
+          document.addEventListener('astro:before-swap', function (e) {
+            applyTheme(e.newDocument.documentElement);
+          });
+
+          // after-swap: re-apply as safety net in case the html class was reset
+          document.addEventListener('astro:after-swap', function () {
+            applyTheme(document.documentElement);
+          });
         }
       })();
     </script>

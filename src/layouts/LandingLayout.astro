@@ -19,6 +19,8 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
+  includePersonSchema?: boolean;
+  includeProfessionalServiceSchema?: boolean;
 }
 
 const {
@@ -29,6 +31,8 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
+  includePersonSchema = false,
+  includeProfessionalServiceSchema = false,
 } = Astro.props;
 ---
 
@@ -40,26 +44,18 @@ const {
   noindex={noindex}
   nofollow={nofollow}
   includeOrgSchema={includeOrgSchema}
+  includePersonSchema={includePersonSchema}
+  includeProfessionalServiceSchema={includeProfessionalServiceSchema}
 >
   <Header
     slot="header"
     position="fixed"
     size="lg"
     showCta
-    cta={{ label: 'View Docs', href: 'https://github.com/hansmartens68/astro--rocket' }}
-    extraNav={[{ label: 'Features', href: '#features' }]}
-    actions={[
-      {
-        icon: 'github',
-        href: 'https://github.com/hansmartens68/astro--rocket',
-        label: 'View on GitHub',
-        iconOnly: true,
-        target: '_blank',
-      },
-    ]}
+    cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
   <slot />
 
-  <Footer slot="footer" layout="simple" background="secondary" showCopyright={false} />
+  <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>

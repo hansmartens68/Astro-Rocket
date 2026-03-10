@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://velocity.dev/component-registry.schema.json",
+  "$id": "https://github.com/hansmartens68/astro--rocket/component-registry.schema.json",
   "title": "Astro Rocket Component Registry",
   "description": "Schema for the Astro Rocket component registry",
   "type": "object",

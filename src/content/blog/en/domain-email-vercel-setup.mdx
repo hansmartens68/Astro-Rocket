@@ -1,0 +1,117 @@
+---
+title: "How I Set Up My Domain, Email, and Hosting with GoDaddy, Microsoft, and Vercel"
+description: "A personal walkthrough of buying hansmartens.dev at GoDaddy, adding a Microsoft 365 mailbox and pointing the domain to Vercel."
+publishedAt: 2026-03-06
+author: "Hans Martens"
+tags: ["web development", "vercel", "godaddy", "domain", "tutorial"]
+featured: false
+locale: en
+image: "../../../assets/blog/domain-email-vercel-setup-v2.svg"
+imageAlt: "Two centred cards showing GoDaddy domain registrar and Vercel deployment platform, connected by a dashed line with hansmartens.dev, on a dark purple starfield background"
+---
+
+When I decided to build a proper personal website, the very first thing I needed was a domain. That one purchase — `hansmartens.dev` at GoDaddy — turned into a small chain of setup steps involving email, DNS, and deployment. This post is the walkthrough I wish I had when I started: what I did, in what order, and exactly how it works technically.
+
+## What GoDaddy is
+
+[GoDaddy](https://www.godaddy.com) is one of the world's largest **domain registrars** — a company accredited to sell and manage domain names on your behalf. When you register a domain there, GoDaddy records your ownership in the official global domain registry, handles yearly renewal, and protects your contact information with WHOIS privacy. Alongside domain registration, GoDaddy offers DNS management, web hosting, email hosting (including Microsoft 365 bundles), and SSL certificates. Most people use GoDaddy mainly for the domain and DNS — then host their actual site elsewhere.
+
+## What Vercel is
+
+[Vercel](https://vercel.com) is a **cloud deployment platform** built around the modern web development workflow. You connect your GitHub repository, and every time you push code, Vercel automatically builds and deploys your site — usually within 30 seconds. It handles hosting, global CDN distribution, HTTPS certificates, serverless functions, and preview deployments for every pull request. Vercel is the natural home for sites built with Astro, Next.js, SvelteKit, and similar frameworks. The free tier is generous enough that most personal sites and portfolios run on it at zero cost.
+
+## What the .dev domain is
+
+`.dev` is a **top-level domain (TLD) owned and operated by Google**. It was opened to the public in 2019 and is specifically aimed at developers and technology projects. Unlike `.com` or `.nl`, which anyone can use for any purpose, `.dev` carries an intentional signal: this is a technical site, built by a developer.
+
+There is one important technical requirement: **every `.dev` website must use HTTPS**. Google added `.dev` to the browser HSTS preload list, which means modern browsers will refuse to load a `.dev` URL over plain HTTP — full stop. That might sound strict, but in practice every serious hosting provider (including Vercel) provisions a free SSL certificate automatically. For most developers, the HTTPS requirement costs nothing and just ensures the site is always secure.
+
+## Step 1: Buying the domain at GoDaddy
+
+I bought `hansmartens.dev` at [GoDaddy](https://www.godaddy.com). I chose `.dev` because it immediately says what I do — it's a domain clearly meant for a developer's personal site or portfolio, which matched exactly what I was building.
+
+When you purchase a domain at GoDaddy, you get two things straight away:
+
+1. **The domain itself** — GoDaddy becomes your *registrar*, the company that holds the official registration of `hansmartens.dev` in your name.
+2. **DNS management** — GoDaddy also becomes your *DNS provider* by default. This is where records like `A`, `CNAME`, and `MX` live, telling the internet where to send visitors and where to deliver email.
+
+These two roles — registrar and DNS provider — are separate things, even when the same company handles both. This distinction matters later.
+
+## Step 2: Adding Microsoft 365 email
+
+Right after buying the domain, GoDaddy offered me a [Microsoft 365](https://www.microsoft.com/en-us/microsoft-365) subscription. I took it. Microsoft 365 is Microsoft's cloud productivity suite — Word, Excel, Outlook, Teams, and OneDrive — available as a monthly subscription. The plan I needed was the **Microsoft 365 Business Basic**, which gives you a professional email address on your own domain, 50 GB of mailbox storage, and access to the web versions of all the Office apps. This gave me a proper mailbox at `hello@hansmartens.dev` — not a forwarding alias, but a real inbox with Outlook on the web, calendar sync, and a professional email address that uses my own domain.
+
+Behind the scenes, GoDaddy automatically added the right **MX records** to my DNS zone. MX records tell the internet: *"email addressed to @hansmartens.dev should be delivered to Microsoft's mail servers."* Because GoDaddy set these up for me, I didn't have to touch DNS manually at this point.
+
+The key thing to understand is that **Microsoft handles email independently from where the website lives**. The website can be hosted anywhere — Vercel, Netlify, a VPS — and the email still works, as long as the MX records stay in place. This turned out to be important in the next step.
+
+## Step 3: Adding the domain to Vercel
+
+Once my site was ready, I wanted to serve it from `hansmartens.dev`. Vercel makes this straightforward.
+
+### In Vercel
+
+1. Open your project in the [Vercel dashboard](https://vercel.com)
+2. Go to **Settings → Domains**
+3. Type in `hansmartens.dev` and click **Add**
+4. Vercel will show you which DNS records to add
+
+For an apex domain (no `www`, just the bare domain), Vercel asks for an **A record** pointing to their IP address:
+
+```
+Type:  A
+Name:  @
+Value: 76.76.21.21
+```
+
+For the `www` subdomain, it asks for a **CNAME record**:
+
+```
+Type:  CNAME
+Name:  www
+Value: cname.vercel-dns.com
+```
+
+### In GoDaddy
+
+Armed with those values, I went to **GoDaddy → My Products → DNS** and added the two records. GoDaddy's DNS editor is straightforward: pick the record type, fill in the name and value, save. DNS changes propagate across the internet within minutes to a few hours — in my case it was about 15 minutes.
+
+The crucial point: **I did not change GoDaddy's nameservers.** GoDaddy stayed in charge of DNS. That meant my existing MX records for Microsoft 365 were untouched. Email kept working without any interruption.
+
+### What Vercel does with the domain
+
+Once Vercel sees the A record pointing to its IP, it:
+
+- Routes all incoming traffic for `hansmartens.dev` to your project
+- Automatically provisions a free SSL certificate via Let's Encrypt
+- Redirects `www` to the apex domain (or vice versa, depending on your preference)
+
+From that moment, every `git push` to my main branch triggers a new deployment, and `hansmartens.dev` is always up to date within about 30 seconds.
+
+## The part I really like: moving the domain between projects
+
+Here's something that isn't obvious until you've used Vercel for a while: **the domain and the project are separate things.**
+
+I can have multiple Vercel projects — one for `hansmartens.dev`, one for a client site, one for a side project — and if I ever want to, I can reassign my domain to a different project entirely. I go to **Settings → Domains** on the new project, add `hansmartens.dev`, and Vercel moves it over. No DNS changes needed. No GoDaddy involved. The DNS records still point to Vercel's IP — Vercel just changes which project answers those requests.
+
+This is genuinely useful when experimenting. I can:
+
+- Test a completely new version of my site in a separate project
+- Swap the live domain to it with a few clicks
+- Roll back just as easily if something isn't right
+
+In practice, `hansmartens.dev` has stayed firmly pointed at this Astro site since I built it. I built it with [Claude Sonnet 4.6](https://claude.ai) and I'm happy enough with the result that there hasn't been a reason to move it.
+
+## Summary
+
+| Step | Where | What |
+|------|-------|------|
+| Buy domain | GoDaddy | Registers `hansmartens.dev`, GoDaddy manages DNS |
+| Add email | GoDaddy / Microsoft 365 | Adds MX records to GoDaddy DNS automatically |
+| Add domain to Vercel | Vercel dashboard | Provides A record and CNAME values to add |
+| Add DNS records | GoDaddy DNS editor | Points domain to Vercel's IP, email unaffected |
+| Move domain (optional) | Vercel dashboard only | Reassign to any project, no DNS changes needed |
+
+The whole process took about an hour the first time — mostly reading and understanding things rather than clicking buttons. Now that I know how it works, I could do it in under ten minutes.
+
+If you're setting something similar up and have questions, feel free to reach out. [Contact](https://hansmartens.dev/contact)

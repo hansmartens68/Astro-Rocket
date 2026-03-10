@@ -1,0 +1,134 @@
+---
+title: "How I Use Claude AI for Web Design and Development"
+description: "Discover how I use Claude AI — Anthropic's AI assistant — to build faster, better websites. What it can do, which model to pick, and the difference between Claude Sonnet and Opus."
+publishedAt: 2026-03-09
+author: "Hans Martens"
+image: "../../../assets/blog/claude-ai-web-design.svg"
+imageAlt: "Claude AI logo on a dark background — AI for Web Design and Development"
+tags: ["ai", "claude", "web development", "web design", "productivity"]
+featured: true
+locale: en
+---
+
+I'll be honest: a year ago I was sceptical about AI tools for development. Most of what I tried felt like autocomplete on steroids — useful in short bursts, but not something that changed how I work. Then I started using [Claude](https://claude.ai), made by [Anthropic](https://anthropic.com), and my opinion shifted completely.
+
+Claude is now a daily part of how I design and build websites. In this post I want to explain what it actually does for me, which model I reach for and why, and where I think it genuinely makes the work better.
+
+## What is Claude?
+
+Claude is an AI assistant built by Anthropic, a company founded specifically to research and build AI that is safe and helpful. Unlike some AI tools that feel like they're trying to impress you, Claude is remarkably measured — it admits uncertainty, asks clarifying questions, and reasons through problems step by step.
+
+For a web designer and developer, that matters. I don't need an AI that confidently tells me the wrong answer. I need one that thinks carefully and pushes back when something doesn't add up.
+
+## What Claude can do for web design and development
+
+Let me be concrete. Here's where Claude genuinely earns its place in my workflow.
+
+### Writing and refining code
+
+This is the most obvious use case, and it's also the best one. I can describe what I want — in plain language, or by pasting existing code — and Claude writes it, refines it, or explains what's wrong with it.
+
+A typical example: I'm building a component in Astro and the TypeScript is throwing a type error I can't quite parse. I paste the error and the relevant code into Claude. Within seconds it identifies the issue, explains *why* it's happening, and gives me a corrected version. That used to take me twenty minutes of searching documentation and Stack Overflow. Now it takes two.
+
+### Reviewing code for problems
+
+I regularly ask Claude to review code I've written and look for anything that could go wrong. Not just syntax errors — but things like performance issues, accessibility gaps, SEO problems, or security weaknesses. It catches things I'd otherwise only find after launch. That's valuable.
+
+### CSS and design decisions
+
+This might surprise you, but Claude is genuinely helpful for visual decisions too. I can describe a layout challenge — a tricky flexbox situation, a spacing system that isn't quite working, a colour contrast issue — and get concrete suggestions back.
+
+It also helps me think through design *logic*. If I'm not sure whether to use a fixed sidebar or a sticky header, Claude can walk me through the trade-offs for a specific use case. It doesn't make the final call — I do — but having a thoughtful sounding board helps me make better decisions faster.
+
+### Writing copy and content
+
+Good websites need good words, and writing is time-consuming. I use Claude to draft page copy, sharpen headlines, write meta descriptions, and create blog post outlines. It writes in whatever tone I ask for — professional, conversational, direct — and adapts to a brief quickly.
+
+For my own site, this post included, Claude is part of the process. I outline, it drafts, I edit. The end result is better and faster than either of us working alone.
+
+### SEO and technical audits
+
+Claude can analyse a page's structure and give me specific, prioritised suggestions for improving search visibility. Title tags, heading hierarchy, internal link strategy, schema markup — it covers all of it. Not vague advice, but concrete actions tied to my actual content.
+
+### Learning and explaining
+
+There are corners of CSS, JavaScript, and web performance that I haven't needed to go deep on yet. When those moments come up, Claude explains concepts clearly and at whatever level I need. It's like having access to an expert who never gets impatient.
+
+## The two Claude models — and when to use which
+
+Anthropic offers several versions of Claude. For web design and development, two are worth knowing: **Claude Sonnet 4.6** and **Claude Opus 4.6**.
+
+### Claude Sonnet 4.6 — fast, capable, and ideal for daily work
+
+Sonnet 4.6 is the model I'd recommend as your default for web development tasks. It's fast — responses come back in seconds — and it handles the vast majority of coding, writing, and design questions extremely well.
+
+For typical development work — writing components, debugging errors, reviewing code, drafting copy, generating CSS — Sonnet 4.6 is sharp, responsive, and accurate. You won't feel like you're waiting, and you won't feel like you're getting a watered-down response.
+
+The speed matters more than it might seem. When you're in flow, interruptions are expensive. A model that responds in two seconds keeps you moving. One that takes twenty makes you reach for another tab.
+
+**Best for:** daily coding tasks, component building, debugging, copy writing, SEO reviews, design questions, code explanations.
+
+### Claude Opus 4.6 — Anthropic's most capable model
+
+Opus 4.6 is the heavyweight. It's slower and costs more to run, but it brings Anthropic's deepest reasoning capabilities to the table.
+
+Where Opus shines is on genuinely complex problems — the kind that require holding many constraints in mind at once, reasoning across multiple files or systems, or making architectural decisions that have long-term consequences.
+
+Think: redesigning the data model for a large site, planning the architecture of a custom CMS, or working through a subtle performance problem with many interacting causes. These are problems where you want the most capable model thinking them through with you.
+
+For most day-to-day tasks, Sonnet 4.6 is faster and more than sufficient. But when the problem is genuinely hard, Opus 4.6 is worth it.
+
+**Best for:** complex architecture decisions, large-scale refactors, multi-file reasoning, performance root-cause analysis, anything where depth matters more than speed.
+
+### A practical guide to choosing
+
+| Task | Model to reach for |
+|---|---|
+| Fixing a bug | Sonnet 4.6 |
+| Writing a component | Sonnet 4.6 |
+| Reviewing code | Sonnet 4.6 |
+| Writing page copy | Sonnet 4.6 |
+| SEO audit | Sonnet 4.6 |
+| Planning site architecture | Opus 4.6 |
+| Large-scale refactor | Opus 4.6 |
+| Complex performance debugging | Opus 4.6 |
+
+When in doubt, start with Sonnet 4.6. If the answer feels thin or the problem is truly thorny, move to Opus 4.6.
+
+## What Claude doesn't replace
+
+I want to be honest about this. Claude is a tool, and like every tool it has limits.
+
+It doesn't replace design taste. It can tell me whether a layout is accessible, whether contrast ratios pass WCAG, whether a heading hierarchy makes sense — but it can't tell me whether something is *beautiful*. That judgment is still mine.
+
+It doesn't replace client relationships. Understanding what a client actually needs, reading between the lines of a brief, managing expectations — none of that is automated. The human side of the work stays human.
+
+And it makes mistakes. Code it writes sometimes has bugs. Copy sometimes misses the tone. I always review what it produces before it ships. Claude is a collaborator, not a replacement for professional judgment.
+
+## How I actually use it day to day
+
+For me, Claude lives in [Claude Code](https://claude.ai/code) — a command-line tool that connects Claude directly to my development environment. Instead of switching to a browser, I work with Claude inside my editor, on my actual codebase. It can read files, write changes, and reason about the whole project at once.
+
+That's the version of Claude that feels like a real collaborator. Not a chatbot I paste things into, but a tool that understands what I'm building and helps me build it better.
+
+If you're just getting started, the web interface at [claude.ai](https://claude.ai) is the easiest entry point. Paste in your code, ask your question, get an answer. From there, explore Claude Code if you want the deeper integration.
+
+## This website — built together with Claude Sonnet 4.6
+
+I want to share something I'm genuinely enthusiastic about, because I think it illustrates everything above better than any abstract example could.
+
+This website — hansmartens.dev — was built together with Claude Sonnet 4.6. Not "with some AI assistance sprinkled in." Actually together. Side by side, through the whole thing.
+
+We worked through the architecture decisions, built the components, debugged the tricky bits, wrote the copy, set up the SEO. Throughout the whole project it felt less like directing a tool and more like working alongside a colleague who is fast, thoughtful, and genuinely engaged in the problem. Someone who could pick up context quickly, remember what we'd agreed on, and push back when something wasn't the right call.
+
+What I didn't expect was how enjoyable it would be. The dynamic with Claude Sonnet 4.6 on this project was genuinely one of the best working experiences I've had. There's no friction, no miscommunication, no ego. Just two people — or one person and one very capable AI — solving problems together.
+
+I'm really happy with the result. The site is fast, well-structured, and built to a standard I'm proud of. And I'm equally happy with how we got there.
+
+If you're curious what that kind of collaboration looks like in practice, you're looking at it right now.
+
+---
+
+Web design and development in 2026 is faster, more capable, and more interesting with Claude in the mix. If you haven't tried it yet — particularly for real coding and development work — I'd encourage you to give it a proper chance.
+
+And if you'd like a website built the modern way — with that same kind of thoughtful collaboration behind it — [get in touch](/contact). I'm always happy to talk about it.

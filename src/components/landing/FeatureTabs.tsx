@@ -162,7 +162,7 @@ export const defaultLang = 'en';
 export default {
   'nav.home': 'Home',
   'nav.about': 'About',
-  'hero.title': 'Ship faster with Astro Rocket',
+  'hero.title': 'Ship faster with Velocity',
   'hero.subtitle': 'The modern Astro starter',
 } as const;
 
@@ -174,8 +174,7 @@ const title = t('hero.title'); // "Ship faster..."`,
   content: {
     lang: 'typescript',
     code: `// src/content.config.ts
-import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
+import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
@@ -478,7 +477,7 @@ export function FeatureTabs() {
           {tabs.map((tab) => (
             <div key={tab.id} data-tab-content={tab.id}>
               <div className="mb-[var(--space-heading-gap)]">
-                <h3 className="text-foreground text-xl font-bold">{tabContent[tab.id].title}</h3>
+                <h3 className="text-foreground text-xl font-semibold">{tabContent[tab.id].title}</h3>
                 <p className="text-foreground-muted mt-2">{tabContent[tab.id].content}</p>
               </div>
               <CodeBlock

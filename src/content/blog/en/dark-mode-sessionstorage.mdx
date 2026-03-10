@@ -1,0 +1,109 @@
+---
+title: "Why I Use sessionStorage for Dark Mode (Not localStorage)"
+description: "Dark mode is the default on my website — and I store the theme preference in sessionStorage instead of localStorage. Here's the reasoning behind both choices."
+publishedAt: 2026-03-07
+author: "Hans Martens"
+tags: ["web development", "dark mode", "css", "performance"]
+featured: false
+locale: en
+image: "../../../assets/blog/dark-mode-sessionstorage.svg"
+imageAlt: "Split dark/light screen showing the moon on the dark side and sun on the light side, with a toggle switch in the center — illustrating sessionStorage vs localStorage for dark mode"
+---
+
+Dark mode has become a standard expectation on the web. But implementing it well — without a flash of the wrong theme, without persisting state longer than it should be — is trickier than it looks. Here's how I landed on my current approach and why.
+
+## Dark mode is the default
+
+On hansmartens.dev, the `<html>` element starts with `class="dark"`. That means dark mode is the baseline, not an opt-in.
+
+The reasoning is straightforward: most of the people visiting my site are developers. Developers skew heavily toward dark mode. More importantly, the design was built dark-first — the colour palette, contrast ratios, and overall aesthetic were designed with dark mode in mind from day one.
+
+Making dark the default means the majority of visitors get the intended experience immediately, before any JavaScript runs.
+
+## The flash problem
+
+Theme switching on static sites has one notorious pitfall: the **flash of wrong theme** (FOWT). Here's why it happens:
+
+1. The server sends HTML with `class="dark"` on `<html>`
+2. The browser paints the dark page
+3. JavaScript loads, reads the user's preference, and switches to light mode
+4. The user sees a white flash
+
+The solution is to run the theme-detection script **before the browser paints** — as an inline `<script>` in `<head>`, not a deferred or external script. My implementation does exactly that:
+
+```js
+(function () {
+  function applyTheme(el) {
+    try {
+      if (sessionStorage.getItem('theme') === 'light') {
+        el.classList.remove('dark');
+      } else {
+        el.classList.add('dark');
+      }
+    } catch (_) {
+      // sessionStorage blocked — keep dark (the default)
+    }
+  }
+
+  applyTheme(document.documentElement);
+})();
+```
+
+This runs synchronously, before anything renders. No flash.
+
+## Why sessionStorage instead of localStorage
+
+This is the deliberate choice I want to explain.
+
+Most theme implementations reach for `localStorage` — it persists indefinitely across sessions. Open the site in a new tab next week, and it still remembers your preference.
+
+I switched to `sessionStorage`. Here's why.
+
+**sessionStorage lives for the duration of the browser session.** Close the tab, close the browser — the preference is gone. The next time you visit, you get my intended default: dark mode.
+
+That's actually what I want. This is my portfolio. I've designed it carefully. Most visitors arrive once, browse, and leave. I want them to see the experience I intended, not whatever they had saved from a previous visit on a different device or in a different context.
+
+For a product that users return to daily — a SaaS dashboard, a code editor, a reading app — `localStorage` is the right call. The user has a genuine, ongoing preference and you should respect it across sessions.
+
+But for a portfolio or marketing site, `sessionStorage` is a better fit. It respects the user's preference *during their visit* without permanently overriding your design intent on every future visit.
+
+## How the toggle works
+
+When the user clicks the theme toggle:
+
+- Switching to **light mode** → `sessionStorage.setItem('theme', 'light')`
+- Switching back to **dark mode** → `sessionStorage.removeItem('theme')`
+
+I remove the key rather than storing `'dark'`, because dark is already the default. No stored key means dark — which keeps the logic clean and means the site works correctly even if sessionStorage is blocked entirely.
+
+## Handling Astro view transitions
+
+This site uses Astro's view transitions for smooth page navigation. That introduces a subtle complication: on each navigation, Astro swaps in a new `<html>` element — which can reset the `class` attribute.
+
+To handle this, I register listeners for Astro's transition events:
+
+- `astro:before-swap` — applies the theme class to the *incoming* document before it renders
+- `astro:after-swap` — re-applies as a safety net
+
+A `window.__themeListenersInit` guard prevents duplicate listeners from stacking up across navigations. The result is seamless theme persistence across the entire site without any flickering between pages.
+
+## The CSS side
+
+The implementation uses a single `.dark` class on `<html>` to drive everything. Tailwind's dark mode variant is configured with a custom selector:
+
+```css
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+This means any element inside `.dark` gets the dark variant applied — no `media` query dependency, full manual control.
+
+All colour tokens are defined as CSS custom properties and remapped in the `.dark` selector. Switch the class, and the entire site repaints instantly.
+
+## Summary
+
+- **Default theme: dark** — the design was built dark-first, and most visitors are developers.
+- **Storage: sessionStorage** — respects the user's preference during their visit, resets to dark on the next session.
+- **Script placement: inline in `<head>`** — runs before the browser paints, eliminating any flash of wrong theme.
+- **Toggle logic: remove the key for dark** — dark is the default, so no stored key is needed for it.
+
+The result is a theme system that's flash-free, lightweight, and honest about what it's trying to do: give you the best experience during your visit, without making assumptions about what you want the next time you arrive.

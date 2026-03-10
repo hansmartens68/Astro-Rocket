@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { formatDate } from '@/lib/utils';
+import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 
 interface Props {
   title: string;
@@ -36,7 +37,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     'group relative rounded-lg border bg-background p-6 transition-all duration-200 ease-out',
     featured
       ? 'border-brand-500/30 ring-1 ring-brand-500/20 shadow-lg'
-      : 'border-border hover:-translate-y-0.5 hover:shadow-md hover:border-border-strong',
+      : 'border-brand-500/30 ring-1 ring-brand-500/20 hover:-translate-y-0.5 hover:shadow-md',
   ]}
 >
   {featured && (
@@ -75,9 +76,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     <div class="flex flex-wrap items-center gap-3 text-sm text-foreground-subtle">
       {author && (
         <div class="flex items-center gap-2">
-          <div class="h-6 w-6 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-xs font-bold text-brand-600 dark:text-brand-400">
-            {author.charAt(0).toUpperCase()}
-          </div>
+          <Logo size="sm" />
           <span class="font-medium">{author}</span>
         </div>
       )}
@@ -99,14 +98,11 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 
     {tags.length > 0 && (
       <div class="mt-4 flex flex-wrap gap-2">
-        {tags.slice(0, 3).map((tag) => (
+        {tags.map((tag) => (
           <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border transition-colors group-hover:bg-brand-50 group-hover:text-brand-700 group-hover:ring-brand-200 dark:group-hover:bg-brand-900/20 dark:group-hover:text-brand-400 dark:group-hover:ring-brand-800">
             {tag}
           </span>
         ))}
-        {tags.length > 3 && (
-          <span class="text-xs text-foreground-subtle">+{tags.length - 3}</span>
-        )}
       </div>
     )}
   </a>

@@ -2,36 +2,429 @@
 import LandingLayout from '@/layouts/LandingLayout.astro';
 import { Hero } from '@/components/hero';
 import Button from '@/components/ui/form/Button/Button.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import TechStack from '@/components/landing/TechStack.astro';
-import CTA from '@/components/landing/CTA.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import { Image } from 'astro:assets';
+import { formatDate } from '@/lib/utils';
+import Logo from '@/components/ui/marketing/Logo/Logo.astro';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (
+  await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  })
+)
+  .filter((post) => post.data.locale === 'en')
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+
+const [featuredPost, ...morePosts] = recentPosts;
+const getPostUrl = (postId: string) => `/blog/${postId.replace('en/', '')}`;
 ---
 
 <LandingLayout
-  title="Astro Rocket"
-  description="A production-ready Astro 6 theme with design tokens, accessible components, SEO, and dark mode."
+  title="Web Designer & Developer | Veghel"
+  description="Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites for businesses and creators."
+  includePersonSchema={true}
+  includeProfessionalServiceSchema={true}
 >
-  <Hero layout="centered" size="lg" showGrid showBlob>
+  <!-- Hero -->
+  <Hero layout="centered" size="xl" showGrid showBlob blobPosition="center">
+    <Badge slot="badge" pill pulse>Available for new projects</Badge>
+
     <h1 slot="title">
-      Launch your next site <span class="text-brand-500">faster.</span>
+      Hans Martens —<br />
+      <span class="text-brand-500">Web Designer</span> &amp; Developer
     </h1>
 
     <p slot="description">
-      A production-ready Astro 6 theme with design tokens, accessible components, SEO, and dark
-      mode — configured from the first commit.
+      Need a fast, modern website? I design and build them in Veghel, the Netherlands.
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href="/blog">
-        Read the Blog
+      <Button size="lg" href="/contact">
+        Start a Project
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" variant="outline" href="/contact">
-        Get in Touch
+      <Button size="lg" variant="outline" href="#work">
+        View My Work
       </Button>
     </Fragment>
   </Hero>
 
-  <TechStack />
-  <CTA />
+  <!-- Services Section -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="text-center mb-[var(--space-section-header)]">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          What I Do
+        </h2>
+        <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
+          From concept to launch — I handle design, development, and everything in between.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Web Design -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="layout" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Web Design</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Clean, modern interfaces that look great on every screen. Focused on clarity,
+                usability, and your brand identity.
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Web Development -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="code" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Web Development</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Fast, accessible websites built with modern tooling. Astro, Tailwind, and
+                best-practice architecture from day one.
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Performance -->
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="zap" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Performance Optimization</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Core Web Vitals, SEO, and page speed — built in from the start, not bolted on
+                at the end.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="py-[var(--space-section-md)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2 items-center">
+        <div>
+          <Badge pill class="mb-6">About me</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+            Designer, developer,<br />
+            <span class="text-brand-500">and blogger.</span>
+          </h2>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
+            I'm particular about the things most clients overlook — page speed, accessibility,
+            and whether the design actually serves the content. That attention to detail is
+            what I bring to every project.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
+            Whether you're a business looking for a polished online presence, or a creator
+            who needs a site that matches your ambitions — I'd love to help.
+          </p>
+          <Button variant="outline" href="/about">
+            More About Me
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <Card variant="elevated" padding="lg" class="text-center">
+            <p class="font-display text-4xl font-bold text-brand-500">100</p>
+            <p class="text-sm text-foreground-muted mt-1">Lighthouse Score</p>
+          </Card>
+          <Card variant="elevated" padding="lg" class="text-center">
+            <p class="font-display text-4xl font-bold text-brand-500">&lt;1s</p>
+            <p class="text-sm text-foreground-muted mt-1">Page Load Time</p>
+          </Card>
+          <Card variant="elevated" padding="lg" class="text-center">
+            <p class="font-display text-4xl font-bold text-brand-500">NL</p>
+            <p class="text-sm text-foreground-muted mt-1">Based in Veghel</p>
+          </Card>
+          <Card variant="elevated" padding="lg" class="text-center">
+            <Icon name="globe" size="xl" class="mx-auto text-brand-500 w-10 h-10 md:w-14 md:h-14" />
+            <p class="text-sm text-foreground-muted mt-1">Worldwide Clients</p>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="work" class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="text-center mb-[var(--space-section-header)]">
+        <Badge pill class="mb-4">Selected Work</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Projects I've Built
+        </h2>
+        <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
+          A selection of recent work.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Project 1 -->
+        <Card variant="elevated" hover class="overflow-hidden !p-0">
+          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
+            <Icon name="layout" size="xl" class="text-brand-500 opacity-40" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
+            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
+              Short description of what you built and the outcome for the client.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Astro</span>
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Tailwind</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
+              View project <Icon name="arrow-right" size="sm" />
+            </a>
+          </div>
+        </Card>
+
+        <!-- Project 2 -->
+        <Card variant="elevated" hover class="overflow-hidden !p-0">
+          <div class="h-40 bg-gradient-to-br from-violet-500/20 to-violet-500/5 flex items-center justify-center">
+            <Icon name="code" size="xl" class="text-violet-500 opacity-40" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
+            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
+              Short description of what you built and the outcome for the client.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Next.js</span>
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">TypeScript</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
+              View project <Icon name="arrow-right" size="sm" />
+            </a>
+          </div>
+        </Card>
+
+        <!-- Project 3 -->
+        <Card variant="elevated" hover class="overflow-hidden !p-0">
+          <div class="h-40 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center">
+            <Icon name="zap" size="xl" class="text-emerald-500 opacity-40" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
+            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
+              Short description of what you built and the outcome for the client.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Astro</span>
+              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">CMS</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
+              View project <Icon name="arrow-right" size="sm" />
+            </a>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-[var(--space-section-md)] dark:bg-background-tertiary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="text-center mb-[var(--space-section-header)]">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          What Clients Say
+        </h2>
+        <p class="mt-4 text-lg text-foreground-muted">
+          Real feedback from real projects.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Testimonial 1 -->
+        <Card variant="elevated" padding="lg">
+          <div class="flex flex-col h-full gap-4">
+            <div class="flex gap-1 text-brand-500">
+              {[...Array(5)].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
+              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+            </blockquote>
+            <div class="flex items-center gap-3 pt-4 border-t border-border">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+                A
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-foreground">Client Name</p>
+                <p class="text-xs text-foreground-muted">Founder, Company Name</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Testimonial 2 -->
+        <Card variant="elevated" padding="lg">
+          <div class="flex flex-col h-full gap-4">
+            <div class="flex gap-1 text-brand-500">
+              {[...Array(5)].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-foreground-muted leading-relaxed">
+              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+            </blockquote>
+            <div class="flex items-center gap-3 pt-4 border-t border-border">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
+                B
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-foreground">Client Name</p>
+                <p class="text-xs text-foreground-muted">CEO, Company Name</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
+  {
+    recentPosts.length > 0 && (
+      <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background">
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="flex items-center justify-between mb-[var(--space-section-header)]">
+            <div>
+              <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+                Latest from the Blog
+              </h2>
+              <p class="mt-2 text-foreground-muted">
+                Thoughts on design, development, and the web.
+              </p>
+            </div>
+            <Button variant="outline" href="/blog" class="hidden md:flex dark:border-border-strong">
+              All Posts
+              <Icon name="arrow-right" size="sm" />
+            </Button>
+          </div>
+
+          {/* Featured post — large hero card */}
+          {featuredPost && (
+            <a
+              href={getPostUrl(featuredPost.id)}
+              class="group mb-6 block overflow-hidden rounded-xl border border-brand-500/30 bg-background shadow-sm ring-1 ring-brand-500/15 transition-all duration-200 hover:shadow-lg"
+            >
+              <div class="grid md:grid-cols-[3fr_2fr]">
+                {featuredPost.data.image && (
+                  <div class="overflow-hidden">
+                    <Image
+                      src={featuredPost.data.image}
+                      alt={featuredPost.data.title}
+                      widths={[640, 1200]}
+                      sizes="(max-width: 768px) 100vw, 60vw"
+                      class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105 md:h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="flex flex-col justify-center gap-4 p-8">
+                  <span class="inline-flex w-fit items-center gap-1.5 rounded-full bg-brand-500 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Featured
+                  </span>
+                  <h3 class="font-display text-2xl font-bold leading-tight text-foreground transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400 md:text-3xl">
+                    {featuredPost.data.title}
+                  </h3>
+                  <p class="text-base leading-relaxed text-foreground-muted line-clamp-3">
+                    {featuredPost.data.description}
+                  </p>
+                  {(featuredPost.data.tags || []).length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {(featuredPost.data.tags || []).slice(0, 4).map((tag: string) => (
+                        <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div class="mt-auto flex items-center gap-3 border-t border-border pt-4 text-sm text-foreground-subtle">
+                    <Logo size="sm" />
+                    <span class="font-medium text-foreground-muted">{featuredPost.data.author}</span>
+                    <span>·</span>
+                    <time datetime={featuredPost.data.publishedAt.toISOString()}>
+                      {formatDate(featuredPost.data.publishedAt)}
+                    </time>
+                  </div>
+                </div>
+              </div>
+            </a>
+          )}
+
+          {/* Remaining posts */}
+          {morePosts.length > 0 && (
+            <div class="grid gap-6 md:grid-cols-2">
+              {morePosts.map((post) => (
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={getPostUrl(post.id)}
+                  publishedAt={post.data.publishedAt}
+                  tags={post.data.tags}
+                  author={post.data.author}
+                  image={post.data.image}
+                />
+              ))}
+            </div>
+          )}
+
+          <div class="mt-8 text-center md:hidden">
+            <Button variant="outline" href="/blog" class="dark:border-border-strong">
+              All Posts
+              <Icon name="arrow-right" size="sm" />
+            </Button>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CTA -->
+  <CTA variant="invert" size="md" maxWidth="lg">
+    <h2 slot="heading">Let's build something together.</h2>
+    <p slot="description" class="!text-lg">
+      Available for new projects. Response within 1 business day.
+    </p>
+    <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" href="/contact">
+        Start a Project
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+      <Button size="lg" variant="outline" href="/about">
+        Learn More About Me
+      </Button>
+    </div>
+  </CTA>
 </LandingLayout>
