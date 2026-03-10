@@ -53,7 +53,7 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Hans Martens',
+  name: 'Astro Rocket',
   description:
     'Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites for businesses and creators.',
   url: SITE_URL || 'https://hansmartens.dev',
