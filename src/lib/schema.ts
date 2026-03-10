@@ -24,13 +24,13 @@ export function createWebsiteSchema(): WithContext<WebSite> {
 }
 
 /**
- * Create Person schema for Hans Martens
+ * Create Person schema for Astro Rocket
  */
 export function createPersonSchema(): WithContext<Person> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Hans Martens',
+    name: 'Astro Rocket',
     jobTitle: 'Web Designer & Developer',
     url: siteConfig.url,
     email: siteConfig.email,
