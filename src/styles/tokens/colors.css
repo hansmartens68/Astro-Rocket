@@ -10,7 +10,7 @@
 /* -----------------------------------------------------------------------
    ACTIVE THEME — change this to switch the entire site color scheme
    ----------------------------------------------------------------------- */
-/* @import '../themes/amethyst.css'; */  /* Amethyst — true violet-purple          */
-/* @import '../themes/default.css'; */  /* Default  — International Orange + gray  */
-/* @import '../themes/midnight.css'; */ /* Midnight — electric violet, dark-first  */
-@import '../themes/nord.css';           /* Nord     — arctic blue-gray (ACTIVE)    */
+/* @import '../themes/amethyst.css'; */    /* Amethyst     — true violet-purple          */
+/* @import '../themes/ember.css'; */       /* Ember        — International Orange + gray */
+/* @import '../themes/nord.css'; */        /* Nord         — arctic blue-gray            */
+@import '../themes/tokyo-night.css';       /* Tokyo Night  — deep navy + electric blue (ACTIVE) */
