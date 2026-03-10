@@ -9,7 +9,7 @@ const consentConfig: ConsentConfig = {
   mode: 'consent_mode_v2',
 
   /** localStorage key for stored preferences */
-  storageKey: 'velocity-consent',
+  storageKey: 'astro-rocket-consent',
 
   categories: {
     necessary: {
