@@ -24,6 +24,8 @@ export interface SiteConfig {
     google?: string;
     bing?: string;
   };
+  /** Path to author photo (relative to site root, e.g. '/avatar.jpg'). Used in Person schema. */
+  authorImage?: string;
   /**
    * Branding configuration
    * Logo files: Replace SVGs in src/assets/branding/
@@ -33,6 +35,8 @@ export interface SiteConfig {
     /** Logo alt text for accessibility */
     logo: {
       alt: string;
+      /** Path to logo image for structured data (e.g. '/logo.png'). Add a PNG to public/ and set this. */
+      imageUrl?: string;
     };
     /** Favicon path (lives in public/) */
     favicon: {
@@ -49,28 +53,38 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
-  description: 'A modern website built with Astro and Tailwind CSS',
-  url: SITE_URL || 'https://example.com',
+  name: 'Hans Martens',
+  description:
+    'Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites for businesses and creators.',
+  url: SITE_URL || 'https://hansmartens.dev',
   ogImage: '/og-default.png',
-  author: '',
-  // Contact info - replace with your actual details
-  email: 'hello@example.com',
-  socialLinks: [],
-  // Twitter metadata - update with your actual handles or remove
-  // twitter: {
-  //   site: '@yourhandle',
-  //   creator: '@yourhandle',
-  // },
+  author: 'Hans Martens',
+  email: 'hello@hansmartens.dev',
+  address: {
+    street: '',
+    city: 'Veghel',
+    state: 'Noord-Brabant',
+    zip: '',
+    country: 'NL',
+  },
+  socialLinks: [
+    'https://github.com/hansmartens-dev',
+    'https://linkedin.com/in/hansmartens',
+    'https://x.com/hansmartens_dev',
+  ],
+  twitter: {
+    site: '@hansmartens_dev',
+    creator: '@hansmartens_dev',
+  },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
     bing: BING_SITE_VERIFICATION,
   },
-  // Branding: Logo files live in src/assets/branding/
-  // Replace the SVG files there with your own branding
+  authorImage: '/avatar.svg',
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'Hans Martens',
+      imageUrl: '/favicon.svg',
     },
     favicon: {
       svg: '/favicon.svg',

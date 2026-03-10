@@ -9,7 +9,7 @@ const consentConfig: ConsentConfig = {
   mode: 'consent_mode_v2',
 
   /** localStorage key for stored preferences */
-  storageKey: 'astro-rocket-consent',
+  storageKey: 'hansmartens-consent',
 
   categories: {
     necessary: {

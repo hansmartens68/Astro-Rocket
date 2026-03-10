@@ -7,6 +7,8 @@ import Breadcrumbs from '@/components/seo/Breadcrumbs.astro';
 import ArticleHero from '@/components/blog/ArticleHero.astro';
 import ShareButtons from '@/components/blog/ShareButtons.astro';
 import RelatedPosts from '@/components/blog/RelatedPosts.astro';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
 interface Props {
   title: string;
@@ -60,19 +62,8 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     slot="header"
     position="fixed"
     size="lg"
-    showActiveState
     showCta
-    cta={{ label: 'View Docs', href: 'https://github.com/hansmartens68/astro--rocket' }}
-    extraNav={[{ label: 'Features', href: '#features' }]}
-    actions={[
-      {
-        icon: 'github',
-        href: 'https://github.com/hansmartens68/astro--rocket',
-        label: 'View on GitHub',
-        iconOnly: true,
-        target: '_blank',
-      },
-    ]}
+    cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
   <!-- Article Hero -->
@@ -87,14 +78,14 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     imageAlt={imageAlt}
   />
 
-  <article class={`py-12 ${image ? 'pt-24' : ''}`}>
+  <article class="py-12">
     <div class="mx-auto max-w-4xl px-6">
       <!-- Breadcrumbs -->
       <Breadcrumbs items={breadcrumbs} class="mb-8" />
 
       <!-- Article Content -->
       <div
-        class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-code:text-brand-600 prose-code:bg-brand-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-background-secondary prose-pre:border prose-pre:border-border dark:prose-invert dark:prose-a:text-brand-400 dark:hover:prose-a:text-brand-300 dark:prose-code:text-brand-400 dark:prose-code:bg-brand-900/30 max-w-none"
+        class="prose prose-lg prose-p:font-medium prose-headings:font-display prose-h1:font-bold prose-h2:font-extrabold prose-h3:font-bold prose-h4:font-medium prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-code:text-brand-600 prose-code:bg-brand-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-background-secondary prose-pre:border prose-pre:border-border dark:prose-invert dark:prose-a:text-brand-400 dark:hover:prose-a:text-brand-300 dark:prose-code:text-brand-400 dark:prose-code:bg-brand-900/30 max-w-none"
       >
         <slot />
       </div>
@@ -137,5 +128,55 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     )
   }
 
-  <Footer slot="footer" layout="simple" background="secondary" showCopyright={false} />
+  <!-- Follow Along -->
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-brand-500/8 dark:bg-background-secondary">
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
+
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="rss" size="sm" />
+        RSS Feed
+      </a>
+      <a
+        href="https://x.com/hansmartens_dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="x-twitter" size="sm" />
+        X / Twitter
+      </a>
+      <a
+        href="https://www.instagram.com/hansmartens.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="instagram" size="sm" />
+        Instagram
+      </a>
+      <a
+        href="https://github.com/hansmartens-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="github" size="sm" />
+        GitHub
+      </a>
+      <a
+        href="mailto:hello@hansmartens.dev"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
+      </a>
+    </div>
+  </CTA>
+
+  <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>

@@ -139,13 +139,13 @@ const configJson = JSON.stringify(consentConfig);
     </button>
 
     <!-- Config data for client script -->
-    <script is:inline type="application/json" id="consent-config-data" set:html={configJson} />
-    <script is:inline type="application/json" id="consent-gcm-map-data" set:html={categoryGcmMapJson} />
+    <script type="application/json" id="consent-config-data" set:html={configJson} />
+    <script type="application/json" id="consent-gcm-map-data" set:html={categoryGcmMapJson} />
 
     <script>
       interface ConsentWindow extends Window {
         dataLayer: Record<string, unknown>[];
-        gtag: (...args: unknown[]) => void;
+        gtag: Function;
         __consentState: { decided: boolean; categories: Record<string, boolean> } | undefined;
         __consentAnalyticsInjected: boolean | undefined;
         __consentBannerIsSetupBound: boolean | undefined;
@@ -196,7 +196,6 @@ const configJson = JSON.stringify(consentConfig);
           if (typeof w.gtag !== 'function') {
             w.dataLayer = w.dataLayer || [];
             if (typeof w.gtag !== 'function') {
-              // eslint-disable-next-line prefer-rest-params -- GA4 requires Arguments object
               w.gtag = function() { w.dataLayer.push(arguments as unknown as Record<string, unknown>); };
             }
           }

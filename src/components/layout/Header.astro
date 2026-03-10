@@ -91,7 +91,7 @@ const {
   nav,
   extraNav = [],
   showCta = false,
-  cta = { label: 'View Docs', href: 'https://github.com/hansmartens68/astro--rocket' },
+  cta = { label: 'View Docs', href: 'https://docs.deployvelocity.com' },
   actions = [],
   showThemeToggle = true,
   showMobileMenu = true,
@@ -243,7 +243,7 @@ const buttonId = `${menuId}-button`;
               <Button
                 size="sm"
                 href={ctaHref}
-                target="_blank"
+                target={ctaHref?.startsWith('http') ? '_blank' : undefined}
                 class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
               >
                 {cta.label}
@@ -335,7 +335,7 @@ const buttonId = `${menuId}-button`;
 
             {showCta && (
               <div class="border-border mt-3 border-t pt-3">
-                <Button fullWidth href={ctaHref} target="_blank">
+                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
                   {cta.label}
                 </Button>
               </div>

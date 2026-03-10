@@ -7,90 +7,144 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
+import TechStack from '@/components/landing/TechStack.astro';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 ---
 
 <PageLayout
-  title="About Us"
-  description="Learn about Astro Rocket and the team behind it."
+  title="About Hans Martens — Web Designer & Developer | Veghel"
+  description="Hans Martens is a web designer and developer based in Veghel, the Netherlands. I build fast, modern websites and write about design and development."
 >
-  <Hero layout="centered" size="sm" showGrid>
-    <Badge slot="badge" pill pulse>Our Story</Badge>
+  <Hero layout="centered" size="sm" showGrid showBlob blobPosition="center">
+    <Badge slot="badge" pill variant="brand">About me</Badge>
 
     <h1 slot="title">
-      Built by developers, <span class="text-brand-500">for developers.</span>
+      Hans Martens —<br />
+      <span class="text-brand-500">Web Designer</span> &amp; Developer
     </h1>
 
     <p slot="description">
-      Astro Rocket was born from the desire for a clean, production-ready starting point.
-      We decided to create the theme we always wished existed.
+      I care about both sides of the craft — how a site looks and how it
+      performs. Here's a bit more about how I think and work.
     </p>
   </Hero>
 
-  <!-- Mission Section -->
-  <section class="py-20 bg-surface-invert">
-    <div class="mx-auto max-w-4xl px-6 text-center">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-on-invert mb-6">
-        Our Mission
-      </h2>
-      <p class="text-lg text-on-invert-secondary max-w-2xl mx-auto leading-relaxed">
-        To help developers ship beautiful, performant websites faster by eliminating
-        boilerplate and providing sensible defaults.
-      </p>
+  <!-- What's possible now -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2 items-center">
+
+        <!-- Left: text -->
+        <div>
+          <div class="text-brand-500 mb-4 flex items-center gap-2 text-sm font-bold tracking-wide uppercase">
+            <Icon name="users" size="sm" />
+            <span>The Partnership</span>
+          </div>
+          <h2 class="font-display text-4xl font-bold text-foreground mb-6">
+            Web design, now with a thinking partner
+          </h2>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            I'm a web designer and developer with 16 years of hands-on experience. Today I work alongside Claude Sonnet and Claude Opus — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+          </p>
+        </div>
+
+        <!-- Right: two stacked partner cards -->
+        <div class="flex flex-col gap-4">
+          <Card variant="elevated">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code-2" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">Web Designer & Developer</p>
+                <h3 class="text-base font-semibold text-foreground">Hans Martens</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Astro</Badge>
+                  <Badge size="sm" variant="brand">Tailwind</Badge>
+                  <Badge size="sm" variant="brand">TypeScript</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <Card variant="elevated">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="sparkles" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">AI Thinking Partner</p>
+                <h3 class="text-base font-semibold text-foreground">Claude Sonnet & Opus</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Design review</Badge>
+                  <Badge size="sm" variant="brand">Code QA</Badge>
+                  <Badge size="sm" variant="brand">Deep thinking</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- Values Section -->
-  <section class="py-20">
+  <!-- Values -->
+  <section class="py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-        What We Believe
+      <h2 class="font-display text-4xl font-bold text-foreground mb-[var(--space-section-header)] text-center">
+        How I Work
       </h2>
 
       <div class="grid gap-8 md:grid-cols-3">
-        <!-- Performance -->
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="zap" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-bold text-foreground">Performance First</h3>
+              <h3 class="text-base font-semibold text-foreground">Performance First</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Every decision is made with performance in mind. Zero JavaScript by default,
-                optimized images, and minimal CSS.
+                Fast sites rank better, convert better, and keep users happy. I optimise for
+                speed from the ground up — not as an afterthought.
               </p>
             </div>
           </div>
         </Card>
 
-        <!-- Simplicity -->
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="box" size="md" />
+              <Icon name="minimize-2" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-bold text-foreground">Simplicity Matters</h3>
+              <h3 class="text-base font-semibold text-foreground">Keep It Simple</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                We strip away complexity so you can focus on what matters: building
-                great products for your users.
+                The best solution is usually the simplest one. I avoid unnecessary complexity
+                so your site is easy to maintain and grow.
               </p>
             </div>
           </div>
         </Card>
 
-        <!-- Open Source -->
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="github" size="md" />
+              <Icon name="message-circle" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-bold text-foreground">Open Source</h3>
+              <h3 class="text-base font-semibold text-foreground">Clear Communication</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Astro Rocket is free and open source. We believe in giving back to the
-                community that made this possible.
+                No jargon, no surprises. I keep you in the loop at every stage and respond
+                within one business day.
               </p>
             </div>
           </div>
@@ -98,4 +152,81 @@ import { Hero } from '@/components/hero';
       </div>
     </div>
   </section>
+
+  <!-- My Stack -->
+  <TechStack
+    title="My Stack"
+    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
+  />
+
+  <!-- CTA -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-tertiary">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+        Ready to work together?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8">
+        I'm available for new projects. Let's talk about what you need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Start a Project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/blog">
+          Read the Blog
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Follow Along -->
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-background dark:bg-background">
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
+
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="rss" size="sm" />
+        RSS Feed
+      </a>
+      <a
+        href="https://x.com/hansmartens_dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="x-twitter" size="sm" />
+        X / Twitter
+      </a>
+      <a
+        href="https://www.instagram.com/hansmartens.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="instagram" size="sm" />
+        Instagram
+      </a>
+      <a
+        href="https://github.com/hansmartens-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="github" size="sm" />
+        GitHub
+      </a>
+      <a
+        href="mailto:hello@hansmartens.dev"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
+      </a>
+    </div>
+  </CTA>
 </PageLayout>

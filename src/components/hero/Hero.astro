@@ -119,8 +119,8 @@ const gridClasses = cn(
       </div>
     )}
 
-    {/* Decorative blob for centered layout */}
-    {layout === 'centered' && showBlob && (
+    {/* Decorative blob for centered layout or split layout without aside */}
+    {(layout === 'centered' || (layout === 'split' && !hasAsideSlot)) && showBlob && (
       <div
         class={heroBlobVariants({ position: blobPosition })}
         aria-hidden="true"

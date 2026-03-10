@@ -82,7 +82,7 @@ const {
   socialLinks = [],
   showSocial = true,
   showCopyright = true,
-  copyright = '© {year} {siteName}. All rights reserved.',
+  copyright = '© {year} {siteName}. Designed with passion.',
   legalLinks = [],
   hideLogo = false,
   tagline,
@@ -98,13 +98,7 @@ const defaultNav: NavItem[] = getNavItems().map((item: NavConfigItem) => ({
 const navItems: NavItem[] = nav || defaultNav;
 
 // Default external links if none provided via nav
-const defaultExternalLinks: NavItem[] = [
-  { label: 'GitHub', href: 'https://github.com/hansmartens68/astro--rocket', external: true },
-  { label: 'License', href: 'https://github.com/hansmartens68/astro--rocket/blob/main/LICENSE', external: true },
-];
-
-// Add external links to nav if using default nav
-const allNavItems: NavItem[] = nav ? navItems : [...navItems, ...defaultExternalLinks];
+const allNavItems: NavItem[] = nav ? navItems : navItems;
 
 // Process copyright text
 const currentYear = new Date().getFullYear();
@@ -125,7 +119,7 @@ const footerClasses = cn(footerVariants({ background }), className);
 // Social platform to icon mapping
 const socialIcons: Record<string, string> = {
   github: 'github',
-  twitter: 'twitter',
+  twitter: 'x-twitter',
   linkedin: 'linkedin',
 };
 
@@ -138,6 +132,7 @@ function getSocialIcon(platform: string): string {
 <footer class={footerClasses} {...attrs}>
   <div class="mx-auto max-w-6xl px-6">
     {layout === 'simple' && (
+      <>
       <div class="flex flex-col md:flex-row justify-between items-center gap-[var(--space-stack-lg)]">
         {/* Logo & Tagline */}
         {!hideLogo && (
@@ -195,6 +190,12 @@ function getSocialIcon(platform: string): string {
           )
         )}
       </div>
+      {showCopyright && (
+        <div class="mt-[var(--space-stack-lg)] pt-[var(--space-stack-lg)] border-t border-border text-center">
+          <p class="text-sm text-foreground-muted">{processedCopyright}</p>
+        </div>
+      )}
+      </>
     )}
 
     {layout === 'columns' && (

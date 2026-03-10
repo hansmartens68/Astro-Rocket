@@ -97,7 +97,7 @@ const analyticsDataJson = JSON.stringify({
 
 {/* Analytics data element — read by all inline scripts below */}
 {hasAnalytics && (
-  <script is:inline type="application/json" id="analytics-data" set:html={analyticsDataJson} />
+  <script type="application/json" id="analytics-data" set:html={analyticsDataJson} />
 )}
 
 {/* ── No consent: load GTM directly ── */}
@@ -125,7 +125,6 @@ const analyticsDataJson = JSON.stringify({
       (function(){
         const d = JSON.parse(document.getElementById('analytics-data').textContent);
         window.dataLayer = window.dataLayer || [];
-        // eslint-disable-next-line prefer-rest-params -- GA4 requires Arguments object, not rest params
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', d.gaId);
@@ -140,7 +139,6 @@ const analyticsDataJson = JSON.stringify({
     (function(){
       const d = JSON.parse(document.getElementById('analytics-data').textContent);
       window.dataLayer = window.dataLayer || [];
-      // eslint-disable-next-line prefer-rest-params -- GA4 requires Arguments object, not rest params
       function gtag(){window.dataLayer.push(arguments);}
 
       let stored = null;
@@ -208,7 +206,6 @@ const analyticsDataJson = JSON.stringify({
       (function(){
         const d = JSON.parse(document.getElementById('analytics-data').textContent);
         window.dataLayer = window.dataLayer || [];
-        // eslint-disable-next-line prefer-rest-params -- GA4 requires Arguments object
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', d.gaId);
@@ -255,7 +252,6 @@ const analyticsDataJson = JSON.stringify({
         s.src = 'https://www.googletagmanager.com/gtag/js?id=' + d.gaId;
         document.head.appendChild(s);
         window.dataLayer = window.dataLayer || [];
-        // eslint-disable-next-line prefer-rest-params -- GA4 requires Arguments object
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', d.gaId);

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Astro Rocket Design Tokens - Spacing
+   Velocity Design Tokens - Spacing
    =============================================================================
    4px base unit spacing system
    ============================================================================= */
@@ -48,7 +48,7 @@
      Semantic Spacing
      --------------------------------------------------------------------------- */
   --space-section: clamp(var(--space-16), 10vw, var(--space-24));
-  --space-section-header: clamp(var(--space-6), 5vw, var(--space-16));
+  --space-section-header: clamp(var(--space-6), 3vw, var(--space-10));
   --space-container-x: clamp(var(--space-4), 5vw, var(--space-8));
   --space-stack-sm: var(--space-2);
   --space-stack-md: var(--space-4);
@@ -68,7 +68,7 @@
   /* ---------------------------------------------------------------------------
      Section Grid Gaps - Fluid Scaling
      --------------------------------------------------------------------------- */
-  --space-section-gap: clamp(var(--space-12), 8vw, var(--space-16));
+  --space-section-gap: clamp(var(--space-8), 5vw, var(--space-12));
 
   /* ---------------------------------------------------------------------------
      Content Block Spacing

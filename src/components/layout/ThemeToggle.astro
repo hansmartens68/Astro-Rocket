@@ -59,24 +59,24 @@ const { class: className } = Astro.props;
   function initThemeToggle() {
     const toggle = document.getElementById('theme-toggle');
 
-    if (!toggle) return;
+    // Guard: skip if not found or already initialised on this element
+    if (!toggle || toggle.dataset.themeInit) return;
+    toggle.dataset.themeInit = 'true';
 
     toggle.addEventListener('click', () => {
       const isDark = document.documentElement.classList.contains('dark');
 
       if (isDark) {
         document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+        sessionStorage.setItem('theme', 'light');
       } else {
         document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+        sessionStorage.removeItem('theme');
       }
     });
   }
 
-  // Run on initial load
+  // Run on initial load and after every view-transition swap
   initThemeToggle();
-
-  // Re-run after Astro page transitions
   document.addEventListener('astro:after-swap', initThemeToggle);
 </script>

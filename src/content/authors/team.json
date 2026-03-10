@@ -1,5 +1,9 @@
 {
-  "name": "Astro Rocket",
-  "bio": "A modern Astro theme for building fast, beautiful, and accessible websites.",
-  "social": {}
+  "name": "Hans Martens",
+  "bio": "Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites and write about design and development.",
+  "social": {
+    "github": "https://github.com/hansmartens-dev",
+    "linkedin": "https://linkedin.com/in/hansmartens",
+    "twitter": "https://x.com/hansmartens_dev"
+  }
 }

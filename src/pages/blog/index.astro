@@ -3,10 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
-import Button from '@/components/ui/form/Button/Button.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import Input from '@/components/ui/form/Input/Input.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import { Hero } from '@/components/hero';
 import { getCollection } from 'astro:content';
@@ -29,33 +27,24 @@ const nonFeaturedPosts = posts.filter((post) => !post.data.featured);
 const regularPosts = nonFeaturedPosts.length > 0 ? nonFeaturedPosts : posts;
 
 const getPostUrl = (postId: string) => {
-  // Remove locale prefix from id (e.g., "en/welcome-to-astro-rocket" -> "welcome-to-astro-rocket")
+  // Remove locale prefix from id (e.g., "en/welcome-to-velocity" -> "welcome-to-velocity")
   const slug = postId.replace('en/', '');
   return `/blog/${slug}`;
 };
 ---
 
-<BaseLayout title="Blog" description="Latest articles and updates">
+<BaseLayout title="Blog — Hans Martens" description="Articles on web design, development, and the web by Hans Martens.">
   <Header
     slot="header"
     position="fixed"
     size="lg"
     showActiveState
     showCta
-    cta={{ label: 'View Docs', href: 'https://github.com/hansmartens68/astro--rocket' }}
-    extraNav={[{ label: 'Features', href: '#features' }]}
-    actions={[
-      {
-        icon: 'github',
-        href: 'https://github.com/hansmartens68/astro--rocket',
-        label: 'View on GitHub',
-        iconOnly: true,
-        target: '_blank',
-      },
-    ]}
+    cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
-  <Hero layout="split" size="sm" class="bg-surface-secondary border-b border-border">
+  <div class="min-h-screen pt-16">
+  <Hero layout="split" size="sm" showBlob blobPosition="center" class="bg-surface-secondary border-b border-border">
     <Badge slot="badge">
       <Icon name="book" size="sm" class="text-brand-500" />
       All posts
@@ -63,19 +52,16 @@ const getPostUrl = (postId: string) => {
 
     <h1 slot="title">Blog</h1>
 
-    <p slot="description">Latest articles and updates</p>
+    <p slot="description">Thoughts on web design and development.</p>
   </Hero>
 
   <!-- Featured Posts Section -->
   {
     featuredPosts.length > 0 && (
-      <section class="bg-background py-16">
+      <section class="bg-background py-[var(--space-section-md)]">
         <div class="mx-auto max-w-6xl px-6">
-          <h2 class="font-display text-foreground mb-8 flex items-center gap-2 text-2xl font-bold">
-            <svg class="text-brand-500 h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            Featured
+          <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">
+            Featured Posts
           </h2>
 
           <div class="grid gap-6 md:grid-cols-2">
@@ -88,7 +74,6 @@ const getPostUrl = (postId: string) => {
                 tags={post.data.tags}
                 author={post.data.author}
                 image={post.data.image}
-                featured={true}
               />
             ))}
           </div>
@@ -98,11 +83,11 @@ const getPostUrl = (postId: string) => {
   }
 
   <!-- All Posts Section -->
-  <section class="bg-background-secondary py-16">
+  <section class="bg-background-secondary py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       {
         featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
-          <h2 class="font-display text-foreground mb-8 text-2xl font-bold">All posts</h2>
+          <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">All posts</h2>
         )
       }
 
@@ -133,25 +118,56 @@ const getPostUrl = (postId: string) => {
     </div>
   </section>
 
-  <!-- Newsletter CTA Section -->
-  <CTA variant="invert" size="sm" maxWidth="lg">
-    <h2 slot="heading">Subscribe</h2>
-    <p slot="description">Get the latest articles and updates delivered to your inbox.</p>
+  <!-- Follow CTA Section -->
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-brand-500/8 dark:bg-background-tertiary">
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
 
-    <form class="mx-auto flex max-w-md flex-col items-center gap-4 sm:flex-row">
-      <Input
-        type="email"
-        placeholder="Enter your email"
-        size="lg"
-        required
-        class="flex-1"
-      />
-      <Button size="lg" type="submit">
-        Subscribe
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </form>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="rss" size="sm" />
+        RSS Feed
+      </a>
+      <a
+        href="https://x.com/hansmartens_dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="x-twitter" size="sm" />
+        X / Twitter
+      </a>
+      <a
+        href="https://www.instagram.com/hansmartens.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="instagram" size="sm" />
+        Instagram
+      </a>
+      <a
+        href="https://github.com/hansmartens-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="github" size="sm" />
+        GitHub
+      </a>
+      <a
+        href="mailto:hello@hansmartens.dev"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
+      </a>
+    </div>
   </CTA>
+  </div>
 
-  <Footer slot="footer" layout="simple" background="secondary" showCopyright={false} />
+  <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>

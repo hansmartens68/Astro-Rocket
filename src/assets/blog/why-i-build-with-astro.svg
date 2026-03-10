@@ -1,0 +1,143 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Deep dark navy background — Astro's own aesthetic -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d0f1a"/>
+      <stop offset="100%" stop-color="#111320"/>
+    </linearGradient>
+    <!-- Astro orange glow behind logo -->
+    <radialGradient id="glow" cx="600" cy="230" r="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Subtle purple glow bottom-left -->
+    <radialGradient id="glowPurple" cx="200" cy="500" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Astro A gradient: white top → Astro orange bottom -->
+    <linearGradient id="astroGrad" x1="600" y1="100" x2="600" y2="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#ff8c42"/>
+      <stop offset="100%" stop-color="#ff5d01"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glowPurple)"/>
+
+  <!-- Stars — scattered dots -->
+  <circle cx="92"  cy="48"  r="1.2" fill="#ffffff" opacity="0.55"/>
+  <circle cx="215" cy="118" r="0.8" fill="#ffffff" opacity="0.4"/>
+  <circle cx="158" cy="201" r="1.4" fill="#ffffff" opacity="0.3"/>
+  <circle cx="348" cy="75"  r="1"   fill="#ffffff" opacity="0.5"/>
+  <circle cx="440" cy="155" r="0.7" fill="#ffffff" opacity="0.35"/>
+  <circle cx="88"  cy="320" r="1.1" fill="#ffffff" opacity="0.3"/>
+  <circle cx="290" cy="390" r="0.9" fill="#ffffff" opacity="0.25"/>
+  <circle cx="170" cy="480" r="1.3" fill="#ffffff" opacity="0.2"/>
+  <circle cx="50"  cy="560" r="0.8" fill="#ffffff" opacity="0.3"/>
+  <circle cx="380" cy="530" r="1"   fill="#ffffff" opacity="0.2"/>
+  <circle cx="800" cy="55"  r="1.2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="920" cy="130" r="0.9" fill="#ffffff" opacity="0.35"/>
+  <circle cx="1050" cy="80" r="1.4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="1130" cy="200" r="0.8" fill="#ffffff" opacity="0.3"/>
+  <circle cx="870" cy="490" r="1.1" fill="#ffffff" opacity="0.25"/>
+  <circle cx="990" cy="420" r="0.7" fill="#ffffff" opacity="0.3"/>
+  <circle cx="1100" cy="540" r="1.3" fill="#ffffff" opacity="0.2"/>
+  <circle cx="1150" cy="350" r="0.9" fill="#ffffff" opacity="0.35"/>
+  <circle cx="750" cy="580" r="1"   fill="#ffffff" opacity="0.2"/>
+  <!-- Slight twinkle highlights (slightly bigger, brighter) -->
+  <circle cx="310" cy="160" r="1.8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="950" cy="290" r="1.6" fill="#ffffff" opacity="0.55"/>
+  <circle cx="130" cy="420" r="1.5" fill="#ffffff" opacity="0.4"/>
+  <circle cx="1080" cy="460" r="1.7" fill="#ffffff" opacity="0.45"/>
+
+  <!-- Glow behind Astro A -->
+  <ellipse cx="600" cy="230" rx="270" ry="200" fill="url(#glow)"/>
+
+  <!-- Astro "A" logomark — clean gothic A, centered at x=600, top=100, height=250 -->
+  <!--
+    Outer A: top point (600,100), feet at (490,350) and (710,350)
+    Stroke width achieved by making thick outer then subtracting inner triangle
+    Crossbar: a horizontal band at ~y=265
+  -->
+  <path
+    d="
+      M 600 100
+      L 720 360
+      L 685 360
+      L 652 278
+      L 548 278
+      L 515 360
+      L 480 360
+      Z
+    "
+    fill="url(#astroGrad)"
+  />
+  <!-- Inner hollow triangle cut-out -->
+  <path
+    d="M 600 148 L 643 268 L 557 268 Z"
+    fill="#0d0f1a"
+  />
+  <!-- Crossbar slot — punch through the legs at ~y=278-295 -->
+  <rect x="548" y="278" width="104" height="17" fill="#0d0f1a"/>
+
+  <!-- "ASTRO" wordmark -->
+  <text
+    x="600"
+    y="415"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="42"
+    font-weight="700"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="10"
+    opacity="0.95"
+  >ASTRO</text>
+
+  <!-- Divider line -->
+  <line x1="400" y1="440" x2="800" y2="440" stroke="#ff5d01" stroke-width="1" stroke-opacity="0.25"/>
+
+  <!-- Performance chips — floating above title -->
+  <!-- Chip 1: 0 JS by default -->
+  <rect x="356" y="458" width="156" height="32" rx="16" fill="#ff5d01" fill-opacity="0.1" stroke="#ff5d01" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="434" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#ff8c42" text-anchor="middle" letter-spacing="0.5">0 JS by default</text>
+
+  <!-- Chip 2: Static HTML -->
+  <rect x="524" y="458" width="128" height="32" rx="16" fill="#8b5cf6" fill-opacity="0.1" stroke="#8b5cf6" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="588" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#a78bfa" text-anchor="middle" letter-spacing="0.5">Static HTML</text>
+
+  <!-- Chip 3: Blazing Fast -->
+  <rect x="664" y="458" width="120" height="32" rx="16" fill="#ff5d01" fill-opacity="0.1" stroke="#ff5d01" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="724" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#ff8c42" text-anchor="middle" letter-spacing="0.5">Blazing Fast</text>
+
+  <!-- Post title -->
+  <text
+    x="600"
+    y="543"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="26"
+    font-weight="600"
+    fill="#f1f5f9"
+    text-anchor="middle"
+    letter-spacing="0.3"
+  >Why I Build Every Website with Astro</text>
+
+  <!-- Author pill -->
+  <rect x="476" y="568" width="248" height="38" rx="19" fill="#ff5d01" fill-opacity="0.08" stroke="#ff5d01" stroke-opacity="0.25" stroke-width="1"/>
+  <text
+    x="600"
+    y="592"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13"
+    fill="#ff8c42"
+    text-anchor="middle"
+    letter-spacing="1.5"
+  >hansmartens.dev · Hans Martens</text>
+</svg>
