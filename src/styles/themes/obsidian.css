@@ -1,0 +1,205 @@
+/* =============================================================================
+   Velocity Theme - Obsidian
+   =============================================================================
+   Inspired by Obsidian (obsidian.md) — the iconic knowledge-base app.
+   Their signature violet is #7C3AED ≈ oklch(52% 0.295 291): extremely vivid,
+   high-chroma blue-violet. Dark mode is near pitch-black with a glowing purple
+   accent. Light mode is stark white with a barely-there violet tint.
+
+   Distinct from Midnight (hue 285-295 / chroma 0.25) by:
+   - Higher chroma accent (0.295 vs 0.25) — more vivid, electric
+   - Darker dark-mode backgrounds (8% vs 10%) — closer to true black
+   - Sharper border radii — Obsidian's minimal, focused aesthetic
+   - Stronger purple glow in shadows
+
+   To use: swap the theme import in tokens/colors.css:
+     @import '../themes/obsidian.css';
+   ============================================================================= */
+
+:root {
+  /* -------------------------------------------------------------------------
+     Brand Scale Override — Obsidian Violet (hue 291)
+     #7C3AED ≈ brand-500: oklch(52% 0.295 291) — maximum vivid violet.
+     ------------------------------------------------------------------------- */
+  --brand-50:  oklch(97%  0.012 291);
+  --brand-100: oklch(93%  0.032 291);
+  --brand-200: oklch(86%  0.072 291);
+  --brand-300: oklch(76%  0.140 291);
+  --brand-400: oklch(65%  0.225 291);
+  --brand-500: oklch(52%  0.295 291);  /* ≈ #7C3AED — Obsidian signature violet */
+  --brand-600: oklch(44%  0.255 291);
+  --brand-700: oklch(36%  0.200 291);
+  --brand-800: oklch(27%  0.148 291);
+  --brand-900: oklch(18%  0.092 291);
+
+  /* -------------------------------------------------------------------------
+     Semantic Tokens — Light Mode
+     Stark white with barely-visible violet tint. High contrast, minimal.
+     ------------------------------------------------------------------------- */
+  --background:           oklch(99.5% 0.003 291);
+  --background-secondary: oklch(97%   0.007 291);
+  --background-tertiary:  oklch(94%   0.013 291);
+  --background-elevated:  oklch(100%  0.000 0);
+
+  --foreground:           oklch(14%  0.030 291);  /* ~18:1 on bg — WCAG AAA */
+  --foreground-secondary: oklch(28%  0.025 291);  /* ~11:1 on bg — WCAG AAA */
+  --foreground-muted:     oklch(41%  0.020 291);  /* ~6.5:1 on bg — WCAG AA */
+  --foreground-subtle:    oklch(52%  0.015 291);  /* ~4.5:1 on bg — WCAG AA */
+
+  --border:        oklch(89%  0.016 291);
+  --border-strong: oklch(81%  0.024 291);
+  --border-subtle: oklch(95%  0.008 291);
+
+  --primary:            oklch(14%  0.030 291);
+  --primary-hover:      oklch(22%  0.028 291);
+  --primary-foreground: oklch(99.5% 0.003 291);
+
+  --secondary:            oklch(94%  0.013 291);
+  --secondary-hover:      oklch(89%  0.016 291);
+  --secondary-foreground: oklch(14%  0.030 291);
+
+  --accent:       var(--brand-500);
+  --accent-hover: var(--brand-600);
+  --accent-light: var(--brand-100);
+
+  --muted:            oklch(94%  0.013 291);
+  --muted-foreground: oklch(52%  0.015 291);
+
+  --card:        oklch(100%  0.000 0);
+  --card-border: oklch(89%   0.016 291);
+
+  --input-bg:     oklch(100%  0.000 0);
+  --input-border: oklch(81%   0.024 291);
+  --input-focus:  var(--brand-500);
+
+  --ring: var(--brand-500);
+
+  /* Destructive */
+  --destructive:            var(--error);
+  --destructive-foreground: oklch(99% 0 0);
+
+  /* Gradient colors */
+  --gradient-start: oklch(96%  0.010 291);
+  --gradient-end:   oklch(99.5% 0.003 291);
+
+  /* -------------------------------------------------------------------------
+     Inverted/Contrast Section
+     ------------------------------------------------------------------------- */
+  --surface-invert:           oklch(12%  0.035 291);
+  --surface-invert-secondary: oklch(17%  0.030 291);
+  --surface-invert-tertiary:  oklch(23%  0.026 291);
+  --on-invert:                oklch(96%  0.008 291);
+  --on-invert-secondary:      oklch(80%  0.016 291);
+  --on-invert-muted:          oklch(63%  0.013 291);
+  --border-invert:            oklch(23%  0.026 291);
+  --border-invert-strong:     oklch(32%  0.022 291);
+
+  /* -------------------------------------------------------------------------
+     Typography — same font stack as other Velocity themes
+     ------------------------------------------------------------------------- */
+  --theme-font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --theme-font-display: 'Outfit Variable', 'Outfit', var(--theme-font-sans);
+  --theme-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace,
+    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --theme-heading-weight:   700;
+  --theme-heading-tracking: -0.03em;
+  --theme-body-leading:     1.65;
+
+  /* -------------------------------------------------------------------------
+     Shadows — violet-tinted, sharp
+     ------------------------------------------------------------------------- */
+  --theme-shadow-sm: 0 1px 3px oklch(18% 0.05 291 / 0.08);
+  --theme-shadow-md: 0 4px 12px oklch(18% 0.05 291 / 0.10),
+    0 0 1px oklch(18% 0.05 291 / 0.06);
+  --theme-shadow-lg: 0 8px 24px oklch(18% 0.05 291 / 0.13),
+    0 0 1px oklch(18% 0.05 291 / 0.06);
+  --theme-shadow-xl: 0 24px 48px oklch(18% 0.05 291 / 0.17),
+    0 0 1px oklch(18% 0.05 291 / 0.06);
+
+  /* -------------------------------------------------------------------------
+     Border Radii — sharper than other themes, Obsidian's minimal aesthetic
+     ------------------------------------------------------------------------- */
+  --theme-radius-sm:   0.25rem;   /* 4px  */
+  --theme-radius-md:   0.375rem;  /* 6px  */
+  --theme-radius-lg:   0.5rem;    /* 8px  */
+  --theme-radius-xl:   0.75rem;   /* 12px */
+  --theme-radius-full: 9999px;
+}
+
+/* -------------------------------------------------------------------------
+   Dark Mode — near pitch-black, glowing Obsidian violet accent
+   ------------------------------------------------------------------------- */
+.dark {
+  --background:           oklch(8%   0.018 291);  /* near-black, purple tint */
+  --background-secondary: oklch(11%  0.022 291);
+  --background-tertiary:  oklch(15%  0.026 291);
+  --background-elevated:  oklch(13%  0.024 291);
+
+  --foreground:           oklch(96%  0.008 291);  /* ~15:1 on bg — WCAG AAA */
+  --foreground-secondary: oklch(78%  0.016 291);  /* ~8:1 on bg  — WCAG AAA */
+  --foreground-muted:     oklch(60%  0.014 291);  /* ~4.8:1 on bg — WCAG AA */
+  --foreground-subtle:    oklch(46%  0.011 291);  /* ~3.2:1 — readable       */
+
+  --border:        oklch(19%  0.030 291);
+  --border-strong: oklch(27%  0.026 291);
+  --border-subtle: oklch(13%  0.024 291);
+
+  --primary:            oklch(96%  0.008 291);
+  --primary-hover:      oklch(86%  0.014 291);
+  --primary-foreground: oklch(8%   0.018 291);
+
+  --secondary:            oklch(15%  0.026 291);
+  --secondary-hover:      oklch(21%  0.028 291);
+  --secondary-foreground: oklch(92%  0.012 291);
+
+  --accent:       var(--brand-400);  /* oklch(65% 0.225 291) — vivid violet */
+  --accent-hover: var(--brand-500);
+  --accent-light: oklch(16%  0.070 291);  /* deep violet bg for highlights */
+
+  --muted:            oklch(15%  0.026 291);
+  --muted-foreground: oklch(58%  0.014 291);
+
+  --card:        oklch(11%  0.022 291);
+  --card-border: oklch(19%  0.030 291);
+
+  --input-bg:     oklch(11%  0.022 291);
+  --input-border: oklch(27%  0.026 291);
+  --input-focus:  var(--brand-400);
+
+  --ring: var(--brand-400);
+
+  --destructive:            oklch(65% 0.22 25);
+  --destructive-foreground: oklch(99% 0 0);
+
+  /* Gradient — near-black to very slightly elevated */
+  --gradient-start: oklch(8%   0.018 291);
+  --gradient-end:   oklch(11%  0.022 291);
+
+  /* Status colors */
+  --success-light: oklch(18%  0.05 145);
+  --warning-light: oklch(18%  0.05 85);
+  --error-light:   oklch(18%  0.05 25);
+
+  /* Inverted section */
+  --surface-invert:           oklch(13%  0.024 291);
+  --surface-invert-secondary: oklch(17%  0.028 291);
+  --surface-invert-tertiary:  oklch(22%  0.026 291);
+  --on-invert:                oklch(96%  0.008 291);
+  --on-invert-secondary:      oklch(78%  0.016 291);
+  --on-invert-muted:          oklch(58%  0.014 291);
+  --border-invert:            oklch(22%  0.026 291);
+  --border-invert-strong:     oklch(30%  0.022 291);
+
+  /* Shadows — deep with glowing violet aura */
+  --theme-shadow-sm: 0 1px 3px oklch(5% 0.04 291 / 0.40);
+  --theme-shadow-md: 0 4px 12px oklch(5% 0.04 291 / 0.50),
+    0 0 1px oklch(5% 0.04 291 / 0.20);
+  --theme-shadow-lg: 0 8px 24px oklch(5% 0.04 291 / 0.58),
+    0 1px 2px oklch(52% 0.295 291 / 0.08);
+  --theme-shadow-xl: 0 24px 48px oklch(5% 0.04 291 / 0.68),
+    0 2px 6px oklch(52% 0.295 291 / 0.14);
+}
