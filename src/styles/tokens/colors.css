@@ -7,39 +7,6 @@
 
 @import './primitives.css';
 
-/* -----------------------------------------------------------------------
-   ACTIVE THEME — change this to switch the entire site color scheme
-   ----------------------------------------------------------------------- */
-/*@import '../themes/obsidian.css'; */    /* Obsidian     — near-black + vivid violet          */
-🎨 Modern Color Schemes voor Astro (Dark & Light)
-🌞 Light Theme — “Soft Minimal Futurism”
-Zacht, luchtig, veel witruimte en subtiele accenten.
-
-Rol	Kleur	Hex
-Background	Off‑white	#F7F7F8
-Surface	Pure white	#FFFFFF
-Text Primary	Charcoal	#1A1A1C
-Text Secondary	Cool gray	#5A5A66
-Accent	Electric blue	#3A7BFF
-Accent Hover	Deep blue	#1F5FE0
-Border / Lines	Light gray	#E2E2E6
-Waarom dit werkt:  
-Het voelt modern, clean en professioneel. De blauwe accentkleur geeft een tech‑vibe zonder schreeuwerig te zijn.
-
-🌚 Dark Theme — “Cosmic Neon”
-Diep donker met levendige highlights, perfect passend bij Astro’s space‑aesthetic.
-
-Rol	Kleur	Hex
-Background	Near‑black	#0B0D10
-Surface	Dark slate	#14171C
-Text Primary	Soft white	#E9ECF2
-Text Secondary	Cool gray	#9AA0AE
-Accent	Neon purple	#A970FF
-Accent Hover	Bright magenta	#C084FF
-Border / Lines	Subtle gray	#2A2F38
-Waarom dit werkt:  
-Het voelt futuristisch en high‑contrast zonder te fel te worden. De paarse neonaccenten passen perfect bij Astro’s kosmische branding.@import '../themes/nebula.css';            /* Nebula       — cosmic violet-magenta      */
-/*@import '../themes/amethyst.css'; */    /* Amethyst     — true violet-purple                 */
 /*@import '../themes/midnight.css'; */    /* Midnight     — deep purple + electric violet       */
 /* @import '../themes/ember.css'; */       /* Ember        — international orange + gray         */
 /*@import '../themes/nord.css'; */        /* Nord         — arctic blue-gray                    */
