@@ -208,13 +208,18 @@ OKLCH values are `oklch(lightness chroma hue)`. To shift your brand to blue, cha
 
 ### Switching Themes
 
-This fork ships with four themes. To switch, edit `src/styles/tokens/colors.css` and uncomment the theme you want:
+This fork ships with multiple themes. To switch, edit `src/styles/tokens/colors.css` and set one active import:
 
 ```css
-@import '../themes/amethyst.css';    /* Amethyst    — true violet-purple (default) */
-/* @import '../themes/ember.css'; */ /* Ember       — International Orange + gray  */
-/* @import '../themes/nord.css'; */  /* Nord        — arctic blue-gray             */
-/* @import '../themes/tokyo-night.css'; */ /* Tokyo Night — deep navy + electric blue */
+@import '../themes/violet-pro.css'; /* Violet Pro   — modern purple (default) */
+/* @import '../themes/midnight.css'; */ /* Midnight     — deep purple + electric violet */
+/* @import '../themes/amethyst.css'; */ /* Amethyst     — true violet-purple */
+/* @import '../themes/nebula.css'; */ /* Nebula       — cosmic violet-magenta */
+/* @import '../themes/obsidian.css'; */ /* Obsidian     — high-contrast vivid violet */
+/* @import '../themes/default.css'; */ /* Default      — warm neutral slate */
+/* @import '../themes/ember.css'; */ /* Ember        — International Orange + gray */
+/* @import '../themes/nord.css'; */ /* Nord         — arctic blue-gray */
+/* @import '../themes/tokyo-night.css'; */ /* Tokyo Night  — deep navy + electric blue */
 ```
 
 ### Creating a New Theme
