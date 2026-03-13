@@ -8,9 +8,9 @@
 @import './primitives.css';
 
 /*@import '../themes/violet-pro.css'; /* Violet Pro   — modern purple for dev/design brands */
-@import '../themes/midnight.css'; */ /* Midnight     — deep purple + electric violet       */
+/*@import '../themes/midnight.css'; */ /* Midnight     — deep purple + electric violet       */
 /*@import '../themes/amethyst.css'; */ /* Amethyst     — true violet-purple                   */
-/*@import '../themes/nebula.css'; */ /* Nebula       — cosmic violet-magenta                */
+@import '../themes/nebula.css'; */ /* Nebula       — cosmic violet-magenta                */
 /*@import '../themes/obsidian.css'; */ /* Obsidian     — high-contrast vivid violet           */
 /*@import '../themes/default.css'; */ /* Default      — warm neutral slate                    */
 /* @import '../themes/ember.css'; */ /* Ember        — international orange + gray          */
