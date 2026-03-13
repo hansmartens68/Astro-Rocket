@@ -46,11 +46,12 @@ const getPostUrl = (postId: string) => `/blog/${postId.replace('en/', '')}`;
 
     <Fragment slot="actions">
       <Button size="lg" href="/contact">
-        Start a Project
+        View Documentation
         <Icon name="arrow-right" size="sm" />
       </Button>
       <Button size="lg" variant="outline" href="#work">
-        View My Work
+        <Icon name="github" size="sm" />
+        View on GitHUb
       </Button>
     </Fragment>
   </Hero>
