@@ -1,39 +1,40 @@
 /* =============================================================================
-   Velocity Theme - Verdant
+   Velocity Theme - Studio
    =============================================================================
-   Deep near-black backgrounds with rich emerald green accent. The aesthetic
-   of the Supabase generation — performance, growth, open source.
+   Cool blue-tinted grays with electric indigo accent. Inspired by the design
+   language of Linear, Raycast, and Radix UI — authoritative, premium, precise.
 
-   Dark mode: near-black with a barely-there green tint and emerald glow.
-   Light mode: clean neutral whites with emerald as the single accent.
+   Dark mode is the hero: deep cool-black backgrounds with indigo glow.
+   Light mode: clean neutral whites with indigo as the single accent.
 
    To use: swap the theme import in tokens/colors.css:
-     @import '../themes/verdant.css';
+     @import '../themes/studio.css';
    ============================================================================= */
 
-html[data-theme="verdant"] {
+html[data-theme="blue"] {
   /* -------------------------------------------------------------------------
-     Brand Scale Override — Emerald (hue 155)
-     Rich, deep green. Not lime, not mint — emerald.
+     Brand Scale Override — Electric Indigo (hue 255)
+     Replaces the default International Orange with electric indigo.
+     Any component using brand-* classes picks this up automatically.
      ------------------------------------------------------------------------- */
-  --brand-50:  oklch(97.5% 0.02  155);
-  --brand-100: oklch(94.8% 0.04  155);
-  --brand-200: oklch(87.5% 0.08  155);
-  --brand-300: oklch(77.8% 0.14  155);
-  --brand-400: oklch(68.5% 0.19  155);
-  --brand-500: oklch(62.5% 0.22  155);
-  --brand-600: oklch(53.2% 0.19  155);
-  --brand-700: oklch(45.5% 0.16  155);
-  --brand-800: oklch(37.2% 0.13  155);
-  --brand-900: oklch(26.5% 0.09  155);
+  --brand-50:  oklch(97.5% 0.02  255);
+  --brand-100: oklch(94.8% 0.04  255);
+  --brand-200: oklch(87.5% 0.08  255);
+  --brand-300: oklch(77.8% 0.14  255);
+  --brand-400: oklch(68.5% 0.19  255);
+  --brand-500: oklch(62.5% 0.22  255);
+  --brand-600: oklch(53.2% 0.19  255);
+  --brand-700: oklch(45.5% 0.16  255);
+  --brand-800: oklch(37.2% 0.13  255);
+  --brand-900: oklch(26.5% 0.09  255);
 
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode
-     Clean neutral whites — emerald accent does all the work.
+     Clean neutral whites — the indigo accent does all the work.
      ------------------------------------------------------------------------- */
   --background: var(--gray-0);
-  --background-secondary: oklch(97.5% 0.010 155);
-  --background-tertiary: oklch(95% 0.018 155);
+  --background-secondary: oklch(97.5% 0.010 255);
+  --background-tertiary: oklch(95% 0.018 255);
   --background-elevated: var(--gray-0);
 
   --foreground: var(--gray-900);           /* 18.3:1 on white — WCAG AAA */
@@ -78,16 +79,16 @@ html[data-theme="verdant"] {
   --gradient-end: oklch(100% 0 0);
 
   /* -------------------------------------------------------------------------
-     Inverted/Contrast Section — deep emerald-dark
+     Inverted/Contrast Section — deep cool-dark
      ------------------------------------------------------------------------- */
-  --surface-invert: oklch(9.5% 0.01 155);
-  --surface-invert-secondary: oklch(13.5% 0.01 155);
-  --surface-invert-tertiary: oklch(17.5% 0.008 155);
+  --surface-invert: oklch(10% 0.015 255);
+  --surface-invert-secondary: oklch(14% 0.012 255);
+  --surface-invert-tertiary: oklch(18% 0.01 255);
   --on-invert: var(--gray-50);
   --on-invert-secondary: var(--gray-200);
   --on-invert-muted: var(--gray-300);
-  --border-invert: oklch(21% 0.01 155);
-  --border-invert-strong: oklch(29% 0.008 155);
+  --border-invert: oklch(22% 0.01 255);
+  --border-invert-strong: oklch(30% 0.008 255);
 
   /* -------------------------------------------------------------------------
      Typography — Manrope (body) + Outfit (display)
@@ -105,15 +106,15 @@ html[data-theme="verdant"] {
   --theme-body-leading: 1.6;
 
   /* -------------------------------------------------------------------------
-     Shadows — green-tinted
+     Shadows — cool-tinted
      ------------------------------------------------------------------------- */
-  --theme-shadow-sm: 0 1px 2px oklch(20% 0.01 155 / 0.06);
-  --theme-shadow-md: 0 4px 8px oklch(20% 0.01 155 / 0.08),
-    0 0 1px oklch(20% 0.01 155 / 0.04);
-  --theme-shadow-lg: 0 8px 16px oklch(20% 0.01 155 / 0.1),
-    0 0 1px oklch(20% 0.01 155 / 0.04);
-  --theme-shadow-xl: 0 24px 48px oklch(20% 0.01 155 / 0.14),
-    0 0 1px oklch(20% 0.01 155 / 0.04);
+  --theme-shadow-sm: 0 1px 2px oklch(20% 0.01 255 / 0.06);
+  --theme-shadow-md: 0 4px 8px oklch(20% 0.01 255 / 0.08),
+    0 0 1px oklch(20% 0.01 255 / 0.04);
+  --theme-shadow-lg: 0 8px 16px oklch(20% 0.01 255 / 0.1),
+    0 0 1px oklch(20% 0.01 255 / 0.04);
+  --theme-shadow-xl: 0 24px 48px oklch(20% 0.01 255 / 0.14),
+    0 0 1px oklch(20% 0.01 255 / 0.04);
 
   /* -------------------------------------------------------------------------
      Border Radii
@@ -126,44 +127,44 @@ html[data-theme="verdant"] {
 }
 
 /* -------------------------------------------------------------------------
-   Dark Mode — deep near-black with emerald glow
-   Supabase-generation aesthetic. Terminal green reborn as premium.
+   Dark Mode — deep cool blue-black, indigo glow
+   The star of the Studio theme. Think Linear at night.
    ------------------------------------------------------------------------- */
-html.dark[data-theme="verdant"] {
-  --background: oklch(9.5% 0.012 155);
-  --background-secondary: oklch(15% 0.01 155);
-  --background-tertiary: oklch(20% 0.008 155);
-  --background-elevated: oklch(15% 0.01 155);
+html.dark[data-theme="blue"] {
+  --background: oklch(10% 0.015 255);
+  --background-secondary: oklch(15.5% 0.012 255);
+  --background-tertiary: oklch(20.5% 0.01 255);
+  --background-elevated: oklch(15.5% 0.012 255);
 
-  --foreground: oklch(94% 0.008 155);          /* cool near-white — WCAG AAA */
-  --foreground-secondary: oklch(72% 0.01 155);
-  --foreground-muted: oklch(52% 0.008 155);
-  --foreground-subtle: oklch(42% 0.006 155);
+  --foreground: oklch(94% 0.008 255);          /* cool near-white — WCAG AAA */
+  --foreground-secondary: oklch(72% 0.012 255);
+  --foreground-muted: oklch(52% 0.01 255);
+  --foreground-subtle: oklch(42% 0.008 255);
 
-  --border: oklch(20% 0.01 155);
-  --border-strong: oklch(27% 0.008 155);
-  --border-subtle: oklch(13.5% 0.01 155);
+  --border: oklch(20% 0.012 255);
+  --border-strong: oklch(28% 0.01 255);
+  --border-subtle: oklch(14% 0.012 255);
 
-  --primary: oklch(94% 0.008 155);
-  --primary-hover: oklch(82% 0.01 155);
-  --primary-foreground: oklch(9.5% 0.012 155);
+  --primary: oklch(94% 0.008 255);
+  --primary-hover: oklch(82% 0.01 255);
+  --primary-foreground: oklch(10% 0.015 255);
 
-  --secondary: oklch(20% 0.008 155);
-  --secondary-hover: oklch(24% 0.008 155);
-  --secondary-foreground: oklch(90% 0.008 155);
+  --secondary: oklch(20.5% 0.01 255);
+  --secondary-hover: oklch(25% 0.01 255);
+  --secondary-foreground: oklch(90% 0.01 255);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
-  --accent-light: oklch(18% 0.06 155);
+  --accent-light: oklch(18% 0.06 255);
 
-  --muted: oklch(20% 0.008 155);
-  --muted-foreground: oklch(52% 0.008 155);
+  --muted: oklch(20.5% 0.01 255);
+  --muted-foreground: oklch(52% 0.01 255);
 
-  --card: oklch(15% 0.01 155);
-  --card-border: oklch(23% 0.01 155);
+  --card: oklch(15.5% 0.012 255);
+  --card-border: oklch(23% 0.012 255);
 
-  --input-bg: oklch(15% 0.01 155);
-  --input-border: oklch(27% 0.008 155);
+  --input-bg: oklch(15.5% 0.012 255);
+  --input-border: oklch(28% 0.01 255);
   --input-focus: var(--brand-400);
 
   --ring: var(--brand-400);
@@ -172,30 +173,30 @@ html.dark[data-theme="verdant"] {
   --destructive-foreground: var(--gray-0);
 
   /* Gradient colors */
-  --gradient-start: oklch(9.5% 0.012 155);
-  --gradient-end: oklch(13% 0.01 155);
+  --gradient-start: oklch(10% 0.015 255);
+  --gradient-end: oklch(13.5% 0.012 255);
 
   /* Status colors */
-  --success-light: oklch(18% 0.06 155);
+  --success-light: oklch(18% 0.05 145);
   --warning-light: oklch(18% 0.05 85);
   --error-light: oklch(18% 0.05 25);
 
   /* Inverted section in dark mode */
-  --surface-invert: oklch(13% 0.01 155);
-  --surface-invert-secondary: oklch(16.5% 0.008 155);
-  --surface-invert-tertiary: oklch(21% 0.008 155);
-  --on-invert: oklch(94% 0.008 155);
-  --on-invert-secondary: oklch(72% 0.01 155);
-  --on-invert-muted: oklch(52% 0.008 155);
-  --border-invert: oklch(21% 0.008 155);
-  --border-invert-strong: oklch(29% 0.007 155);
+  --surface-invert: oklch(13.5% 0.012 255);
+  --surface-invert-secondary: oklch(17% 0.01 255);
+  --surface-invert-tertiary: oklch(22% 0.01 255);
+  --on-invert: oklch(94% 0.008 255);
+  --on-invert-secondary: oklch(72% 0.012 255);
+  --on-invert-muted: oklch(52% 0.01 255);
+  --border-invert: oklch(22% 0.01 255);
+  --border-invert-strong: oklch(30% 0.008 255);
 
-  /* Shadows — emerald-tinted, deep */
-  --theme-shadow-sm: 0 1px 3px oklch(9% 0.02 155 / 0.35);
-  --theme-shadow-md: 0 4px 12px oklch(9% 0.02 155 / 0.4),
-    0 0 1px oklch(9% 0.02 155 / 0.15);
-  --theme-shadow-lg: 0 8px 24px oklch(9% 0.02 155 / 0.45),
-    0 1px 2px oklch(50% 0.15 155 / 0.06);
-  --theme-shadow-xl: 0 24px 48px oklch(9% 0.02 155 / 0.55),
-    0 2px 4px oklch(50% 0.15 155 / 0.09);
+  /* Shadows — indigo-tinted, deeper */
+  --theme-shadow-sm: 0 1px 3px oklch(10% 0.02 255 / 0.35);
+  --theme-shadow-md: 0 4px 12px oklch(10% 0.02 255 / 0.4),
+    0 0 1px oklch(10% 0.02 255 / 0.15);
+  --theme-shadow-lg: 0 8px 24px oklch(10% 0.02 255 / 0.45),
+    0 1px 2px oklch(50% 0.15 255 / 0.05);
+  --theme-shadow-xl: 0 24px 48px oklch(10% 0.02 255 / 0.55),
+    0 2px 4px oklch(50% 0.15 255 / 0.08);
 }

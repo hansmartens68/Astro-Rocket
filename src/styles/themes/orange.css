@@ -20,7 +20,7 @@
      Dark mode: all of the above re-mapped for dark backgrounds
    ============================================================================= */
 
-html[data-theme="default"] {
+html[data-theme="orange"] {
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode
      ------------------------------------------------------------------------- */
@@ -119,7 +119,7 @@ html[data-theme="default"] {
 /* -------------------------------------------------------------------------
    Dark Mode - The Vercel signature look
    ------------------------------------------------------------------------- */
-html.dark[data-theme="default"] {
+html.dark[data-theme="orange"] {
   --background: var(--gray-950);
   --background-secondary: var(--gray-900);
   --background-tertiary: var(--gray-800);
@@ -191,6 +191,6 @@ html.dark[data-theme="default"] {
    hero glow so it does not render as a visible orange oval on the clean
    neutral background.
    ------------------------------------------------------------------------- */
-html[data-theme="default"] .bg-hero-glow {
+html[data-theme="orange"] .bg-hero-glow {
   background: none;
 }
