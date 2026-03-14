@@ -62,6 +62,24 @@ const faqs = defineCollection({
   }),
 });
 
+// Projects collection — one MDX file per project
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      url: z.string().url().optional(),
+      repo: z.string().url().optional(),
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+      tags: z.array(z.string()).default([]),
+      featured: z.boolean().default(false),
+      order: z.number().default(99),
+      year: z.number().optional(),
+    }),
+});
+
 // Stack collection — one MDX file per tool, editable like blog posts
 const stack = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/stack' }),
@@ -82,4 +100,5 @@ export const collections = {
   authors,
   faqs,
   stack,
+  projects,
 };
