@@ -13,7 +13,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-foreground text-background hover:bg-foreground/90 active:scale-[0.98]',
+          'btn-primary bg-foreground text-background hover:bg-foreground/90 active:scale-[0.98]',
         secondary:
           'bg-secondary text-secondary-foreground border border-border hover:bg-secondary-hover hover:border-border-strong active:scale-[0.98]',
         outline:
