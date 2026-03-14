@@ -32,8 +32,8 @@ html[data-theme="verdant"] {
      Clean neutral whites — emerald accent does all the work.
      ------------------------------------------------------------------------- */
   --background: var(--gray-0);
-  --background-secondary: var(--gray-50);
-  --background-tertiary: var(--gray-100);
+  --background-secondary: oklch(97.5% 0.010 155);
+  --background-tertiary: oklch(95% 0.018 155);
   --background-elevated: var(--gray-0);
 
   --foreground: var(--gray-900);           /* 18.3:1 on white — WCAG AAA */
