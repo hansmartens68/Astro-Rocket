@@ -40,22 +40,37 @@ const themes = [
 </div>
 
 <style>
-  /* Inactive: subtle border so light swatches are visible on light bg */
+  /* Inactive: subtle border + dimmed so active pops without extra decoration */
   .theme-swatch {
+    box-shadow: inset 0 0 0 1px oklch(0% 0 0 / 0.12);
+    opacity: 0.55;
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease;
+  }
+
+  /* Active: full opacity + slim underline pill in the swatch colour */
+  .theme-swatch[data-active] {
+    opacity: 1;
     box-shadow: inset 0 0 0 1px oklch(0% 0 0 / 0.12);
   }
 
-  /* Active: double-ring using the swatch's own colour */
-  .theme-swatch[data-active] {
-    box-shadow:
-      0 0 0 2px var(--color-background),
-      0 0 0 4px var(--swatch);
-    transform: scale(1.2);
+  .theme-swatch[data-active]::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 2px;
+    background: var(--swatch);
+    border-radius: 1px;
   }
 
-  /* Hover */
+  /* Hover: lift opacity on inactive */
   .theme-swatch:not([data-active]):hover {
-    transform: scale(1.15);
+    opacity: 0.85;
+    transform: scale(1.1);
   }
 </style>
 
