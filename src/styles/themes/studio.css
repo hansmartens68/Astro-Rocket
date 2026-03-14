@@ -33,8 +33,8 @@ html[data-theme="studio"] {
      Clean neutral whites — the indigo accent does all the work.
      ------------------------------------------------------------------------- */
   --background: var(--gray-0);
-  --background-secondary: var(--gray-50);
-  --background-tertiary: var(--gray-100);
+  --background-secondary: oklch(97.5% 0.010 255);
+  --background-tertiary: oklch(95% 0.018 255);
   --background-elevated: var(--gray-0);
 
   --foreground: var(--gray-900);           /* 18.3:1 on white — WCAG AAA */
