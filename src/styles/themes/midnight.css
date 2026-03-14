@@ -10,7 +10,7 @@
      @import '../themes/midnight.css';
    ============================================================================= */
 
-:root {
+html[data-theme="midnight"] {
   /* -------------------------------------------------------------------------
      Brand Scale Override — Violet (hue 295)
      Replaces the default International Orange with electric violet.
@@ -127,7 +127,7 @@
 /* -------------------------------------------------------------------------
    Dark Mode — deep purple-black atmosphere
    ------------------------------------------------------------------------- */
-.dark {
+html.dark[data-theme="midnight"] {
   --background: oklch(10% 0.04 285);
   --background-secondary: oklch(17% 0.035 285);
   --background-tertiary: oklch(22% 0.03 285);

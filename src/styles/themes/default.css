@@ -20,7 +20,7 @@
      Dark mode: all of the above re-mapped for dark backgrounds
    ============================================================================= */
 
-:root {
+html[data-theme="default"] {
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode
      ------------------------------------------------------------------------- */
@@ -118,7 +118,7 @@
 /* -------------------------------------------------------------------------
    Dark Mode - The Vercel signature look
    ------------------------------------------------------------------------- */
-.dark {
+html.dark[data-theme="default"] {
   --background: var(--gray-950);
   --background-secondary: var(--gray-900);
   --background-tertiary: var(--gray-800);

@@ -18,7 +18,7 @@
      @import '../themes/aurora.css';
    ============================================================================= */
 
-:root {
+html[data-theme="aurora"] {
   /* -------------------------------------------------------------------------
      Brand Scale Override — Electric Blue-Violet (hue 278)
      The midpoint of Astro's blue→purple gradient. Higher chroma (0.27) than
@@ -137,7 +137,7 @@
    Dark Mode — Astro's deep blue-black cosmos
    Background matches Astro's own #060913. Electric violet glow on near-void.
    ------------------------------------------------------------------------- */
-.dark {
+html.dark[data-theme="aurora"] {
   --background: oklch(6.5% 0.025 265);
   --background-secondary: oklch(12% 0.022 268);
   --background-tertiary: oklch(17% 0.018 270);

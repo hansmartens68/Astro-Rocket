@@ -11,7 +11,7 @@
      @import '../themes/verdant.css';
    ============================================================================= */
 
-:root {
+html[data-theme="verdant"] {
   /* -------------------------------------------------------------------------
      Brand Scale Override — Emerald (hue 155)
      Rich, deep green. Not lime, not mint — emerald.
@@ -129,7 +129,7 @@
    Dark Mode — deep near-black with emerald glow
    Supabase-generation aesthetic. Terminal green reborn as premium.
    ------------------------------------------------------------------------- */
-.dark {
+html.dark[data-theme="verdant"] {
   --background: oklch(9.5% 0.012 155);
   --background-secondary: oklch(15% 0.01 155);
   --background-tertiary: oklch(20% 0.008 155);
