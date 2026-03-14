@@ -14,11 +14,14 @@ interface Props {
 const { class: className } = Astro.props;
 
 const themes = [
-  { id: 'aurora',   name: 'Aurora',   color: 'oklch(58% 0.27 278)'   },
   { id: 'midnight', name: 'Midnight', color: 'oklch(58% 0.25 295)'   },
   { id: 'studio',   name: 'Studio',   color: 'oklch(62.5% 0.22 255)' },
+  { id: 'teal',     name: 'Teal',     color: 'oklch(62.5% 0.22 190)' },
   { id: 'verdant',  name: 'Verdant',  color: 'oklch(62.5% 0.22 155)' },
+  { id: 'lime',     name: 'Lime',     color: 'oklch(64% 0.27 130)'   },
+  { id: 'amber',    name: 'Amber',    color: 'oklch(68% 0.19 75)'    },
   { id: 'default',  name: 'Default',  color: 'oklch(62.5% 0.22 38)'  },
+  { id: 'magenta',  name: 'Magenta',  color: 'oklch(58% 0.28 330)'   },
 ];
 ---
 
@@ -76,7 +79,7 @@ const themes = [
 
 <script>
   const STORAGE_KEY = 'color-theme';
-  const DEFAULT_THEME = 'aurora';
+  const DEFAULT_THEME = 'midnight';
 
   function getActiveTheme(): string {
     try {
