@@ -1,0 +1,167 @@
+---
+/**
+ * Projects page
+ * URL: /projects
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import { getCollection } from 'astro:content';
+
+const items = await getCollection('projects');
+const projects = items.sort((a, b) => a.data.order - b.data.order);
+
+const featured = projects.find((p) => p.data.featured);
+const rest = projects.filter((p) => !p.data.featured);
+---
+
+<PageLayout
+  title="Projects — Astro Rocket"
+  description="Selected work — websites, tools, and open-source projects built by Astro Rocket."
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand">
+      <Icon name="layers" size="sm" />
+      Selected work
+    </Badge>
+
+    <h1 slot="title">Projects</h1>
+
+    <p slot="description">
+      Websites, tools, and experiments I've built — for clients and for fun.
+    </p>
+  </Hero>
+
+  <!-- Featured project -->
+  {featured && (
+    <section class="py-[var(--space-section-md)] border-t border-border">
+      <div class="mx-auto max-w-6xl px-6">
+        <p class="text-brand-500 mb-6 text-sm font-bold tracking-wide uppercase">Featured</p>
+        <Card variant="elevated" padding="lg" class="overflow-hidden">
+          <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+            <!-- Text -->
+            <div>
+              <div class="mb-3 flex items-center gap-3">
+                <span class="font-display text-3xl font-bold text-foreground">{featured.data.title}</span>
+                {featured.data.year && (
+                  <span class="text-sm text-foreground-muted">{featured.data.year}</span>
+                )}
+              </div>
+              <p class="text-foreground-muted mb-6 text-lg leading-relaxed">{featured.data.description}</p>
+
+              <div class="mb-6 flex flex-wrap gap-2">
+                {featured.data.tags.map((tag) => (
+                  <Badge variant="brand" size="sm">{tag}</Badge>
+                ))}
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                {featured.data.url && (
+                  <Button href={featured.data.url} target="_blank" rel="noopener noreferrer" size="md">
+                    View live site
+                    <Icon name="arrow-up-right" size="sm" />
+                  </Button>
+                )}
+                {featured.data.repo && (
+                  <Button href={featured.data.repo} target="_blank" rel="noopener noreferrer" size="md" variant="outline">
+                    <Icon name="github" size="sm" />
+                    Source code
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            <!-- Visual placeholder -->
+            <div class="relative h-56 overflow-hidden rounded-xl bg-gradient-to-br from-brand-500/20 via-brand-500/10 to-transparent lg:h-72">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-brand-500/30">
+                  <Icon name="monitor" size="lg" class="h-20 w-20" />
+                </div>
+              </div>
+              <!-- Decorative dots -->
+              <div class="absolute right-6 top-6 grid grid-cols-4 gap-2">
+                {Array.from({ length: 16 }).map(() => (
+                  <div class="h-1.5 w-1.5 rounded-full bg-brand-500/20" />
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </Card>
+      </div>
+    </section>
+  )}
+
+  <!-- All other projects -->
+  {rest.length > 0 && (
+    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+      <div class="mx-auto max-w-6xl px-6">
+        {featured && (
+          <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">
+            More projects
+          </h2>
+        )}
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {rest.map((project) => (
+            <Card variant="elevated" hover padding="lg" href={project.data.url ?? project.data.repo} target="_blank" rel="noopener noreferrer" class="group flex flex-col">
+              <div class="flex flex-1 flex-col">
+                <!-- Header -->
+                <div class="mb-3 flex items-start justify-between gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                    <Icon name="folder" size="sm" />
+                  </div>
+                  <div class="flex items-center gap-2 text-foreground-muted">
+                    {project.data.url && (
+                      <Icon name="arrow-up-right" size="sm" class="opacity-0 transition-opacity group-hover:opacity-100" />
+                    )}
+                    {!project.data.url && project.data.repo && (
+                      <Icon name="github" size="sm" class="opacity-40" />
+                    )}
+                  </div>
+                </div>
+
+                <!-- Title + year -->
+                <div class="mb-2 flex items-baseline gap-2">
+                  <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
+                  {project.data.year && (
+                    <span class="text-xs text-foreground-muted">{project.data.year}</span>
+                  )}
+                </div>
+
+                <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5">
+                  {project.data.tags.map((tag) => (
+                    <Badge variant="brand" size="sm">{tag}</Badge>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+        Got a project in mind?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8">
+        I'm available for new work. Let's talk about what you want to build.
+      </p>
+      <Button size="lg" href="/contact">
+        Start a conversation
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+    </div>
+  </section>
+</PageLayout>
