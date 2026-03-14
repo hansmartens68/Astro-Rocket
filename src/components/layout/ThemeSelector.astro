@@ -23,14 +23,14 @@ const themes = [
 ---
 
 <div
-  class:list={['theme-selector flex items-center gap-1.5', className]}
+  class:list={['theme-selector flex items-center gap-1', className]}
   role="group"
   aria-label="Select colour theme"
 >
   {themes.map((theme) => (
     <button
       type="button"
-      class="theme-swatch relative h-[18px] w-[18px] rounded-full transition-transform duration-150 focus-visible:outline-none"
+      class="theme-swatch relative h-3.5 w-3.5 rounded-full transition-transform duration-150 focus-visible:outline-none"
       data-theme-id={theme.id}
       style={`background-color:${theme.color};--swatch:${theme.color}`}
       title={theme.name}
