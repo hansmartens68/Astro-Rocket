@@ -358,6 +358,15 @@
     background-size: 16px 16px;
   }
 
+  /* Orange radial glow - for hero sections */
+  .bg-glow-orange {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(249, 76, 16, 0.15) 0%,
+      transparent 70%
+    );
+  }
+
   /* Grid pattern - for hero sections (matches the React design) */
   .bg-grid-pattern {
     background-image:
