@@ -21,7 +21,10 @@ const { variant = 'default', size = 'md', pulse = false, pill = false, class: cl
 
 <span class={cn(badgeVariants({ variant, size, pill }), className)} {...attrs}>
   {pulse && (
-    <span class="flex h-2 w-2 shrink-0 animate-pulse rounded-full bg-brand-500" aria-hidden="true" />
+    <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-75" />
+      <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+    </span>
   )}
   <slot />
 </span>
