@@ -70,6 +70,7 @@ html[data-theme="default"] {
   --gradient-start: oklch(96.5% 0 0);
   --gradient-end: oklch(100% 0 0);
 
+
   /* -------------------------------------------------------------------------
      Inverted/Contrast Section - Always dark for visual hierarchy
      ------------------------------------------------------------------------- */
@@ -182,4 +183,14 @@ html.dark[data-theme="default"] {
   --theme-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.1);
   --theme-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
   --theme-shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------------------
+   The default theme is intentionally neutral (pure black/white, Vercel-style).
+   The orange brand colour is used as a subtle accent only — suppress the
+   hero glow so it does not render as a visible orange oval on the clean
+   neutral background.
+   ------------------------------------------------------------------------- */
+html[data-theme="default"] .bg-hero-glow {
+  background: none;
 }
