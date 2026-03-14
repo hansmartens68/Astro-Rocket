@@ -358,11 +358,11 @@
     background-size: 16px 16px;
   }
 
-  /* Orange radial glow - for hero sections */
-  .bg-glow-orange {
+  /* Brand radial glow - for hero sections. Automatically uses the active theme's brand color. */
+  .bg-hero-glow {
     background: radial-gradient(
       ellipse 80% 60% at 50% 40%,
-      rgba(249, 76, 16, 0.15) 0%,
+      color-mix(in oklch, var(--color-brand-500) 15%, transparent) 0%,
       transparent 70%
     );
   }
