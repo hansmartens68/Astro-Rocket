@@ -70,7 +70,7 @@ const gridClasses = cn(
       {/* Title Slot */}
       {hasTitleSlot && (
         <div class={cn(
-          'mb-[var(--space-heading-gap)]',
+          'hero-title-slot mb-[var(--space-heading-gap)]',
           '[&>h1]:font-display [&>h1]:text-5xl [&>h1]:leading-[1.1] [&>h1]:font-bold [&>h1]:tracking-tight [&>h1]:text-balance [&>h1]:text-foreground md:[&>h1]:text-6xl lg:[&>h1]:text-7xl',
           '[&>h2]:font-display [&>h2]:text-4xl [&>h2]:leading-[1.1] [&>h2]:font-bold [&>h2]:tracking-tight [&>h2]:text-balance [&>h2]:text-foreground md:[&>h2]:text-5xl lg:[&>h2]:text-6xl'
         )}>
@@ -111,3 +111,22 @@ const gridClasses = cn(
     )}
   </div>
 </section>
+
+<style>
+  /*
+   * Dark mode: apply a top-to-bottom gradient on hero H1s.
+   * Uses the theme's own --foreground (near-white) → --foreground-secondary
+   * (slightly dimmer, brand-tinted) so the effect adapts to every theme.
+   * Light mode: untouched — dark text on white needs no treatment.
+   */
+  :global(.dark) .hero-title-slot h1 {
+    background: linear-gradient(
+      180deg,
+      var(--color-foreground) 0%,
+      var(--color-foreground-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
