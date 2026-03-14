@@ -58,7 +58,7 @@ const getPostUrl = (postId: string) => {
   <!-- Featured Posts Section -->
   {
     featuredPosts.length > 0 && (
-      <section class="bg-background py-[var(--space-section-md)]">
+      <section class="bg-background py-[var(--space-section-md)] border-t border-border">
         <div class="mx-auto max-w-6xl px-6">
           <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">
             Featured Posts
@@ -83,7 +83,7 @@ const getPostUrl = (postId: string) => {
   }
 
   <!-- All Posts Section -->
-  <section class="bg-background-secondary py-[var(--space-section-md)]">
+  <section class="bg-background-secondary py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       {
         featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
@@ -119,7 +119,7 @@ const getPostUrl = (postId: string) => {
   </section>
 
   <!-- Follow CTA Section -->
-  <CTA variant="default" size="md" maxWidth="lg" class="bg-brand-500/8 dark:bg-background-tertiary">
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
     <h2 slot="heading" class="!text-4xl">Follow along</h2>
     <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
 
