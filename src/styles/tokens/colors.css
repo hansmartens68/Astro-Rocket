@@ -6,9 +6,10 @@
    ============================================================================= */
 
 @import './primitives.css';
-@import '../themes/verdant.css';
+@import '../themes/midnight.css'
 /* Other available themes:
    @import '../themes/default.css';   Default  — International Orange
    @import '../themes/midnight.css';  Midnight — deep purple + electric violet
    @import '../themes/studio.css';    Studio   — electric indigo
+   @import '../themes/verdant.css';
 */
