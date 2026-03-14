@@ -6,7 +6,8 @@
    ============================================================================= */
 
 @import './primitives.css';
-@import '../themes/default.css';
-/* To use the midnight theme, replace the line above with:
-   @import '../themes/midnight.css';
+@import '../themes/studio.css';
+/* Other available themes:
+   @import '../themes/default.css';   Default  — International Orange
+   @import '../themes/midnight.css';  Midnight — deep purple + electric violet
 */
