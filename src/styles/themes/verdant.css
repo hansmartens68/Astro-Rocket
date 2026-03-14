@@ -131,9 +131,9 @@
    ------------------------------------------------------------------------- */
 .dark {
   --background: oklch(9.5% 0.012 155);
-  --background-secondary: oklch(13% 0.01 155);
-  --background-tertiary: oklch(16.5% 0.008 155);
-  --background-elevated: oklch(13% 0.01 155);
+  --background-secondary: oklch(15% 0.01 155);
+  --background-tertiary: oklch(20% 0.008 155);
+  --background-elevated: oklch(15% 0.01 155);
 
   --foreground: oklch(94% 0.008 155);          /* cool near-white — WCAG AAA */
   --foreground-secondary: oklch(72% 0.01 155);
@@ -148,21 +148,21 @@
   --primary-hover: oklch(82% 0.01 155);
   --primary-foreground: oklch(9.5% 0.012 155);
 
-  --secondary: oklch(16.5% 0.008 155);
-  --secondary-hover: oklch(21% 0.008 155);
+  --secondary: oklch(20% 0.008 155);
+  --secondary-hover: oklch(24% 0.008 155);
   --secondary-foreground: oklch(90% 0.008 155);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
   --accent-light: oklch(18% 0.06 155);
 
-  --muted: oklch(16.5% 0.008 155);
+  --muted: oklch(20% 0.008 155);
   --muted-foreground: oklch(52% 0.008 155);
 
-  --card: oklch(13% 0.01 155);
-  --card-border: oklch(20% 0.01 155);
+  --card: oklch(15% 0.01 155);
+  --card-border: oklch(23% 0.01 155);
 
-  --input-bg: oklch(13% 0.01 155);
+  --input-bg: oklch(15% 0.01 155);
   --input-border: oklch(27% 0.008 155);
   --input-focus: var(--brand-400);
 

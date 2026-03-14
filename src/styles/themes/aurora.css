@@ -139,9 +139,9 @@
    ------------------------------------------------------------------------- */
 .dark {
   --background: oklch(6.5% 0.025 265);
-  --background-secondary: oklch(10% 0.022 268);
-  --background-tertiary: oklch(13.5% 0.018 270);
-  --background-elevated: oklch(10% 0.022 268);
+  --background-secondary: oklch(12% 0.022 268);
+  --background-tertiary: oklch(17% 0.018 270);
+  --background-elevated: oklch(12% 0.022 268);
 
   --foreground: oklch(94% 0.008 278);          /* violet-tinted near-white */
   --foreground-secondary: oklch(72% 0.012 278);
@@ -156,8 +156,8 @@
   --primary-hover: oklch(82% 0.012 278);
   --primary-foreground: oklch(6.5% 0.025 265);
 
-  --secondary: oklch(13.5% 0.018 270);
-  --secondary-hover: oklch(18% 0.022 268);
+  --secondary: oklch(17% 0.018 270);
+  --secondary-hover: oklch(21% 0.018 268);
   --secondary-foreground: oklch(90% 0.01 278);
 
   --accent: var(--brand-400);
@@ -165,13 +165,13 @@
   /* Astro's cyan-mint (#4AF2C8) as the accent-light — authentic to Astro's palette */
   --accent-light: oklch(16% 0.08 178);
 
-  --muted: oklch(13.5% 0.018 270);
+  --muted: oklch(17% 0.018 270);
   --muted-foreground: oklch(52% 0.01 278);
 
-  --card: oklch(10% 0.022 268);
-  --card-border: oklch(18% 0.022 268);
+  --card: oklch(12% 0.022 268);
+  --card-border: oklch(20% 0.022 268);
 
-  --input-bg: oklch(10% 0.022 268);
+  --input-bg: oklch(12% 0.022 268);
   --input-border: oklch(26% 0.018 270);
   --input-focus: var(--brand-400);
 
