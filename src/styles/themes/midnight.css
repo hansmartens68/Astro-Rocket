@@ -129,9 +129,9 @@
    ------------------------------------------------------------------------- */
 .dark {
   --background: oklch(10% 0.04 285);
-  --background-secondary: oklch(14% 0.035 285);
-  --background-tertiary: oklch(18% 0.03 285);
-  --background-elevated: oklch(14% 0.035 285);
+  --background-secondary: oklch(17% 0.035 285);
+  --background-tertiary: oklch(22% 0.03 285);
+  --background-elevated: oklch(17% 0.035 285);
 
   --foreground: oklch(94% 0.012 285);
   --foreground-secondary: oklch(75% 0.02 285);
@@ -146,21 +146,21 @@
   --primary-hover: oklch(85% 0.018 285);
   --primary-foreground: oklch(10% 0.04 285);
 
-  --secondary: oklch(18% 0.03 285);
-  --secondary-hover: oklch(24% 0.028 285);
+  --secondary: oklch(22% 0.03 285);
+  --secondary-hover: oklch(27% 0.028 285);
   --secondary-foreground: oklch(90% 0.015 285);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
   --accent-light: oklch(18% 0.06 295);
 
-  --muted: oklch(18% 0.03 285);
+  --muted: oklch(22% 0.03 285);
   --muted-foreground: oklch(55% 0.018 285);
 
-  --card: oklch(14% 0.035 285);
-  --card-border: oklch(20% 0.035 285);
+  --card: oklch(17% 0.035 285);
+  --card-border: oklch(24% 0.035 285);
 
-  --input-bg: oklch(14% 0.035 285);
+  --input-bg: oklch(17% 0.035 285);
   --input-border: oklch(28% 0.03 285);
   --input-focus: var(--brand-400);
 
