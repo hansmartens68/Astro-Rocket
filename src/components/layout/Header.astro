@@ -225,7 +225,9 @@ const buttonId = `${menuId}-button`;
         ) : (
           <>
             {showThemeSelector && (
-              <ThemeSelector class={isFloating ? 'hdr-invert-text' : undefined} />
+              <div class="hidden md:flex">
+                <ThemeSelector class={isFloating ? 'hdr-invert-text' : undefined} />
+              </div>
             )}
 
             {showThemeToggle && (
