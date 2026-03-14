@@ -11,7 +11,7 @@
      @import '../themes/studio.css';
    ============================================================================= */
 
-:root {
+html[data-theme="studio"] {
   /* -------------------------------------------------------------------------
      Brand Scale Override — Electric Indigo (hue 255)
      Replaces the default International Orange with electric indigo.
@@ -130,7 +130,7 @@
    Dark Mode — deep cool blue-black, indigo glow
    The star of the Studio theme. Think Linear at night.
    ------------------------------------------------------------------------- */
-.dark {
+html.dark[data-theme="studio"] {
   --background: oklch(10% 0.015 255);
   --background-secondary: oklch(15.5% 0.012 255);
   --background-tertiary: oklch(20.5% 0.01 255);

@@ -29,6 +29,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import ThemeToggle from '@/components/layout/ThemeToggle.astro';
+import ThemeSelector from '@/components/layout/ThemeSelector.astro';
 import siteConfig from '@/config/site.config';
 
 export interface NavItem {
@@ -69,6 +70,8 @@ interface Props extends HTMLAttributes<'header'> {
   actions?: HeaderAction[];
   /** Show theme toggle (default: true) */
   showThemeToggle?: boolean;
+  /** Show colour-theme selector swatches */
+  showThemeSelector?: boolean;
   /** Show mobile menu (default: true) */
   showMobileMenu?: boolean;
   /** Show active state for current page (default: true) */
@@ -94,6 +97,7 @@ const {
   cta = { label: 'View Docs', href: 'https://docs.deployvelocity.com' },
   actions = [],
   showThemeToggle = true,
+  showThemeSelector = false,
   showMobileMenu = true,
   showActiveState = true,
   logoText,
@@ -220,6 +224,10 @@ const buttonId = `${menuId}-button`;
           <slot name="actions" />
         ) : (
           <>
+            {showThemeSelector && (
+              <ThemeSelector class={isFloating ? 'hdr-invert-text' : undefined} />
+            )}
+
             {showThemeToggle && (
               <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
             )}
@@ -338,6 +346,15 @@ const buttonId = `${menuId}-button`;
                 <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
                   {cta.label}
                 </Button>
+              </div>
+            )}
+
+            {showThemeSelector && (
+              <div class="border-border mt-3 border-t pt-3">
+                <div class="flex items-center justify-between px-1">
+                  <span class="text-sm text-foreground-muted">Colour theme</span>
+                  <ThemeSelector />
+                </div>
               </div>
             )}
           </div>

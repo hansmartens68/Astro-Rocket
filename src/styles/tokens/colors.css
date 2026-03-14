@@ -1,15 +1,17 @@
 /* =============================================================================
    Velocity Design Tokens - Colors
    =============================================================================
-   This file aggregates primitive color scales and the active theme.
-   To switch themes, change the theme import below.
+   This file aggregates primitive color scales and all themes.
+   The active theme is selected at runtime via the data-theme attribute on
+   <html>. Default: aurora.
+
+   To add a new theme: create a file in ../themes/ following the same token
+   contract, scope it under html[data-theme="name"], and import it below.
    ============================================================================= */
 
 @import './primitives.css';
 @import '../themes/aurora.css';
-/* Other available themes:
-   @import '../themes/default.css';   Default  — International Orange
-   @import '../themes/midnight.css';  Midnight — deep purple + electric violet
-   @import '../themes/studio.css';    Studio   — electric indigo
-   @import '../themes/verdant.css';   Verdant  — emerald green
-*/
+@import '../themes/midnight.css';
+@import '../themes/studio.css';
+@import '../themes/verdant.css';
+@import '../themes/default.css';

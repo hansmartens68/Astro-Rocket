@@ -54,7 +54,7 @@ if (includeProfessionalServiceSchema) {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth dark" data-theme="aurora">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,31 +91,36 @@ if (includeProfessionalServiceSchema) {
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
+        var COLOR_THEMES = ['aurora', 'midnight', 'studio', 'verdant', 'default'];
+
         function applyTheme(el) {
           try {
+            // Dark / light mode
             if (sessionStorage.getItem('theme') === 'light') {
               el.classList.remove('dark');
             } else {
               el.classList.add('dark');
             }
-          } catch (_) {
-            // sessionStorage blocked — keep server default (dark)
-          }
+          } catch (_) {}
+
+          try {
+            // Color theme — persisted in localStorage so it survives across tabs
+            var saved = localStorage.getItem('color-theme');
+            if (saved && COLOR_THEMES.indexOf(saved) !== -1) {
+              el.setAttribute('data-theme', saved);
+            }
+          } catch (_) {}
         }
 
-        // Fix on current document (removes dark if user previously chose light)
         applyTheme(document.documentElement);
 
-        // Register transition listeners only once across re-runs
         if (!window.__themeListenersInit) {
           window.__themeListenersInit = true;
 
-          // before-swap: set correct class on the INCOMING document (prevents flash)
           document.addEventListener('astro:before-swap', function (e) {
             applyTheme(e.newDocument.documentElement);
           });
 
-          // after-swap: re-apply as safety net in case the html class was reset
           document.addEventListener('astro:after-swap', function () {
             applyTheme(document.documentElement);
           });
