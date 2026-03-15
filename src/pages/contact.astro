@@ -11,11 +11,19 @@ import { Hero } from '@/components/hero';
 
 const channels = [
   {
-    icon: 'linkedin',
-    label: 'LinkedIn',
-    value: 'linkedin.com',
-    note: 'Connect professionally',
-    href: 'https://linkedin.com',
+    icon: 'mail',
+    label: 'Email',
+    value: 'hello@hansmartens.dev',
+    note: 'Best way to reach me',
+    href: 'mailto:hello@hansmartens.dev',
+    external: false,
+  },
+  {
+    icon: 'x-twitter',
+    label: 'X / Twitter',
+    value: 'x.com',
+    note: 'Follow for updates',
+    href: 'https://x.com',
     external: true,
   },
   {
@@ -27,11 +35,11 @@ const channels = [
     external: true,
   },
   {
-    icon: 'x-twitter',
-    label: 'X / Twitter',
-    value: 'x.com',
-    note: 'Follow for updates',
-    href: 'https://x.com',
+    icon: 'linkedin',
+    label: 'LinkedIn',
+    value: 'linkedin.com',
+    note: 'Connect professionally',
+    href: 'https://linkedin.com',
     external: true,
   },
 ];
@@ -90,7 +98,7 @@ const channels = [
           <div class="flex items-start gap-3">
             <Icon name="map-pin" size="md" class="text-brand-500 shrink-0 mt-0.5" />
             <div>
-              <p class="font-semibold text-foreground">London, UK</p>
+              <p class="font-semibold text-foreground">Veghel, the Netherlands</p>
               <p class="text-sm text-foreground-muted mt-1">
                 Remote worldwide. In-person available locally.
               </p>
