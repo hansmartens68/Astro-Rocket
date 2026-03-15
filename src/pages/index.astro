@@ -7,6 +7,7 @@ import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
+import NewsletterForm from '@/components/patterns/NewsletterForm.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -493,6 +494,24 @@ Designer & Developer
           <Icon name="arrow-right" size="sm" />
         </Button>
       </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-xl px-6 text-center">
+      <Badge pill class="mb-4">Newsletter</Badge>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+        Articles in your inbox
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8">
+        New articles on web design, development, and performance — straight to you. No spam, unsubscribe any time.
+      </p>
+      <NewsletterForm
+        placeholder="your@email.com"
+        buttonText="Subscribe"
+        successMessage="You're in! Thanks for subscribing."
+      />
     </div>
   </section>
 
