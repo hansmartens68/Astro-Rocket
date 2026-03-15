@@ -8,6 +8,7 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
+import ContactForm from '@/components/patterns/ContactForm.astro';
 
 const channels = [
   {
@@ -64,6 +65,12 @@ const channels = [
   <!-- Contact Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-3xl px-6">
+
+      <!-- Contact form -->
+      <Card padding="lg" class="mb-10">
+        <h2 class="font-display text-xl font-bold text-foreground mb-6">Send a message</h2>
+        <ContactForm />
+      </Card>
 
       <!-- 2×2 contact grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
