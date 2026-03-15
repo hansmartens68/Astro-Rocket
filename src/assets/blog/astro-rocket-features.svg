@@ -1,0 +1,86 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#09091a"/>
+      <stop offset="100%" stop-color="#0b0d22"/>
+    </linearGradient>
+    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#c7d2fe"/>
+      <stop offset="45%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a5b4fc"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#6366f1" stop-opacity="0"/>
+      <stop offset="30%"  stop-color="#818cf8" stop-opacity="0.38"/>
+      <stop offset="70%"  stop-color="#818cf8" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="38" height="38" patternUnits="userSpaceOnUse">
+      <circle cx="19" cy="19" r="0.78" fill="#ffffff" fill-opacity="0.042"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glowMain)"/>
+  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
+
+  <!-- Stars -->
+  <circle cx="88"   cy="50"  r="1.2" fill="#ffffff" opacity="0.50"/>
+  <circle cx="198"  cy="30"  r="0.8" fill="#ffffff" opacity="0.40"/>
+  <circle cx="355"  cy="66"  r="0.9" fill="#ffffff" opacity="0.45"/>
+  <circle cx="478"  cy="36"  r="0.7" fill="#ffffff" opacity="0.35"/>
+  <circle cx="55"   cy="188" r="1.0" fill="#ffffff" opacity="0.28"/>
+  <circle cx="65"   cy="400" r="0.9" fill="#ffffff" opacity="0.20"/>
+  <circle cx="148"  cy="455" r="0.8" fill="#ffffff" opacity="0.18"/>
+  <circle cx="820"  cy="46"  r="1.0" fill="#ffffff" opacity="0.50"/>
+  <circle cx="932"  cy="26"  r="0.8" fill="#ffffff" opacity="0.40"/>
+  <circle cx="1062" cy="58"  r="1.3" fill="#ffffff" opacity="0.36"/>
+  <circle cx="1140" cy="126" r="0.9" fill="#ffffff" opacity="0.30"/>
+  <circle cx="1158" cy="232" r="0.7" fill="#ffffff" opacity="0.24"/>
+  <circle cx="1145" cy="420" r="0.8" fill="#ffffff" opacity="0.20"/>
+  <circle cx="305"  cy="86"  r="1.7" fill="#ffffff" opacity="0.60"/>
+  <circle cx="884"  cy="66"  r="1.6" fill="#ffffff" opacity="0.55"/>
+  <circle cx="592"  cy="28"  r="1.3" fill="#ffffff" opacity="0.45"/>
+  <circle cx="44"   cy="300" r="1.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="1164" cy="322" r="1.4" fill="#ffffff" opacity="0.30"/>
+  <circle cx="225"  cy="520" r="2.2" fill="#818cf8" opacity="0.45"/>
+  <circle cx="975"  cy="520" r="2.2" fill="#818cf8" opacity="0.40"/>
+
+  <!-- 2×2 feature grid icon — scale 10, centre at canvas (600, 230) -->
+  <!-- Each tile: 9×9 with 3-unit gap, rx=1.5, in 24×24 space -->
+  <g transform="translate(480, 110) scale(10)"
+     stroke="#c7d2fe" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="2"  y="2"  width="9" height="9" rx="1.5"/>
+    <rect x="13" y="2"  width="9" height="9" rx="1.5"/>
+    <rect x="2"  y="13" width="9" height="9" rx="1.5"/>
+    <rect x="13" y="13" width="9" height="9" rx="1.5"/>
+  </g>
+
+  <text
+    x="600" y="490"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="150" font-weight="800"
+    fill="url(#textGrad)"
+    text-anchor="middle"
+    letter-spacing="-4"
+  >features</text>
+
+  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
+
+  <rect x="450" y="548" width="300" height="38" rx="19"
+    fill="#6366f1" fill-opacity="0.08" stroke="#818cf8" stroke-opacity="0.30" stroke-width="1"/>
+  <text
+    x="600" y="572"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" fill="#a5b4fc" text-anchor="middle" letter-spacing="1.5"
+  >Astro Rocket Theme</text>
+</svg>
