@@ -27,6 +27,11 @@ export interface SiteConfig {
   /** Path to author photo (relative to site root, e.g. '/avatar.jpg'). Used in Person schema. */
   authorImage?: string;
   /**
+   * Set to false if your blog post images already match your theme color
+   * and you don't want the brand color overlay applied on top of them.
+   */
+  blogImageOverlay?: boolean;
+  /**
    * Branding configuration
    * Logo files: Replace SVGs in src/assets/branding/
    * Favicon: Replace in public/favicon.svg
@@ -81,6 +86,7 @@ const siteConfig: SiteConfig = {
     bing: BING_SITE_VERIFICATION,
   },
   authorImage: '/avatar.svg',
+  blogImageOverlay: true,
   branding: {
     logo: {
       alt: 'Astro Rocket',
