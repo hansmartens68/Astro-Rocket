@@ -6,6 +6,12 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
 ---
 
 <LandingLayout
@@ -443,6 +449,46 @@ Designer & Developer
             </details>
           ))}
         </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex items-end justify-between mb-[var(--space-section-header)]">
+        <div>
+          <Badge pill class="mb-4">From the blog</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Latest posts
+          </h2>
+        </div>
+        <a href="/blog" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors shrink-0">
+          View all posts
+          <Icon name="arrow-right" size="sm" />
+        </a>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/blog/${post.slug}`}
+            publishedAt={post.data.publishedAt}
+            tags={post.data.tags}
+            featured={post.data.featured}
+            author={post.data.author}
+            image={post.data.image}
+          />
+        ))}
+      </div>
+
+      <div class="mt-8 text-center sm:hidden">
+        <Button variant="outline" href="/blog">
+          View all posts
+          <Icon name="arrow-right" size="sm" />
+        </Button>
       </div>
     </div>
   </section>
