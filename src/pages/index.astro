@@ -38,13 +38,13 @@ Astro Rocket —<br />
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href="#pricing">
-        <Icon name="brand-astro" size="sm" />
-        Buy Astro Rocket
+      <Button size="lg" href="https://github.com">
+        <Icon name="github" size="sm" />
+        Get it on GitHub
       </Button>
-      <Button size="lg" variant="outline" href="/docs">
-        View theme docs
-        <Icon name="arrow-right" size="sm" />
+      <Button size="lg" variant="outline" href="#pricing">
+        View Pricing
+        <Icon name="arrow-down" size="sm" />
       </Button>
     </Fragment>
   </Hero>
@@ -394,7 +394,7 @@ Astro Rocket —<br />
           Questions about <span class="text-brand-500">Astro&nbsp;Rocket</span>?
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-xl mx-auto">
-          Everything you need to know about the project.
+          Everything you need to know before you clone.
         </p>
       </div>
 
@@ -404,15 +404,15 @@ Astro Rocket —<br />
           {[
             {
               q: 'Do I need to know Astro to use this?',
-              a: 'A basic understanding of HTML and JavaScript is enough to get started. Astro is beginner-friendly and the theme is well-structured, so you can learn as you go.',
+              a: 'Basic HTML and JavaScript is enough to get started. Astro\'s syntax is close to plain HTML and the codebase is well-structured, so it\'s a great way to learn Astro in a real project. TypeScript is set up and ready but never forced on you.',
             },
             {
-              q: 'Can I use this for client projects?',
-              a: 'Yes. Astro Rocket is MIT licensed, so you can use it for personal projects, client work, or anything else — commercial or non-commercial — with no restrictions.',
+              q: 'How do the 7 color themes work?',
+              a: 'Each theme is a set of CSS custom properties — switch themes by changing a single class on the html element. You can use any of the built-in themes as-is, tweak the values to match your brand, or build a completely new one in minutes.',
             },
             {
-              q: 'Can I use it on multiple sites?',
-              a: 'Absolutely. The MIT license places no limits on the number of sites or projects you use it on. Clone it as many times as you need.',
+              q: 'Does it need a backend or database?',
+              a: 'No. Astro Rocket is fully static by default — no server, no database, no runtime. Blog posts and content live in Markdown or MDX files. If you need dynamic data later, Astro\'s server and hybrid rendering modes make it straightforward to add.',
             },
           ].map(({ q, a }) => (
             <details class="group">
@@ -429,16 +429,16 @@ Astro Rocket —<br />
         <dl class="divide-y divide-border border-t border-border md:border-t-0">
           {[
             {
-              q: 'How do I get updates?',
-              a: 'Star or watch the GitHub repository. All improvements — new components, bug fixes, and Astro version upgrades — are pushed there. Pull the latest changes whenever you\'re ready.',
+              q: 'Can I use React or Vue components inside it?',
+              a: 'Yes. Astro\'s island architecture lets you drop in React, Vue, Svelte, or Solid components anywhere you need interactivity. The rest of the page stays as zero-JS static HTML, so performance is never compromised by a single interactive widget.',
             },
             {
-              q: 'Is there a live demo?',
-              a: 'Yes — you\'re looking at it. This site is built entirely with Astro Rocket Theme.',
+              q: 'How does the i18n support work?',
+              a: 'Routing, content collections, and UI strings are all locale-aware out of the box. Add a new language by creating a folder and a translation file — no third-party library required. The blog and all pages support multiple languages without any changes to the component layer.',
             },
             {
-              q: 'Can I contribute?',
-              a: 'Yes, contributions are very welcome. Open an issue for bugs or feature ideas, or submit a pull request on GitHub. Every improvement benefits the whole community.',
+              q: 'Where do I deploy it and how hard is that?',
+              a: 'One command. Astro Rocket is optimised for Vercel and Netlify — connect your repo, set the build command to `astro build`, and you\'re live. It also works on any static host (GitHub Pages, Cloudflare Pages, S3) or as a server-rendered app on Node.js.',
             },
           ].map(({ q, a }) => (
             <details class="group">

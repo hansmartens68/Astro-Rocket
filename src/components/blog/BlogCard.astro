@@ -84,7 +84,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     <div class="flex flex-wrap items-center gap-3 text-sm text-foreground-subtle">
       {author && (
         <div class="flex items-center gap-2">
-          <Logo size="sm" />
+          <Logo size="sm" letter={author.charAt(0).toUpperCase()} />
           <span class="font-medium">{author}</span>
         </div>
       )}
