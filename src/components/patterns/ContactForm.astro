@@ -2,6 +2,7 @@
 import Input from '@/components/ui/form/Input/Input.astro';
 import Textarea from '@/components/ui/form/Textarea/Textarea.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { cn } from '@/lib/cn';
 
 interface Props {
@@ -24,26 +25,31 @@ const {
   class={cn('space-y-6', className)}
   data-success-message={successMessage}
 >
-  <Input
-    label="Name"
-    name="name"
-    type="text"
-    required
-    autocomplete="name"
-  />
-
-  <Input
-    label="Email"
-    name="email"
-    type="email"
-    required
-    autocomplete="email"
-  />
+  <!-- Name + Email side by side on sm+ -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <Input
+      label="Name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      placeholder="Your name"
+    />
+    <Input
+      label="Email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      placeholder="your@email.com"
+    />
+  </div>
 
   <Input
     label="Subject"
     name="subject"
     type="text"
+    placeholder="What's this about?"
   />
 
   <Textarea
@@ -51,6 +57,7 @@ const {
     name="message"
     required
     rows={5}
+    placeholder="Tell me about your project…"
   />
 
   <!-- Honeypot field for spam protection -->
@@ -60,9 +67,12 @@ const {
 
   <div id="form-message" class="hidden text-sm"></div>
 
-  <Button type="submit" fullWidth id="submit-button">
-    Submit
-  </Button>
+  <div class="flex justify-end">
+    <Button type="submit" id="submit-button" class="gap-2">
+      Send message
+      <Icon name="send" size="sm" />
+    </Button>
+  </div>
 </form>
 
 <script>
@@ -79,7 +89,7 @@ const {
       e.preventDefault();
 
       button.disabled = true;
-      button.textContent = 'Sending...';
+      button.textContent = 'Sending…';
       message.classList.add('hidden');
 
       try {
@@ -107,7 +117,7 @@ const {
         message.className = 'text-sm text-destructive';
       } finally {
         button.disabled = false;
-        button.textContent = 'Submit';
+        button.textContent = 'Send message';
         message.classList.remove('hidden');
       }
     });
