@@ -17,6 +17,8 @@
 
 ## Overview
 
+> **Astro Rocket is a fork of [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com).** Full credit to the original authors for the foundation this project builds on.
+
 Velocity accelerates Astro project delivery with a comprehensive foundation that includes a design token system, 57 components across 7 categories, SEO, dynamic OG image generation, and content management — built on Astro 6 (beta) and Tailwind CSS v4.
 
 ### Key Features
