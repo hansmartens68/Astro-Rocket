@@ -32,65 +32,51 @@ Designer & Developer
     </p>
   </Hero>
 
-  <!-- What's possible now -->
+  <!-- Background -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
 
-        <!-- Left: text -->
+        <!-- Left: story -->
         <div>
-          <div class="text-brand-500 mb-4 flex items-center gap-2 text-sm font-bold">
-            <Icon name="users" size="sm" />
-            <span>The Partnership</span>
-          </div>
           <h2 class="font-display text-4xl font-bold text-foreground mb-6">
-            Web design, now with a thinking partner
+            Design and code,<br />under one roof.
           </h2>
-          <p class="text-lg text-foreground-muted leading-relaxed">
-            I'm a web designer and developer with 16 years of hands-on experience. Today I work alongside Claude Sonnet and Claude Opus — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
+            It started with graphic design — layouts, typography, visual identity. Over time, curiosity about how things actually get built on the web led to front-end development, and eventually to full-stack work. Sixteen years later, both disciplines live in the same head and get applied to every project.
           </p>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
+            Working with a single designer-developer means no handoffs, no miscommunication between two separate teams, and no gap between how something looks and how it gets built. From the first wireframe to the final deployment — it's one continuous process.
+          </p>
+          <Button variant="outline" href="/projects">
+            See my work
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
 
-        <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4">
+        <!-- Right: at a glance card -->
+        <div>
           <Card variant="elevated">
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="code-2" size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Astro</Badge>
-                  <Badge size="sm" variant="brand">Tailwind</Badge>
-                  <Badge size="sm" variant="brand">TypeScript</Badge>
+            <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-5">At a glance</p>
+            <dl class="divide-y divide-border">
+              {[
+                { icon: 'calendar', label: 'In the field since', value: '2008' },
+                { icon: 'map-pin', label: 'Based in', value: 'Veghel, Netherlands' },
+                { icon: 'globe', label: 'Clients', value: 'Worldwide' },
+                { icon: 'user', label: 'Studio type', value: 'Independent — one point of contact' },
+                { icon: 'layers', label: 'Disciplines', value: 'Design & Development' },
+              ].map(({ icon, label, value }) => (
+                <div class="flex items-center gap-4 py-3.5">
+                  <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                    <Icon name={icon} size="sm" />
+                  </div>
+                  <div class="flex-1 min-w-0 flex items-baseline justify-between gap-4">
+                    <dt class="text-sm text-foreground-muted shrink-0">{label}</dt>
+                    <dd class="text-sm font-semibold text-foreground text-right">{value}</dd>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </Card>
-
-          <Card variant="elevated">
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="sparkles" size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">AI Thinking Partner</p>
-                <h3 class="text-base font-semibold text-foreground">Claude Sonnet & Opus</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge size="sm" variant="brand">Design review</Badge>
-                  <Badge size="sm" variant="brand">Code QA</Badge>
-                  <Badge size="sm" variant="brand">Deep thinking</Badge>
-                </div>
-              </div>
-            </div>
+              ))}
+            </dl>
           </Card>
         </div>
 
