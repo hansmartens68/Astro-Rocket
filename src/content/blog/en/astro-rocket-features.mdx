@@ -47,7 +47,7 @@ The blog runs on [Astro Content Collections](https://docs.astro.build/en/guides/
 - **featured** — mark a post as featured to surface it prominently
 - **draft** — keep unpublished work out of production
 
-The blog index shows all published posts with filtering by tag. Individual post pages include full Open Graph metadata, structured data, and a related-posts section. Cover images render with an optional brand colour overlay for visual consistency across different images.
+The blog index shows all published posts with filtering by tag. Individual post pages include full Open Graph metadata, structured data, and a related-posts section. Cover images render with a brand colour overlay on both the blog grid cards and the individual post hero image. The overlay automatically uses the active theme's brand colour, so switching themes keeps everything visually consistent without any extra work. The overlay can be toggled off in `site.config.ts` via the `blogImageOverlay` flag.
 
 ## SEO layer
 
