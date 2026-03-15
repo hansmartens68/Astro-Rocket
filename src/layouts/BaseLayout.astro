@@ -88,6 +88,50 @@ if (includeProfessionalServiceSchema) {
     <!-- Client-side routing for view transitions -->
     <ClientRouter />
 
+    <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
+    <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
+      (function () {
+        var LETTER = _faviconLetter;
+
+        function updateFavicon() {
+          var color = getComputedStyle(document.documentElement).getPropertyValue('--brand-500').trim();
+          if (!color) return;
+          var svg =
+            '<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect width="48" height="48" rx="8" fill="' + color + '"/>' +
+            '<text x="24" y="24" text-anchor="middle" dominant-baseline="central" ' +
+            'font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="34" fill="white">' +
+            LETTER +
+            '</text></svg>';
+          var link = document.querySelector('link[rel="icon"]');
+          if (link) link.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(svg));
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updateFavicon);
+        } else {
+          updateFavicon();
+        }
+
+        if (!window.__faviconListenerInit) {
+          window.__faviconListenerInit = true;
+
+          // Re-run whenever data-theme or dark/light class changes
+          new MutationObserver(function (mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+              if (mutations[i].attributeName === 'data-theme' || mutations[i].attributeName === 'class') {
+                updateFavicon();
+                break;
+              }
+            }
+          }).observe(document.documentElement, { attributes: true });
+
+          // Re-run after Astro view transitions swap the head
+          document.addEventListener('astro:after-swap', updateFavicon);
+        }
+      })();
+    </script>
+
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
