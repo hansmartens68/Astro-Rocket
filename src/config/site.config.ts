@@ -43,6 +43,14 @@ export interface SiteConfig {
       /** Path to logo image for structured data (e.g. '/logo.png'). Add a PNG to public/ and set this. */
       imageUrl?: string;
     };
+    /**
+     * Logo rendering style.
+     * 'badge'  — auto-generated letter badge (default, works for any site out of the box).
+     * 'svg'    — uses your custom SVG files from src/assets/branding/.
+     *            Respects the variant prop: 'logomark' (square icon) | 'full' (horizontal wordmark).
+     *            Dark-mode and inverted-header variants are handled automatically.
+     */
+    logoStyle?: 'badge' | 'svg';
     /** Favicon path (lives in public/) */
     favicon: {
       svg: string;
@@ -92,6 +100,7 @@ const siteConfig: SiteConfig = {
       alt: 'Astro Rocket',
       imageUrl: '/favicon.svg',
     },
+    logoStyle: 'svg',
     favicon: {
       svg: '/favicon.svg',
     },

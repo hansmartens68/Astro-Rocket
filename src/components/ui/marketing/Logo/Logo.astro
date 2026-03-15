@@ -1,19 +1,33 @@
 ---
 /**
- * Logo Component — first-letter monogram badge
+ * Logo Component — letter badge or custom SVG
  *
- * Renders a brand-coloured square badge with the first letter of the site
- * name, used in the navbar, footer, and blog post bylines.
+ * Controlled by `branding.logoStyle` in site.config.ts:
+ *   'badge'  — auto-generated letter badge (default, portable, works for any site)
+ *   'svg'    — uses SVG files from src/assets/branding/
+ *
+ * When logoStyle is 'svg', the following props become active:
+ *   variant='logomark'  — square icon (default, used in navbar/footer)
+ *   variant='full'      — horizontal wordmark (for hero/about sections)
+ *   forceDark           — forces the dark-variant SVG (used on inverted/dark backgrounds)
+ *
+ * To switch back to the badge (e.g. for your own site), set:
+ *   logoStyle: 'badge'  in site.config.ts
  */
+import { Image } from 'astro:assets';
 import { cn } from '@/lib/cn';
 import siteConfig from '@/config/site.config';
+import logomarkLight from '@/assets/branding/logomark.svg';
+import logomarkDark from '@/assets/branding/logomark-dark.svg';
+import logoFullLight from '@/assets/branding/logo-full.svg';
+import logoFullDark from '@/assets/branding/logo-full-dark.svg';
 
 interface Props {
   /** Size preset */
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  /** Force dark mode logo (for dark backgrounds) — no-op here, kept for API compat */
+  /** Force dark-mode variant (for dark/inverted backgrounds) */
   forceDark?: boolean;
-  /** Use full logo instead of logomark — no-op here, kept for API compat */
+  /** 'logomark' = square icon, 'full' = horizontal wordmark */
   variant?: 'logomark' | 'full';
   /** Additional CSS classes */
   class?: string;
@@ -21,9 +35,14 @@ interface Props {
 
 const {
   size = 'md',
+  forceDark = false,
+  variant = 'logomark',
   class: className,
 } = Astro.props;
 
+const logoStyle = siteConfig.branding.logoStyle ?? 'badge';
+
+// Badge sizes
 const sizeClasses: Record<string, { box: string; text: string; radius: string }> = {
   sm:    { box: 'w-5 h-5',   text: 'text-[14px]', radius: 'rounded-[4px]' },
   md:    { box: 'w-6 h-6',   text: 'text-[16px]', radius: 'rounded-[5px]' },
@@ -32,20 +51,45 @@ const sizeClasses: Record<string, { box: string; text: string; radius: string }>
   '2xl': { box: 'w-24 h-24', text: 'text-[68px]', radius: 'rounded-[14px]' },
 };
 
+// SVG height classes — CSS will scale width automatically via w-auto
+const svgHeights: Record<string, string> = {
+  sm:    'h-5',
+  md:    'h-6',
+  lg:    'h-8',
+  xl:    'h-12',
+  '2xl': 'h-24',
+};
+
 const { box, text, radius } = sizeClasses[size] ?? sizeClasses.md;
+const heightClass = svgHeights[size] ?? svgHeights.md;
 const letter = siteConfig.name.charAt(0).toUpperCase();
+const alt = siteConfig.branding.logo.alt;
+const isFull = variant === 'full';
+const lightSrc = isFull ? logoFullLight : logomarkLight;
+const darkSrc = isFull ? logoFullDark : logomarkDark;
 ---
 
-<span
-  class={cn(
-    'inline-flex items-center justify-center shrink-0',
-    'bg-brand-500 text-white',
-    'font-display font-bold leading-none select-none',
-    box, text, radius,
-    className
-  )}
-  aria-label={siteConfig.branding.logo.alt}
-  role="img"
->
-  {letter}
-</span>
+{logoStyle === 'svg' ? (
+  forceDark ? (
+    <Image src={darkSrc} alt={alt} class={cn(heightClass, 'w-auto shrink-0', className)} />
+  ) : (
+    <>
+      <Image src={lightSrc} alt={alt} class={cn(heightClass, 'w-auto shrink-0 dark:hidden', className)} />
+      <Image src={darkSrc} alt={alt} class={cn(heightClass, 'w-auto shrink-0 hidden dark:block', className)} />
+    </>
+  )
+) : (
+  <span
+    class={cn(
+      'inline-flex items-center justify-center shrink-0',
+      'bg-brand-500 text-white',
+      'font-display font-bold leading-none select-none',
+      box, text, radius,
+      className
+    )}
+    aria-label={alt}
+    role="img"
+  >
+    {letter}
+  </span>
+)}
