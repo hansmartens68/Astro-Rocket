@@ -378,7 +378,7 @@ Designer & Developer
   </section>
 
   <!-- FAQ -->
-  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
+  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background border-t border-border">
     <div class="mx-auto max-w-5xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
         <Badge pill class="mb-4">FAQ</Badge>
@@ -407,8 +407,8 @@ Designer & Developer
               q: 'Can I use it on multiple sites?',
               a: 'A single purchase covers one site. If you want to deploy it on multiple sites, you\'ll need one license per site.',
             },
-          ].map(({ q, a }, i) => (
-            <details class="group" open={i === 0}>
+          ].map(({ q, a }) => (
+            <details class="group">
               <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center justify-between gap-4 py-5">
                 <span class="font-display font-semibold text-foreground group-open:text-brand-500 transition-colors duration-150">{q}</span>
                 <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted transition-transform duration-200 group-open:rotate-180" />
