@@ -390,12 +390,11 @@ Designer & Developer
     <div class="mx-auto max-w-5xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
         <Badge pill class="mb-4">FAQ</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3 flex-wrap">
-          <Icon name="brand-astro" class="size-9 md:size-11 text-brand-500 shrink-0" />
-          Questions about <span class="text-brand-500">Astro&nbsp;Rocket</span>?
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Common questions
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-xl mx-auto">
-          Everything you need to know about the project.
+          Honest answers to the things most clients ask before reaching out.
         </p>
       </div>
 
@@ -404,16 +403,16 @@ Designer & Developer
         <dl class="divide-y divide-border">
           {[
             {
-              q: 'Do I need to know Astro to use this?',
-              a: 'A basic understanding of HTML and JavaScript is enough to get started. Astro is beginner-friendly and the theme is well-structured, so you can learn as you go.',
+              q: 'What does a project typically cost?',
+              a: 'Every project is scoped individually, so there\'s no fixed price list. A straightforward marketing site starts around €1,500–€3,000; larger builds with custom integrations or CMS setup go higher. The best way to get an accurate number is to share a brief — I\'ll come back with a clear proposal.',
             },
             {
-              q: 'Can I use this for client projects?',
-              a: 'Yes. Astro Rocket is MIT licensed, so you can use it for personal projects, client work, or anything else — commercial or non-commercial — with no restrictions.',
+              q: 'How long does a project take from brief to launch?',
+              a: 'A focused website — design, build, and handoff — typically takes 3 to 6 weeks. Timelines depend mostly on how quickly feedback rounds move and how much content is ready at the start. I\'ll always give you a realistic schedule in the proposal.',
             },
             {
-              q: 'Can I use it on multiple sites?',
-              a: 'Absolutely. The MIT license places no limits on the number of sites or projects you use it on. Clone it as many times as you need.',
+              q: 'Do you work with clients outside the Netherlands?',
+              a: 'Yes, fully remote collaboration is the norm. I\'ve worked with clients across Europe and beyond. Everything runs over video calls, shared documents, and async updates — location is never a barrier.',
             },
           ].map(({ q, a }) => (
             <details class="group">
@@ -430,16 +429,16 @@ Designer & Developer
         <dl class="divide-y divide-border border-t border-border md:border-t-0">
           {[
             {
-              q: 'How do I get updates?',
-              a: 'Star or watch the GitHub repository. All improvements — new components, bug fixes, and Astro version upgrades — are pushed there. Pull the latest changes whenever you\'re ready.',
+              q: 'What do I need to provide to get started?',
+              a: 'A short brief is enough to kick things off — what the site needs to do, who it\'s for, and any examples you like. Existing branding (logo, colors, fonts) is helpful but not required. I can also help with content structure if that\'s still taking shape.',
             },
             {
-              q: 'Is there a live demo?',
-              a: 'Yes — you\'re looking at it. This site is built entirely with Astro Rocket Theme.',
+              q: 'Do you handle hosting and domain setup?',
+              a: 'Yes. I can recommend, configure, and deploy to the right hosting for your project — typically Vercel or Netlify for Astro sites, which give you near-instant global load times at low cost. If you already have a provider, I\'ll work with that instead.',
             },
             {
-              q: 'Can I contribute?',
-              a: 'Yes, contributions are very welcome. Open an issue for bugs or feature ideas, or submit a pull request on GitHub. Every improvement benefits the whole community.',
+              q: 'Can I update the site myself after launch?',
+              a: 'Absolutely. For content-heavy sites I set up a headless CMS (like Keystatic or Sanity) so you can edit pages, posts, and media without touching code. For simpler sites, I provide a handoff document and a short walkthrough so you\'re never dependent on me for day-to-day changes.',
             },
           ].map(({ q, a }) => (
             <details class="group">
