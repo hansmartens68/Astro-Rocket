@@ -52,8 +52,8 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
   )}
 
   <a href={href} class="block">
-    {image && (
-      <div class="mb-4 overflow-hidden rounded-md">
+    <div class="mb-4 overflow-hidden rounded-md bg-gradient-to-br from-brand-500/30 to-brand-500/10">
+      {image ? (
         <Image
           src={image}
           alt={title}
@@ -62,8 +62,10 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
           class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
-      </div>
-    )}
+      ) : (
+        <div class="aspect-video w-full" />
+      )}
+    </div>
 
     <h2 class="font-display text-xl font-bold text-foreground transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400 mb-2">
       {title}
