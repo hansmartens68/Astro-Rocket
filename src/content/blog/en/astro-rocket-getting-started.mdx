@@ -137,6 +137,23 @@ SITE_URL=https://yoursite.com
 
 This ensures canonical URLs, the sitemap, and structured data all use the correct domain.
 
+## Deploying to Netlify
+
+Astro Rocket also supports [Netlify](https://netlify.com) out of the box. A `netlify.toml` is included with the correct build settings and security headers pre-configured.
+
+1. Create a new repository on GitHub (or GitLab / Bitbucket) and push your local project to it
+2. Go to [netlify.com](https://netlify.com), click **Add new site → Import an existing project**, and connect your repository
+3. Under **Site configuration → Environment variables**, add your variables including:
+
+```
+SITE_URL=https://yoursite.com
+DEPLOY_TARGET=netlify
+```
+
+4. Click **Deploy site**
+
+Setting `DEPLOY_TARGET=netlify` tells the build to use the Netlify adapter instead of the default Vercel one. Everything else — the contact form, API routes, image optimisation — works identically on both platforms.
+
 ## What to do next
 
 With the site live, here's a sensible order for next steps:
