@@ -83,6 +83,18 @@ The form includes client-side validation, accessible error states, a loading ind
 
 Navigation is configured entirely in `src/config/nav.config.ts`. Add, remove, or reorder items without touching any layout files. The same config drives both the header and footer, so you define your navigation once and it stays in sync everywhere.
 
+### Theme switcher
+
+The header includes a built-in theme switcher — the light/dark/system toggle. On desktop it sits directly in the header navigation bar. On mobile it lives inside the drawer dropdown menu, keeping the header uncluttered at smaller screen sizes.
+
+If you'd rather show a **CTA button** in that position — for example a "Start a Project" link — you can swap them out via the `Header` component's props:
+
+```astro
+<Header showCta cta={{ label: 'Start a Project', href: '/contact' }} />
+```
+
+Setting `showCta` replaces the theme switcher in the header with the CTA button. It's a one-line change — no layout editing required.
+
 ## Performance
 
 Pages built with Astro Rocket consistently score 100 across all four [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/) categories: Performance, Accessibility, Best Practices, and SEO.
