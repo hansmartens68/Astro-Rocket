@@ -2,12 +2,12 @@
 title: "Getting Started with Astro Rocket — From Install to Live in Minutes"
 description: "How to install, configure, and deploy Astro Rocket — covering site.config.ts, brand colours, navigation, writing posts, and deploying to Vercel."
 publishedAt: 2026-03-12
-author: "Astro Rocket"
+author: "Hans Martens"
 tags: ["astro-rocket", "getting-started", "configuration", "vercel"]
 featured: false
 locale: en
 image: "../../../assets/blog/astro-rocket-getting-started.svg"
-imageAlt: "Lightning bolt icon above the words 'get started' on a dark background with a green-teal glow"
+imageAlt: "Rocket icon above the words 'get started' on a dark background"
 ---
 
 This guide walks you through everything needed to get Astro Rocket running locally, configured to your brand, and deployed to the web. No previous Astro experience required.
@@ -21,10 +21,10 @@ This guide walks you through everything needed to get Astro Rocket running local
 
 ## Installation
 
-Clone the repository and install dependencies:
+Astro Rocket is free and open source. Clone the repository from GitHub and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/astro-rocket.git my-site
+git clone https://github.com/hansmartens68/astro-rocket my-site
 cd my-site
 npm install
 npm run dev
@@ -121,7 +121,7 @@ The form works without these variables — it simply disables submission — so 
 
 ## Deploying to Vercel
 
-1. Push your repository to GitHub (or GitLab / Bitbucket)
+1. Create a new repository on GitHub (or GitLab / Bitbucket) and push your local project to it
 2. Go to [vercel.com](https://vercel.com) and click **Add New Project**
 3. Import your repository — Vercel detects Astro automatically
 4. Add your environment variables under **Settings → Environment Variables**
@@ -136,6 +136,23 @@ SITE_URL=https://yoursite.com
 ```
 
 This ensures canonical URLs, the sitemap, and structured data all use the correct domain.
+
+## Deploying to Netlify
+
+Astro Rocket also supports [Netlify](https://netlify.com) out of the box. A `netlify.toml` is included with the correct build settings and security headers pre-configured.
+
+1. Create a new repository on GitHub (or GitLab / Bitbucket) and push your local project to it
+2. Go to [netlify.com](https://netlify.com), click **Add new site → Import an existing project**, and connect your repository
+3. Under **Site configuration → Environment variables**, add your variables including:
+
+```
+SITE_URL=https://yoursite.com
+DEPLOY_TARGET=netlify
+```
+
+4. Click **Deploy site**
+
+Setting `DEPLOY_TARGET=netlify` tells the build to use the Netlify adapter instead of the default Vercel one. Everything else — the contact form, API routes, image optimisation — works identically on both platforms.
 
 ## What to do next
 

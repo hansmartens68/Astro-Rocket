@@ -2,15 +2,15 @@
 title: "What's Inside: Every Feature Astro Rocket Ships With"
 description: "A complete tour of Astro Rocket's built-in features — from the MDX blog and SEO layer to dark mode, the contact form, and the component library."
 publishedAt: 2026-03-11
-author: "Astro Rocket"
+author: "Hans Martens"
 tags: ["astro-rocket", "features", "components", "seo", "blog"]
 featured: false
 locale: en
 image: "../../../assets/blog/astro-rocket-features.svg"
-imageAlt: "2×2 grid icon above the word 'features' on a dark navy background with a blue-indigo glow"
+imageAlt: "Rocket icon above the word 'features' on a dark navy background"
 ---
 
-When you pick up a theme, you want to know exactly what you're getting before you build anything on top of it. This post covers every feature Astro Rocket ships with — no glossing over, no vague bullet points.
+Before you build anything on top of Astro Rocket, here's exactly what it ships with — no glossing over, no vague bullet points.
 
 ## The component library
 
@@ -47,7 +47,7 @@ The blog runs on [Astro Content Collections](https://docs.astro.build/en/guides/
 - **featured** — mark a post as featured to surface it prominently
 - **draft** — keep unpublished work out of production
 
-The blog index shows all published posts with filtering by tag. Individual post pages include full Open Graph metadata, structured data, and a related-posts section. Cover images render with an optional brand colour overlay for visual consistency across different images.
+The blog index shows all published posts with filtering by tag. Individual post pages include full Open Graph metadata, structured data, and a related-posts section. Cover images render with a brand colour overlay on both the blog grid cards and the individual post hero image. The overlay automatically uses the active theme's brand colour, so switching themes keeps everything visually consistent without any extra work. The overlay can be toggled off in `site.config.ts` via the `blogImageOverlay` flag.
 
 ## SEO layer
 
@@ -105,4 +105,4 @@ This comes from shipping minimal JavaScript, pre-rendering all pages to static H
 
 Astro Rocket is configured for [Vercel](https://vercel.com) out of the box. Connect your repository, set your environment variables in the Vercel dashboard, and every push to `main` deploys automatically. All environment variables are documented in `.env.example` — none are required for basic functionality, so the site runs immediately after cloning.
 
-Ready to start? The [getting started guide](/blog/astro-rocket-getting-started) walks you through installation, configuration, and deployment step by step.
+Ready to start? The [getting started guide](/blog/astro-rocket-getting-started) walks you through cloning the repo, configuration, and deployment step by step.
