@@ -52,16 +52,19 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
   )}
 
   <a href={href} class="block">
-    <div class="mb-4 overflow-hidden rounded-md bg-gradient-to-br from-brand-500/30 to-brand-500/10">
+    <div class="relative mb-4 overflow-hidden rounded-md bg-gradient-to-br from-brand-500/30 to-brand-500/10">
       {image ? (
-        <Image
-          src={image}
-          alt={title}
-          widths={[320, 640, 960]}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-          class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-        />
+        <>
+          <Image
+            src={image}
+            alt={title}
+            widths={[320, 640, 960]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+            class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-br from-brand-500/40 to-brand-500/10 mix-blend-multiply" />
+        </>
       ) : (
         <div class="aspect-video w-full" />
       )}
