@@ -330,19 +330,19 @@ Designer & Developer
   <section id="pricing" class="scroll-mt-20 pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
-        <Badge pill class="mb-4">Pricing</Badge>
+        <Badge pill class="mb-4">Free & Open Source</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          One price. Everything included.
+          Free for the community.
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
-          Buy once, use forever. No subscriptions, no hidden fees.
+          MIT licensed. Clone it, build with it, ship it — no restrictions.
         </p>
       </div>
 
       <div class="mx-auto max-w-lg">
         <Card variant="elevated" padding="lg" class="relative overflow-hidden">
           <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
-            One-time
+            MIT License
           </div>
 
           <div class="text-center mb-8">
@@ -351,8 +351,7 @@ Designer & Developer
             </h3>
             <p class="text-sm text-foreground-muted mb-4">The Astro 6 starter that has everything</p>
             <div class="flex items-end justify-center gap-2">
-              <span class="font-display text-6xl font-bold text-foreground">€49</span>
-              <span class="text-foreground-muted mb-2">one-time</span>
+              <span class="font-display text-6xl font-bold text-foreground">Free</span>
             </div>
           </div>
 
@@ -365,7 +364,7 @@ Designer & Developer
               'i18n (multi-language) support',
               'Blog with MDX support',
               'SEO optimized out of the box',
-              'Free updates forever',
+              'MIT licensed — use it anywhere',
             ].map((feature) => (
               <li class="flex items-center gap-3 text-sm text-foreground-muted">
                 <Icon name="check" size="sm" class="text-brand-500 shrink-0" />
@@ -374,12 +373,12 @@ Designer & Developer
             ))}
           </ul>
 
-          <Button size="lg" href="https://yourstore.lemonsqueezy.com/checkout/buy/YOUR_PRODUCT_ID" class="w-full justify-center">
-            Buy Now — €49
+          <Button size="lg" href="https://github.com/hansmartens68/astro-rocket" class="w-full justify-center">
+            Get it on GitHub
             <Icon name="arrow-right" size="sm" />
           </Button>
           <p class="mt-3 text-center text-xs text-foreground-muted">
-            PayPal &amp; credit card accepted · Instant download
+            No sign-up required · Clone and go
           </p>
         </Card>
       </div>
@@ -396,7 +395,7 @@ Designer & Developer
           Questions about <span class="text-brand-500">Astro&nbsp;Rocket</span>?
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-xl mx-auto">
-          Everything you need to know before you buy.
+          Everything you need to know about the project.
         </p>
       </div>
 
@@ -410,11 +409,11 @@ Designer & Developer
             },
             {
               q: 'Can I use this for client projects?',
-              a: 'Yes. The license covers your own projects and projects you build for clients. You may not resell or redistribute the theme itself.',
+              a: 'Yes. Astro Rocket is MIT licensed, so you can use it for personal projects, client work, or anything else — commercial or non-commercial — with no restrictions.',
             },
             {
               q: 'Can I use it on multiple sites?',
-              a: 'A single purchase covers one site. If you want to deploy it on multiple sites, you\'ll need one license per site.',
+              a: 'Absolutely. The MIT license places no limits on the number of sites or projects you use it on. Clone it as many times as you need.',
             },
           ].map(({ q, a }) => (
             <details class="group">
@@ -431,16 +430,16 @@ Designer & Developer
         <dl class="divide-y divide-border border-t border-border md:border-t-0">
           {[
             {
-              q: 'What\'s included in free updates?',
-              a: 'All future improvements — new components, bug fixes, Astro version upgrades, and new features — are included. Download the latest version any time from your purchase.',
+              q: 'How do I get updates?',
+              a: 'Star or watch the GitHub repository. All improvements — new components, bug fixes, and Astro version upgrades — are pushed there. Pull the latest changes whenever you\'re ready.',
             },
             {
               q: 'Is there a live demo?',
               a: 'Yes — you\'re looking at it. This site is built entirely with Astro Rocket Theme.',
             },
             {
-              q: 'Do you offer refunds?',
-              a: 'Because this is a digital product with instant access, refunds are not offered. Have a question before buying? Feel free to reach out first.',
+              q: 'Can I contribute?',
+              a: 'Yes, contributions are very welcome. Open an issue for bugs or feature ideas, or submit a pull request on GitHub. Every improvement benefits the whole community.',
             },
           ].map(({ q, a }) => (
             <details class="group">
