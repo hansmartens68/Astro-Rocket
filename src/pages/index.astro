@@ -477,7 +477,7 @@ Designer & Developer
           <BlogCard
             title={post.data.title}
             description={post.data.description}
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.id.replace('en/', '')}`}
             publishedAt={post.data.publishedAt}
             tags={post.data.tags}
             featured={post.data.featured}
