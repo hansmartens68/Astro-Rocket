@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { formatDate } from '@/lib/utils';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
+import siteConfig from '@/config/site.config';
 
 interface Props {
   title: string;
@@ -109,7 +110,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 
   {image && (
     <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)]">
-      <div class="overflow-hidden rounded-xl border border-border shadow-2xl">
+      <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
         <Image
           src={image}
           alt={imageAlt || title}
@@ -119,6 +120,9 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
           class="aspect-video w-full object-cover"
           loading="eager"
         />
+        {siteConfig.blogImageOverlay !== false && (
+          <div class="absolute inset-0 bg-brand-500/25" />
+        )}
       </div>
     </div>
   )}
