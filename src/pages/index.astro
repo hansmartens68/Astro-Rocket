@@ -10,7 +10,10 @@ import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+  })
   .slice(0, 3);
 ---
 
