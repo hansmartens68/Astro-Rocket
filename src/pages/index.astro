@@ -378,47 +378,71 @@ Astro Rocket —<br />
 
   <!-- FAQ -->
   <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-3xl px-6">
+    <div class="mx-auto max-w-5xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
         <Badge pill class="mb-4">FAQ</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          Frequently asked questions
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3 flex-wrap">
+          <Icon name="brand-astro" class="size-9 md:size-11 text-brand-500 shrink-0" />
+          Questions about <span class="text-brand-500">Astro&nbsp;Rocket</span>?
         </h2>
+        <p class="mt-4 text-lg text-foreground-muted max-w-xl mx-auto">
+          Everything you need to know before you buy.
+        </p>
       </div>
 
-      <dl class="space-y-6">
-        {[
-          {
-            q: 'Do I need to know Astro to use this?',
-            a: 'A basic understanding of HTML and JavaScript is enough to get started. Astro is beginner-friendly, and the theme is well-structured so you can learn as you go. Familiarity with Astro is a plus but not required.',
-          },
-          {
-            q: 'Can I use this for client projects?',
-            a: 'Yes. The license allows you to use the theme for your own projects and for projects you build for clients. You may not resell or redistribute the theme itself.',
-          },
-          {
-            q: 'Can I use it on multiple sites?',
-            a: 'A single purchase covers one site. If you want to use it on multiple sites, you\'ll need a license per site.',
-          },
-          {
-            q: 'What\'s included in free updates?',
-            a: 'All future improvements to the theme — new components, bug fixes, Astro version upgrades, and new features — are included. You get them by downloading the latest version from your purchase.',
-          },
-          {
-            q: 'Is there a live demo?',
-            a: 'Yes — you\'re looking at it. This site is built with Astro Rocket Theme.',
-          },
-          {
-            q: 'Do you offer refunds?',
-            a: 'Because this is a digital product with instant access, refunds are not offered. If you have a question before buying, feel free to reach out.',
-          },
-        ].map(({ q, a }) => (
-          <div class="border border-border rounded-xl p-6 bg-background">
-            <dt class="font-display font-semibold text-foreground mb-2">{q}</dt>
-            <dd class="text-sm text-foreground-muted leading-relaxed">{a}</dd>
-          </div>
-        ))}
-      </dl>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16">
+        <!-- Column 1 -->
+        <dl class="divide-y divide-border">
+          {[
+            {
+              q: 'Do I need to know Astro to use this?',
+              a: 'A basic understanding of HTML and JavaScript is enough to get started. Astro is beginner-friendly and the theme is well-structured, so you can learn as you go.',
+            },
+            {
+              q: 'Can I use this for client projects?',
+              a: 'Yes. The license covers your own projects and projects you build for clients. You may not resell or redistribute the theme itself.',
+            },
+            {
+              q: 'Can I use it on multiple sites?',
+              a: 'A single purchase covers one site. If you want to deploy it on multiple sites, you\'ll need one license per site.',
+            },
+          ].map(({ q, a }, i) => (
+            <details class="group" open={i === 0}>
+              <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center justify-between gap-4 py-5">
+                <span class="font-display font-semibold text-foreground group-open:text-brand-500 transition-colors duration-150">{q}</span>
+                <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <p class="pb-5 text-sm text-foreground-muted leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+
+        <!-- Column 2 -->
+        <dl class="divide-y divide-border border-t border-border md:border-t-0">
+          {[
+            {
+              q: 'What\'s included in free updates?',
+              a: 'All future improvements — new components, bug fixes, Astro version upgrades, and new features — are included. Download the latest version any time from your purchase.',
+            },
+            {
+              q: 'Is there a live demo?',
+              a: 'Yes — you\'re looking at it. This site is built entirely with Astro Rocket Theme.',
+            },
+            {
+              q: 'Do you offer refunds?',
+              a: 'Because this is a digital product with instant access, refunds are not offered. Have a question before buying? Feel free to reach out first.',
+            },
+          ].map(({ q, a }) => (
+            <details class="group">
+              <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center justify-between gap-4 py-5">
+                <span class="font-display font-semibold text-foreground group-open:text-brand-500 transition-colors duration-150">{q}</span>
+                <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <p class="pb-5 text-sm text-foreground-muted leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
     </div>
   </section>
 
