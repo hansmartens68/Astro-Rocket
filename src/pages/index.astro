@@ -390,11 +390,12 @@ Designer & Developer
     <div class="mx-auto max-w-5xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
         <Badge pill class="mb-4">FAQ</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          Common questions
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3 flex-wrap">
+          <Icon name="brand-astro" class="size-9 md:size-11 text-brand-500 shrink-0" />
+          Questions about <span class="text-brand-500">Astro&nbsp;Rocket</span>?
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-xl mx-auto">
-          Honest answers to the things most clients ask before reaching out.
+          Everything you need to know before you clone.
         </p>
       </div>
 
@@ -403,16 +404,16 @@ Designer & Developer
         <dl class="divide-y divide-border">
           {[
             {
-              q: 'What does a project typically cost?',
-              a: 'Every project is scoped individually, so there\'s no fixed price list. A straightforward marketing site starts around €1,500–€3,000; larger builds with custom integrations or CMS setup go higher. The best way to get an accurate number is to share a brief — I\'ll come back with a clear proposal.',
+              q: 'Do I need to know Astro to use this?',
+              a: 'Basic HTML and JavaScript is enough to get started. Astro\'s syntax is close to plain HTML and the codebase is well-structured, so it\'s a great way to learn Astro in a real project. TypeScript is set up and ready but never forced on you.',
             },
             {
-              q: 'How long does a project take from brief to launch?',
-              a: 'A focused website — design, build, and handoff — typically takes 3 to 6 weeks. Timelines depend mostly on how quickly feedback rounds move and how much content is ready at the start. I\'ll always give you a realistic schedule in the proposal.',
+              q: 'How do the 7 color themes work?',
+              a: 'Each theme is a set of CSS custom properties — switch themes by changing a single class on the html element. You can use any of the built-in themes as-is, tweak the values to match your brand, or build a completely new one in minutes.',
             },
             {
-              q: 'Do you work with clients outside the Netherlands?',
-              a: 'Yes, fully remote collaboration is the norm. I\'ve worked with clients across Europe and beyond. Everything runs over video calls, shared documents, and async updates — location is never a barrier.',
+              q: 'Does it need a backend or database?',
+              a: 'No. Astro Rocket is fully static by default — no server, no database, no runtime. Blog posts and content live in Markdown or MDX files. If you need dynamic data later, Astro\'s server and hybrid rendering modes make it straightforward to add.',
             },
           ].map(({ q, a }) => (
             <details class="group">
@@ -429,16 +430,16 @@ Designer & Developer
         <dl class="divide-y divide-border border-t border-border md:border-t-0">
           {[
             {
-              q: 'What do I need to provide to get started?',
-              a: 'A short brief is enough to kick things off — what the site needs to do, who it\'s for, and any examples you like. Existing branding (logo, colors, fonts) is helpful but not required. I can also help with content structure if that\'s still taking shape.',
+              q: 'Can I use React or Vue components inside it?',
+              a: 'Yes. Astro\'s island architecture lets you drop in React, Vue, Svelte, or Solid components anywhere you need interactivity. The rest of the page stays as zero-JS static HTML, so performance is never compromised by a single interactive widget.',
             },
             {
-              q: 'Do you handle hosting and domain setup?',
-              a: 'Yes. I can recommend, configure, and deploy to the right hosting for your project — typically Vercel or Netlify for Astro sites, which give you near-instant global load times at low cost. If you already have a provider, I\'ll work with that instead.',
+              q: 'How does the i18n support work?',
+              a: 'Routing, content collections, and UI strings are all locale-aware out of the box. Add a new language by creating a folder and a translation file — no third-party library required. The blog and all pages support multiple languages without any changes to the component layer.',
             },
             {
-              q: 'Can I update the site myself after launch?',
-              a: 'Absolutely. For content-heavy sites I set up a headless CMS (like Keystatic or Sanity) so you can edit pages, posts, and media without touching code. For simpler sites, I provide a handoff document and a short walkthrough so you\'re never dependent on me for day-to-day changes.',
+              q: 'Where do I deploy it and how hard is that?',
+              a: 'One command. Astro Rocket is optimised for Vercel and Netlify — connect your repo, set the build command to `astro build`, and you\'re live. It also works on any static host (GitHub Pages, Cloudflare Pages, S3) or as a server-rendered app on Node.js.',
             },
           ].map(({ q, a }) => (
             <details class="group">
