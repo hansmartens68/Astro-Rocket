@@ -64,56 +64,61 @@ const channels = [
 
   <!-- Contact Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-3xl px-6">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
 
-      <!-- Contact form -->
-      <Card padding="lg" class="mb-10">
-        <h2 class="font-display text-xl font-bold text-foreground mb-6">Send a message</h2>
-        <ContactForm />
-      </Card>
-
-      <!-- 2×2 contact grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {channels.map((ch) => (
-          <a
-            href={ch.href}
-            {...ch.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
-            class="block group"
-          >
-            <Card hover padding="md" class="h-full">
-              <div class="flex flex-col gap-4">
-                <div class="flex items-center justify-between">
-                  <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
-                    <Icon name={ch.icon} size="md" />
-                  </div>
-                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors" />
-                </div>
-                <div>
-                  <p class="text-xs text-foreground-muted mb-0.5">{ch.note}</p>
-                  <p class="font-semibold text-foreground">{ch.label}</p>
-                  <p class="text-sm text-foreground-muted truncate mt-0.5">{ch.value}</p>
-                </div>
-              </div>
-            </Card>
-          </a>
-        ))}
-      </div>
-
-      <!-- Location card -->
-      <div class="mt-4">
-        <Card padding="md" class="bg-brand-500/5 border-brand-500/20">
-          <div class="flex items-start gap-3">
-            <Icon name="map-pin" size="md" class="text-brand-500 shrink-0 mt-0.5" />
-            <div>
-              <p class="font-semibold text-foreground">Veghel, the Netherlands</p>
-              <p class="text-sm text-foreground-muted mt-1">
-                Remote worldwide. In-person available locally.
-              </p>
-            </div>
+        <!-- Left column: contact channels (shown below form on mobile) -->
+        <div class="lg:col-span-2 order-2 lg:order-1 space-y-4">
+          <div>
+            <h2 class="font-display text-lg font-bold text-foreground mb-1">Other ways to reach me</h2>
+            <p class="text-sm text-foreground-muted">Prefer a direct channel? Pick whichever works best.</p>
           </div>
-        </Card>
-      </div>
 
+          <!-- Channel list -->
+          <div class="space-y-2">
+            {channels.map((ch) => (
+              <a
+                href={ch.href}
+                {...ch.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+                class="block group"
+              >
+                <Card hover padding="sm" class="h-full">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 shrink-0 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                      <Icon name={ch.icon} size="sm" />
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <p class="font-semibold text-sm text-foreground">{ch.label}</p>
+                      <p class="text-xs text-foreground-muted truncate">{ch.value}</p>
+                    </div>
+                    <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+                  </div>
+                </Card>
+              </a>
+            ))}
+          </div>
+
+          <!-- Location card -->
+          <Card padding="sm" class="bg-brand-500/5 border-brand-500/20">
+            <div class="flex items-start gap-3">
+              <Icon name="map-pin" size="sm" class="text-brand-500 shrink-0 mt-0.5" />
+              <div>
+                <p class="font-semibold text-sm text-foreground">Veghel, the Netherlands</p>
+                <p class="text-xs text-foreground-muted mt-0.5">Remote worldwide · In-person available locally</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <!-- Right column: contact form (shown first on mobile) -->
+        <div class="lg:col-span-3 order-1 lg:order-2">
+          <Card padding="lg">
+            <h2 class="font-display text-xl font-bold text-foreground mb-6">Send a message</h2>
+            <ContactForm />
+          </Card>
+        </div>
+
+      </div>
     </div>
   </section>
 </PageLayout>
