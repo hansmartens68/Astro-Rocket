@@ -26,7 +26,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 >
   <!-- Hero -->
   <Hero layout="centered" size="xl">
-    <Badge slot="badge" variant="brand" pulse>Available for new projects</Badge>
+    <Badge slot="badge" variant="brand" pulse>Open Source · MIT Licensed</Badge>
 
     <h1 slot="title">
 <span class="bg-brand-500 mt-2 inline-block rounded-lg px-3 py-1 text-white"
@@ -55,10 +55,11 @@ Designer & Developer
     <div class="mx-auto max-w-6xl px-6">
       <div class="text-center mb-[var(--space-section-header)]">
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          What I Do
+          What's Included
         </h2>
         <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
-          From concept to launch — I handle design, development, and everything in between.
+          Everything you need to build a fast, modern website — design system, components, and
+          developer tooling, all in one theme.
         </p>
       </div>
 
@@ -70,10 +71,10 @@ Designer & Developer
               <Icon name="layout" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Web Design</h3>
+              <h3 class="text-base font-semibold text-foreground">Design System</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Clean, modern interfaces that look great on every screen. Focused on clarity,
-                usability, and your brand identity.
+                Seven color themes, consistent typography, and 57+ polished components — a
+                complete design system ready to make your own.
               </p>
             </div>
           </div>
@@ -134,7 +135,7 @@ Designer & Developer
             Astro Rocket gives you the foundation to ship something you're proud of.
           </p>
           <Button variant="outline" href="/about">
-            More About Me
+            Explore the Theme
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
@@ -506,17 +507,17 @@ Designer & Developer
 
   <!-- CTA -->
   <CTA variant="invert" size="md" maxWidth="lg">
-    <h2 slot="heading">Let's build something together.</h2>
+    <h2 slot="heading">Ready to start building?</h2>
     <p slot="description" class="!text-lg">
-      Available for new projects. Response within 1 business day.
+      Clone Astro Rocket and have a production-ready site running in minutes.
     </p>
     <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" href="/contact">
-        Start a Project
-        <Icon name="arrow-right" size="sm" />
+      <Button size="lg" href="https://github.com/hansmartens68/astro-rocket">
+        <Icon name="github" size="sm" />
+        Get it on GitHub
       </Button>
       <Button size="lg" variant="outline" href="/about">
-        Learn More About Me
+        Explore the Theme
       </Button>
     </div>
   </CTA>
