@@ -110,7 +110,10 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 
   {image && (
     <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)]">
-      <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
+      <div
+        class="relative overflow-hidden rounded-xl border border-border shadow-2xl"
+        style="background: color-mix(in oklch, var(--color-brand-500) 15%, #07070e);"
+      >
         <Image
           src={image}
           alt={imageAlt || title}
@@ -121,7 +124,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
           loading="eager"
         />
         {siteConfig.blogImageOverlay !== false && (
-          <div class="absolute inset-0 bg-brand-500/25" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-600/50 via-brand-500/10 to-transparent mix-blend-overlay pointer-events-none" />
         )}
       </div>
     </div>
