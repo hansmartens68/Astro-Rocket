@@ -130,6 +130,14 @@ html[data-theme="blue"] {
    Dark Mode — deep cool blue-black, indigo glow
    The star of the Studio theme. Think Linear at night.
    ------------------------------------------------------------------------- */
+/* Lighter brand color for heading/display text only */
+html[data-theme="blue"] :is(.font-display.text-brand-500, .font-display .text-brand-500) {
+  color: var(--brand-400);
+}
+html.dark[data-theme="blue"] :is(.font-display.text-brand-500, .font-display .text-brand-500) {
+  color: var(--brand-300);
+}
+
 html.dark[data-theme="blue"] {
   --background: oklch(10% 0.015 255);
   --background-secondary: oklch(15.5% 0.012 255);

@@ -127,6 +127,14 @@ html[data-theme="purple"] {
 /* -------------------------------------------------------------------------
    Dark Mode — deep purple-black atmosphere
    ------------------------------------------------------------------------- */
+/* Lighter brand color for heading/display text only */
+html[data-theme="purple"] :is(.font-display.text-brand-500, .font-display .text-brand-500) {
+  color: var(--brand-400);
+}
+html.dark[data-theme="purple"] :is(.font-display.text-brand-500, .font-display .text-brand-500) {
+  color: var(--brand-300);
+}
+
 html.dark[data-theme="purple"] {
   --background: oklch(10% 0.04 285);
   --background-secondary: oklch(17% 0.035 285);
