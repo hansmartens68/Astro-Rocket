@@ -14,11 +14,11 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 ---
 
 <PageLayout
-  title="About Astro Rocket — Web Designer & Developer | Veghel"
-  description="Astro Rocket is a web designer and developer based in Veghel, the Netherlands. I build fast, modern websites and write about design and development."
+  title="About Astro Rocket — Astro 6 Starter Theme"
+  description="Astro Rocket is a production-ready Astro 6 starter theme with 57+ components, 7 color themes, built-in i18n, dark mode, and a perfect Lighthouse score."
 >
   <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand">About me</Badge>
+    <Badge slot="badge" variant="brand">About the theme</Badge>
 
 <h1 slot="title">
 Astro Rocket —<br />
@@ -26,8 +26,8 @@ Astro Rocket —<br />
 </h1>
 
     <p slot="description">
-      I care about both sides of the craft — how a site looks and how it
-      performs. Here's a bit more about how I think and work.
+      Astro Rocket is built around the details that actually matter — speed,
+      accessibility, and a design system that scales. Here's what's under the hood.
     </p>
   </Hero>
 
@@ -39,16 +39,16 @@ Astro Rocket —<br />
         <!-- Left: story -->
         <div>
           <h2 class="font-display text-4xl font-bold text-foreground mb-6">
-            Design and code,<br />under one roof.
+            One starter.<br />Every tool you need.
           </h2>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-            It started with graphic design — layouts, typography, visual identity. Over time, curiosity about how things actually get built on the web led to front-end development, and eventually to full-stack work. Sixteen years later, both disciplines live in the same head and get applied to every project.
+            Astro Rocket started as a personal toolkit — a collection of patterns, components, and configuration that kept getting reused across projects. Over time it grew into a complete, opinionated starter that handles all the hard parts of launching a modern website.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed mb-8">
-            Working with a single designer-developer means no handoffs, no miscommunication between two separate teams, and no gap between how something looks and how it gets built. From the first wireframe to the final deployment — it's one continuous process.
+            The goal was simple: clone it and start on the real work immediately. No stitching together packages, no fighting with configuration, no performance retrofit later. Everything — design system, i18n, dark mode, SEO — is baked in from day one.
           </p>
           <Button variant="outline" href="/projects">
-            See my work
+            See what it can do
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
@@ -59,11 +59,11 @@ Astro Rocket —<br />
             <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-5">At a glance</p>
             <dl class="divide-y divide-border">
               {[
-                { icon: 'calendar', label: 'In the field since', value: '2008' },
-                { icon: 'map-pin', label: 'Based in', value: 'Veghel, Netherlands' },
-                { icon: 'globe', label: 'Clients', value: 'Worldwide' },
-                { icon: 'user', label: 'Studio type', value: 'Independent — one point of contact' },
-                { icon: 'layers', label: 'Disciplines', value: 'Design & Development' },
+                { icon: 'brand-astro', label: 'Built on', value: 'Astro 6' },
+                { icon: 'layout-grid', label: 'Components', value: '57+' },
+                { icon: 'palette', label: 'Color themes', value: '7 beautiful themes' },
+                { icon: 'globe', label: 'i18n', value: 'Multi-language ready' },
+                { icon: 'shield-check', label: 'License', value: 'MIT — free to use anywhere' },
               ].map(({ icon, label, value }) => (
                 <div class="flex items-center gap-4 py-3.5">
                   <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
@@ -87,7 +87,7 @@ Astro Rocket —<br />
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <h2 class="font-display text-4xl font-bold text-foreground mb-[var(--space-section-header)] text-center">
-        How I Work
+        Built on These Principles
       </h2>
 
       <div class="grid gap-8 md:grid-cols-3">
@@ -99,8 +99,8 @@ Astro Rocket —<br />
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Performance First</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Fast sites rank better, convert better, and keep users happy. I optimise for
-                speed from the ground up — not as an afterthought.
+                A perfect Lighthouse score out of the box. Zero JS by default, optimised
+                assets, and Core Web Vitals built in — not bolted on later.
               </p>
             </div>
           </div>
@@ -114,8 +114,8 @@ Astro Rocket —<br />
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Keep It Simple</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                The best solution is usually the simplest one. I avoid unnecessary complexity
-                so your site is easy to maintain and grow.
+                Clean architecture, minimal dependencies, and readable code. Easy to
+                understand, extend, and maintain as your project grows.
               </p>
             </div>
           </div>
@@ -127,10 +127,10 @@ Astro Rocket —<br />
               <Icon name="message-circle" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Clear Communication</h3>
+              <h3 class="text-base font-semibold text-foreground">Accessible by Default</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                No jargon, no surprises. I keep you in the loop at every stage and respond
-                within one business day.
+                Semantic HTML, keyboard navigation, and WCAG compliance come standard.
+                Accessibility is never an afterthought in Astro Rocket.
               </p>
             </div>
           </div>
@@ -141,23 +141,24 @@ Astro Rocket —<br />
 
   <!-- My Stack -->
   <TechStack
-    title="My Stack"
-    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
+    title="The Stack"
+    description="The tools Astro Rocket is built on — chosen for performance, an excellent developer experience, and long-term reliability."
   />
 
   <!-- CTA -->
   <section class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center">
       <h2 class="font-display text-4xl font-bold text-foreground mb-4">
-        Ready to work together?
+        Ready to build?
       </h2>
       <p class="text-lg text-foreground-muted mb-8">
-        I'm available for new projects. Let's talk about what you need.
+        Astro Rocket is free, open-source, and ready to clone. Start building
+        something you're proud of.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact">
-          Start a Project
-          <Icon name="arrow-right" size="sm" />
+        <Button size="lg" href="https://github.com/hansmartens68/astro-rocket">
+          <Icon name="github" size="sm" />
+          Get it on GitHub
         </Button>
         <Button size="lg" variant="outline" href="/blog" class="border-border-strong">
           Read the Blog
@@ -168,8 +169,8 @@ Astro Rocket —<br />
 
   <!-- Follow Along -->
   <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
-    <h2 slot="heading" class="!text-4xl">Follow along</h2>
-    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
+    <h2 slot="heading" class="!text-4xl">Stay in the loop</h2>
+    <p slot="description" class="!text-lg">New releases, articles, and updates — follow Astro Rocket wherever you are.</p>
 
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a
