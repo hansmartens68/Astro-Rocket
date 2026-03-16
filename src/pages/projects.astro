@@ -40,35 +40,56 @@ const rest = projects.filter((p) => !p.data.featured);
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
         <p class="text-brand-500 mb-6 text-sm font-bold tracking-wide uppercase">Featured</p>
-        <Card variant="elevated" hover class="overflow-hidden !p-0">
-          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
-            <Icon name="monitor" size="xl" class="text-brand-500 opacity-40" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-foreground mb-2">
-              {featured.data.title}
-              {featured.data.year && (
-                <span class="text-xs text-foreground-muted font-normal ml-2">{featured.data.year}</span>
-              )}
-            </h3>
-            <p class="text-sm text-foreground-muted leading-relaxed mb-4">{featured.data.description}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              {featured.data.tags.map((tag) => (
-                <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">{tag}</span>
-              ))}
+        <Card variant="elevated" padding="lg" class="overflow-hidden">
+          <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+            <!-- Text -->
+            <div>
+              <div class="mb-3 flex items-center gap-3">
+                <span class="font-display text-3xl font-bold text-foreground">{featured.data.title}</span>
+                {featured.data.year && (
+                  <span class="text-sm text-foreground-muted">{featured.data.year}</span>
+                )}
+              </div>
+              <p class="text-foreground-muted mb-6 text-lg leading-relaxed">{featured.data.description}</p>
+
+              <div class="mb-6 flex flex-wrap gap-2">
+                {featured.data.tags.map((tag) => (
+                  <Badge variant="brand" size="sm">{tag}</Badge>
+                ))}
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                {featured.data.url && (
+                  <Button href={featured.data.url} target="_blank" rel="noopener noreferrer" size="md">
+                    View live site
+                    <Icon name="arrow-up-right" size="sm" />
+                  </Button>
+                )}
+                {featured.data.repo && (
+                  <Button href={featured.data.repo} target="_blank" rel="noopener noreferrer" size="md" variant="outline">
+                    <Icon name="github" size="sm" />
+                    Source code
+                  </Button>
+                )}
+              </div>
             </div>
-            <div class="flex flex-wrap gap-4">
-              {featured.data.url && (
-                <a href={featured.data.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-                  View project <Icon name="arrow-right" size="sm" />
-                </a>
-              )}
-              {featured.data.repo && (
-                <a href={featured.data.repo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-                  <Icon name="github" size="sm" /> Source code
-                </a>
-              )}
+
+            <!-- Visual placeholder -->
+            <div class="relative h-56 overflow-hidden rounded-xl bg-gradient-to-br from-brand-500/20 via-brand-500/10 to-transparent lg:h-72">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-brand-500/30">
+                  <Icon name="monitor" size="lg" class="h-20 w-20" />
+                </div>
+              </div>
+              <!-- Decorative dots -->
+              <div class="absolute right-6 top-6 grid grid-cols-4 gap-2">
+                {Array.from({ length: 16 }).map(() => (
+                  <div class="h-1.5 w-1.5 rounded-full bg-brand-500/20" />
+                ))}
+              </div>
             </div>
+
           </div>
         </Card>
       </div>
