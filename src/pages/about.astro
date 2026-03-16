@@ -39,8 +39,10 @@ Fast. Accessible. Yours.
 
         <!-- Left: story -->
         <div>
+          <Badge pill class="mb-6">The story</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-            One starter.<br />Every tool you need.
+            One starter.<br />
+            <span class="text-brand-500">Every tool you need.</span>
           </h2>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
             Astro Rocket started as a personal toolkit — a collection of patterns, components, and configuration that kept getting reused across projects. Over time it grew into a complete, opinionated starter that handles all the hard parts of launching a modern website.
@@ -56,8 +58,8 @@ Fast. Accessible. Yours.
 
         <!-- Right: at a glance card -->
         <div>
-          <Card variant="elevated">
-            <p class="text-xs md:text-sm font-bold tracking-wide uppercase text-foreground-muted mb-5">At a glance</p>
+          <Card variant="elevated" padding="lg">
+            <p class="text-xs font-bold tracking-widest uppercase text-foreground-muted mb-6">At a glance</p>
             <dl class="divide-y divide-border">
               {[
                 { icon: 'brand-astro', label: 'Built on', value: 'Astro 6' },
@@ -66,13 +68,13 @@ Fast. Accessible. Yours.
                 { icon: 'globe', label: 'i18n', value: 'Multi-language ready' },
                 { icon: 'shield-check', label: 'License', value: 'MIT — free to use anywhere' },
               ].map(({ icon, label, value }) => (
-                <div class="flex items-center gap-4 py-3.5">
-                  <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <div class="flex items-center gap-4 py-4">
+                  <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
                     <Icon name={icon} size="sm" />
                   </div>
                   <div class="flex-1 min-w-0 flex items-baseline justify-between gap-4">
-                    <dt class="text-sm md:text-base text-foreground-muted shrink-0">{label}</dt>
-                    <dd class="text-sm md:text-base font-semibold text-foreground text-right">{value}</dd>
+                    <dt class="text-sm text-foreground-muted shrink-0">{label}</dt>
+                    <dd class="text-sm font-semibold text-foreground text-right">{value}</dd>
                   </div>
                 </div>
               ))}
