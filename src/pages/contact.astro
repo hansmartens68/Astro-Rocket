@@ -15,7 +15,7 @@ const channels = [
     icon: 'mail',
     label: 'Email',
     value: 'hello@hansmartens.dev',
-    note: 'Best way to reach me',
+    note: 'Drop us a line',
     href: 'mailto:hello@hansmartens.dev',
     external: false,
   },
@@ -31,7 +31,7 @@ const channels = [
     icon: 'github',
     label: 'GitHub',
     value: 'github.com',
-    note: 'See what I\'m building',
+    note: 'View the source code',
     href: 'https://github.com',
     external: true,
   },
@@ -47,18 +47,18 @@ const channels = [
 ---
 
 <PageLayout
-  title="Contact Astro Rocket — Start a Project | Veghel"
-  description="Get in touch with Astro Rocket, web designer and developer based in Veghel, the Netherlands. Available for new projects."
+  title="Contact — Astro Rocket"
+  description="Get in touch — a demo contact page showing Astro Rocket's built-in form with Resend email delivery, validation, and accessible error states."
 >
   <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand">Available for projects</Badge>
+    <Badge slot="badge" variant="brand">Get in touch</Badge>
 
     <h1 slot="title">
-      Let's <span class="text-brand-500">work together.</span>
+      Send us a <span class="text-brand-500">message.</span>
     </h1>
 
     <p slot="description">
-      Send a message using the form below, or pick a channel and reach out directly. I'll get back to you within 1 business day.
+      Use the form below or reach out on any of these channels. Replace this copy with your own contact details once you clone the theme.
     </p>
   </Hero>
 
@@ -78,7 +78,7 @@ const channels = [
         <!-- Right column: contact channels -->
         <div class="lg:col-span-2 space-y-4">
           <div>
-            <h2 class="font-display text-lg font-bold text-foreground mb-1">Other ways to reach me</h2>
+            <h2 class="font-display text-lg font-bold text-foreground mb-1">Other channels</h2>
             <p class="text-sm text-foreground-muted">Prefer a direct channel? Pick whichever works best.</p>
           </div>
 
@@ -113,8 +113,8 @@ const channels = [
                 <Icon name="map-pin" size="sm" />
               </div>
               <div>
-                <p class="font-semibold text-sm text-foreground">Veghel, the Netherlands</p>
-                <p class="text-xs text-foreground-muted mt-0.5">Remote worldwide · In-person available locally</p>
+                <p class="font-semibold text-sm text-foreground">Open Source · MIT Licensed</p>
+                <p class="text-xs text-foreground-muted mt-0.5">Free to use · Clone and make it yours</p>
               </div>
             </div>
           </Card>
