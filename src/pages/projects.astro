@@ -40,13 +40,14 @@ const rest = projects.filter((p) => !p.data.featured);
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
         <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">Featured</h2>
-        <Card variant="elevated" padding="lg" class="overflow-hidden">
+        <Card variant="elevated" padding="lg" class="group overflow-hidden">
           <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
 
             <!-- Text -->
             <div>
               <div class="mb-3 flex items-center gap-3">
                 <span class="font-display text-3xl font-bold text-foreground">{featured.data.title}</span>
+                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0 ml-auto" />
                 {featured.data.year && (
                   <span class="text-sm text-foreground-muted">{featured.data.year}</span>
                 )}
@@ -115,14 +116,7 @@ const rest = projects.filter((p) => !p.data.featured);
                   <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
                     <Icon name="box" size="sm" />
                   </div>
-                  <div class="flex items-center gap-2 text-foreground-muted">
-                    {project.data.url && (
-                      <Icon name="arrow-up-right" size="sm" class="opacity-40 transition-opacity group-hover:opacity-100" />
-                    )}
-                    {!project.data.url && project.data.repo && (
-                      <Icon name="github" size="sm" class="opacity-40" />
-                    )}
-                  </div>
+                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
                 </div>
 
                 <!-- Title + year -->
