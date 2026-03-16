@@ -37,7 +37,7 @@ const rest = projects.filter((p) => !p.data.featured);
 
   <!-- Featured project -->
   {featured && (
-    <section class="py-[var(--space-section-md)] border-t border-border">
+    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
         <p class="text-brand-500 mb-6 text-sm font-bold tracking-wide uppercase">Featured</p>
         <Card variant="elevated" padding="lg" class="overflow-hidden">
@@ -98,7 +98,7 @@ const rest = projects.filter((p) => !p.data.featured);
 
   <!-- All other projects -->
   {rest.length > 0 && (
-    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <section class="py-[var(--space-section-md)] border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
         {featured && (
           <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">
@@ -150,7 +150,7 @@ const rest = projects.filter((p) => !p.data.featured);
   )}
 
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] border-t border-border">
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-2xl px-6 text-center">
       <h2 class="font-display text-4xl font-bold text-foreground mb-4">
         Build something with Astro&nbsp;Rocket.
