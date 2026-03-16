@@ -9,7 +9,7 @@ import ShareButtons from '@/components/blog/ShareButtons.astro';
 import RelatedPosts from '@/components/blog/RelatedPosts.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import NewsletterForm from '@/components/patterns/NewsletterForm.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 
 interface Props {
   title: string;
@@ -129,19 +129,48 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     )
   }
 
-  <!-- Newsletter + Follow Along -->
-  <CTA variant="default" size="md" maxWidth="lg" class="bg-brand-500/8 dark:bg-background-secondary">
+  <!-- Follow Along -->
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
+    <Badge slot="logo" variant="brand" pill>Stay Updated</Badge>
     <h2 slot="heading" class="!text-4xl">Stay in the loop</h2>
-    <p slot="description" class="!text-lg">New articles and updates straight to your inbox. No spam, unsubscribe any&nbsp;time.</p>
+    <p slot="description" class="!text-lg">New releases, articles, and updates — follow Astro Rocket wherever you&nbsp;are.</p>
 
-    <div class="w-full max-w-md mx-auto">
-      <NewsletterForm
-        placeholder="your@email.com"
-        buttonText="Subscribe"
-        successMessage="You're in! Thanks for subscribing."
-      />
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/rss.xml"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="rss" size="sm" />
+        RSS Feed
+      </a>
+      <a
+        href="https://x.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="x-twitter" size="sm" />
+        X / Twitter
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="linkedin" size="sm" />
+        LinkedIn
+      </a>
+      <a
+        href="https://github.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="github" size="sm" />
+        GitHub
+      </a>
     </div>
-
   </CTA>
 
   <Footer slot="footer" layout="simple" background="secondary" />
