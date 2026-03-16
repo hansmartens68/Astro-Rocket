@@ -41,11 +41,13 @@ const stack = items.sort((a, b) => a.data.order - b.data.order);
         >
           <Card variant="elevated" padding="md" hover={true} href={item.data.url} target="_blank" rel="noopener noreferrer" class="h-full text-center md:text-left">
             <div class="flex flex-col items-center gap-[var(--space-stack-sm)] md:items-start">
-              <div class="flex w-full items-start justify-between">
+              <div class="flex w-full items-start justify-center md:justify-between">
                 <div class="tech-icon-wrap">
                   <Icon name={item.data.icon} size="lg" />
                 </div>
-                <Badge variant="brand" size="sm" pill>{item.data.version}</Badge>
+                <span class="hidden md:inline-flex">
+                  <Badge variant="brand" size="sm" pill>{item.data.version}</Badge>
+                </span>
               </div>
               <span class="font-display text-lg font-bold text-foreground">{item.data.name}</span>
               <p class="text-sm text-foreground-muted">{item.data.description}</p>
