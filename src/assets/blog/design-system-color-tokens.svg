@@ -1,65 +1,37 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Background -->
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0d0f1a"/>
-      <stop offset="100%" stop-color="#0c1020"/>
+      <stop offset="0%" stop-color="#09091a"/>
+      <stop offset="100%" stop-color="#0d0b1e"/>
     </linearGradient>
-
-    <!-- Glow around icon -->
-    <radialGradient id="glowIcon" cx="600" cy="155" r="190" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.13"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-
-    <!-- Glow around swatches -->
-    <radialGradient id="glowSwatches" cx="600" cy="305" r="220" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+    <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-
-    <!-- Bottom overlay -->
-    <linearGradient id="overlay" x1="0" y1="420" x2="0" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#0d0f1a" stop-opacity="0"/>
-      <stop offset="32%"  stop-color="#0d0f1a" stop-opacity="0.94"/>
-      <stop offset="100%" stop-color="#0d0f1a" stop-opacity="1"/>
+    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e2e8f0"/>
+      <stop offset="45%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
     </linearGradient>
-
-    <!-- Dot pattern -->
-    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="15" cy="15" r="0.85" fill="#ffffff" fill-opacity="0.052"/>
-    </pattern>
+    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="30%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background + dots -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glowMain)"/>
+  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
 
-  <!-- Glows -->
-  <rect width="1200" height="630" fill="url(#glowIcon)"/>
-  <rect width="1200" height="630" fill="url(#glowSwatches)"/>
-
-  <!-- Stars -->
-  <circle cx="72"  cy="54"  r="1.1" fill="#ffffff" opacity="0.45"/>
-  <circle cx="162" cy="90"  r="0.8" fill="#ffffff" opacity="0.4"/>
-  <circle cx="42"  cy="140" r="1.2" fill="#ffffff" opacity="0.3"/>
-  <circle cx="298" cy="64"  r="0.9" fill="#ffffff" opacity="0.5"/>
-  <circle cx="430" cy="108" r="0.7" fill="#ffffff" opacity="0.35"/>
-  <circle cx="860" cy="52"  r="1.0" fill="#ffffff" opacity="0.4"/>
-  <circle cx="975" cy="88"  r="0.8" fill="#ffffff" opacity="0.35"/>
-  <circle cx="1110" cy="126" r="1.1" fill="#ffffff" opacity="0.4"/>
-  <circle cx="1058" cy="58"  r="0.9" fill="#ffffff" opacity="0.3"/>
-  <circle cx="145" cy="160" r="1.5" fill="#ffffff" opacity="0.55"/>
-  <circle cx="385" cy="85"  r="1.4" fill="#ffffff" opacity="0.5"/>
-  <circle cx="905" cy="142" r="1.6" fill="#ffffff" opacity="0.42"/>
-  <circle cx="60"  cy="318" r="0.9" fill="#ffffff" opacity="0.22"/>
-  <circle cx="1140" cy="282" r="1.0" fill="#ffffff" opacity="0.25"/>
-  <circle cx="520" cy="48"  r="0.8" fill="#ffffff" opacity="0.3"/>
-  <circle cx="740" cy="72"  r="1.0" fill="#ffffff" opacity="0.38"/>
-
-  <!-- Lucide Palette icon — centered at (600, 155), scale 6.5 -->
-  <g transform="translate(522, 77) scale(6.5)"
-     stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <!-- Lucide Palette icon — scale 11, centre at canvas (600, 247) -->
+  <g transform="translate(468, 115) scale(11)"
+     stroke="#ffffff" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <circle cx="13.5" cy="6.5"  r="0.5" fill="#ffffff"/>
     <circle cx="17.5" cy="10.5" r="0.5" fill="#ffffff"/>
     <circle cx="8.5"  cy="7.5"  r="0.5" fill="#ffffff"/>
@@ -67,89 +39,22 @@
     <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
   </g>
 
-  <!-- Orange accent ring around icon -->
-  <ellipse cx="600" cy="155" rx="100" ry="90" fill="none" stroke="#ff5d01" stroke-opacity="0.18" stroke-width="1"/>
-  <ellipse cx="600" cy="155" rx="118" ry="108" fill="none" stroke="#ff5d01" stroke-opacity="0.07" stroke-width="1"/>
+  <text
+    x="600" y="490"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="138" font-weight="800"
+    fill="url(#textGrad)"
+    text-anchor="middle"
+    letter-spacing="-4"
+  >tokens</text>
 
-  <!-- ── Color token swatches ── -->
-  <!-- 5 swatches centered at x=600, y=300, spacing=170, r=40 -->
+  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
 
-  <!-- 1. --background -->
-  <circle cx="260" cy="305" r="40" fill="#0d0f1a" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.5"/>
-  <!-- 2. --foreground -->
-  <circle cx="430" cy="305" r="40" fill="#f1f5f9" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
-  <!-- 3. --accent (featured, larger, orange glow) -->
-  <circle cx="600" cy="305" r="50" fill="#ff5d01"/>
-  <circle cx="600" cy="305" r="66" fill="none" stroke="#ff5d01" stroke-opacity="0.28" stroke-width="1.5"/>
-  <circle cx="600" cy="305" r="80" fill="none" stroke="#ff5d01" stroke-opacity="0.10" stroke-width="1"/>
-  <!-- 4. --muted -->
-  <circle cx="770" cy="305" r="40" fill="#1e293b" stroke="#ffffff" stroke-opacity="0.14" stroke-width="1.5"/>
-  <!-- 5. --border -->
-  <circle cx="940" cy="305" r="40" fill="#334155" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5"/>
-
-  <!-- Token name badges -->
-  <!-- --background -->
-  <rect x="185" y="357" width="150" height="26" rx="6"
-    fill="#0d0f1a" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <text x="260" y="375"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace"
-    font-size="11" fill="#94a3b8" text-anchor="middle" letter-spacing="0.2"
-  >--background</text>
-
-  <!-- --foreground -->
-  <rect x="355" y="357" width="150" height="26" rx="6"
-    fill="#0d0f1a" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <text x="430" y="375"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace"
-    font-size="11" fill="#94a3b8" text-anchor="middle" letter-spacing="0.2"
-  >--foreground</text>
-
-  <!-- --accent (highlighted) -->
-  <rect x="513" y="368" width="174" height="28" rx="7"
-    fill="#ff5d01" fill-opacity="0.12" stroke="#ff5d01" stroke-opacity="0.42" stroke-width="1"/>
-  <text x="600" y="387"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace"
-    font-size="12" fill="#ff8c42" text-anchor="middle" letter-spacing="0.3"
-  >--accent</text>
-
-  <!-- --muted -->
-  <rect x="695" y="357" width="150" height="26" rx="6"
-    fill="#0d0f1a" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <text x="770" y="375"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace"
-    font-size="11" fill="#94a3b8" text-anchor="middle" letter-spacing="0.2"
-  >--muted</text>
-
-  <!-- --border -->
-  <rect x="865" y="357" width="150" height="26" rx="6"
-    fill="#0d0f1a" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <text x="940" y="375"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace"
-    font-size="11" fill="#94a3b8" text-anchor="middle" letter-spacing="0.2"
-  >--border</text>
-
-  <!-- ── Bottom: dark overlay + title + author ── -->
-  <rect x="0" y="420" width="1200" height="210" fill="url(#overlay)"/>
-
-  <!-- Blog title -->
-  <text x="600" y="516"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="26" font-weight="600"
-    fill="#f1f5f9" text-anchor="middle" letter-spacing="0.2"
-  >How Astro Rocket's Design System Works</text>
-
-  <text x="600" y="548"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="17" font-weight="400"
-    fill="#64748b" text-anchor="middle" letter-spacing="0.3"
-  >Tokens, Colors, and Dark Mode</text>
-
-  <!-- Author pill -->
-  <rect x="515" y="564" width="170" height="36" rx="18"
-    fill="#ff5d01" fill-opacity="0.08"
-    stroke="#ff5d01" stroke-opacity="0.25" stroke-width="1"/>
-  <text x="600" y="587"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#ff8c42" text-anchor="middle" letter-spacing="0.8"
-  >hansmartens.dev</text>
+  <rect x="450" y="548" width="300" height="38" rx="19"
+    fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
+  <text
+    x="600" y="572"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" fill="#ffffff" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.5"
+  >Astro Rocket Theme</text>
 </svg>
