@@ -1,232 +1,56 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Panel backgrounds -->
-    <linearGradient id="bgDark" x1="0" y1="0" x2="600" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0d0f1a"/>
-      <stop offset="100%" stop-color="#0c1020"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#09091a"/>
+      <stop offset="100%" stop-color="#0d0b1e"/>
     </linearGradient>
-    <linearGradient id="bgLight" x1="600" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="100%" stop-color="#f1f5f9"/>
-    </linearGradient>
-
-    <!-- Glows -->
-    <radialGradient id="moonGlow" cx="190" cy="155" r="130" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="sunGlow" cx="1010" cy="155" r="140" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff8c42" stop-opacity="0.28"/>
-      <stop offset="100%" stop-color="#ff8c42" stop-opacity="0"/>
+    <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="toggleGlow" cx="600" cy="291" r="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Toggle pill: hard split at center -->
-    <linearGradient id="toggleFill" x1="520" y1="0" x2="680" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="50%" stop-color="#1e293b"/>
-      <stop offset="50%" stop-color="#e2e8f0"/>
+    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e2e8f0"/>
+      <stop offset="45%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
     </linearGradient>
-
-    <!-- Center divider glow -->
-    <linearGradient id="divGrad" x1="0" y1="55" x2="0" y2="440" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#ff5d01" stop-opacity="0"/>
-      <stop offset="20%"  stop-color="#ff5d01" stop-opacity="0.55"/>
-      <stop offset="80%"  stop-color="#ff5d01" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="30%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-
-    <!-- Bottom dark overlay (unifies the title strip) -->
-    <linearGradient id="overlay" x1="0" y1="430" x2="0" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#0d0f1a" stop-opacity="0"/>
-      <stop offset="32%"  stop-color="#0d0f1a" stop-opacity="0.94"/>
-      <stop offset="100%" stop-color="#0d0f1a" stop-opacity="1"/>
-    </linearGradient>
-
-    <!-- Dot patterns -->
-    <pattern id="dotsDark" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="15" cy="15" r="0.85" fill="#ffffff" fill-opacity="0.052"/>
-    </pattern>
-    <pattern id="dotsLight" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="15" cy="15" r="0.85" fill="#64748b" fill-opacity="0.18"/>
-    </pattern>
   </defs>
 
-  <!-- ── Panel backgrounds ── -->
-  <rect x="0"   y="0" width="600"  height="630" fill="url(#bgDark)"/>
-  <rect x="0"   y="0" width="600"  height="630" fill="url(#dotsDark)"/>
-  <rect x="600" y="0" width="600"  height="630" fill="url(#bgLight)"/>
-  <rect x="600" y="0" width="600"  height="630" fill="url(#dotsLight)"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowMain)"/>
+  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
 
-  <!-- ── Glows ── -->
-  <rect x="0"   y="0" width="600"  height="630" fill="url(#moonGlow)"/>
-  <rect x="600" y="0" width="600"  height="630" fill="url(#sunGlow)"/>
-  <rect width="1200" height="630"              fill="url(#toggleGlow)"/>
-
-  <!-- ── Stars on dark panel ── -->
-  <circle cx="68"  cy="52"  r="1.1" fill="#ffffff" opacity="0.45"/>
-  <circle cx="148" cy="88"  r="0.8" fill="#ffffff" opacity="0.4"/>
-  <circle cx="38"  cy="138" r="1.2" fill="#ffffff" opacity="0.3"/>
-  <circle cx="282" cy="62"  r="0.9" fill="#ffffff" opacity="0.5"/>
-  <circle cx="370" cy="105" r="0.7" fill="#ffffff" opacity="0.35"/>
-  <circle cx="445" cy="48"  r="1"   fill="#ffffff" opacity="0.4"/>
-  <circle cx="528" cy="80"  r="0.8" fill="#ffffff" opacity="0.3"/>
-  <circle cx="58"  cy="290" r="1"   fill="#ffffff" opacity="0.28"/>
-  <circle cx="178" cy="338" r="0.7" fill="#ffffff" opacity="0.22"/>
-  <circle cx="485" cy="318" r="1.1" fill="#ffffff" opacity="0.2"/>
-  <circle cx="312" cy="388" r="0.9" fill="#ffffff" opacity="0.18"/>
-  <!-- Bright accent stars -->
-  <circle cx="115" cy="152" r="1.6" fill="#ffffff" opacity="0.55"/>
-  <circle cx="348" cy="82"  r="1.5" fill="#ffffff" opacity="0.5"/>
-  <circle cx="518" cy="138" r="1.4" fill="#ffffff" opacity="0.42"/>
-
-  <!-- ── CENTER: Divider line ── -->
-  <line x1="600" y1="55" x2="600" y2="445" stroke="url(#divGrad)" stroke-width="1.5"/>
-
-  <!-- ── LEFT PANEL: Moon + Dark Mode ── -->
-
-  <!-- Moon crescent -->
-  <circle cx="190" cy="155" r="62"  fill="#c7d8ff" opacity="0.88"/>
-  <circle cx="229" cy="126" r="52"  fill="#0d0f1a"/>
-
-  <!-- "Dark Mode" label -->
-  <text x="190" y="258"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="38" font-weight="700"
-    fill="#f1f5f9" text-anchor="middle" letter-spacing="-0.6"
-  >Dark Mode</text>
-
-  <!-- "Default" badge -->
-  <rect x="106" y="270" width="170" height="30" rx="15"
-    fill="#ff5d01" fill-opacity="0.12"
-    stroke="#ff5d01" stroke-opacity="0.4" stroke-width="1"/>
-  <text x="191" y="290"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#ff8c42" text-anchor="middle" letter-spacing="0.8"
-  >Default on every visit</text>
-
-  <!-- sessionStorage code badge (green — the right choice) -->
-  <rect x="62" y="375" width="502" height="42" rx="9"
-    fill="#052010" stroke="#22c55e" stroke-opacity="0.32" stroke-width="1"/>
-  <text x="80" y="402"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', 'Courier New', monospace"
-    font-size="14" fill="#4ade80" letter-spacing="0.3"
-  >sessionStorage</text>
-  <text x="221" y="402"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', 'Courier New', monospace"
-    font-size="14" fill="#86efac"
-  >.getItem('theme')</text>
-  <!-- Checkmark badge -->
-  <rect x="466" y="381" width="82" height="26" rx="6"
-    fill="#22c55e" fill-opacity="0.15" stroke="#22c55e" stroke-opacity="0.4" stroke-width="1"/>
-  <text x="507" y="399"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#4ade80" text-anchor="middle"
-  >✓ Use this</text>
-
-  <!-- ── CENTER: Toggle switch ── -->
-  <!-- Outer glow -->
-  <ellipse cx="600" cy="291" rx="102" ry="50" fill="#ff5d01" fill-opacity="0.07"/>
-
-  <!-- Toggle pill -->
-  <rect x="520" y="263" width="160" height="56" rx="28" fill="url(#toggleFill)"/>
-  <rect x="520" y="263" width="160" height="56" rx="28"
-    fill="none" stroke="#ff5d01" stroke-opacity="0.48" stroke-width="1.5"/>
-
-  <!-- Active knob (left/dark side — dark mode selected) -->
-  <circle cx="548" cy="291" r="21"
-    fill="#0a0d16" stroke="#ff5d01" stroke-opacity="0.65" stroke-width="1.5"/>
-  <!-- Tiny crescent inside knob -->
-  <circle cx="548" cy="291" r="10" fill="#c7d8ff" opacity="0.82"/>
-  <circle cx="553" cy="287" r="8"  fill="#0a0d16"/>
-
-  <!-- Sun symbol in right (inactive) half -->
-  <circle cx="652" cy="291" r="11" fill="#ff8c42" opacity="0.52"/>
-  <g stroke="#ff8c42" stroke-width="1.8" stroke-linecap="round" opacity="0.4">
-    <line transform="rotate(0,652,291)"   x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(45,652,291)"  x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(90,652,291)"  x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(135,652,291)" x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(180,652,291)" x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(225,652,291)" x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(270,652,291)" x1="652" y1="275" x2="652" y2="271"/>
-    <line transform="rotate(315,652,291)" x1="652" y1="275" x2="652" y2="271"/>
+  <!-- Lucide Moon icon — scale 11, centre at canvas (600, 247) -->
+  <g transform="translate(468, 115) scale(11)"
+     stroke="#ffffff" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </g>
 
-  <!-- ── RIGHT PANEL: Sun + Light Mode ── -->
+  <text
+    x="600" y="490"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="120" font-weight="800"
+    fill="url(#textGrad)"
+    text-anchor="middle"
+    letter-spacing="-4"
+  >dark mode</text>
 
-  <!-- Sun circle -->
-  <circle cx="1010" cy="155" r="50" fill="#ffb347" opacity="0.92"/>
-  <!-- Sun warm inner glow -->
-  <circle cx="1010" cy="155" r="62" fill="#ff8c42" fill-opacity="0.14"/>
-  <!-- Sun rays -->
-  <g stroke="#ff8c42" stroke-width="4" stroke-linecap="round" opacity="0.75">
-    <line transform="rotate(0,1010,155)"   x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(45,1010,155)"  x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(90,1010,155)"  x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(135,1010,155)" x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(180,1010,155)" x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(225,1010,155)" x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(270,1010,155)" x1="1010" y1="86"  x2="1010" y2="74"/>
-    <line transform="rotate(315,1010,155)" x1="1010" y1="86"  x2="1010" y2="74"/>
-  </g>
+  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
 
-  <!-- "Light Mode" label -->
-  <text x="1010" y="258"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="38" font-weight="700"
-    fill="#0f172a" text-anchor="middle" letter-spacing="-0.6"
-  >Light Mode</text>
-
-  <!-- "Opt-in" badge -->
-  <rect x="920" y="270" width="182" height="30" rx="15"
-    fill="#0f172a" fill-opacity="0.07"
-    stroke="#0f172a" stroke-opacity="0.18" stroke-width="1"/>
-  <text x="1011" y="290"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#475569" text-anchor="middle" letter-spacing="0.8"
-  >Opt-in during session</text>
-
-  <!-- localStorage code badge (red — avoid) -->
-  <rect x="636" y="375" width="502" height="42" rx="9"
-    fill="#1a0505" stroke="#ef4444" stroke-opacity="0.28" stroke-width="1"/>
-  <text x="654" y="402"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', 'Courier New', monospace"
-    font-size="14" fill="#f87171" letter-spacing="0.3"
-  >localStorage</text>
-  <!-- Strikethrough line over "localStorage" -->
-  <line x1="654" y1="399" x2="793" y2="399"
-    stroke="#f87171" stroke-width="1.5" stroke-opacity="0.7"/>
-  <text x="795" y="402"
-    font-family="ui-monospace, 'Cascadia Code', 'Fira Code', 'Courier New', monospace"
-    font-size="14" fill="#fca5a5"
-  >.getItem('theme')</text>
-  <!-- Avoid badge -->
-  <rect x="1044" y="381" width="78" height="26" rx="6"
-    fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-opacity="0.38" stroke-width="1"/>
-  <text x="1083" y="399"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#f87171" text-anchor="middle"
-  >✗ Avoid</text>
-
-  <!-- ── Bottom: dark overlay + title + author ── -->
-  <rect x="0" y="430" width="1200" height="200" fill="url(#overlay)"/>
-
-  <!-- Blog title -->
-  <text x="600" y="527"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="26" font-weight="600"
-    fill="#f1f5f9" text-anchor="middle" letter-spacing="0.2"
-  >Why I Use sessionStorage for Dark Mode (Not localStorage)</text>
-
-  <!-- Author pill -->
-  <rect x="515" y="552" width="170" height="36" rx="18"
-    fill="#ff5d01" fill-opacity="0.08"
-    stroke="#ff5d01" stroke-opacity="0.25" stroke-width="1"/>
-  <text x="600" y="575"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#ff8c42" text-anchor="middle" letter-spacing="0.8"
-  >hansmartens.dev</text>
+  <rect x="450" y="548" width="300" height="38" rx="19"
+    fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
+  <text
+    x="600" y="572"
+    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" fill="#ffffff" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.5"
+  >Astro Rocket Theme</text>
 </svg>
