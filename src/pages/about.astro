@@ -39,7 +39,7 @@ Fast. Accessible. Yours.
 
         <!-- Left: story -->
         <div>
-          <h2 class="font-display text-4xl font-bold text-foreground mb-6">
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
             One starter.<br />Every tool you need.
           </h2>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
@@ -57,7 +57,7 @@ Fast. Accessible. Yours.
         <!-- Right: at a glance card -->
         <div>
           <Card variant="elevated">
-            <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-5">At a glance</p>
+            <p class="text-xs md:text-sm font-bold tracking-wide uppercase text-foreground-muted mb-5">At a glance</p>
             <dl class="divide-y divide-border">
               {[
                 { icon: 'brand-astro', label: 'Built on', value: 'Astro 6' },
@@ -71,8 +71,8 @@ Fast. Accessible. Yours.
                     <Icon name={icon} size="sm" />
                   </div>
                   <div class="flex-1 min-w-0 flex items-baseline justify-between gap-4">
-                    <dt class="text-sm text-foreground-muted shrink-0">{label}</dt>
-                    <dd class="text-sm font-semibold text-foreground text-right">{value}</dd>
+                    <dt class="text-sm md:text-base text-foreground-muted shrink-0">{label}</dt>
+                    <dd class="text-sm md:text-base font-semibold text-foreground text-right">{value}</dd>
                   </div>
                 </div>
               ))}
