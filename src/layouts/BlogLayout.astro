@@ -132,8 +132,8 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <!-- Follow Along -->
   <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
     <Badge slot="logo" variant="brand" pill>Stay Updated</Badge>
-    <h2 slot="heading" class="!text-4xl">Stay in the loop</h2>
-    <p slot="description" class="!text-lg">New releases, articles, and updates — follow Astro Rocket wherever you&nbsp;are.</p>
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
 
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a
@@ -169,6 +169,13 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
       >
         <Icon name="github" size="sm" />
         GitHub
+      </a>
+      <a
+        href="mailto:hello@hansmartens.dev"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
       </a>
     </div>
   </CTA>

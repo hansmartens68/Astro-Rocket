@@ -120,8 +120,8 @@ const getPostUrl = (postId: string) => {
 
   <!-- Follow CTA Section -->
   <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary dark:bg-background">
-    <h2 slot="heading" class="!text-4xl">Stay in the loop</h2>
-    <p slot="description" class="!text-lg">New posts, releases, and Astro Rocket updates — subscribe wherever works best for&nbsp;you.</p>
+    <h2 slot="heading" class="!text-4xl">Follow along</h2>
+    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
 
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a
@@ -157,6 +157,13 @@ const getPostUrl = (postId: string) => {
       >
         <Icon name="github" size="sm" />
         GitHub
+      </a>
+      <a
+        href="mailto:hello@hansmartens.dev"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+      >
+        <Icon name="mail" size="sm" />
+        Email
       </a>
     </div>
   </CTA>
