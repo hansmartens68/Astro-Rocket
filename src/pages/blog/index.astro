@@ -40,7 +40,7 @@ const getPostUrl = (postId: string) => {
     size="lg"
     showActiveState
     showCta
-    cta={{ label: 'Start a Project', href: '/contact' }}
+    cta={{ label: 'Get Started', href: '/about' }}
   />
 
   <div class="min-h-screen pt-16">
@@ -52,7 +52,7 @@ const getPostUrl = (postId: string) => {
 
     <h1 slot="title">Blog</h1>
 
-    <p slot="description">Thoughts on web design and development.</p>
+    <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
   <!-- Featured Posts Section -->
@@ -120,8 +120,8 @@ const getPostUrl = (postId: string) => {
 
   <!-- Follow CTA Section -->
   <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
-    <h2 slot="heading" class="!text-4xl">Follow along</h2>
-    <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
+    <h2 slot="heading" class="!text-4xl">Stay in the loop</h2>
+    <p slot="description" class="!text-lg">New posts, releases, and Astro Rocket updates — subscribe wherever works best for you.</p>
 
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a
