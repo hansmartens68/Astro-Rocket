@@ -40,14 +40,13 @@ const rest = projects.filter((p) => !p.data.featured);
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
         <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">Featured</h2>
-        <Card variant="elevated" padding="lg" class="group overflow-hidden">
+        <Card variant="elevated" padding="lg" class="overflow-hidden">
           <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
 
             <!-- Text -->
             <div>
               <div class="mb-3 flex items-center gap-3">
                 <span class="font-display text-3xl font-bold text-foreground">{featured.data.title}</span>
-                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0 ml-auto" />
                 {featured.data.year && (
                   <span class="text-sm text-foreground-muted">{featured.data.year}</span>
                 )}
