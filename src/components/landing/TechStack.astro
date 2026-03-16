@@ -13,9 +13,10 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 interface Props {
   title?: string;
   description?: string;
+  badge?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, badge } = Astro.props;
 
 const items = await getCollection('stack');
 const stack = items.sort((a, b) => a.data.order - b.data.order);
@@ -23,8 +24,11 @@ const stack = items.sort((a, b) => a.data.order - b.data.order);
 
 <section class="border-y border-border bg-background-secondary py-[var(--space-section-md)]">
   <div class="mx-auto max-w-6xl px-6">
-    {(title || description) && (
+    {(badge || title || description) && (
       <div class="mb-[var(--space-section-header)] text-center">
+        {badge && (
+          <Badge variant="brand" pill class="mb-4">{badge}</Badge>
+        )}
         {title && (
           <h2 class="font-display text-4xl font-bold text-foreground mb-4">{title}</h2>
         )}
