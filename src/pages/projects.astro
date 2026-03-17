@@ -9,6 +9,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import { getCollection } from 'astro:content';
 
 const items = await getCollection('projects');
@@ -74,18 +75,20 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
   )}
 
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-2xl px-6 text-center">
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
-        Build something with Astro&nbsp;Rocket.
-      </h2>
-      <p class="text-lg text-foreground-muted mb-8">
-        Clone the theme, swap in your own projects, and ship a site you're proud&nbsp;of.
-      </p>
-      <Button size="lg" href="https://github.com/hansmartens68/astro-rocket">
-        <Icon name="github" size="sm" />
-        Get it on GitHub
+  <CTA variant="invert" size="md" maxWidth="lg">
+    <Badge slot="logo" variant="brand" pill>Available for projects</Badge>
+    <h2 slot="heading">Let's build something together</h2>
+    <p slot="description" class="!text-lg">
+      Get In Touch. Response within 1 business day.
+    </p>
+    <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" href="/contact">
+        Start a Project
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+      <Button size="lg" variant="outline" href="/about">
+        Learn More About Me
       </Button>
     </div>
-  </section>
+  </CTA>
 </PageLayout>
