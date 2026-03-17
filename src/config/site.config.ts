@@ -60,7 +60,7 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Astro Rocket',
   description:
-    'Astro Rocket is a free, open-source Astro 6 theme with 57+ components, 7 color themes, dark mode, i18n, and a perfect Lighthouse score — everything you need to launch a fast, modern website.',
+    'Astro Rocket is a free, open-source Astro 6 theme with 57+ components, 8 color themes, dark mode, i18n, and a perfect Lighthouse score — everything you need to launch a fast, modern website.',
   url: SITE_URL || 'https://hansmartens.dev',
   ogImage: '/og-default.png',
   author: 'Astro Rocket',
