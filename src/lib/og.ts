@@ -34,29 +34,55 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
       : description
     : '';
 
+  const hostname = new URL(siteConfig.url).hostname;
+
   // Create the OG image markup using satori-html
   // Note: All divs must have explicit display property for Satori
   // HTML elements must be in the template literal, not interpolated as strings
   const markup = html`
-    <div style="height: 100%; width: 100%; display: flex; flex-direction: column; background: linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%); padding: 60px 80px; font-family: 'Inter'; position: relative;">
-      <div style="display: flex; position: absolute; top: 0; left: 0; width: 8px; height: 100%; background: linear-gradient(180deg, #f97316 0%, #fb923c 50%, #f97316 100%);"></div>
-      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding-left: 20px;">
-        <div style="display: flex; align-items: center;">
-          <div style="display: flex; padding: 8px 16px; background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 9999px; color: #fb923c; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">${type === 'article' ? 'Article' : 'Page'}</div>
+    <div style="height: 100%; width: 100%; display: flex; background: #09090b; font-family: 'Inter'; position: relative;">
+
+      <!-- Orange glow — top right -->
+      <div style="display: flex; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 9999px; background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 65%);"></div>
+
+      <!-- Orange glow — bottom left -->
+      <div style="display: flex; position: absolute; bottom: -80px; left: -80px; width: 360px; height: 360px; border-radius: 9999px; background: radial-gradient(circle, rgba(249,115,22,0.09) 0%, transparent 65%);"></div>
+
+      <!-- Left accent bar -->
+      <div style="display: flex; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, transparent 0%, #f97316 25%, #fb923c 50%, #f97316 75%, transparent 100%);"></div>
+
+      <!-- Main content -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; padding: 56px 80px 56px 92px;">
+
+        <!-- Top: logomark + brand name -->
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <svg width="42" height="42" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="#F94C10"/>
+            <path d="M4 8V24M4 16H12M12 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 24V8L22.5 18L29 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span style="font-size: 17px; font-weight: 600; color: #a1a1aa; letter-spacing: 0.07em; text-transform: uppercase;">${siteConfig.name}</span>
+          <div style="display: flex; width: 4px; height: 4px; border-radius: 9999px; background: #3f3f46;"></div>
+          <div style="display: flex; padding: 5px 12px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">${type === 'article' ? 'Article' : 'Page'}</div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 24px;">
-          <div style="display: flex; font-size: ${title.length > 50 ? '48px' : '64px'}; font-weight: 700; color: #fafafa; line-height: 1.2; letter-spacing: -0.02em;">${title}</div>
-          <div style="display: ${truncatedDescription ? 'flex' : 'none'}; font-size: 24px; color: #a1a1aa; line-height: 1.5; max-width: 800px;">${truncatedDescription}</div>
+
+        <!-- Middle: title + description -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; font-size: ${title.length > 45 ? '52px' : '64px'}; font-weight: 700; color: #fafafa; line-height: 1.1; letter-spacing: -0.03em;">${title}</div>
+          <div style="display: ${truncatedDescription ? 'flex' : 'none'}; font-size: 22px; color: #71717a; line-height: 1.5; max-width: 780px;">${truncatedDescription}</div>
         </div>
+
+        <!-- Bottom: feature chips + hostname -->
         <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #F94C10; border-radius: 10px;">
-              <span style="font-size: 26px; font-weight: 700; color: white;">H</span>
-            </div>
-            <span style="font-size: 20px; font-weight: 600; color: #fafafa;">${siteConfig.name}</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">57+ Components</div>
+            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">8 Color Themes</div>
+            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">Dark Mode</div>
+            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">i18n</div>
           </div>
-          <span style="font-size: 16px; color: #71717a;">${new URL(siteConfig.url).hostname}</span>
+          <span style="display: flex; font-size: 15px; color: #52525b;">${hostname}</span>
         </div>
+
       </div>
     </div>
   `;
