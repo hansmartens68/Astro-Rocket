@@ -197,15 +197,3 @@ html.dark[data-theme="purple"] {
   --theme-shadow-xl: 0 24px 48px oklch(10% 0.05 285 / 0.5),
     0 2px 4px oklch(50% 0.15 295 / 0.08);
 }
-
-/* -------------------------------------------------------------------------
-   Purple hero glow — boosted mix ratio to compensate for the
-   lavender-tinted background absorbing the glow contrast in light mode.
-   ------------------------------------------------------------------------- */
-html[data-theme="purple"] .bg-hero-glow {
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 40%,
-    color-mix(in oklch, var(--color-brand-500) 28%, transparent) 0%,
-    color-mix(in oklch, var(--color-brand-500) 0%, transparent) 70%
-  );
-}
