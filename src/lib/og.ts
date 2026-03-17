@@ -51,7 +51,7 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #F94C10; border-radius: 10px;">
-              <span style="font-size: 26px; font-weight: 700; color: white;">M</span>
+              <span style="font-size: 26px; font-weight: 700; color: white;">H</span>
             </div>
             <span style="font-size: 20px; font-weight: 600; color: #fafafa;">${siteConfig.name}</span>
           </div>
