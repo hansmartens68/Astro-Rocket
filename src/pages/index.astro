@@ -26,6 +26,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   title="Astro Rocket — Astro 6 starter theme"
   description="A production-ready Astro 6 starter with 8 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.
     </p>"
+  image="/og-homepage.jpeg"
   includePersonSchema={true}
   includeProfessionalServiceSchema={true}
 >
@@ -55,9 +56,9 @@ Web Designer & Developer
   </Hero>
 
   <!-- Services Section -->
-  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-[var(--space-section-header)]">
+      <div class="text-center mb-10">
         <Badge variant="brand" pill class="mb-4">Services</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What I Do
@@ -169,9 +170,9 @@ Web Designer & Developer
   </section>
 
   <!-- Portfolio -->
-  <section id="work" class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
+  <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-[var(--space-section-header)]">
+      <div class="text-center mb-10">
         <Badge variant="brand" pill class="mb-4">Selected work</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           Projects I've Built
@@ -211,9 +212,9 @@ Web Designer & Developer
   </section>
 
   <!-- Testimonials -->
-  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] border-t border-border">
+  <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-[var(--space-section-header)]">
+      <div class="text-center mb-10">
         <Badge variant="brand" pill class="mb-4">Testimonials</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What Clients Say
@@ -278,9 +279,9 @@ Web Designer & Developer
   </section>
 
   <!-- Blog -->
-  <section class="pt-[var(--space-section-sm)] pb-[var(--space-section-lg)] bg-background-secondary border-t border-border">
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="flex items-end justify-between mb-[var(--space-section-header)]">
+      <div class="flex items-end justify-between mb-10">
         <div>
           <Badge variant="brand" pill class="mb-4">From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
