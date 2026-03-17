@@ -168,13 +168,13 @@ html.dark[data-theme="orange"] {
   --warning-light: oklch(25% 0.05 85);
   --error-light: oklch(25% 0.05 25);
 
-  /* Inverted section in dark mode - slightly elevated for contrast */
-  --surface-invert: var(--gray-900);
-  --surface-invert-secondary: var(--gray-800);
-  --surface-invert-tertiary: var(--gray-700);
-  --on-invert: var(--gray-50);              /* 17.4:1 on gray-900 — WCAG AAA */
-  --on-invert-secondary: var(--gray-300);   /* 11.9:1 on gray-900 — WCAG AAA */
-  --on-invert-muted: var(--gray-400);       /*  5.4:1 on gray-900 — WCAG AA  */
+  /* Inverted section in dark mode - darker than bg-secondary for contrast */
+  --surface-invert: oklch(16% 0 0);
+  --surface-invert-secondary: var(--gray-900);
+  --surface-invert-tertiary: var(--gray-800);
+  --on-invert: var(--gray-50);              /* WCAG AAA on oklch(16%) */
+  --on-invert-secondary: var(--gray-300);   /* WCAG AAA on oklch(16%) */
+  --on-invert-muted: var(--gray-400);       /* WCAG AA  on oklch(16%) */
   --border-invert: var(--gray-700);
   --border-invert-strong: var(--gray-600);
 
