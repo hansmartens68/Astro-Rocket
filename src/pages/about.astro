@@ -148,6 +148,51 @@ Fast. Accessible. Yours.
     </div>
   </section>
 
+  <!-- The Partnership -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2 items-center">
+        <div>
+          <Badge variant="brand" pill class="mb-6">The Partnership</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+            Astro Rocket
+          </h2>
+          <p class="text-lg text-brand-500 font-medium mb-6">Web Designer &amp; Developer</p>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
+            16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <Badge variant="brand" pill>Astro</Badge>
+            <Badge variant="brand" pill>Tailwind</Badge>
+            <Badge variant="brand" pill>TypeScript</Badge>
+          </div>
+        </div>
+
+        <Card variant="elevated" padding="lg">
+          <p class="text-xs font-bold tracking-widest uppercase text-foreground-muted mb-6">At a glance</p>
+          <dl class="divide-y divide-border">
+            {[
+              { icon: 'history', label: 'Experience', value: '16 years' },
+              { icon: 'map-pin', label: 'Based in', value: 'Veghel, Netherlands' },
+              { icon: 'globe', label: 'Working', value: 'Worldwide' },
+              { icon: 'zap', label: 'Focus', value: 'Design, code & performance' },
+            ].map(({ icon, label, value }) => (
+              <div class="flex items-center gap-4 py-4">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name={icon} size="sm" />
+                </div>
+                <div class="flex-1 min-w-0 flex items-baseline justify-between gap-4">
+                  <dt class="text-sm text-foreground-muted shrink-0">{label}</dt>
+                  <dd class="text-sm font-semibold text-foreground text-right">{value}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
+        </Card>
+      </div>
+    </div>
+  </section>
+
   <!-- My Stack -->
   <TechStack
     badge="The Stack"
