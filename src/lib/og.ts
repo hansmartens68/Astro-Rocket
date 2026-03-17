@@ -34,54 +34,51 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
       : description
     : '';
 
-  const hostname = new URL(siteConfig.url).hostname;
-
-  // Create the OG image markup using satori-html
-  // Note: All divs must have explicit display property for Satori
-  // HTML elements must be in the template literal, not interpolated as strings
   const markup = html`
-    <div style="height: 100%; width: 100%; display: flex; background: #09090b; font-family: 'Inter'; position: relative;">
+    <div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #07070a; font-family: 'Inter'; position: relative;">
 
-      <!-- Orange glow — top right -->
-      <div style="display: flex; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 9999px; background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 65%);"></div>
+      <!-- Orange launch glow — top center -->
+      <div style="display: flex; position: absolute; top: -220px; left: 250px; width: 700px; height: 700px; border-radius: 9999px; background: radial-gradient(circle, rgba(249,115,22,0.22) 0%, transparent 55%);"></div>
 
-      <!-- Orange glow — bottom left -->
-      <div style="display: flex; position: absolute; bottom: -80px; left: -80px; width: 360px; height: 360px; border-radius: 9999px; background: radial-gradient(circle, rgba(249,115,22,0.09) 0%, transparent 65%);"></div>
+      <!-- Indigo glow — bottom right -->
+      <div style="display: flex; position: absolute; bottom: -120px; right: -80px; width: 420px; height: 420px; border-radius: 9999px; background: radial-gradient(circle, rgba(99,102,241,0.14) 0%, transparent 60%);"></div>
 
-      <!-- Left accent bar -->
-      <div style="display: flex; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, transparent 0%, #f97316 25%, #fb923c 50%, #f97316 75%, transparent 100%);"></div>
+      <!-- Star field -->
+      <div style="display: flex; position: absolute; top: 52px;  left: 88px;   width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.55);"></div>
+      <div style="display: flex; position: absolute; top: 160px; left: 174px;  width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.35);"></div>
+      <div style="display: flex; position: absolute; top: 78px;  left: 340px;  width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.4);"></div>
+      <div style="display: flex; position: absolute; top: 32px;  left: 560px;  width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.5);"></div>
+      <div style="display: flex; position: absolute; top: 110px; left: 720px;  width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.3);"></div>
+      <div style="display: flex; position: absolute; top: 44px;  left: 910px;  width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.5);"></div>
+      <div style="display: flex; position: absolute; top: 130px; left: 1060px; width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.4);"></div>
+      <div style="display: flex; position: absolute; top: 55px;  left: 1140px; width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.45);"></div>
+      <div style="display: flex; position: absolute; top: 480px; left: 60px;   width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.35);"></div>
+      <div style="display: flex; position: absolute; top: 390px; left: 210px;  width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.5);"></div>
+      <div style="display: flex; position: absolute; top: 560px; left: 420px;  width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.3);"></div>
+      <div style="display: flex; position: absolute; top: 510px; left: 980px;  width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.45);"></div>
+      <div style="display: flex; position: absolute; top: 430px; left: 1100px; width: 2px; height: 2px; border-radius: 9999px; background: rgba(255,255,255,0.35);"></div>
+      <div style="display: flex; position: absolute; top: 575px; left: 1160px; width: 3px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.5);"></div>
 
-      <!-- Main content -->
-      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; padding: 56px 80px 56px 92px;">
+      <!-- Centered content column -->
+      <div style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 100px;">
 
-        <!-- Top: logomark + brand name -->
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <svg width="42" height="42" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="#F94C10"/>
-            <path d="M4 8V24M4 16H12M12 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 24V8L22.5 18L29 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <span style="font-size: 17px; font-weight: 600; color: #a1a1aa; letter-spacing: 0.07em; text-transform: uppercase;">${siteConfig.name}</span>
-          <div style="display: flex; width: 4px; height: 4px; border-radius: 9999px; background: #3f3f46;"></div>
-          <div style="display: flex; padding: 5px 12px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">${type === 'article' ? 'Article' : 'Page'}</div>
+        <!-- Rocket + brand -->
+        <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 28px;">
+          <span style="font-size: 52px; line-height: 1;">🚀</span>
+          <span style="font-size: 30px; font-weight: 700; color: #fafafa; letter-spacing: 0.1em; text-transform: uppercase;">ASTRO ROCKET</span>
         </div>
 
-        <!-- Middle: title + description -->
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-          <div style="display: flex; font-size: ${title.length > 45 ? '52px' : '64px'}; font-weight: 700; color: #fafafa; line-height: 1.1; letter-spacing: -0.03em;">${title}</div>
-          <div style="display: ${truncatedDescription ? 'flex' : 'none'}; font-size: 22px; color: #71717a; line-height: 1.5; max-width: 780px;">${truncatedDescription}</div>
-        </div>
+        <!-- Orange gradient divider -->
+        <div style="display: flex; width: 480px; height: 2px; background: linear-gradient(90deg, transparent 0%, #f97316 25%, #fb923c 50%, #f97316 75%, transparent 100%); margin-bottom: 44px;"></div>
 
-        <!-- Bottom: feature chips + hostname -->
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">57+ Components</div>
-            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">8 Color Themes</div>
-            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">Dark Mode</div>
-            <div style="display: flex; padding: 6px 14px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 9999px; color: #fb923c; font-size: 13px; font-weight: 500;">i18n</div>
-          </div>
-          <span style="display: flex; font-size: 15px; color: #52525b;">${hostname}</span>
-        </div>
+        <!-- Page title -->
+        <div style="display: flex; font-size: ${title.length > 38 ? '58px' : '76px'}; font-weight: 700; color: #fafafa; line-height: 1.1; letter-spacing: -0.03em; text-align: center; margin-bottom: 22px;">${title}</div>
+
+        <!-- Description -->
+        <div style="display: ${truncatedDescription ? 'flex' : 'none'}; font-size: 22px; color: #71717a; line-height: 1.5; text-align: center; max-width: 820px; margin-bottom: 44px;">${truncatedDescription}</div>
+
+        <!-- Domain -->
+        <span style="display: flex; font-size: 16px; color: #52525b; letter-spacing: 0.06em; margin-top: ${truncatedDescription ? '0' : '44px'};">hansmartens.dev</span>
 
       </div>
     </div>
