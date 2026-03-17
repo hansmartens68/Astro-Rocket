@@ -1,4 +1,8 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="12" fill="oklch(64% 0.27 130)"/>
-  <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="38" fill="white">A</text>
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" rx="80" fill="#F94C10"/>
+  <!-- A mark: two vertical bars + top bar + middle crossbar -->
+  <rect x="83" y="75" width="58" height="250" rx="12" fill="white"/>
+  <rect x="258" y="75" width="58" height="250" rx="12" fill="white"/>
+  <rect x="83" y="75" width="234" height="62" rx="12" fill="white"/>
+  <rect x="83" y="183" width="234" height="58" rx="12" fill="white"/>
 </svg>
