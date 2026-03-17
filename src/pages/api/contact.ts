@@ -68,8 +68,8 @@ export const POST: APIRoute = async ({ request }) => {
       : `[hansmartens.dev] New contact from ${result.data.name}`;
 
     const { error } = await resend.emails.send({
-      from: 'Contact Form <hello@hansmartens.dev>',
-      to: 'info.martens@gmail.com',
+      from: 'Contact Form <hello@youremail.com>',
+      to: 'hello@youremail.com',
       replyTo: result.data.email,
       subject,
       html: `

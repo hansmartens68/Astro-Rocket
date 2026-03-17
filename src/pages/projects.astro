@@ -31,7 +31,7 @@ const rest = projects.filter((p) => !p.data.featured);
     <h1 slot="title">Projects</h1>
 
     <p slot="description">
-      Example projects built with Astro Rocket — replace these with your own work once you've cloned the theme.
+      Example projects built with Astro Rocket.
     </p>
   </Hero>
 
@@ -39,7 +39,7 @@ const rest = projects.filter((p) => !p.data.featured);
   {featured && (
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
-        <p class="text-brand-500 mb-6 text-sm font-bold tracking-wide uppercase">Featured</p>
+        <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">Featured</h2>
         <Card variant="elevated" padding="lg" class="overflow-hidden">
           <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
 
@@ -115,14 +115,7 @@ const rest = projects.filter((p) => !p.data.featured);
                   <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
                     <Icon name="box" size="sm" />
                   </div>
-                  <div class="flex items-center gap-2 text-foreground-muted">
-                    {project.data.url && (
-                      <Icon name="arrow-up-right" size="sm" class="opacity-40 transition-opacity group-hover:opacity-100" />
-                    )}
-                    {!project.data.url && project.data.repo && (
-                      <Icon name="github" size="sm" class="opacity-40" />
-                    )}
-                  </div>
+                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
                 </div>
 
                 <!-- Title + year -->
