@@ -6,6 +6,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
@@ -35,10 +36,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <Badge slot="badge" variant="brand" pulse>Available for new projects</Badge>
 
     <h1 slot="title">
-<span class="bg-brand-500 mt-2 inline-block rounded-lg px-3 py-1 text-white"
-          >Astro Rocket —</span> <br />
-Web Designer & Developer
-</h1>
+      <span class="bg-brand-500 mt-2 inline-block rounded-lg px-3 py-1 text-white">Astro Rocket —</span> <br />
+      <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "UI/UX Enthusiast"]} />
+    </h1>
 
     <p slot="description">
       A production-ready Astro 6 starter with 8 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.
