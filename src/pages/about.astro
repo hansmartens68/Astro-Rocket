@@ -12,93 +12,95 @@ import { Hero } from '@/components/hero';
 import TechStack from '@/components/landing/TechStack.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 ---
-
 <PageLayout
-  title="About Astro Rocket — Astro 6 Starter Theme"
-  description="Astro Rocket is a production-ready Astro 6 starter theme with 57+ components, 7 color themes, built-in i18n, dark mode, and a perfect Lighthouse score."
+  title="About Hans Martens — Web Designer & Developer | Veghel"
+  description="Hans Martens is a web designer and developer based in Veghel, the Netherlands. I build fast, modern websites and write about design and development."
 >
-  <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand">About the theme</Badge>
-
-     <h1 slot="title">
-<span class="bg-brand-500 mt-2 inline-block rounded-lg px-3 py-1 text-white"
-          >Astro Rocket —</span> <br />
-Fast. Accessible. Yours.
-</h1>
-
+  <Hero layout="centered" size="sm" showGrid showBlob blobPosition="center">
+    <Badge slot="badge" pill variant="brand">About me</Badge>
+    <h1 slot="title">
+      Astro Rocket —<br />
+      <span class="text-brand-500">Web Designer</span> &amp; Developer
+    </h1>
     <p slot="description">
-      Astro Rocket is built around the details that actually matter — speed,
-      accessibility, and a design system that scales. Here's what's under the hood.
+      I care about both sides of the craft — how a site looks and how it
+      performs. Here's a bit more about how I think and work.
     </p>
   </Hero>
 
-  <!-- Background -->
-  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- What's possible now -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
-
-        <!-- Left: story -->
+        <!-- Left: text -->
         <div>
-          <Badge variant="brand" pill class="mb-6">The story</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-            One starter.<br />
-            <span class="text-brand-500">Every tool you need.</span>
+          <div class="text-brand-500 mb-4 flex items-center gap-2 text-sm font-bold tracking-wide uppercase">
+            <Icon name="users" size="sm" />
+            <span>The Partnership</span>
+          </div>
+          <h2 class="font-display text-4xl font-bold text-foreground mb-6">
+            Web design, now with a thinking partner
           </h2>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-            Astro Rocket started as a personal toolkit — a collection of patterns, components, and configuration that kept getting reused across projects. Over time it grew into a complete, opinionated starter that handles all the hard parts of launching a modern website.
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            I'm a web designer and developer with 16 years of hands-on experience. Today I work alongside Claude Sonnet and Claude Opus — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
-            The goal was simple: clone it and start on the real work immediately. No stitching together packages, no fighting with configuration, no performance retrofit later. Everything — design system, i18n, dark mode, SEO — is baked in from day one.
-          </p>
-          <Button variant="outline" href="/projects">
-            See what it can do
-            <Icon name="arrow-right" size="sm" />
-          </Button>
         </div>
-
-        <!-- Right: at a glance card -->
-        <div>
-          <Card variant="elevated" padding="lg">
-            <p class="text-xs font-bold tracking-widest uppercase text-foreground-muted mb-6">At a glance</p>
-            <dl class="divide-y divide-border">
-              {[
-                { icon: 'brand-astro', label: 'Built on', value: 'Astro 6' },
-                { icon: 'layout-grid', label: 'Components', value: '57+' },
-                { icon: 'palette', label: 'Color themes', value: '7 beautiful themes' },
-                { icon: 'globe', label: 'i18n', value: 'Multi-language ready' },
-                { icon: 'shield-check', label: 'License', value: 'MIT — free to use anywhere' },
-              ].map(({ icon, label, value }) => (
-                <div class="flex items-center gap-4 py-4">
-                  <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                    <Icon name={icon} size="sm" />
-                  </div>
-                  <div class="flex-1 min-w-0 flex items-baseline justify-between gap-4">
-                    <dt class="text-sm text-foreground-muted shrink-0">{label}</dt>
-                    <dd class="text-sm font-semibold text-foreground text-right">{value}</dd>
-                  </div>
+        <!-- Right: two stacked partner cards -->
+        <div class="flex flex-col gap-4">
+          <Card variant="elevated">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code-2" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">Web Designer & Developer</p>
+                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  15 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Astro</Badge>
+                  <Badge size="sm" variant="brand">Tailwind</Badge>
+                  <Badge size="sm" variant="brand">TypeScript</Badge>
                 </div>
-              ))}
-            </dl>
+              </div>
+            </div>
+          </Card>
+          <Card variant="elevated">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="sparkles" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">AI Thinking Partner</p>
+                <h3 class="text-base font-semibold text-foreground">Claude Sonnet & Opus</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Design review</Badge>
+                  <Badge size="sm" variant="brand">Code QA</Badge>
+                  <Badge size="sm" variant="brand">Deep thinking</Badge>
+                </div>
+              </div>
+            </div>
           </Card>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- Values -->
-  <section class="py-[var(--space-section-md)] border-t border-border">
+  <section class="py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-[var(--space-section-header)] text-center">
-        <Badge variant="brand" pill class="mb-4">Our values</Badge>
         <h2 class="font-display text-4xl font-bold text-foreground mb-4">
-          Built on These Principles
+          How I Work
         </h2>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          These aren't goals to work toward — they're constraints every component, pattern, and default in Astro Rocket is held to.
+          These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
         </p>
       </div>
-
       <div class="grid gap-8 md:grid-cols-3">
         <Card hover>
           <div class="flex items-start gap-4">
@@ -108,13 +110,12 @@ Fast. Accessible. Yours.
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Performance First</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Ships with a 100/100 Lighthouse score and keeps it there. Static HTML output,
-                no unused scripts, and image handling that won't drag your metrics down.
+                Fast sites rank better, convert better, and keep users happy. I optimise for
+                speed from the ground up — not as an afterthought.
               </p>
             </div>
           </div>
         </Card>
-
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
@@ -123,23 +124,22 @@ Fast. Accessible. Yours.
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Keep It Simple</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Clean architecture, minimal dependencies, and readable code. Easy to
-                understand, extend, and maintain as your project grows.
+                The best solution is usually the simplest one. I avoid unnecessary complexity
+                so your site is easy to maintain and grow.
               </p>
             </div>
           </div>
         </Card>
-
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="eye" size="md" />
+              <Icon name="message-circle" size="md" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-semibold text-foreground">Accessible by Default</h3>
+              <h3 class="text-base font-semibold text-foreground">Clear Communication</h3>
               <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                Semantic HTML, keyboard navigation, and WCAG compliance come standard.
-                Accessibility is never an afterthought in Astro Rocket.
+                No jargon, no surprises. I keep you in the loop at every stage and respond
+                within one business day.
               </p>
             </div>
           </div>
@@ -167,7 +167,6 @@ Fast. Accessible. Yours.
             <Badge variant="brand" pill>TypeScript</Badge>
           </div>
         </div>
-
         <Card variant="elevated" padding="lg">
           <p class="text-xs font-bold tracking-widest uppercase text-foreground-muted mb-6">At a glance</p>
           <dl class="divide-y divide-border">
@@ -195,28 +194,25 @@ Fast. Accessible. Yours.
 
   <!-- My Stack -->
   <TechStack
-    badge="The Stack"
-    title="The Stack"
-    description="The tools Astro Rocket is built on — chosen for performance, an excellent developer experience, and long-term reliability."
+    title="My Stack"
+    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
 
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-tertiary">
     <div class="mx-auto max-w-2xl px-6 text-center">
-      <Badge variant="brand" pill class="mb-4">Get started</Badge>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4">
-        Ready to build?
+        Ready to work together?
       </h2>
       <p class="text-lg text-foreground-muted mb-8">
-        Astro Rocket is free, open-source, and ready to clone. Start building
-        something you're proud of.
+        I'm available for new projects. Let's talk about what you need.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="https://github.com/hansmartens68/astro-rocket">
-          <Icon name="github" size="sm" />
-          Get it on GitHub
+        <Button size="lg" href="/contact">
+          Start a Project
+          <Icon name="arrow-right" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" href="/blog" class="border-border-strong">
+        <Button size="lg" variant="outline" href="/blog">
           Read the Blog
         </Button>
       </div>
@@ -224,11 +220,9 @@ Fast. Accessible. Yours.
   </section>
 
   <!-- Follow Along -->
-  <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
-    <Badge slot="logo" variant="brand" pill>Stay updated</Badge>
+  <CTA variant="default" size="md" maxWidth="lg" class="bg-background dark:bg-background">
     <h2 slot="heading" class="!text-4xl">Follow along</h2>
     <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
-
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a
         href="/rss.xml"
@@ -238,7 +232,7 @@ Fast. Accessible. Yours.
         RSS Feed
       </a>
       <a
-        href="https://x.com"
+        href="https://x.com/hansmartens_dev"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
@@ -247,16 +241,16 @@ Fast. Accessible. Yours.
         X / Twitter
       </a>
       <a
-        href="https://linkedin.com"
+        href="https://www.instagram.com/hansmartens.dev"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
       >
-        <Icon name="linkedin" size="sm" />
-        LinkedIn
+        <Icon name="instagram" size="sm" />
+        Instagram
       </a>
       <a
-        href="https://github.com"
+        href="https://github.com/hansmartens-dev"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
@@ -265,7 +259,7 @@ Fast. Accessible. Yours.
         GitHub
       </a>
       <a
-        href="mailto:hello@youremail.com"
+        href="mailto:hello@hansmartens.dev"
         class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
       >
         <Icon name="mail" size="sm" />
