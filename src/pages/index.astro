@@ -9,6 +9,11 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
+const projectItems = await getCollection('projects');
+const featuredProjects = projectItems
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => {
     if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
@@ -177,85 +182,30 @@ Web Designer & Developer
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        <!-- Project 1 -->
-        <Card variant="elevated" hover class="overflow-hidden !p-0">
-          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
-            <Icon name="layout" size="xl" class="text-brand-500 opacity-40" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
-            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
-              Short description of what you built and the outcome for the client.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Astro</span>
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Tailwind</span>
+        {featuredProjects.map((project) => (
+          <Card variant="elevated" hover padding="lg" href={project.data.url ?? project.data.repo} target="_blank" rel="noopener noreferrer" class="group flex flex-col">
+            <div class="flex flex-1 flex-col">
+              <div class="mb-3 flex items-start justify-between gap-4">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="box" size="sm" />
+                </div>
+                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+              </div>
+              <div class="mb-2 flex items-baseline gap-2">
+                <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
+                {project.data.year && (
+                  <span class="text-xs text-foreground-muted">{project.data.year}</span>
+                )}
+              </div>
+              <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
+              <div class="flex flex-wrap gap-1.5">
+                {project.data.tags.map((tag) => (
+                  <Badge variant="brand" size="sm">{tag}</Badge>
+                ))}
+              </div>
             </div>
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-              View project <Icon name="arrow-right" size="sm" />
-            </a>
-          </div>
-        </Card>
-
-        <!-- Project 2 -->
-        <Card variant="elevated" hover class="overflow-hidden !p-0">
-          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
-            <Icon name="code" size="xl" class="text-brand-500 opacity-40" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
-            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
-              Short description of what you built and the outcome for the client.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Next.js</span>
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">TypeScript</span>
-            </div>
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-              View project <Icon name="arrow-right" size="sm" />
-            </a>
-          </div>
-        </Card>
-
-        <!-- Project 3 -->
-        <Card variant="elevated" hover class="overflow-hidden !p-0">
-          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
-            <Icon name="zap" size="xl" class="text-brand-500 opacity-40" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
-            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
-              Short description of what you built and the outcome for the client.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Astro</span>
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">CMS</span>
-            </div>
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-              View project <Icon name="arrow-right" size="sm" />
-            </a>
-          </div>
-        </Card>
-
-        <!-- Project 4 -->
-        <Card variant="elevated" hover class="overflow-hidden !p-0">
-          <div class="h-40 bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center">
-            <Icon name="globe" size="xl" class="text-brand-500 opacity-40" />
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-foreground mb-2">Project Name</h3>
-            <p class="text-sm text-foreground-muted leading-relaxed mb-4">
-              Short description of what you built and the outcome for the client.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">React</span>
-              <span class="inline-flex items-center rounded-full bg-background-secondary px-2.5 py-0.5 text-xs font-medium text-foreground-muted ring-1 ring-inset ring-border">Node.js</span>
-            </div>
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors">
-              View project <Icon name="arrow-right" size="sm" />
-            </a>
-          </div>
-        </Card>
+          </Card>
+        ))}
       </div>
     </div>
   </section>
