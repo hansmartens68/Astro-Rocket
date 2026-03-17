@@ -185,14 +185,3 @@ html.dark[data-theme="orange"] {
   --theme-shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
-/* -------------------------------------------------------------------------
-   Orange hero glow — boosted mix ratio to compensate for the neutral
-   background and the warm hue sitting against near-white in light mode.
-   ------------------------------------------------------------------------- */
-html[data-theme="orange"] .bg-hero-glow {
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 40%,
-    color-mix(in oklch, var(--color-brand-500) 28%, transparent) 0%,
-    color-mix(in oklch, var(--color-brand-500) 0%, transparent) 70%
-  );
-}
