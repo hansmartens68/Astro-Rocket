@@ -186,11 +186,13 @@ html.dark[data-theme="orange"] {
 }
 
 /* -------------------------------------------------------------------------
-   The default theme is intentionally neutral (pure black/white, Vercel-style).
-   The orange brand colour is used as a subtle accent only — suppress the
-   hero glow so it does not render as a visible orange oval on the clean
-   neutral background.
+   Orange hero glow — boosted mix ratio to compensate for the neutral
+   background and the warm hue sitting against near-white in light mode.
    ------------------------------------------------------------------------- */
 html[data-theme="orange"] .bg-hero-glow {
-  background: none;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    color-mix(in oklch, var(--color-brand-500) 28%, transparent) 0%,
+    color-mix(in oklch, var(--color-brand-500) 0%, transparent) 70%
+  );
 }
