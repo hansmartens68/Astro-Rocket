@@ -9,13 +9,11 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
+import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import { getCollection } from 'astro:content';
 
 const items = await getCollection('projects');
 const projects = items.sort((a, b) => a.data.order - b.data.order);
-
-const featured = projects.find((p) => p.data.featured);
-const rest = projects.filter((p) => !p.data.featured);
 ---
 
 <PageLayout
@@ -31,83 +29,17 @@ const rest = projects.filter((p) => !p.data.featured);
     <h1 slot="title">Projects</h1>
 
     <p slot="description">
-      Example projects built with Astro Rocket.
+      Projects I've built.
     </p>
   </Hero>
 
-  <!-- Featured project -->
-  {featured && (
+  <!-- All projects -->
+  {projects.length > 0 && (
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
-        <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">Featured</h2>
-        <Card variant="elevated" padding="lg" class="overflow-hidden">
-          <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-
-            <!-- Text -->
-            <div>
-              <div class="mb-3 flex items-center gap-3">
-                <span class="font-display text-3xl font-bold text-foreground">{featured.data.title}</span>
-                {featured.data.year && (
-                  <span class="text-sm text-foreground-muted">{featured.data.year}</span>
-                )}
-              </div>
-              <p class="text-foreground-muted mb-6 text-lg leading-relaxed">{featured.data.description}</p>
-
-              <div class="mb-6 flex flex-wrap gap-2">
-                {featured.data.tags.map((tag) => (
-                  <Badge variant="brand" size="sm">{tag}</Badge>
-                ))}
-              </div>
-
-              <div class="flex flex-wrap gap-3">
-                {featured.data.url && (
-                  <Button href={featured.data.url} target="_blank" rel="noopener noreferrer" size="md">
-                    View live site
-                    <Icon name="arrow-up-right" size="sm" />
-                  </Button>
-                )}
-                {featured.data.repo && (
-                  <Button href={featured.data.repo} target="_blank" rel="noopener noreferrer" size="md" variant="outline">
-                    <Icon name="github" size="sm" />
-                    Source code
-                  </Button>
-                )}
-              </div>
-            </div>
-
-            <!-- Visual placeholder -->
-            <div class="relative h-56 overflow-hidden rounded-xl bg-gradient-to-br from-brand-500/20 via-brand-500/10 to-transparent lg:h-72">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-brand-500/30">
-                  <Icon name="monitor" size="lg" class="h-20 w-20" />
-                </div>
-              </div>
-              <!-- Decorative dots -->
-              <div class="absolute right-6 top-6 grid grid-cols-4 gap-2">
-                {Array.from({ length: 16 }).map(() => (
-                  <div class="h-1.5 w-1.5 rounded-full bg-brand-500/20" />
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </Card>
-      </div>
-    </section>
-  )}
-
-  <!-- All other projects -->
-  {rest.length > 0 && (
-    <section class="py-[var(--space-section-md)] border-t border-border">
-      <div class="mx-auto max-w-6xl px-6">
-        {featured && (
-          <h2 class="font-display text-foreground mb-[var(--space-section-header)] text-2xl font-bold">
-            More projects
-          </h2>
-        )}
 
         <div class="grid gap-6 md:grid-cols-2">
-          {rest.map((project) => (
+          {projects.map((project) => (
             <Card variant="elevated" hover padding="lg" href={project.data.url ?? project.data.repo} target="_blank" rel="noopener noreferrer" class="group flex flex-col">
               <div class="flex flex-1 flex-col">
                 <!-- Header -->
@@ -143,18 +75,20 @@ const rest = projects.filter((p) => !p.data.featured);
   )}
 
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-2xl px-6 text-center">
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
-        Build something with Astro&nbsp;Rocket.
-      </h2>
-      <p class="text-lg text-foreground-muted mb-8">
-        Clone the theme, swap in your own projects, and ship a site you're proud&nbsp;of.
-      </p>
-      <Button size="lg" href="https://github.com/hansmartens68/astro-rocket">
-        <Icon name="github" size="sm" />
-        Get it on GitHub
+  <CTA variant="invert" size="md" maxWidth="lg">
+    <Badge slot="logo" variant="brand" pill>Available for projects</Badge>
+    <h2 slot="heading">Let's build something together</h2>
+    <p slot="description" class="!text-lg">
+      Get In Touch. Response within 1 business day.
+    </p>
+    <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" href="/contact">
+        Start a Project
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+      <Button size="lg" variant="outline" href="/about">
+        Learn More About Me
       </Button>
     </div>
-  </section>
+  </CTA>
 </PageLayout>
