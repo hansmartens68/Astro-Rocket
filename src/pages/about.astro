@@ -11,7 +11,6 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import TechStack from '@/components/landing/TechStack.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
-import TypingEffect from '@/components/ui/TypingEffect.astro';
 ---
 <PageLayout
   title="About Hans Martens — Web Designer & Developer | Veghel"
@@ -19,12 +18,10 @@ import TypingEffect from '@/components/ui/TypingEffect.astro';
 >
   <Hero layout="centered" size="sm" showGrid showBlob blobPosition="center">
     <Badge slot="badge" variant="brand">About me</Badge>
-   <h1 slot="title">
-  Astro Rocket —<br />
-  <span class="text-brand-500">
-    <TypingEffect words={["Web Designer", "Web Developer", "Blogger", "Coffee Lover"]} />
-  </span>
-</h1>
+    <h1 slot="title">
+      <span class="text-white">Astro Rocket —</span><br />
+      <span class="text-brand-500">Web Designer</span><span class="text-white"> &amp; Developer</span>
+    </h1>
 
     <p slot="description">
       I care about both sides of the craft — how a site looks and how it
