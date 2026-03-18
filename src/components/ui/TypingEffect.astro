@@ -43,40 +43,50 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
 </style>
 
 <script define:vars={{ id, words, typeSpeed, deleteSpeed, pauseAfterType, pauseAfterDelete }}>
-  const root = document.getElementById(id);
-  const textEl = root.querySelector('.typing-text');
+  function startTyping() {
+    const root = document.getElementById(id);
+    if (!root) return;
+    const textEl = root.querySelector('.typing-text');
 
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timer;
 
-  function tick() {
-    const current = words[wordIndex];
+    function tick() {
+      const current = words[wordIndex];
 
-    if (isDeleting) {
-      charIndex--;
-      textEl.textContent = current.slice(0, charIndex);
+      if (isDeleting) {
+        charIndex--;
+        textEl.textContent = current.slice(0, charIndex);
 
-      if (charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(tick, pauseAfterDelete);
-        return;
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          timer = setTimeout(tick, pauseAfterDelete);
+          return;
+        }
+        timer = setTimeout(tick, deleteSpeed);
+      } else {
+        charIndex++;
+        textEl.textContent = current.slice(0, charIndex);
+
+        if (charIndex === current.length) {
+          isDeleting = true;
+          timer = setTimeout(tick, pauseAfterType);
+          return;
+        }
+        timer = setTimeout(tick, typeSpeed);
       }
-      setTimeout(tick, deleteSpeed);
-    } else {
-      charIndex++;
-      textEl.textContent = current.slice(0, charIndex);
-
-      if (charIndex === current.length) {
-        isDeleting = true;
-        setTimeout(tick, pauseAfterType);
-        return;
-      }
-      setTimeout(tick, typeSpeed);
     }
+
+    // Start after a short initial delay so the page paint settles
+    timer = setTimeout(tick, 600);
+
+    // Clean up pending timer when navigating away
+    document.addEventListener('astro:before-swap', () => clearTimeout(timer), { once: true });
   }
 
-  // Start after a short initial delay so the page paint settles
-  setTimeout(tick, 600);
+  // Run on initial load and on every client-side navigation back to this page
+  document.addEventListener('astro:page-load', startTyping);
 </script>
