@@ -32,10 +32,6 @@ export interface SiteConfig {
    */
   blogImageOverlay?: boolean;
   /**
-   * Set to false to hide the decorative glow in blog article headers.
-   */
-  blogHeaderGlow?: boolean;
-  /**
    * Branding configuration
    * Logo files: Replace SVGs in src/assets/branding/
    * Favicon: Replace in public/favicon.svg
@@ -91,7 +87,6 @@ const siteConfig: SiteConfig = {
   },
   authorImage: '/avatar.svg',
   blogImageOverlay: true,
-  blogHeaderGlow: false,
   branding: {
     logo: {
       alt: 'Astro Rocket',
