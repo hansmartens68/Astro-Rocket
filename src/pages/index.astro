@@ -35,8 +35,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <Badge slot="badge" variant="brand" pulse>Available for new projects</Badge>
 
     <h1 slot="title">
-      <span class="text-white">Astro Rocket —</span><br />
-      <span class="text-brand-500">Web Designer</span><span class="text-white"> &amp; Developer</span>
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
     </h1>
 
     <p slot="description">
