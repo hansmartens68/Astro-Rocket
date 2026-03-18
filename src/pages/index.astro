@@ -225,7 +225,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
       <div class="grid gap-6 md:grid-cols-2">
         <!-- Testimonial 1 -->
-        <Card variant="elevated" padding="lg">
+        <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
             <div class="flex gap-1 text-brand-500">
               {[...Array(5)].map(() => (
@@ -250,7 +250,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </Card>
 
         <!-- Testimonial 2 -->
-        <Card variant="elevated" padding="lg">
+        <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
             <div class="flex gap-1 text-brand-500">
               {[...Array(5)].map(() => (
