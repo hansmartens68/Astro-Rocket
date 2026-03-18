@@ -19,10 +19,13 @@ import TypingEffect from '@/components/ui/TypingEffect.astro';
 >
   <Hero layout="centered" size="sm" showGrid showBlob blobPosition="center">
     <Badge slot="badge" variant="brand">About me</Badge>
-    <h1 slot="title">
-      Astro Rocket —<br />
-      <span class="text-brand-500">Web Designer</span> &amp; Developer
-    </h1>
+   <h1 slot="title">
+  Astro Rocket —<br />
+  <span class="text-brand-500">
+    <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "UI/UX Enthusiast"]} />
+  </span>
+</h1>
+
     <p slot="description">
       I care about both sides of the craft — how a site looks and how it
       performs. Here's a bit more about how I think and work.
@@ -56,7 +59,7 @@ import TypingEffect from '@/components/ui/TypingEffect.astro';
                 <p class="text-xs font-bold tracking-wide uppercase text-foreground-muted mb-1">Web Designer & Developer</p>
                 <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  15 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
                   <Badge size="sm" variant="brand">Astro</Badge>
