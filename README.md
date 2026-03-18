@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="src/assets/branding/logo-full.svg" alt="Velocity" width="370" />
+  <img src="src/assets/branding/logo-full.svg" alt="Astro Rocket Theme" width="370" />
 </p>
 
 <p align="center">
-  <strong>Astro 6 Boilerplate</strong> — A production-ready starter template built on Astro 6 and Tailwind CSS v4.
+  <strong>Astro Rocket Theme</strong> — A production-ready starter template built on Astro 6 and Tailwind CSS v4.
 </p>
 
 <p align="center">
