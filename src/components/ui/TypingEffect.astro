@@ -28,6 +28,13 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
 </span>
 
 <style>
+  .typing-effect {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
   .typing-cursor {
     display: inline-block;
     margin-left: 1px;
@@ -47,6 +54,23 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
     const root = document.getElementById(id);
     if (!root) return;
     const textEl = root.querySelector('.typing-text');
+
+    // Lock the element width to the widest word so the layout never shifts
+    const measurer = document.createElement('span');
+    measurer.setAttribute('aria-hidden', 'true');
+    measurer.style.cssText = 'visibility:hidden;position:absolute;white-space:nowrap;pointer-events:none;';
+    const cs = getComputedStyle(root);
+    measurer.style.font = cs.font;
+    measurer.style.letterSpacing = cs.letterSpacing;
+    document.body.appendChild(measurer);
+
+    let maxWidth = 0;
+    for (const word of words) {
+      measurer.textContent = word + '|'; // include cursor character in measurement
+      maxWidth = Math.max(maxWidth, measurer.offsetWidth);
+    }
+    document.body.removeChild(measurer);
+    root.style.minWidth = maxWidth + 'px';
 
     let wordIndex = 0;
     let charIndex = 0;

@@ -9,6 +9,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
 import TechStack from '@/components/landing/TechStack.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 ---
@@ -20,7 +21,9 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
     <Badge slot="badge" variant="brand">About me</Badge>
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+        <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Blogger", "Coffee lover"]} />
+      </span>
     </h1>
 
     <p slot="description">
