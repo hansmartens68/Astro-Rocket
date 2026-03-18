@@ -1,8 +1,5 @@
-<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="400" rx="80" fill="#F94C10"/>
-  <!-- A mark: two vertical bars + top bar + middle crossbar -->
-  <rect x="83" y="75" width="58" height="250" rx="12" fill="white"/>
-  <rect x="258" y="75" width="58" height="250" rx="12" fill="white"/>
-  <rect x="83" y="75" width="234" height="62" rx="12" fill="white"/>
-  <rect x="83" y="183" width="234" height="58" rx="12" fill="white"/>
+<svg width="400" height="400" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="6" fill="oklch(58% 0.20 270)"/>
+  <path d="M4 8V24M4 16H12M12 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 24V8L22.5 18L29 8V24" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
