@@ -21,8 +21,8 @@ export const badgeVariants = cva(
           'bg-brand-500/10 text-brand-600 border-brand-500/20 dark:text-brand-400',
       },
       size: {
-        sm: 'text-[10px] px-2 py-0.5 gap-1',
-        md: 'text-xs px-2.5 py-1 gap-1.5',
+        sm: 'text-xs px-2 py-0.5 gap-1',
+        md: 'text-sm px-2.5 py-1 gap-1.5',
       },
       pill: {
         true: 'rounded-full shadow-sm',
