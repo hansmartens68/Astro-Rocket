@@ -18,7 +18,10 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   description="Hans Martens is a web designer and developer based in Veghel, the Netherlands. I build fast, modern websites and write about design and development."
 >
   <Hero layout="centered" size="sm" showGrid showBlob blobPosition="center">
-    <Badge slot="badge" variant="brand">About me</Badge>
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="user" size="sm" />
+      About me
+    </Badge>
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
@@ -37,10 +40,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <!-- Left: text -->
         <div>
-          <div class="text-brand-500 mb-4 flex items-center gap-2 text-sm font-bold tracking-wide uppercase">
-            <Icon name="users" size="sm" />
-            <span>The Partnership</span>
-          </div>
+          <Badge variant="brand" pill class="mb-4">The Partnership</Badge>
           <h2 class="font-display text-4xl font-bold text-foreground mb-6">
             Web design, now with a thinking partner
           </h2>
@@ -96,6 +96,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 text-center">
+        <Badge variant="brand" pill class="mb-4">My Process</Badge>
         <h2 class="font-display text-4xl font-bold text-foreground mb-4">
           How I Work
         </h2>
@@ -151,6 +152,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   </section>
   <!-- My Stack -->
   <TechStack
+    badge="Tools & Tech"
     title="My Stack"
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
