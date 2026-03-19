@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-  command = 'npm create velocity-astro@latest',
+  command = 'npm create astro-rocket-theme@latest',
   copiedText = 'Copied!',
   size = 'lg',
   class: className,
@@ -63,7 +63,7 @@ const sizes = {
 
       if (!copyIcon || !checkIcon || !commandText) return;
 
-      const command = button.dataset.command || 'npm create velocity-astro@latest';
+      const command = button.dataset.command || 'npm create astro-rocket-theme@latest';
       const copiedText = button.dataset.copied || 'Copied!';
 
       button.addEventListener('click', async () => {

@@ -20,7 +20,7 @@
 
 > **Astro Rocket is a fork of [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com).** Full credit to the original authors for the foundation this project builds on.
 
-Velocity accelerates Astro project delivery with a comprehensive foundation that includes a design token system, 57 components across 7 categories, SEO, dynamic OG image generation, and content management — built on Astro 6 (beta) and Tailwind CSS v4.
+Astro Rocket Theme accelerates Astro project delivery with a comprehensive foundation that includes a design token system, 57 components across 7 categories, SEO, dynamic OG image generation, and content management — built on Astro 6 and Tailwind CSS v4.
 
 ### Key Features
 
@@ -39,7 +39,7 @@ Velocity accelerates Astro project delivery with a comprehensive foundation that
 
 ### Internationalization (i18n)
 
-i18n support is available through the **[create-velocity-astro](https://github.com/southwellmedia/create-velocity-astro)** CLI. The base boilerplate is i18n-ready with locale-aware content collection schemas — run the CLI with the i18n option to add full translation support, language routing, and the LanguageSwitcher component.
+i18n support is available through the **[create-velocity-astro](https://github.com/southwellmedia/create-velocity-astro)** CLI (the upstream Velocity CLI). The base boilerplate is i18n-ready with locale-aware content collection schemas — run the CLI with the i18n option to add full translation support, language routing, and the LanguageSwitcher component.
 
 ---
 
@@ -54,7 +54,7 @@ i18n support is available through the **[create-velocity-astro](https://github.c
 
 ```bash
 # Clone the repository
-git clone https://github.com/southwellmedia/velocity.git my-project
+git clone https://github.com/hansmartens68/astro--rocket.git my-project
 cd my-project
 
 # Install dependencies
@@ -69,22 +69,12 @@ pnpm dev
 
 Visit `http://localhost:4321` to see your site.
 
-### Using the CLI (Recommended)
-
-For the full experience including i18n support:
-
-```bash
-pnpm create velocity-astro my-project
-```
-
-The CLI provides interactive prompts for optional features like i18n, additional components, and deployment configurations.
-
 ---
 
 ## Project Structure
 
 ```
-velocity/
+astro-rocket-theme/
 ├── public/                  # Static assets (fonts, favicon)
 ├── src/
 │   ├── assets/              # Images and icons (processed by Astro)
@@ -182,7 +172,7 @@ BING_SITE_VERIFICATION=your-code
 
 ## Design System
 
-Velocity uses a three-tier design token system with OKLCH colors for perceptual uniformity:
+Astro Rocket Theme uses a three-tier design token system with OKLCH colors for perceptual uniformity:
 
 1. **Primitives** (`src/styles/tokens/primitives.css`) — raw color scales (gray, brand, status)
 2. **Semantic tokens** (`src/styles/themes/*.css`) — purpose-based mappings (background, foreground, border, etc.)
@@ -299,7 +289,7 @@ Foreground tokens are documented with their contrast ratios inline. When customi
 
 ## Components
 
-Velocity includes 57 components across 7 categories. All UI components use [class-variance-authority (CVA)](https://cva.style) for type-safe variant management and are organized into 8 subcategories.
+Astro Rocket Theme includes 57 components across 7 categories. All UI components use [class-variance-authority (CVA)](https://cva.style) for type-safe variant management and are organized into 8 subcategories.
 
 ### UI Components (31)
 
@@ -560,7 +550,7 @@ pnpm build
 
 ## Performance
 
-Velocity is optimized for Core Web Vitals:
+Astro Rocket Theme is optimized for Core Web Vitals:
 
 - **Lighthouse Score**: 95+ across all categories
 - **Zero JavaScript** by default (islands architecture)
@@ -599,4 +589,4 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-**Built & maintained by [Southwell Media](https://southwellmedia.com)**
+**Built & maintained by [Hans Martens](https://hansmartens.dev)** — forked from [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com)
