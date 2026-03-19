@@ -58,13 +58,13 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Rocket',
+  name: 'Hans Martens',
   description:
-    'Astro Rocket is a free, open-source Astro 6 theme with 57+ components, 8 color themes, dark mode, i18n, and a perfect Lighthouse score — everything you need to launch a fast, modern website.',
+    'Hans Martens — Web Designer & Developer, based in Veghel, the Netherlands ',
   url: SITE_URL || 'https://hansmartens.dev',
   ogImage: '/og-default.png',
-  author: 'Astro Rocket',
-  email: 'hello@youremail.com',
+  author: 'Hans Martens',
+  email: 'hello@hansmartens.dev',
   address: {
     street: '',
     city: 'Veghel',
@@ -75,7 +75,7 @@ const siteConfig: SiteConfig = {
   socialLinks: [
     'https://github.com',
     'https://linkedin.com',
-    'https://x.com',
+    'https://x.com/hansmartens_dev',
   ],
   twitter: {
     site: '',
@@ -89,7 +89,7 @@ const siteConfig: SiteConfig = {
   blogImageOverlay: true,
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'Hans Martens',
       imageUrl: '/favicon.svg',
     },
     favicon: {
