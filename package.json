@@ -1,7 +1,7 @@
 {
-  "name": "astro-rocket",
+  "name": "astro-rocket-theme",
   "version": "1.0.0",
-  "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
+  "description": "Astro Rocket Theme — A production-ready Astro 6 theme built on Tailwind CSS v4",
   "type": "module",
   "author": "",
   "license": "MIT",
