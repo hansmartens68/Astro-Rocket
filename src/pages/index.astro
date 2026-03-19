@@ -45,12 +45,13 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href="https://github.com">
+      <Button size="lg" href="https://hansmartens.dev/contact">
         Start a Project
         <Icon name="arrow-right" size="sm" />
       </Button>
       <Button size="lg" variant="outline" href="/about">
-        Learn more
+      Learn more
+      <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </Hero>
