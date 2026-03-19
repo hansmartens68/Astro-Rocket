@@ -23,8 +23,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <LandingLayout
-  title="Hans Martens — Web Designer & Developer"
-  description="
+  title="Web Designer & Developer | Veghel"
+  description="Web designer and developer based in Veghel, the Netherlands. I build fast, modern websites for businesses and creators.
+
     </p>"
   image="/og-homepage.jpeg"
   includePersonSchema={true}
@@ -35,7 +36,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <Badge slot="badge" variant="brand" pill pulse>Available for new projects</Badge>
 
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Hans Martens —</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
     </h1>
 
