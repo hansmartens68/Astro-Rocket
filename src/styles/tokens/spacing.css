@@ -83,6 +83,6 @@
   /* ---------------------------------------------------------------------------
      Page Top Spacing (after fixed header)
      --------------------------------------------------------------------------- */
-  --space-page-top: var(--space-32); /* 128px - clearance for fixed header + breathing room */
-  --space-page-top-sm: var(--space-24); /* 96px - smaller top clearance */
+  --space-page-top: clamp(var(--space-24), 14vw, var(--space-32)); /* 96px → 128px - clearance for fixed header + breathing room */
+  --space-page-top-sm: clamp(var(--space-20), 10vw, var(--space-24)); /* 80px → 96px - smaller top clearance */
 }
