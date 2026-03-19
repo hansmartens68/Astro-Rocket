@@ -67,6 +67,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
+  <div class="min-h-screen pt-16">
   <!-- Article Hero -->
   <ArticleHero
     title={title}
@@ -121,13 +122,9 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
   </article>
 
   <!-- Related Posts -->
-  {
-    tags.length > 0 && (
-      <div class="mx-auto max-w-6xl px-6 pb-16">
-        <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
-      </div>
-    )
-  }
+  {tags.length > 0 && (
+    <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
+  )}
 
   <!-- Follow Along -->
   <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary">
@@ -179,6 +176,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
       </a>
     </div>
   </CTA>
+  </div>
 
   <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>
