@@ -44,23 +44,25 @@ const getPostUrl = (postId: string) => {
 ---
 
 {relatedPosts.length > 0 && (
-  <section class="border-t border-border pt-[var(--space-section-header)] mt-[var(--space-section-header)]">
-    <h2 class="font-display text-2xl font-bold text-foreground mb-[var(--space-stack-lg)]">
-      Related Posts
-    </h2>
+  <section class="border-t border-border py-[var(--space-section-md)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="font-display text-2xl font-bold text-foreground mb-[var(--space-stack-lg)]">
+        Related Posts
+      </h2>
 
-    <div class="grid gap-[var(--space-stack-lg)] md:grid-cols-2 lg:grid-cols-3">
-      {relatedPosts.map((post) => (
-        <BlogCard
-          title={post.data.title}
-          description={post.data.description}
-          href={getPostUrl(post.id)}
-          publishedAt={post.data.publishedAt}
-          tags={post.data.tags}
-          author={post.data.author}
-          image={post.data.image}
-        />
-      ))}
+      <div class="grid gap-[var(--space-stack-lg)] md:grid-cols-2 lg:grid-cols-3">
+        {relatedPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            href={getPostUrl(post.id)}
+            publishedAt={post.data.publishedAt}
+            tags={post.data.tags}
+            author={post.data.author}
+            image={post.data.image}
+          />
+        ))}
+      </div>
     </div>
   </section>
 )}
