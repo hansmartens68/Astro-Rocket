@@ -73,13 +73,13 @@ const siteConfig: SiteConfig = {
     country: 'NL',
   },
   socialLinks: [
-    'https://github.com',
-    'https://linkedin.com',
+    'https://github.com/hansmartens68',
+    'https://instagram.com/hansmartens.dev',
     'https://x.com/hansmartens_dev',
   ],
   twitter: {
-    site: '',
-    creator: '',
+    site: 'https://hansmartens.dev',
+    creator: 'Hans Martens',
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
