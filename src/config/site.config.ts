@@ -86,7 +86,7 @@ const siteConfig: SiteConfig = {
     bing: BING_SITE_VERIFICATION,
   },
   authorImage: '/avatar.svg',
-  blogImageOverlay: true,
+  blogImageOverlay: false,
   branding: {
     logo: {
       alt: 'Hans Martens',
