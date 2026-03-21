@@ -7,18 +7,35 @@
 
    To add a new theme: create a file in ../themes/ following the same token
    contract, scope it under html[data-theme="name"], and import it below.
+
+   Theme files
+   -----------
+   Active in selector (ThemeSelector.astro):
+     lime, teal, cyan, sky, blue, violet, purple
+
+   Hidden from selector (files kept for re-use):
+     orange, green, indigo
+
+   Available but not exposed in selector:
+     amber, magenta
    ============================================================================= */
 
 @import './primitives.css';
-@import '../themes/sky.css';
+
+/* — active in selector — */
+@import '../themes/lime.css';
+@import '../themes/teal.css';
 @import '../themes/cyan.css';
+@import '../themes/sky.css';
 @import '../themes/blue.css';
-@import '../themes/indigo.css';
 @import '../themes/violet.css';
 @import '../themes/purple.css';
-@import '../themes/teal.css';
-@import '../themes/green.css';
-@import '../themes/lime.css';
-@import '../themes/magenta.css';
+
+/* — hidden from selector — */
 @import '../themes/orange.css';
+@import '../themes/green.css';
+@import '../themes/indigo.css';
+
+/* — available, not in selector — */
 @import '../themes/amber.css';
+@import '../themes/magenta.css';

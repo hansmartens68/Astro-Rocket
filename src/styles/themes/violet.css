@@ -132,7 +132,7 @@ html.dark[data-theme="violet"] {
   --foreground: oklch(95% 0.010 277);
   --foreground-secondary: oklch(83% 0.013 277);
   --foreground-muted: oklch(68% 0.010 277);
-  --foreground-subtle: oklch(56% 0.008 277);
+  --foreground-subtle: oklch(58% 0.008 277);   /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.014 277);
   --border-strong: oklch(27% 0.011 277);
