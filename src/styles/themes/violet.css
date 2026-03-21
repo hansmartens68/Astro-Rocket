@@ -1,36 +1,36 @@
 /* =============================================================================
-   Velocity Theme - Purple
+   Velocity Theme - Violet
    =============================================================================
-   Vivid purple (hue 292°). Bold, expressive, and unmistakable — inspired by
-   Tailwind's purple palette (#a855f7). The quintessential purple: bright,
-   saturated, and full of personality.
+   Rich violet (hue 277°). Creative, distinctive, and bold — inspired by
+   Tailwind's violet palette. The sweet spot between indigo and purple with
+   a premium, expressive character.
 
-   Dark mode: near-black with a vivid purple tint and luminous glow.
-   Light mode: clean neutral whites with purple as the single accent.
+   Dark mode: near-black with a rich violet tint and vivid glow.
+   Light mode: clean neutral whites with violet as the single accent.
    ============================================================================= */
 
-html[data-theme="purple"] {
+html[data-theme="violet"] {
   /* -------------------------------------------------------------------------
-     Brand Scale Override — Purple (hue 292)
-     Inspired by Tailwind purple-*. Vivid and full of character.
+     Brand Scale Override — Violet (hue 277)
+     Inspired by Tailwind violet-*. Rich and expressive.
      ------------------------------------------------------------------------- */
-  --brand-50:  oklch(97.5% 0.02  292);
-  --brand-100: oklch(94.5% 0.05  292);
-  --brand-200: oklch(86%   0.13  292);
-  --brand-300: oklch(76%   0.21  292);
-  --brand-400: oklch(68%   0.26  292);
-  --brand-500: oklch(62%   0.28  292);
-  --brand-600: oklch(52.5% 0.25  292);
-  --brand-700: oklch(44.5% 0.20  292);
-  --brand-800: oklch(36%   0.15  292);
-  --brand-900: oklch(25.5% 0.10  292);
+  --brand-50:  oklch(97.5% 0.02  277);
+  --brand-100: oklch(94.5% 0.05  277);
+  --brand-200: oklch(86%   0.12  277);
+  --brand-300: oklch(76%   0.20  277);
+  --brand-400: oklch(68%   0.24  277);
+  --brand-500: oklch(62.5% 0.26  277);
+  --brand-600: oklch(53%   0.23  277);
+  --brand-700: oklch(45%   0.19  277);
+  --brand-800: oklch(36.5% 0.14  277);
+  --brand-900: oklch(26%   0.09  277);
 
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode
      ------------------------------------------------------------------------- */
   --background: var(--gray-0);
-  --background-secondary: oklch(97.5% 0.010 292);
-  --background-tertiary: oklch(95% 0.018 292);
+  --background-secondary: oklch(97.5% 0.010 277);
+  --background-tertiary: oklch(95% 0.018 277);
   --background-elevated: var(--gray-0);
 
   --foreground: var(--gray-900);           /* 18.3:1 on white — WCAG AAA */
@@ -73,16 +73,16 @@ html[data-theme="purple"] {
   --gradient-end: oklch(100% 0 0);
 
   /* -------------------------------------------------------------------------
-     Inverted/Contrast Section — deep purple-dark
+     Inverted/Contrast Section — deep violet-dark
      ------------------------------------------------------------------------- */
-  --surface-invert: oklch(9.5% 0.020 292);
-  --surface-invert-secondary: oklch(13.5% 0.016 292);
-  --surface-invert-tertiary: oklch(17.5% 0.013 292);
+  --surface-invert: oklch(9.5% 0.018 277);
+  --surface-invert-secondary: oklch(13.5% 0.014 277);
+  --surface-invert-tertiary: oklch(17.5% 0.011 277);
   --on-invert: var(--gray-50);
   --on-invert-secondary: var(--gray-200);
   --on-invert-muted: var(--gray-300);
-  --border-invert: oklch(21% 0.016 292);
-  --border-invert-strong: oklch(29% 0.013 292);
+  --border-invert: oklch(21% 0.014 277);
+  --border-invert-strong: oklch(29% 0.011 277);
 
   /* -------------------------------------------------------------------------
      Typography
@@ -100,15 +100,15 @@ html[data-theme="purple"] {
   --theme-body-leading: 1.6;
 
   /* -------------------------------------------------------------------------
-     Shadows — purple-tinted
+     Shadows — violet-tinted
      ------------------------------------------------------------------------- */
-  --theme-shadow-sm: 0 1px 2px oklch(20% 0.04 292 / 0.08);
-  --theme-shadow-md: 0 4px 8px oklch(20% 0.04 292 / 0.10),
-    0 0 1px oklch(20% 0.04 292 / 0.05);
-  --theme-shadow-lg: 0 8px 16px oklch(20% 0.04 292 / 0.13),
-    0 0 1px oklch(20% 0.04 292 / 0.05);
-  --theme-shadow-xl: 0 24px 48px oklch(20% 0.04 292 / 0.19),
-    0 0 1px oklch(20% 0.04 292 / 0.05);
+  --theme-shadow-sm: 0 1px 2px oklch(20% 0.03 277 / 0.08);
+  --theme-shadow-md: 0 4px 8px oklch(20% 0.03 277 / 0.10),
+    0 0 1px oklch(20% 0.03 277 / 0.05);
+  --theme-shadow-lg: 0 8px 16px oklch(20% 0.03 277 / 0.12),
+    0 0 1px oklch(20% 0.03 277 / 0.05);
+  --theme-shadow-xl: 0 24px 48px oklch(20% 0.03 277 / 0.18),
+    0 0 1px oklch(20% 0.03 277 / 0.05);
 
   /* -------------------------------------------------------------------------
      Border Radii
@@ -121,43 +121,43 @@ html[data-theme="purple"] {
 }
 
 /* -------------------------------------------------------------------------
-   Dark Mode — deep near-black with purple luminance
+   Dark Mode — deep near-black with violet glow
    ------------------------------------------------------------------------- */
-html.dark[data-theme="purple"] {
-  --background: oklch(9.5% 0.020 292);
-  --background-secondary: oklch(15% 0.016 292);
-  --background-tertiary: oklch(20% 0.013 292);
-  --background-elevated: oklch(15% 0.016 292);
+html.dark[data-theme="violet"] {
+  --background: oklch(9.5% 0.018 277);
+  --background-secondary: oklch(15% 0.014 277);
+  --background-tertiary: oklch(20% 0.011 277);
+  --background-elevated: oklch(15% 0.014 277);
 
-  --foreground: oklch(95% 0.012 292);
-  --foreground-secondary: oklch(83% 0.015 292);
-  --foreground-muted: oklch(68% 0.012 292);
-  --foreground-subtle: oklch(56% 0.009 292);
+  --foreground: oklch(95% 0.010 277);
+  --foreground-secondary: oklch(83% 0.013 277);
+  --foreground-muted: oklch(68% 0.010 277);
+  --foreground-subtle: oklch(56% 0.008 277);
 
-  --border: oklch(20% 0.016 292);
-  --border-strong: oklch(27% 0.013 292);
-  --border-subtle: oklch(13.5% 0.016 292);
+  --border: oklch(20% 0.014 277);
+  --border-strong: oklch(27% 0.011 277);
+  --border-subtle: oklch(13.5% 0.014 277);
 
-  --primary: oklch(95% 0.012 292);
-  --primary-hover: oklch(83% 0.015 292);
-  --primary-foreground: oklch(9.5% 0.020 292);
+  --primary: oklch(95% 0.010 277);
+  --primary-hover: oklch(83% 0.013 277);
+  --primary-foreground: oklch(9.5% 0.018 277);
 
-  --secondary: oklch(20% 0.013 292);
-  --secondary-hover: oklch(24% 0.013 292);
-  --secondary-foreground: oklch(90% 0.012 292);
+  --secondary: oklch(20% 0.011 277);
+  --secondary-hover: oklch(24% 0.011 277);
+  --secondary-foreground: oklch(90% 0.010 277);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
-  --accent-light: oklch(18% 0.09 292);
+  --accent-light: oklch(18% 0.08 277);
 
-  --muted: oklch(20% 0.013 292);
-  --muted-foreground: oklch(68% 0.012 292);
+  --muted: oklch(20% 0.011 277);
+  --muted-foreground: oklch(68% 0.010 277);
 
-  --card: oklch(15% 0.016 292);
-  --card-border: oklch(23% 0.016 292);
+  --card: oklch(15% 0.014 277);
+  --card-border: oklch(23% 0.014 277);
 
-  --input-bg: oklch(15% 0.016 292);
-  --input-border: oklch(27% 0.013 292);
+  --input-bg: oklch(15% 0.014 277);
+  --input-border: oklch(27% 0.011 277);
   --input-focus: var(--brand-400);
 
   --ring: var(--brand-400);
@@ -165,27 +165,27 @@ html.dark[data-theme="purple"] {
   --destructive: oklch(65% 0.22 25);
   --destructive-foreground: var(--gray-0);
 
-  --gradient-start: oklch(9.5% 0.020 292);
-  --gradient-end: oklch(13% 0.016 292);
+  --gradient-start: oklch(9.5% 0.018 277);
+  --gradient-end: oklch(13% 0.014 277);
 
   --success-light: oklch(18% 0.06 155);
   --warning-light: oklch(18% 0.05 85);
   --error-light: oklch(18% 0.05 25);
 
-  --surface-invert: oklch(13% 0.016 292);
-  --surface-invert-secondary: oklch(16.5% 0.013 292);
-  --surface-invert-tertiary: oklch(21% 0.013 292);
-  --on-invert: oklch(95% 0.012 292);
-  --on-invert-secondary: oklch(72% 0.015 292);
-  --on-invert-muted: oklch(68% 0.012 292);
-  --border-invert: oklch(21% 0.013 292);
-  --border-invert-strong: oklch(29% 0.011 292);
+  --surface-invert: oklch(13% 0.014 277);
+  --surface-invert-secondary: oklch(16.5% 0.011 277);
+  --surface-invert-tertiary: oklch(21% 0.011 277);
+  --on-invert: oklch(95% 0.010 277);
+  --on-invert-secondary: oklch(72% 0.013 277);
+  --on-invert-muted: oklch(68% 0.010 277);
+  --border-invert: oklch(21% 0.011 277);
+  --border-invert-strong: oklch(29% 0.009 277);
 
-  --theme-shadow-sm: 0 1px 3px oklch(9% 0.05 292 / 0.35);
-  --theme-shadow-md: 0 4px 12px oklch(9% 0.05 292 / 0.4),
-    0 0 1px oklch(9% 0.05 292 / 0.15);
-  --theme-shadow-lg: 0 8px 24px oklch(9% 0.05 292 / 0.45),
-    0 1px 2px oklch(50% 0.22 292 / 0.09);
-  --theme-shadow-xl: 0 24px 48px oklch(9% 0.05 292 / 0.55),
-    0 2px 4px oklch(50% 0.22 292 / 0.12);
+  --theme-shadow-sm: 0 1px 3px oklch(9% 0.04 277 / 0.35);
+  --theme-shadow-md: 0 4px 12px oklch(9% 0.04 277 / 0.4),
+    0 0 1px oklch(9% 0.04 277 / 0.15);
+  --theme-shadow-lg: 0 8px 24px oklch(9% 0.04 277 / 0.45),
+    0 1px 2px oklch(50% 0.20 277 / 0.08);
+  --theme-shadow-xl: 0 24px 48px oklch(9% 0.04 277 / 0.55),
+    0 2px 4px oklch(50% 0.20 277 / 0.11);
 }
