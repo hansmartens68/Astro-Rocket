@@ -394,33 +394,6 @@
     animation: slide-down 0.5s ease-out forwards;
   }
 
-  /* Hero entrance: transform-only (no opacity) — LCP-safe, GPU-accelerated */
-  .animate-hero-slide-up {
-    animation: hero-slide-up 0.7s var(--ease-out) both;
-  }
-
-  @keyframes hero-slide-up {
-    from { transform: translateY(28px); }
-    to   { transform: translateY(0); }
-  }
-
-  /* Scroll reveal: elements start hidden and transition in when .is-visible is added */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-  }
-
-  [data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Stagger delays for sibling reveal elements */
-  [data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
-  [data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
-  [data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
-
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -673,20 +646,13 @@
     }
   }
 
-  /* Reduced motion: disable all animations */
+  /* Reduced motion: disable micro-animations */
   @media (prefers-reduced-motion: reduce) {
     .animate-shake,
     .animate-tab-enter,
     .animate-toast-in,
-    .animate-tooltip-in,
-    .animate-hero-slide-up {
+    .animate-tooltip-in {
       animation: none;
-    }
-
-    [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
     }
   }
 }
@@ -988,5 +954,49 @@
   .tooltip-bubble.visible {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Hero entrance & scroll-reveal animations
+   Outside every @layer so these rules are unlayered CSS — highest cascade
+   precedence — and never overridden by Tailwind-generated utilities.
+   Explicit cubic-bezier values replace var() references to guarantee the
+   transition shorthand is always valid.
+   ------------------------------------------------------------------------- */
+
+@keyframes hero-slide-up {
+  from { transform: translateY(28px); }
+  to   { transform: translateY(0); }
+}
+
+.animate-hero-slide-up {
+  animation: hero-slide-up 0.7s cubic-bezier(0, 0, 0.2, 1) both;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity  0.6s cubic-bezier(0, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
+[data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
+[data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-slide-up { animation: none; }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
