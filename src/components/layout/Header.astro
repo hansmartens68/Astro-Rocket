@@ -565,12 +565,7 @@ const buttonId = `${menuId}-button`;
     background: color-mix(in oklch, var(--color-background) 92%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
-    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Glow only in light mode — suppress in dark mode */
-  .dark [data-header-shape="floating"][data-scrolled] {
-    box-shadow: none;
+    box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
   }
 
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
