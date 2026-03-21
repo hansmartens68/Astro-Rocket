@@ -1,0 +1,23 @@
+---
+const svgs = import.meta.glob<string>('/src/assets/blog/*.svg', { as: 'raw', eager: true });
+
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
+---
+
+{svgContent && (
+  <div class="svg-host" role="img" aria-label={title} set:html={svgContent} />
+)}
+
+<style>
+  .svg-host :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
