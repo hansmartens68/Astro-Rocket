@@ -1,59 +1,88 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060f04"/>
-      <stop offset="100%" stop-color="#0a1407"/>
+    <!-- Light background: white → lightest lime -->
+    <linearGradient id="hgc-bgL" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fce5"/>
     </linearGradient>
-    <radialGradient id="glowMain" cx="600" cy="280" r="380" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#84cc16" stop-opacity="0.18"/>
-      <stop offset="60%" stop-color="#84cc16" stop-opacity="0.04"/>
+    <!-- Dark background: deep navy -->
+    <linearGradient id="hgc-bgD" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0c1929"/>
+      <stop offset="100%" stop-color="#162236"/>
+    </linearGradient>
+    <!-- Light glow: very subtle lime -->
+    <radialGradient id="hgc-glL" cx="600" cy="240" r="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.10"/>
+      <stop offset="65%"  stop-color="#84cc16" stop-opacity="0.02"/>
       <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glowIcon" cx="600" cy="230" r="200" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    <!-- Dark glow: vivid lime spotlight -->
+    <radialGradient id="hgc-glD" cx="600" cy="240" r="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.38"/>
+      <stop offset="55%"  stop-color="#84cc16" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#e2e8f0"/>
-      <stop offset="45%"  stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#cbd5e1"/>
-    </linearGradient>
-    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
+    <!-- Icon halo light -->
+    <radialGradient id="hgc-iblG" cx="600" cy="240" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#d9f99d" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#d9f99d" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Icon halo dark -->
+    <radialGradient id="hgc-ibdG" cx="600" cy="240" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glowMain)"/>
-  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
+  <!-- Backgrounds -->
+  <rect width="1200" height="630" fill="url(#hgc-bgL)" class="bi-bg-l"/>
+  <rect width="1200" height="630" fill="url(#hgc-bgD)" class="bi-bg-d"/>
 
-  <!-- Lucide Layers icon — scale 11, centre at canvas (600, 247) -->
-  <g transform="translate(468, 115) scale(11)"
-     stroke="#ffffff" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <!-- Glow overlays -->
+  <rect width="1200" height="630" fill="url(#hgc-glL)" class="bi-gl"/>
+  <rect width="1200" height="630" fill="url(#hgc-glD)" class="bi-gd"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
+
+  <!-- Icon halo circles -->
+  <circle cx="600" cy="240" r="98" fill="url(#hgc-iblG)" class="bi-ibl"/>
+  <circle cx="600" cy="240" r="98" fill="url(#hgc-ibdG)" class="bi-ibd"/>
+
+  <!-- Decorative rings -->
+  <circle cx="600" cy="240" r="112" stroke-width="1" stroke-opacity="0.28" fill="none" class="bi-ring"/>
+  <circle cx="600" cy="240" r="136" stroke-width="0.75" stroke-opacity="0.13" fill="none" stroke-dasharray="6 10" class="bi-ring"/>
+
+  <!-- Lucide Layers icon — scale 11, centred at (600, 240) -->
+  <g transform="translate(468, 108) scale(11)"
+     stroke-width="0.84" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-icon">
     <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
     <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
     <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
   </g>
 
+  <!-- Title -->
   <text
     x="600" y="490"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
     font-size="120" font-weight="800"
-    fill="url(#textGrad)"
-    text-anchor="middle"
-    letter-spacing="-4"
-  >hero glow</text>
+    text-anchor="middle" letter-spacing="-4"
+    class="bi-title">hero glow</text>
 
-  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
+  <!-- Separator -->
+  <line x1="380" y1="516" x2="820" y2="516" stroke-width="1" class="bi-sep"/>
 
-  <rect x="450" y="548" width="300" height="38" rx="19"
-    fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
+  <!-- Badge -->
+  <rect x="450" y="548" width="300" height="38" rx="19" stroke-width="1" class="bi-badge"/>
   <text
     x="600" y="572"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#ffffff" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.5"
-  >Astro Rocket Theme</text>
+    font-size="13" text-anchor="middle" letter-spacing="1.5"
+    class="bi-badge-text">ASTRO ROCKET THEME</text>
+
+  <!-- Corner brackets -->
+  <path d="M 36 60 L 36 36 L 60 36"   stroke-width="2" fill="none" class="bi-corner"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60"  stroke-width="2" fill="none" class="bi-corner"/>
+  <path d="M 36 570 L 36 594 L 60 594"  stroke-width="2" fill="none" class="bi-corner"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke-width="2" fill="none" class="bi-corner"/>
 </svg>
