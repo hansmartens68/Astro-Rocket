@@ -10,10 +10,14 @@
    ============================================================================= */
 
 @import './primitives.css';
-@import '../themes/purple.css';
+@import '../themes/sky.css';
+@import '../themes/cyan.css';
 @import '../themes/blue.css';
-@import '../themes/green.css';
+@import '../themes/indigo.css';
+@import '../themes/violet.css';
+@import '../themes/purple.css';
 @import '../themes/teal.css';
+@import '../themes/green.css';
 @import '../themes/lime.css';
 @import '../themes/magenta.css';
 @import '../themes/orange.css';
