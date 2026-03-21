@@ -94,8 +94,8 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   </section>
   <!-- Values -->
   <section class="py-[var(--space-section-md)] border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-8 text-center" data-reveal>
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="text-center" data-reveal>
         <Badge variant="brand" pill class="mb-4">My process</Badge>
         <h2 class="font-display text-4xl font-bold text-foreground mb-4">
           How I work
@@ -153,7 +153,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <!-- My Stack -->
   <TechStack
     badge="Tools & tech"
-    title="My Stack"
+    title="My stack"
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
   <!-- CTA -->
@@ -166,12 +166,13 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
         I'm available for new projects. Let's talk about what you need.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact">
+        <Button size="lg" href="/contact" class="hero-btn-brand">
           Get in touch
           <Icon name="arrow-right" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" href="/blog">
+        <Button size="lg" href="/blog" class="hero-btn-brand">
           Read the blog
+          <Icon name="arrow-right" size="sm" />
         </Button>
       </div>
     </div>

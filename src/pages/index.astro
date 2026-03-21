@@ -58,8 +58,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <!-- Services Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8" data-reveal>
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="text-center" data-reveal>
         <Badge variant="brand" pill class="mb-4">Services</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What I do
@@ -172,8 +172,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <!-- Portfolio -->
   <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8" data-reveal>
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="text-center" data-reveal>
         <Badge variant="brand" pill class="mb-4">Selected work</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           Projects I've built
@@ -214,8 +214,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <!-- Testimonials -->
   <section class="py-[var(--space-section-md)] border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8" data-reveal>
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="text-center" data-reveal>
         <Badge variant="brand" pill class="mb-4">Testimonials</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What clients say
@@ -281,8 +281,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <!-- Blog -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="flex items-end justify-between mb-8" data-reveal>
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex items-end justify-between" data-reveal>
         <div>
           <Badge variant="brand" pill class="mb-4">From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -311,7 +311,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         ))}
       </div>
 
-      <div class="mt-8 text-center sm:hidden">
+      <div class="text-center sm:hidden">
         <Button variant="outline" href="/blog">
           View all posts
           <Icon name="arrow-right" size="sm" />
@@ -331,8 +331,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         Get in touch
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" href="/about" class="hero-btn-learn">
+      <Button size="lg" href="/about" class="hero-btn-brand">
         More about me
+        <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </CTA>
