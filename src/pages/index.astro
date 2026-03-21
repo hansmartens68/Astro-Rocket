@@ -306,6 +306,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             featured={post.data.featured}
             author={post.data.author}
             image={post.data.image}
+            svgSlug={post.data.svgSlug}
           />
         ))}
       </div>
