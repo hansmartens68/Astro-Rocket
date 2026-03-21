@@ -14,7 +14,7 @@ export const headerVariants = cva('z-50', {
     },
     shape: {
       bar: 'w-full',
-      floating: 'rounded-2xl transition-[background,border-color,box-shadow] duration-300',
+      floating: 'rounded-full transition-[background,border-color,box-shadow] duration-300',
     },
   },
   compoundVariants: [
