@@ -44,16 +44,9 @@ const {
     variant="transparent"
     position="fixed"
     colorScheme="invert"
-actions={[
-      {
-        icon: 'github',
-        href: 'https://github.com/hansmartens68',
-        label: 'GitHub',
-        iconOnly: true,
-        target: '_blank',
-      },
-    ]}
     showLanguageSwitcher={false}
+    showCta
+    cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
   <slot />
