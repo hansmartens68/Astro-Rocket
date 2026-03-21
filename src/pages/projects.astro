@@ -38,7 +38,7 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
 
-        <h2 class="font-display text-foreground mb-8 text-2xl font-bold" data-reveal>What I've Built</h2>
+        <h2 class="font-display text-foreground mb-8 text-2xl font-bold" data-reveal>What I've built</h2>
 
         <div class="grid gap-6 md:grid-cols-2" data-reveal>
           {projects.map((project) => (
@@ -80,15 +80,15 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
   <CTA variant="invert" size="md" maxWidth="lg">
     <h2 slot="heading">Let's build something together</h2>
     <p slot="description" class="!text-lg">
-      Get In Touch. Response within 1 day.
+      Get in touch. Response within 1 day.
     </p>
     <Fragment slot="actions">
       <Button size="lg" href="/contact" class="hero-btn-brand">
-        Start a Project
+        Get in touch
         <Icon name="arrow-right" size="sm" />
       </Button>
       <Button size="lg" href="/about" class="hero-btn-learn">
-        More About Me
+        More about me
       </Button>
     </Fragment>
   </CTA>
