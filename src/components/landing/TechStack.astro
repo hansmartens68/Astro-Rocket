@@ -23,14 +23,14 @@ const stack = items.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="border-y border-border bg-background-secondary py-[var(--space-section-md)]">
-  <div class="mx-auto max-w-6xl px-6">
+  <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
     {(badge || title || description) && (
-      <div class="mb-8 text-center">
+      <div class="text-center">
         {badge && (
           <Badge variant="brand" pill class="mb-4">{badge}</Badge>
         )}
         {title && (
-          <h2 class="font-display text-4xl font-bold text-foreground mb-4">{title}</h2>
+          <h2 class="font-display text-4xl font-bold text-foreground">{title}</h2>
         )}
         {description && (
           <p class="text-lg text-foreground-muted max-w-2xl mx-auto">{description}</p>
