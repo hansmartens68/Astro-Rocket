@@ -31,14 +31,13 @@ const { title, description, image, imageAlt, noindex, nofollow } = Astro.props;
   <Header
     slot="header"
     position="fixed"
-    shape="floating"
     size="lg"
     showActiveState
     showCta
     cta={{ label: 'Start a Project', href: '/contact' }}
   />
 
-  <main class="min-h-screen pt-24">
+  <main class="min-h-screen pt-16">
     <slot />
   </main>
 
