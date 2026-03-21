@@ -38,6 +38,8 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6">
 
+        <h2 class="font-display text-foreground mb-8 text-2xl font-bold" data-reveal>What I've Built</h2>
+
         <div class="grid gap-6 md:grid-cols-2" data-reveal>
           {projects.map((project) => (
             <Card variant="elevated" hover padding="lg" href={project.data.url ?? project.data.repo} target="_blank" rel="noopener noreferrer" class="group flex flex-col">
