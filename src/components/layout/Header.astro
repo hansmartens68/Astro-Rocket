@@ -82,6 +82,8 @@ interface Props extends HTMLAttributes<'header'> {
   hideLogo?: boolean;
   /** Show language switcher */
   showLanguageSwitcher?: boolean;
+  /** Show social icon links (desktop/tablet only, reads from siteConfig.socialLinks) */
+  showSocialLinks?: boolean;
 }
 
 const {
@@ -99,6 +101,7 @@ const {
   showThemeToggle = true,
   showThemeSelector = false,
   showMobileMenu = true,
+  showSocialLinks = false,
   showActiveState = true,
   logoText,
   hideLogo = false,
@@ -147,6 +150,16 @@ function isActive(href: string): boolean {
   if (!showActiveState) return false;
   if (href.startsWith('#')) return false;
   return currentPath === href || currentPath.startsWith(href + '/');
+}
+
+// Map a social URL to its icon name + accessible label
+function getSocialIconData(url: string): { icon: string; label: string } {
+  if (url.includes('github.com'))    return { icon: 'github',    label: 'GitHub' };
+  if (url.includes('instagram.com')) return { icon: 'instagram', label: 'Instagram' };
+  if (url.includes('x.com') || url.includes('twitter.com')) return { icon: 'x-twitter', label: 'X' };
+  if (url.includes('linkedin.com'))  return { icon: 'linkedin',  label: 'LinkedIn' };
+  if (url.includes('bsky.app'))      return { icon: 'bluesky',   label: 'Bluesky' };
+  return { icon: 'link', label: 'Social' };
 }
 
 // Generate unique ID for this header instance
@@ -227,6 +240,32 @@ const buttonId = `${menuId}-button`;
             {showThemeSelector && (
               <div class="hidden md:flex">
                 <ThemeSelector class={isFloating ? 'hdr-invert-text' : undefined} />
+              </div>
+            )}
+
+            {showSocialLinks && siteConfig.socialLinks.length > 0 && (
+              <div class="hidden md:flex items-center gap-0.5">
+                <span class="border-border mx-1 h-4 border-l" aria-hidden="true" />
+                {siteConfig.socialLinks.map((url) => {
+                  const { icon, label } = getSocialIconData(url);
+                  return (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      class={cn(
+                        'rounded-md p-2 transition-colors duration-(--transition-fast)',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                        isFloating
+                          ? 'hdr-invert-text'
+                          : 'text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                      )}
+                    >
+                      <Icon name={icon} size="sm" />
+                    </a>
+                  );
+                })}
               </div>
             )}
 
