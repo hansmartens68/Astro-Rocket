@@ -337,15 +337,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </CTA>
 
 <style is:global>
-  /* Hero: "Start a Project" — brand-500 bg, white text, no dark-mode gradient */
+  /* Hero: "Start a Project" — brand-700 bg ensures ≥5:1 contrast with white
+     across all themes (brand-500 fails WCAG AA on lime, amber, green, teal) */
   .hero-btn-brand {
-    background-color: var(--color-brand-500) !important;
+    background-color: var(--color-brand-700) !important;
     background-image: none !important;
     color: white !important;
     border-color: transparent !important;
   }
   .hero-btn-brand:hover {
-    background-color: var(--color-brand-500) !important;
+    background-color: var(--color-brand-700) !important;
     background-image: none !important;
     opacity: 0.85;
   }
