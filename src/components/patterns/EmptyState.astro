@@ -41,8 +41,9 @@ const {
     <p class="text-sm text-foreground-muted max-w-sm mb-4">{description}</p>
   )}
   {actionLabel && (
-    <Button variant="secondary" size="sm" href={actionHref}>
+    <Button size="sm" href={actionHref} class="hero-btn-learn rounded-full">
       {actionLabel}
+      <Icon name="arrow-right" size="sm" />
     </Button>
   )}
   <slot />
