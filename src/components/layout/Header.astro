@@ -292,10 +292,11 @@ const buttonId = `${menuId}-button`;
                 size="sm"
                 href={ctaHref}
                 target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
+                class={cn('hero-btn-brand rounded-full', isFloating ? 'hdr-invert-cta' : undefined)}
               >
                 {cta.icon && <Icon name={cta.icon} size="sm" />}
                 {cta.label}
+                {!cta.icon && <Icon name="arrow-right" size="sm" />}
               </Button>
             )}
           </>
@@ -384,8 +385,10 @@ const buttonId = `${menuId}-button`;
 
             {showCta && (
               <div class="border-border mt-3 border-t pt-3">
-                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
+                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined} class="hero-btn-brand rounded-full">
+                  {cta.icon && <Icon name={cta.icon} size="sm" />}
                   {cta.label}
+                  {!cta.icon && <Icon name="arrow-right" size="sm" />}
                 </Button>
               </div>
             )}

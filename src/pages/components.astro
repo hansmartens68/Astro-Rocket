@@ -78,11 +78,11 @@ const categories = [
     </p>
 
     <Fragment slot="actions">
-      <Button href="#hero">
+      <Button href="#hero" class="hero-btn-brand rounded-full">
         Browse Components
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button variant="outline" href="https://github.com/southwellmedia/velocity" target="_blank">
+      <Button href="https://github.com/southwellmedia/velocity" target="_blank" class="hero-btn-learn rounded-full">
         <Icon name="github" size="sm" />
         View Source
       </Button>
@@ -2043,12 +2043,13 @@ const categories = [
       These components are just the beginning. Clone Velocity and start shipping faster.
     </p>
     <Fragment slot="actions">
-      <Button href="https://github.com/southwellmedia/velocity" target="_blank">
+      <Button href="https://github.com/southwellmedia/velocity" target="_blank" class="hero-btn-brand rounded-full">
         <Icon name="github" size="sm" />
         Clone Repository
       </Button>
-      <Button variant="outline" href="/blog">
+      <Button href="/blog" class="hero-btn-learn rounded-full">
         Read Documentation
+        <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </CTA>
