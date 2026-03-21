@@ -1,26 +1,19 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    /* Light mode (default) — hide dark layers */
-    .bi-bd,.bi-gd,.bi-ibd { display: none }
-    /* Dark mode — swap layers */
-    html.dark .bi-bl, html.dark .bi-gl, html.dark .bi-ibl { display: none }
-    html.dark .bi-bd, html.dark .bi-gd, html.dark .bi-ibd { display: block }
-    /* Icon color */
+    .bi-bd { display: none }
+    html.dark .bi-bl { display: none }
+    html.dark .bi-bd { display: block }
     .bi-ic { stroke: #3d6b0c }
     html.dark .bi-ic { stroke: #a3e635 }
-    /* Title */
     .bi-tt { fill: #0c1a2e }
     html.dark .bi-tt { fill: #f0fce5 }
-    /* Separator */
-    .bi-sl { stroke: rgba(132,204,22,.45) }
-    html.dark .bi-sl { stroke: rgba(163,230,53,.2) }
-    /* Badge */
-    .bi-bb { fill: rgba(132,204,22,.1); stroke: rgba(53,115,10,.4) }
+    .bi-sl { stroke: rgba(132,204,22,.5) }
+    html.dark .bi-sl { stroke: rgba(163,230,53,.25) }
+    .bi-bb { fill: rgba(132,204,22,.12); stroke: rgba(53,115,10,.4) }
     html.dark .bi-bb { fill: rgba(163,230,53,.08); stroke: rgba(163,230,53,.3) }
     .bi-bt { fill: #3f6212 }
     html.dark .bi-bt { fill: #a3e635 }
-    /* Decorative always-lime */
-    .bi-cr, .bi-rg { stroke: #84cc16 }
+    .bi-cr { stroke: #84cc16 }
   </style>
 
   <defs>
@@ -32,44 +25,14 @@
       <stop offset="0%" stop-color="#0c1929"/>
       <stop offset="100%" stop-color="#162236"/>
     </linearGradient>
-    <radialGradient id="hgc-gl" cx="600" cy="240" r="320" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.10"/>
-      <stop offset="70%"  stop-color="#84cc16" stop-opacity="0.02"/>
-      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="hgc-gd" cx="600" cy="240" r="320" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.40"/>
-      <stop offset="55%"  stop-color="#84cc16" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="hgc-ibl" cx="600" cy="240" r="105" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#d9f99d" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#d9f99d" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="hgc-ibd" cx="600" cy="240" r="105" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#84cc16" stop-opacity="0.32"/>
-      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
-  <!-- Backgrounds -->
+  <!-- Background -->
   <rect width="1200" height="630" fill="url(#hgc-bl)" class="bi-bl"/>
   <rect width="1200" height="630" fill="url(#hgc-bd)" class="bi-bd"/>
 
-  <!-- Glow -->
-  <rect width="1200" height="630" fill="url(#hgc-gl)" class="bi-gl"/>
-  <rect width="1200" height="630" fill="url(#hgc-gd)" class="bi-gd"/>
-
   <!-- Top accent bar -->
   <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
-
-  <!-- Icon halo -->
-  <circle cx="600" cy="240" r="105" fill="url(#hgc-ibl)" class="bi-ibl"/>
-  <circle cx="600" cy="240" r="105" fill="url(#hgc-ibd)" class="bi-ibd"/>
-
-  <!-- Decorative rings -->
-  <circle cx="600" cy="240" r="122" stroke-width="1"    stroke-opacity="0.30" fill="none" class="bi-rg"/>
-  <circle cx="600" cy="240" r="150" stroke-width="0.75" stroke-opacity="0.14" fill="none" stroke-dasharray="6 10" class="bi-rg"/>
 
   <!-- Lucide Layers icon — scale 11, centred at (600, 240) -->
   <g transform="translate(468, 108) scale(11)"
@@ -90,11 +53,11 @@
 
   <!-- Separator -->
   <line x1="380" y1="516" x2="820" y2="516"
-        stroke="rgba(132,204,22,0.45)" stroke-width="1" class="bi-sl"/>
+        stroke="rgba(132,204,22,0.5)" stroke-width="1" class="bi-sl"/>
 
   <!-- Badge -->
   <rect x="450" y="548" width="300" height="38" rx="19"
-        fill="rgba(132,204,22,0.1)" stroke="rgba(53,115,10,0.4)" stroke-width="1" class="bi-bb"/>
+        fill="rgba(132,204,22,0.12)" stroke="rgba(53,115,10,0.4)" stroke-width="1" class="bi-bb"/>
   <text
     x="600" y="572"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
