@@ -4,6 +4,7 @@ import type { ImageMetadata } from 'astro';
 import { formatDate } from '@/lib/utils';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
+import siteConfig from '@/config/site.config';
 
 interface Props {
   title: string;
@@ -35,7 +36,7 @@ const estimatedWords = description.split(' ').length * 15;
 const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 ---
 
-<header class="relative overflow-hidden bg-background-secondary border-b border-border pt-[var(--space-page-top)] pb-[var(--space-section)]">
+<header class="relative overflow-hidden bg-background-secondary border-b border-border pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
   <!-- Decorative glow -->
   <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-200/20 dark:bg-brand-800/10 rounded-full blur-3xl pointer-events-none"></div>
   <!-- Background grid pattern -->
@@ -115,14 +116,16 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 
   {(svgSlug || image) && (
     <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)]">
-      <div
-        class="relative overflow-hidden rounded-xl border border-border shadow-2xl
-          bg-gradient-to-br from-brand-100/50 to-brand-50/30 dark:from-brand-900/50 dark:to-brand-800/30"
-        style="color: var(--brand-500);"
-      >
-        {svgSlug ? (
+      {svgSlug ? (
+        <div
+          class="relative overflow-hidden rounded-xl border border-border shadow-2xl
+            bg-gradient-to-br from-brand-100/50 to-brand-50/30 dark:from-brand-900/50 dark:to-brand-800/30"
+          style="color: var(--brand-500);"
+        >
           <BlogImageSVG slug={svgSlug} title={imageAlt || title} />
-        ) : image ? (
+        </div>
+      ) : image ? (
+        <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
           <Image
             src={image}
             alt={imageAlt || title}
@@ -132,8 +135,11 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
             class="aspect-video w-full object-cover"
             loading="eager"
           />
-        ) : null}
-      </div>
+          {siteConfig.blogImageOverlay !== false && (
+            <div class="absolute inset-0 bg-brand-500/25" />
+          )}
+        </div>
+      ) : null}
     </div>
   )}
 </header>
