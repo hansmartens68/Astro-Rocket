@@ -126,7 +126,9 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
   <!-- Related Posts -->
   {tags.length > 0 && (
-    <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
+    <div class="mx-auto max-w-screen-xl px-6">
+      <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
+    </div>
   )}
 
   <!-- Follow Along -->
