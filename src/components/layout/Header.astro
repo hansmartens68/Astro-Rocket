@@ -293,7 +293,7 @@ const buttonId = `${menuId}-button`;
                   size="sm"
                   href={ctaHref}
                   target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                  class={isFloating ? 'hdr-invert-cta' : undefined}
+                  class={cn('hdr-cta-brand', isFloating ? 'hdr-invert-cta' : undefined)}
                 >
                   {cta.icon && <Icon name={cta.icon} size="sm" />}
                   {cta.label}

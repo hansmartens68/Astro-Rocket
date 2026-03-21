@@ -1018,6 +1018,18 @@
   opacity: 0.85;
 }
 
+/* Header CTA — brand colour in light mode */
+:root:not(.dark) .hdr-cta-brand {
+  background-color: var(--color-brand-500) !important;
+  background-image: none !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+:root:not(.dark) .hdr-cta-brand:hover {
+  background-color: var(--color-brand-600) !important;
+  opacity: 1 !important;
+}
+
 .hero-btn-learn {
   background-color: transparent !important;
   background-image: none !important;
