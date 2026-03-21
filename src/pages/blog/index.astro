@@ -26,6 +26,9 @@ const nonFeaturedPosts = posts.filter((post) => !post.data.featured);
 // If ALL posts are featured, show them all in the main listing too (to avoid empty section)
 const regularPosts = nonFeaturedPosts.length > 0 ? nonFeaturedPosts : posts;
 
+// Collect all unique tags across all posts
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+
 const getPostUrl = (postId: string) => {
   // Remove locale prefix from id (e.g., "en/welcome-to-velocity" -> "welcome-to-velocity")
   const slug = postId.replace('en/', '');
@@ -55,10 +58,32 @@ const getPostUrl = (postId: string) => {
     <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
+  <!-- Tag Filter Bar -->
+  {allTags.length > 0 && (
+    <div class="border-b border-border bg-background sticky top-16 z-10">
+      <div class="mx-auto max-w-6xl px-6 py-3 flex flex-wrap gap-2 items-center">
+        <button
+          class="tag-filter-btn active"
+          data-tag="all"
+        >
+          All
+        </button>
+        {allTags.map((tag) => (
+          <button
+            class="tag-filter-btn"
+            data-tag={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
+
   <!-- Featured Posts Section -->
   {
     featuredPosts.length > 0 && (
-      <section class="bg-background py-[var(--space-section-md)] border-t border-border">
+      <section id="featured-section" class="bg-background py-[var(--space-section-md)] border-t border-border">
         <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
           <h2 class="font-display text-foreground text-2xl font-bold" data-reveal>
             Featured
@@ -66,16 +91,18 @@ const getPostUrl = (postId: string) => {
 
           <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
             {featuredPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                href={getPostUrl(post.id)}
-                publishedAt={post.data.publishedAt}
-                tags={post.data.tags}
-                author={post.data.author}
-                image={post.data.image}
-                svgSlug={post.data.svgSlug}
-              />
+              <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={getPostUrl(post.id)}
+                  publishedAt={post.data.publishedAt}
+                  tags={post.data.tags}
+                  author={post.data.author}
+                  image={post.data.image}
+                  svgSlug={post.data.svgSlug}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -96,16 +123,18 @@ const getPostUrl = (postId: string) => {
         regularPosts.length > 0 ? (
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
             {regularPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                href={getPostUrl(post.id)}
-                publishedAt={post.data.publishedAt}
-                tags={post.data.tags}
-                author={post.data.author}
-                image={post.data.image}
-                svgSlug={post.data.svgSlug}
-              />
+              <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={getPostUrl(post.id)}
+                  publishedAt={post.data.publishedAt}
+                  tags={post.data.tags}
+                  author={post.data.author}
+                  image={post.data.image}
+                  svgSlug={post.data.svgSlug}
+                />
+              </div>
             ))}
           </div>
         ) : posts.length === 0 ? (
@@ -117,6 +146,14 @@ const getPostUrl = (postId: string) => {
           </div>
         ) : null
       }
+
+      <!-- Empty state when filter has no results -->
+      <div id="no-results" class="hidden py-16 text-center">
+        <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+          <Icon name="file-text" size="lg" class="text-foreground-muted" />
+        </div>
+        <p class="text-foreground-muted text-lg">No posts found for this tag</p>
+      </div>
     </div>
   </section>
 
@@ -173,3 +210,78 @@ const getPostUrl = (postId: string) => {
 
   <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>
+
+<style>
+  .tag-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-foreground-muted);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .tag-filter-btn:hover {
+    color: var(--color-foreground);
+    border-color: var(--color-border-strong);
+  }
+  .tag-filter-btn.active {
+    background: var(--color-brand-500);
+    border-color: var(--color-brand-500);
+    color: #fff;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.post-card');
+  const featuredSection = document.getElementById('featured-section');
+  const noResults = document.getElementById('no-results');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag!;
+
+      // Update active button
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (tag === 'all') {
+        cards.forEach((card) => card.style.removeProperty('display'));
+        if (featuredSection) featuredSection.style.removeProperty('display');
+        noResults?.classList.add('hidden');
+        return;
+      }
+
+      // Filter cards
+      let visibleCount = 0;
+      let featuredVisible = 0;
+
+      cards.forEach((card) => {
+        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+        if (tags.includes(tag)) {
+          card.style.removeProperty('display');
+          visibleCount++;
+          if (featuredSection?.contains(card)) featuredVisible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Hide featured section if none of its cards match
+      if (featuredSection) {
+        featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
+      }
+
+      // Show/hide empty state
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+</script>
