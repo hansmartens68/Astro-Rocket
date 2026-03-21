@@ -65,7 +65,7 @@ interface Props extends HTMLAttributes<'header'> {
   /** Show CTA button */
   showCta?: boolean;
   /** CTA button configuration */
-  cta?: { label?: string; href?: string };
+  cta?: { label?: string; href?: string; icon?: string };
   /** Action buttons (GitHub, etc.) */
   actions?: HeaderAction[];
   /** Show theme toggle (default: true) */
@@ -294,6 +294,7 @@ const buttonId = `${menuId}-button`;
                 target={ctaHref?.startsWith('http') ? '_blank' : undefined}
                 class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
               >
+                {cta.icon && <Icon name={cta.icon} size="sm" />}
                 {cta.label}
               </Button>
             )}
