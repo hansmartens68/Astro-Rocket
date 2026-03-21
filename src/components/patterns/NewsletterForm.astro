@@ -1,7 +1,6 @@
 ---
 import Input from '@/components/ui/form/Input/Input.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
-import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { cn } from '@/lib/cn';
 
 interface Props {
@@ -37,9 +36,8 @@ const {
         autocomplete="email"
       />
     </div>
-    <Button type="submit" class="newsletter-submit hero-btn-brand rounded-full">
+    <Button type="submit" class="newsletter-submit">
       {buttonText}
-      <Icon name="arrow-right" size="sm" />
     </Button>
   </div>
 
