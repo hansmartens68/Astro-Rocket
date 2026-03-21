@@ -245,7 +245,6 @@ const buttonId = `${menuId}-button`;
 
             {showSocialLinks && siteConfig.socialLinks.length > 0 && (
               <div class="hidden md:flex items-center gap-0.5">
-                <span class="border-border mx-1 h-4 border-l" aria-hidden="true" />
                 {siteConfig.socialLinks.map((url) => {
                   const { icon, label } = getSocialIconData(url);
                   return (

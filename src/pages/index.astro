@@ -352,17 +352,17 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     opacity: 0.85;
   }
 
-  /* Hero: "Learn More" — light mode: dark pill; dark mode: white pill */
+  /* Hero: "Learn More" — light mode: outline; dark mode: white pill */
   .hero-btn-learn {
-    background-color: var(--color-foreground) !important;
+    background-color: transparent !important;
     background-image: none !important;
-    color: var(--color-background) !important;
-    border-color: transparent !important;
+    color: var(--color-foreground) !important;
+    border: 1px solid var(--color-border-strong) !important;
   }
   .hero-btn-learn:hover {
-    background-color: var(--color-foreground) !important;
+    background-color: var(--color-secondary) !important;
     background-image: none !important;
-    opacity: 0.9;
+    opacity: 1;
   }
   .dark .hero-btn-learn {
     background-color: white !important;
