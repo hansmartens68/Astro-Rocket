@@ -623,7 +623,7 @@ const buttonId = `${menuId}-button`;
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
     background: white;
     color: #111;
-    border-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.15);
     transition: background 300ms, color 300ms, border-color 300ms;
   }
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta:hover {
@@ -632,7 +632,6 @@ const buttonId = `${menuId}-button`;
   [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta {
     background: var(--color-primary);
     color: var(--color-primary-foreground);
-    border-color: transparent;
   }
   [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta:hover {
     opacity: 0.9;
