@@ -1,13 +1,13 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#09091a"/>
-      <stop offset="100%" stop-color="#0d0b1e"/>
+      <stop offset="0%" stop-color="#060f04"/>
+      <stop offset="100%" stop-color="#0a1407"/>
     </linearGradient>
     <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="currentColor" stop-opacity="0.18"/>
-      <stop offset="60%" stop-color="currentColor" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#84cc16" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#84cc16" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
