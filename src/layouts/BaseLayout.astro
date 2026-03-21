@@ -5,6 +5,7 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { ClientRouter } from 'astro:transitions';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -84,6 +85,9 @@ if (includeProfessionalServiceSchema) {
 
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
+
+    <!-- Vercel Speed Insights -->
+    <SpeedInsights />
 
     <!-- Client-side routing for view transitions -->
     <ClientRouter />
