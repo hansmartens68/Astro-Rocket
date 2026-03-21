@@ -138,9 +138,9 @@ html.dark[data-theme="lime"] {
   --background-elevated: oklch(15% 0.012 130);
 
   --foreground: oklch(94% 0.010 130);          /* lime-tinted near-white */
-  --foreground-secondary: oklch(72% 0.012 130);
-  --foreground-muted: oklch(52% 0.010 130);
-  --foreground-subtle: oklch(42% 0.008 130);
+  --foreground-secondary: oklch(82% 0.012 130);
+  --foreground-muted: oklch(68% 0.010 130);
+  --foreground-subtle: oklch(56% 0.008 130);
 
   --border: oklch(20% 0.012 130);
   --border-strong: oklch(27% 0.010 130);
@@ -159,7 +159,7 @@ html.dark[data-theme="lime"] {
   --accent-light: oklch(18% 0.07 130);
 
   --muted: oklch(20% 0.010 130);
-  --muted-foreground: oklch(52% 0.010 130);
+  --muted-foreground: oklch(68% 0.010 130);
 
   --card: oklch(15% 0.012 130);
   --card-border: oklch(23% 0.010 130);
@@ -188,7 +188,7 @@ html.dark[data-theme="lime"] {
   --surface-invert-tertiary: oklch(21% 0.008 130);
   --on-invert: oklch(94% 0.010 130);
   --on-invert-secondary: oklch(72% 0.012 130);
-  --on-invert-muted: oklch(52% 0.010 130);
+  --on-invert-muted: oklch(68% 0.010 130);
   --border-invert: oklch(21% 0.010 130);
   --border-invert-strong: oklch(29% 0.008 130);
 
