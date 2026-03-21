@@ -62,14 +62,10 @@ interface Props extends HTMLAttributes<'header'> {
   nav?: NavItem[];
   /** Additional navigation items (e.g., #features for landing pages) */
   extraNav?: NavItem[];
-  /** Show CTA button (brand-colored "Start a Project") */
+  /** Show CTA button */
   showCta?: boolean;
   /** CTA button configuration */
   cta?: { label?: string; href?: string };
-  /** Show secondary CTA button (adaptive "Learn More") */
-  showSecondaryCta?: boolean;
-  /** Secondary CTA button configuration */
-  secondaryCta?: { label?: string; href?: string };
   /** Action buttons (GitHub, etc.) */
   actions?: HeaderAction[];
   /** Show theme toggle (default: true) */
@@ -99,8 +95,6 @@ const {
   extraNav = [],
   showCta = false,
   cta = { label: 'Start a Project', href: '/contact' },
-  showSecondaryCta = false,
-  secondaryCta = { label: 'Learn More', href: '#features' },
   actions = [],
   showThemeToggle = true,
   showThemeSelector = false,
@@ -129,9 +123,8 @@ const currentPath = Astro.url.pathname;
 // Check if we're on the landing page
 const isLandingPage = currentPath === '/';
 
-// Process CTA hrefs for landing page anchor links
+// Process CTA href for landing page anchor links
 const ctaHref = cta.href?.startsWith('#') && !isLandingPage ? `/${cta.href}` : cta.href;
-const secondaryCtaHref = secondaryCta.href?.startsWith('#') && !isLandingPage ? `/${secondaryCta.href}` : secondaryCta.href;
 
 // Check slots
 const hasLogoSlot = Astro.slots.has('logo');
@@ -256,23 +249,12 @@ const buttonId = `${menuId}-button`;
               </Button>
             ))}
 
-            {showSecondaryCta && (
-              <Button
-                size="sm"
-                href={secondaryCtaHref}
-                target={secondaryCtaHref?.startsWith('http') ? '_blank' : undefined}
-                class={isFloating ? 'hdr-learn-cta rounded-full' : undefined}
-              >
-                {secondaryCta.label}
-              </Button>
-            )}
-
             {showCta && (
               <Button
                 size="sm"
                 href={ctaHref}
                 target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                class={isFloating ? 'hdr-brand-cta rounded-full' : undefined}
+                class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
               >
                 {cta.label}
               </Button>
@@ -637,35 +619,6 @@ const buttonId = `${menuId}-button`;
     right: 12px;
   }
 
-  /* ===== Brand CTA ("Start a Project") — brand-500 bg, white text ===== */
-  [data-header-shape="floating"] .hdr-brand-cta {
-    background: var(--color-brand-500);
-    color: white;
-    border: 1px solid transparent;
-    transition: opacity 300ms;
-  }
-  [data-header-shape="floating"] .hdr-brand-cta:hover {
-    opacity: 0.85;
-  }
-
-  /* ===== Adaptive CTA ("Learn More") — inverts with dark mode ===== */
-  /* Light mode: dark pill (foreground bg + background text) */
-  [data-header-shape="floating"] .hdr-learn-cta {
-    background: var(--color-foreground);
-    color: var(--color-background);
-    border: 1px solid transparent;
-    transition: background 300ms, color 300ms, border-color 300ms, opacity 300ms;
-  }
-  /* Dark mode: white pill (white bg + dark text) */
-  .dark [data-header-shape="floating"] .hdr-learn-cta {
-    background: white;
-    color: #111;
-    border-color: rgba(0, 0, 0, 0.15);
-  }
-  [data-header-shape="floating"] .hdr-learn-cta:hover {
-    opacity: 0.9;
-  }
-
   /* ===== CTA: invert color flip ===== */
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
     background: white;
@@ -690,8 +643,6 @@ const buttonId = `${menuId}-button`;
     [data-header-shape="floating"] .hdr-invert-text,
     [data-header-shape="floating"] .hdr-logo-text,
     [data-header-shape="floating"] .hdr-invert-cta,
-    [data-header-shape="floating"] .hdr-brand-cta,
-    [data-header-shape="floating"] .hdr-learn-cta,
     [data-header-shape="floating"] .nav-link::after {
       transition: none !important;
     }
