@@ -96,7 +96,7 @@ const {
   nav,
   extraNav = [],
   showCta = false,
-  cta = { label: 'Start a Project', href: '/contact' },
+  cta = { label: 'Get in touch', href: '/contact' },
   actions = [],
   showThemeToggle = true,
   showThemeSelector = false,
@@ -288,15 +288,17 @@ const buttonId = `${menuId}-button`;
             ))}
 
             {showCta && (
-              <Button
-                size="sm"
-                href={ctaHref}
-                target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                class={isFloating ? 'hdr-invert-cta' : undefined}
-              >
-                {cta.icon && <Icon name={cta.icon} size="sm" />}
-                {cta.label}
-              </Button>
+              <div class="hidden md:flex">
+                <Button
+                  size="sm"
+                  href={ctaHref}
+                  target={ctaHref?.startsWith('http') ? '_blank' : undefined}
+                  class={isFloating ? 'hdr-invert-cta' : undefined}
+                >
+                  {cta.icon && <Icon name={cta.icon} size="sm" />}
+                  {cta.label}
+                </Button>
+              </div>
             )}
           </>
         )
