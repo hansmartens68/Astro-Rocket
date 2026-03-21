@@ -5,9 +5,9 @@
       <stop offset="100%" stop-color="#0d0b1e"/>
     </linearGradient>
     <radialGradient id="glowMain" cx="600" cy="280" r="380" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="currentColor" stop-opacity="0.18"/>
-      <stop offset="60%" stop-color="currentColor" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#84cc16" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#84cc16" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glowIcon" cx="600" cy="230" r="200" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
