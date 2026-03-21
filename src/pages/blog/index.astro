@@ -58,24 +58,30 @@ const getPostUrl = (postId: string) => {
     <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
-  <!-- Tag Filter Bar -->
+  <!-- Tag Filter -->
   {allTags.length > 0 && (
     <div class="border-b border-border bg-background sticky top-16 z-10">
-      <div class="mx-auto max-w-6xl px-6 py-3 flex flex-wrap gap-2 items-center">
-        <button
-          class="tag-filter-btn active"
-          data-tag="all"
-        >
-          All
-        </button>
-        {allTags.map((tag) => (
-          <button
-            class="tag-filter-btn"
-            data-tag={tag}
+      <div class="mx-auto max-w-6xl px-6 py-3 flex items-center gap-3">
+        <label for="tag-filter" class="text-sm font-medium text-foreground-muted whitespace-nowrap">
+          Filter by tag
+        </label>
+        <div class="relative">
+          <select
+            id="tag-filter"
+            class="tag-select appearance-none pl-3 pr-8 py-1.5 rounded-full border border-border bg-background text-sm font-medium text-foreground cursor-pointer focus:outline-none focus:border-brand-500 transition-colors"
           >
-            {tag}
-          </button>
-        ))}
+            <option value="all">All posts</option>
+            {allTags.map((tag) => (
+              <option value={tag}>{tag}</option>
+            ))}
+          </select>
+          <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-foreground-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </span>
+        </div>
+        <span id="filter-count" class="text-sm text-foreground-muted hidden"></span>
       </div>
     </div>
   )}
@@ -212,76 +218,55 @@ const getPostUrl = (postId: string) => {
 </BaseLayout>
 
 <style>
-  .tag-filter-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-foreground-muted);
-    cursor: pointer;
-    transition: color 0.15s, background 0.15s, border-color 0.15s;
-    white-space: nowrap;
-  }
-  .tag-filter-btn:hover {
+  .tag-select {
+    background-color: var(--color-background);
     color: var(--color-foreground);
-    border-color: var(--color-border-strong);
-  }
-  .tag-filter-btn.active {
-    background: var(--color-brand-500);
-    border-color: var(--color-brand-500);
-    color: #fff;
   }
 </style>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
+  const select = document.getElementById('tag-filter') as HTMLSelectElement;
   const cards = document.querySelectorAll<HTMLElement>('.post-card');
   const featuredSection = document.getElementById('featured-section');
   const noResults = document.getElementById('no-results');
+  const filterCount = document.getElementById('filter-count');
 
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const tag = btn.dataset.tag!;
+  select?.addEventListener('change', () => {
+    const tag = select.value;
 
-      // Update active button
-      buttons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
+    if (tag === 'all') {
+      cards.forEach((card) => card.style.removeProperty('display'));
+      if (featuredSection) featuredSection.style.removeProperty('display');
+      noResults?.classList.add('hidden');
+      if (filterCount) filterCount.classList.add('hidden');
+      return;
+    }
 
-      if (tag === 'all') {
-        cards.forEach((card) => card.style.removeProperty('display'));
-        if (featuredSection) featuredSection.style.removeProperty('display');
-        noResults?.classList.add('hidden');
-        return;
-      }
+    let visibleCount = 0;
+    let featuredVisible = 0;
 
-      // Filter cards
-      let visibleCount = 0;
-      let featuredVisible = 0;
-
-      cards.forEach((card) => {
-        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
-        if (tags.includes(tag)) {
-          card.style.removeProperty('display');
-          visibleCount++;
-          if (featuredSection?.contains(card)) featuredVisible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      // Hide featured section if none of its cards match
-      if (featuredSection) {
-        featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
-      }
-
-      // Show/hide empty state
-      if (noResults) {
-        noResults.classList.toggle('hidden', visibleCount > 0);
+    cards.forEach((card) => {
+      const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+      if (tags.includes(tag)) {
+        card.style.removeProperty('display');
+        visibleCount++;
+        if (featuredSection?.contains(card)) featuredVisible++;
+      } else {
+        card.style.display = 'none';
       }
     });
+
+    if (featuredSection) {
+      featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
+    }
+
+    if (noResults) {
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    if (filterCount) {
+      filterCount.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''}`;
+      filterCount.classList.remove('hidden');
+    }
   });
 </script>
