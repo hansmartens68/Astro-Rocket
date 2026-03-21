@@ -292,11 +292,10 @@ const buttonId = `${menuId}-button`;
                 size="sm"
                 href={ctaHref}
                 target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                class={cn('hero-btn-brand rounded-full', isFloating ? 'hdr-invert-cta' : undefined)}
+                class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
               >
                 {cta.icon && <Icon name={cta.icon} size="sm" />}
                 {cta.label}
-                {!cta.icon && <Icon name="arrow-right" size="sm" />}
               </Button>
             )}
           </>
@@ -343,7 +342,7 @@ const buttonId = `${menuId}-button`;
           class={cn(
             'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
             isFloating
-              ? 'rounded-b-full bg-background/95 backdrop-blur-xl'
+              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
               : 'border-border bg-background border-t'
           )}
           role="navigation"
@@ -357,7 +356,7 @@ const buttonId = `${menuId}-button`;
           class={cn(
             'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
             isFloating
-              ? 'rounded-b-full bg-background/95 backdrop-blur-xl'
+              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
               : 'border-border bg-background border-t'
           )}
           role="navigation"
@@ -385,10 +384,8 @@ const buttonId = `${menuId}-button`;
 
             {showCta && (
               <div class="border-border mt-3 border-t pt-3">
-                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined} class="hero-btn-brand rounded-full">
-                  {cta.icon && <Icon name={cta.icon} size="sm" />}
+                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
                   {cta.label}
-                  {!cta.icon && <Icon name="arrow-right" size="sm" />}
                 </Button>
               </div>
             )}
@@ -450,8 +447,8 @@ const buttonId = `${menuId}-button`;
         if (isFloating) {
           // Force scrolled state + flatten bottom corners
           header.setAttribute('data-scrolled', '');
-          header.classList.remove('rounded-full');
-          header.classList.add('rounded-t-full');
+          header.classList.remove('rounded-2xl');
+          header.classList.add('rounded-t-2xl');
         } else {
           header.classList.add('!bg-background');
         }
@@ -504,8 +501,8 @@ const buttonId = `${menuId}-button`;
 
           if (isFloating) {
             // Restore rounded corners
-            header.classList.remove('rounded-t-full');
-            header.classList.add('rounded-full');
+            header.classList.remove('rounded-t-2xl');
+            header.classList.add('rounded-2xl');
             // Only remove scrolled if actually at top
             if (window.scrollY <= 60) {
               header.removeAttribute('data-scrolled');
