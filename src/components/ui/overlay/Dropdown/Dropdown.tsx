@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cn } from '@/lib/cn';
+import { Icon } from '@/components/ui/primitives/Icon/Icon';
 
 interface DropdownItem {
   label: string;
@@ -23,7 +24,7 @@ interface DropdownProps {
   className?: string;
 }
 
-// Map common action names to resolved icon names (mirrors Dropdown.astro iconMap)
+// Map common action names to resolved icon names
 const iconNameMap: Record<string, string> = {
   edit: 'edit',
   copy: 'copy',
@@ -36,51 +37,6 @@ const iconNameMap: Record<string, string> = {
   settings: 'settings',
   view: 'external-link',
 };
-
-// Inline SVG path data for dropdown icons (Lucide paths from Icon.astro)
-const iconPaths: Record<string, string> = {
-  edit: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z',
-  copy: 'M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 2h6v4H9V2',
-  share: 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13',
-  trash: 'M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6',
-  download: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3',
-  upload: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12',
-  settings: 'M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
-  archive: 'M21 8v13H3V8M1 3h22v5H1zM10 12h4',
-  'external-link': 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3',
-  'file-text': 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8',
-  'arrow-up-right': 'M7 17L17 7M7 7h10v10',
-  box: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12',
-  x: 'M18 6L6 18M6 6l12 12',
-};
-
-function DropdownIcon({ name, disabled }: { name: string; disabled?: boolean }) {
-  const resolvedName = iconNameMap[name] || name;
-  const pathData = iconPaths[resolvedName];
-
-  if (!pathData) return null;
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={cn(
-        'w-4 h-4 shrink-0',
-        disabled ? 'text-foreground-subtle' : 'text-foreground-muted'
-      )}
-      aria-hidden="true"
-    >
-      {pathData.split('M').filter(Boolean).map((d, i) => (
-        <path key={i} d={`M${d}`} />
-      ))}
-    </svg>
-  );
-}
 
 export function Dropdown({ items, align = 'start', trigger, className }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -291,7 +247,7 @@ export function Dropdown({ items, align = 'start', trigger, className }: Dropdow
               }}
               onKeyDown={(e) => handleItemKeyDown(e, item)}
             >
-              {item.icon && <DropdownIcon name={item.icon} disabled={item.disabled} />}
+              {item.icon && <Icon name={iconNameMap[item.icon] ?? item.icon} size="sm" className={item.disabled ? 'text-foreground-subtle' : 'text-foreground-muted'} />}
               <span>{item.label}</span>
             </a>
           ) : (
@@ -313,7 +269,7 @@ export function Dropdown({ items, align = 'start', trigger, className }: Dropdow
               onClick={() => handleItemActivate(item)}
               onKeyDown={(e) => handleItemKeyDown(e, item)}
             >
-              {item.icon && <DropdownIcon name={item.icon} disabled={item.disabled} />}
+              {item.icon && <Icon name={iconNameMap[item.icon] ?? item.icon} size="sm" className={item.disabled ? 'text-foreground-subtle' : 'text-foreground-muted'} />}
               <span>{item.label}</span>
             </button>
           )

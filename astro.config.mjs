@@ -2,6 +2,7 @@ import { defineConfig, envField } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
+import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 import netlify from '@astrojs/netlify';
@@ -36,6 +37,7 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap(),
+    icon(),
   ],
 
   vite: {
