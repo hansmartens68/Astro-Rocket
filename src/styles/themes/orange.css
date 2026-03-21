@@ -120,36 +120,39 @@ html[data-theme="orange"] {
    Dark Mode - The Vercel signature look
    ------------------------------------------------------------------------- */
 html.dark[data-theme="orange"] {
-  --background: var(--gray-950);
-  --background-secondary: var(--gray-900);
-  --background-tertiary: var(--gray-800);
-  --background-elevated: var(--gray-900);
+  /* Backgrounds aligned to the same lightness scale as all other themes.
+     Previously used var(--gray-950/900/800) = 12.3% / 19.4% / 26.7% —
+     noticeably lighter than the 9.5% / 15% / 20% used everywhere else. */
+  --background: oklch(9.5% 0 0);
+  --background-secondary: oklch(15% 0 0);
+  --background-tertiary: oklch(20% 0 0);
+  --background-elevated: oklch(15% 0 0);
 
-  --foreground: var(--gray-50);             /* 19.3:1 on gray-950 — WCAG AAA */
-  --foreground-secondary: var(--gray-300); /* 13.1:1 on gray-950 — WCAG AAA */
-  --foreground-muted: var(--gray-400);     /*  6.0:1 on gray-950 — WCAG AA  */
-  --foreground-subtle: oklch(58% 0 0);     /*  ~4.6:1 on gray-950 — WCAG AA  */
+  --foreground: var(--gray-50);             /* 19.3:1 on oklch(9.5%) — WCAG AAA */
+  --foreground-secondary: var(--gray-300);  /* 13.1:1 on oklch(9.5%) — WCAG AAA */
+  --foreground-muted: var(--gray-400);      /*  6.0:1 on oklch(9.5%) — WCAG AA  */
+  --foreground-subtle: oklch(58% 0 0);      /*  ~4.6:1 on oklch(9.5%) — WCAG AA  */
 
-  --border: var(--gray-800);
-  --border-strong: var(--gray-700);
-  --border-subtle: var(--gray-900);
+  --border: oklch(22% 0 0);
+  --border-strong: oklch(28% 0 0);
+  --border-subtle: oklch(15% 0 0);
 
   --primary: var(--gray-0);
   --primary-hover: var(--gray-200);
   --primary-foreground: var(--gray-900);
 
-  --secondary: var(--gray-800);
-  --secondary-hover: var(--gray-700);
+  --secondary: oklch(20% 0 0);
+  --secondary-hover: oklch(26% 0 0);
   --secondary-foreground: var(--gray-100);
 
-  --muted: var(--gray-800);
-  --muted-foreground: var(--gray-400);     /*  6.0:1 on gray-950 — WCAG AA  */
+  --muted: oklch(20% 0 0);
+  --muted-foreground: var(--gray-400);      /*  6.0:1 on oklch(9.5%) — WCAG AA  */
 
-  --card: var(--gray-900);
-  --card-border: var(--gray-800);
+  --card: oklch(15% 0 0);
+  --card-border: oklch(22% 0 0);
 
-  --input-bg: var(--gray-900);
-  --input-border: var(--gray-700);
+  --input-bg: oklch(15% 0 0);
+  --input-border: oklch(28% 0 0);
   --input-focus: var(--gray-0);
 
   --ring: var(--gray-0);
@@ -159,26 +162,23 @@ html.dark[data-theme="orange"] {
   --destructive: oklch(65% 0.22 25);
   --destructive-foreground: var(--gray-0);
 
-  /* Gradient colors for dark - OKLCH */
-  --gradient-start: oklch(12.3% 0 0);
-  --gradient-end: oklch(19.4% 0 0);
+  --gradient-start: oklch(9.5% 0 0);
+  --gradient-end: oklch(15% 0 0);
 
-  /* Status - OKLCH with reduced opacity simulation via lightness */
   --success-light: oklch(25% 0.05 145);
   --warning-light: oklch(25% 0.05 85);
   --error-light: oklch(25% 0.05 25);
 
-  /* Inverted section in dark mode - darker than bg-secondary for contrast */
+  /* Inverted section: stays slightly lighter than main bg for visual lift */
   --surface-invert: oklch(16% 0 0);
-  --surface-invert-secondary: var(--gray-900);
-  --surface-invert-tertiary: var(--gray-800);
+  --surface-invert-secondary: oklch(20% 0 0);
+  --surface-invert-tertiary: oklch(25% 0 0);
   --on-invert: var(--gray-50);              /* WCAG AAA on oklch(16%) */
   --on-invert-secondary: var(--gray-300);   /* WCAG AAA on oklch(16%) */
   --on-invert-muted: var(--gray-400);       /* WCAG AA  on oklch(16%) */
-  --border-invert: var(--gray-700);
-  --border-invert-strong: var(--gray-600);
+  --border-invert: oklch(28% 0 0);
+  --border-invert-strong: oklch(35% 0 0);
 
-  /* Dark mode shadow - slightly stronger for visibility */
   --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --theme-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.1);
   --theme-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
