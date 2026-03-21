@@ -132,7 +132,7 @@ html.dark[data-theme="sky"] {
   --foreground: oklch(94% 0.008 222);
   --foreground-secondary: oklch(82% 0.010 222);
   --foreground-muted: oklch(68% 0.008 222);
-  --foreground-subtle: oklch(56% 0.006 222);
+  --foreground-subtle: oklch(58% 0.006 222);   /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.010 222);
   --border-strong: oklch(27% 0.008 222);

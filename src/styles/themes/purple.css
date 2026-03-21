@@ -132,7 +132,7 @@ html.dark[data-theme="purple"] {
   --foreground: oklch(95% 0.012 292);
   --foreground-secondary: oklch(83% 0.015 292);
   --foreground-muted: oklch(68% 0.012 292);
-  --foreground-subtle: oklch(56% 0.009 292);
+  --foreground-subtle: oklch(58% 0.009 292);   /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.016 292);
   --border-strong: oklch(27% 0.013 292);

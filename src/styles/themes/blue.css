@@ -139,7 +139,7 @@ html.dark[data-theme="blue"] {
   --foreground: oklch(94% 0.008 255);          /* cool near-white — WCAG AAA */
   --foreground-secondary: oklch(82% 0.012 255);
   --foreground-muted: oklch(68% 0.01 255);
-  --foreground-subtle: oklch(56% 0.008 255);
+  --foreground-subtle: oklch(58% 0.008 255);   /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.012 255);
   --border-strong: oklch(28% 0.01 255);

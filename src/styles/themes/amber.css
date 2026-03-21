@@ -140,7 +140,7 @@ html.dark[data-theme="amber"] {
   --foreground: oklch(94% 0.010 75);           /* warm near-white */
   --foreground-secondary: oklch(82% 0.012 75);
   --foreground-muted: oklch(68% 0.010 75);
-  --foreground-subtle: oklch(56% 0.008 75);
+  --foreground-subtle: oklch(58% 0.008 75);    /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.012 75);
   --border-strong: oklch(27% 0.010 75);
