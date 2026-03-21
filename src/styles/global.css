@@ -1000,3 +1000,41 @@
     transition: none;
   }
 }
+
+/* ── Hero / CTA button styles ───────────────────────────────────────────────
+   Shared across all pages. Re-enable by applying these classes to buttons.
+   hero-btn-brand : brand-coloured primary action
+   hero-btn-learn : secondary action (outline in light, white pill in dark)   */
+
+.hero-btn-brand {
+  background-color: var(--color-brand-700) !important;
+  background-image: none !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+.hero-btn-brand:hover {
+  background-color: var(--color-brand-700) !important;
+  background-image: none !important;
+  opacity: 0.85;
+}
+
+.hero-btn-learn {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--color-foreground) !important;
+  border: 1px solid var(--color-border-strong) !important;
+}
+.hero-btn-learn:hover {
+  background-color: var(--color-secondary) !important;
+  background-image: none !important;
+  opacity: 1;
+}
+.dark .hero-btn-learn {
+  background-color: white !important;
+  background-image: none !important;
+  color: #111 !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+.dark .hero-btn-learn:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}

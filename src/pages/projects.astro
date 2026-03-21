@@ -78,19 +78,18 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
 
   <!-- CTA -->
   <CTA variant="invert" size="md" maxWidth="lg">
-    <Badge slot="logo" variant="brand" pill>Available for projects</Badge>
     <h2 slot="heading">Let's build something together</h2>
     <p slot="description" class="!text-lg">
       Get In Touch. Response within 1 day.
     </p>
-    <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" href="/contact">
+    <Fragment slot="actions">
+      <Button size="lg" href="/contact" class="hero-btn-brand">
         Start a Project
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" variant="outline" href="/about">
+      <Button size="lg" href="/about" class="hero-btn-learn">
         Learn More About Me
       </Button>
-    </div>
+    </Fragment>
   </CTA>
 </PageLayout>
