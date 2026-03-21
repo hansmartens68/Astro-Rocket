@@ -59,7 +59,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Services Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8">
+      <div class="text-center mb-8" data-reveal>
         <Badge variant="brand" pill class="mb-4">Services</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What I Do
@@ -69,7 +69,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
         <!-- Web Design -->
         <Card hover>
           <div class="flex items-start gap-4">
@@ -122,7 +122,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
-        <div>
+        <div data-reveal>
           <Badge variant="brand" pill class="mb-4">About me</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
             Designer, developer,<br />
@@ -140,7 +140,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           </Button>
         </div>
 
-        <Card variant="elevated" padding="lg">
+        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
           <p class="font-semibold text-sm text-foreground text-center">Hans Martens — by the numbers</p>
           <p class="text-sm text-foreground-muted mt-0.5 mb-5 text-center">A few things about me.</p>
           <div class="grid grid-cols-2 gap-3">
@@ -173,7 +173,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Portfolio -->
   <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8">
+      <div class="text-center mb-8" data-reveal>
         <Badge variant="brand" pill class="mb-4">Selected work</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           Projects I've Built
@@ -183,7 +183,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2">
+      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
         {featuredProjects.map((project) => (
           <Card variant="elevated" hover padding="lg" href={project.data.url ?? project.data.repo} target="_blank" rel="noopener noreferrer" class="group flex flex-col">
             <div class="flex flex-1 flex-col">
@@ -215,7 +215,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Testimonials -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="text-center mb-8">
+      <div class="text-center mb-8" data-reveal>
         <Badge variant="brand" pill class="mb-4">Testimonials</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What Clients Say
@@ -225,7 +225,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2">
+      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
         <!-- Testimonial 1 -->
         <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
@@ -282,7 +282,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Blog -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="flex items-end justify-between mb-8">
+      <div class="flex items-end justify-between mb-8" data-reveal>
         <div>
           <Badge variant="brand" pill class="mb-4">From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -295,7 +295,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </a>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
         {posts.map((post) => (
           <BlogCard
             title={post.data.title}
