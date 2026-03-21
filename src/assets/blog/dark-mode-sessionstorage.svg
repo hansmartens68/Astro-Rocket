@@ -1,57 +1,50 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bi-bd { display: none }
+    html.dark .bi-bl { display: none }
+    html.dark .bi-bd { display: block }
+    .bi-ic { stroke: #3d6b0c }
+    html.dark .bi-ic { stroke: #a3e635 }
+    .bi-tt { fill: #0c1a2e }
+    html.dark .bi-tt { fill: #f0fce5 }
+    .bi-sl { stroke: rgba(132,204,22,.5) }
+    html.dark .bi-sl { stroke: rgba(163,230,53,.25) }
+    .bi-bb { fill: rgba(132,204,22,.12); stroke: rgba(53,115,10,.4) }
+    html.dark .bi-bb { fill: rgba(163,230,53,.08); stroke: rgba(163,230,53,.3) }
+    .bi-bt { fill: #3f6212 }
+    html.dark .bi-bt { fill: #a3e635 }
+    .bi-cr { stroke: #84cc16 }
+  </style>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060f04"/>
-      <stop offset="100%" stop-color="#0a1407"/>
+    <linearGradient id="dms-bl" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fce5"/>
     </linearGradient>
-    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#84cc16" stop-opacity="0.18"/>
-      <stop offset="60%" stop-color="#84cc16" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#84cc16" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#e2e8f0"/>
-      <stop offset="45%"  stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#cbd5e1"/>
-    </linearGradient>
-    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    <linearGradient id="dms-bd" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0c1929"/>
+      <stop offset="100%" stop-color="#162236"/>
     </linearGradient>
   </defs>
-
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glowMain)"/>
-  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
-
-  <!-- Lucide Moon icon — scale 11, centre at canvas (600, 247) -->
-  <g transform="translate(468, 115) scale(11)"
-     stroke="#ffffff" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  <rect width="1200" height="630" fill="url(#dms-bl)" class="bi-bl"/>
+  <rect width="1200" height="630" fill="url(#dms-bd)" class="bi-bd"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
+  <!-- Lucide Moon — scale 11, centred at (600, 240) -->
+  <g transform="translate(468, 108) scale(11)"
+     stroke="#3d6b0c" stroke-width="0.84" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
   </g>
-
-  <text
-    x="600" y="490"
+  <text x="600" y="490"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="120" font-weight="800"
-    fill="url(#textGrad)"
-    text-anchor="middle"
-    letter-spacing="-4"
-  >dark mode</text>
-
-  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
-
+    font-size="120" font-weight="800" fill="#0c1a2e"
+    text-anchor="middle" letter-spacing="-4" class="bi-tt">dark mode</text>
+  <line x1="380" y1="516" x2="820" y2="516" stroke="rgba(132,204,22,0.5)" stroke-width="1" class="bi-sl"/>
   <rect x="450" y="548" width="300" height="38" rx="19"
-    fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
-  <text
-    x="600" y="572"
+        fill="rgba(132,204,22,0.12)" stroke="rgba(53,115,10,0.4)" stroke-width="1" class="bi-bb"/>
+  <text x="600" y="572"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#ffffff" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.5"
-  >Astro Rocket Theme</text>
+    font-size="13" fill="#3f6212" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
+  <path d="M 36 60 L 36 36 L 60 36"          stroke-width="2" fill="none" class="bi-cr"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60"    stroke-width="2" fill="none" class="bi-cr"/>
+  <path d="M 36 570 L 36 594 L 60 594"       stroke-width="2" fill="none" class="bi-cr"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke-width="2" fill="none" class="bi-cr"/>
 </svg>
