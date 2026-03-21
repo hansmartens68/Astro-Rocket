@@ -134,7 +134,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           <p class="text-lg text-foreground-muted leading-relaxed mb-8">
            Whether you're a business looking for a polished online presence, or a creator who needs a site that matches your ambitions — I'd love to help.
           </p>
-          <Button variant="outline" href="/about">
+          <Button href="/about" class="hero-btn-brand">
             More About Me
             <Icon name="arrow-right" size="sm" />
           </Button>
@@ -326,11 +326,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       Get In Touch. Response within 1 day.
     </p>
     <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" href="/contact">
+      <Button size="lg" href="/contact" class="hero-btn-brand">
         Start a Project
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" variant="outline" href="/about">
+      <Button size="lg" href="/about" class="hero-btn-learn">
         Learn More About Me
       </Button>
     </div>
