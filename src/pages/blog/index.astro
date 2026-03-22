@@ -58,7 +58,7 @@ const getPostUrl = (postId: string) => {
     <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
-  <!-- Tag Filter -->
+  {/* TAG FILTER — hidden, restore by uncommenting
   {allTags.length > 0 && (
     <div class="border-b border-border bg-background sticky top-16 z-10">
       <div class="mx-auto max-w-6xl px-6 py-3 flex items-center gap-3">
@@ -85,6 +85,7 @@ const getPostUrl = (postId: string) => {
       </div>
     </div>
   )}
+  */}
 
   <!-- Featured Posts Section -->
   {
@@ -153,13 +154,14 @@ const getPostUrl = (postId: string) => {
         ) : null
       }
 
-      <!-- Empty state when filter has no results -->
+      {/* FILTER EMPTY STATE — hidden, restore with tag filter
       <div id="no-results" class="hidden py-16 text-center">
         <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
           <Icon name="file-text" size="lg" class="text-foreground-muted" />
         </div>
         <p class="text-foreground-muted text-lg">No posts found for this tag</p>
       </div>
+      */}
     </div>
   </section>
 
@@ -217,13 +219,16 @@ const getPostUrl = (postId: string) => {
   <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>
 
+/* TAG FILTER STYLES — hidden, restore with tag filter
 <style>
   .tag-select {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
 </style>
+*/
 
+/* TAG FILTER SCRIPT — hidden, restore with tag filter
 <script>
   function initTagFilter() {
     const select = document.getElementById('tag-filter') as HTMLSelectElement;
@@ -276,3 +281,4 @@ const getPostUrl = (postId: string) => {
 
   document.addEventListener('astro:page-load', initTagFilter);
 </script>
+*/
