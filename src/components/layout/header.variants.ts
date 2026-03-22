@@ -13,7 +13,7 @@ export const headerVariants = cva('z-50', {
       transparent: 'bg-transparent',
     },
     shape: {
-      bar: 'w-full',
+      bar: 'w-full transition-[background,border-color,box-shadow,backdrop-filter] duration-300',
       floating: 'rounded-2xl transition-[background,border-color,box-shadow] duration-300',
     },
   },

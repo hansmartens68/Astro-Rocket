@@ -3,47 +3,52 @@
     .bi-bd { display: none }
     html.dark .bi-bl { display: none }
     html.dark .bi-bd { display: block }
-    .bi-ic { stroke: #6ee7b7 }
-    .bi-tt { fill: #ecfdf5 }
-    .bi-sl { stroke: rgba(110,231,183,.25) }
-    .bi-bb { fill: rgba(110,231,183,.08); stroke: rgba(110,231,183,.3) }
-    .bi-bt { fill: #6ee7b7 }
-    .bi-cr { stroke: #10b981 }
+    .bi-ic { stroke: #a5b4fc }
+    .bi-tt { fill: #eef0ff }
+    .bi-sl { stroke: rgba(99,102,241,.25) }
+    .bi-bb { fill: rgba(99,102,241,.08); stroke: rgba(99,102,241,.3) }
+    .bi-bt { fill: #818cf8 }
+    .bi-cr { stroke: #4f46e5 }
   </style>
   <defs>
     <linearGradient id="sar-bl" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#051a12"/>
-      <stop offset="100%" stop-color="#0e2419"/>
+      <stop offset="0%" stop-color="#060818"/>
+      <stop offset="100%" stop-color="#0a1020"/>
     </linearGradient>
     <linearGradient id="sar-bd" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#051a12"/>
-      <stop offset="100%" stop-color="#0e2419"/>
+      <stop offset="0%" stop-color="#060818"/>
+      <stop offset="100%" stop-color="#0a1020"/>
     </linearGradient>
     <radialGradient id="sar-glow" cx="50%" cy="38%" r="32%" gradientUnits="objectBoundingBox">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sar-glow2" cx="80%" cy="75%" r="28%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#sar-bl)" class="bi-bl"/>
   <rect width="1200" height="630" fill="url(#sar-bd)" class="bi-bd"/>
   <rect width="1200" height="630" fill="url(#sar-glow)"/>
-  <rect x="0" y="0" width="1200" height="4" fill="#10b981"/>
+  <rect width="1200" height="630" fill="url(#sar-glow2)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#6366f1"/>
   <!-- Lucide Search — scale 5, centred at (600, 240) -->
   <g transform="translate(540, 180) scale(5)"
-     stroke="#065f46" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+     stroke="#312e81" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
     <circle cx="11" cy="11" r="8"/>
     <path d="m21 21-4.3-4.3"/>
   </g>
   <text x="600" y="410"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="120" font-weight="800" fill="#ecfdf5"
+    font-size="120" font-weight="800" fill="#eef0ff"
     text-anchor="middle" letter-spacing="-4" class="bi-tt">seo</text>
-  <line x1="380" y1="436" x2="820" y2="436" stroke="rgba(110,231,183,0.5)" stroke-width="1" class="bi-sl"/>
+  <line x1="380" y1="436" x2="820" y2="436" stroke="rgba(99,102,241,0.5)" stroke-width="1" class="bi-sl"/>
   <rect x="450" y="468" width="300" height="38" rx="19"
-        fill="rgba(110,231,183,0.12)" stroke="rgba(16,185,129,0.4)" stroke-width="1" class="bi-bb"/>
+        fill="rgba(99,102,241,0.12)" stroke="rgba(79,70,229,0.4)" stroke-width="1" class="bi-bb"/>
   <text x="600" y="492"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#6ee7b7" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
+    font-size="13" fill="#818cf8" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
   <path d="M 36 60 L 36 36 L 60 36"          stroke-width="2" fill="none" class="bi-cr"/>
   <path d="M 1140 36 L 1164 36 L 1164 60"    stroke-width="2" fill="none" class="bi-cr"/>
   <path d="M 36 570 L 36 594 L 60 594"       stroke-width="2" fill="none" class="bi-cr"/>
