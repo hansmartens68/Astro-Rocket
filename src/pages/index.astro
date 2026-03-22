@@ -123,18 +123,18 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <div class="flex flex-col gap-4" data-reveal>
-          <Badge variant="brand" pill>About me</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+          <Badge variant="brand" pill size="sm">About me</Badge>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
             Designer, developer,<br />
             <span class="text-brand-500">and blogger</span>
           </h2>
-          <p class="text-lg text-foreground-muted leading-relaxed">
+          <p class="text-base text-foreground-muted leading-relaxed">
            I'm particular about the things most clients overlook — page speed, accessibility, and whether the design actually serves the content. That attention to detail is what I bring to every project.
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed">
+          <p class="text-base text-foreground-muted leading-relaxed">
            Whether you're a business looking for a polished online presence, or a creator who needs a site that matches your ambitions — I'd love to help.
           </p>
-          <Button href="/about" class="hero-btn-brand">
+          <Button href="/about" size="sm" class="hero-btn-brand">
             More about me
 <Icon name="arrow-right" size="sm" />
           </Button>
@@ -286,7 +286,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <div class="flex flex-col gap-4">
           <Badge variant="brand" pill>From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Latest posts
+            Featured
           </h2>
         </div>
         <a href="/blog" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors shrink-0">
