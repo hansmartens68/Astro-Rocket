@@ -1,56 +1,24 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .bi-bd { display: none }
-    html.dark .bi-bl { display: none }
-    html.dark .bi-bd { display: block }
-    .bi-ic { stroke: #a5b4fc }
-    .bi-tt { fill: #eef0ff }
-    .bi-sl { stroke: rgba(99,102,241,.25) }
-    .bi-bb { fill: rgba(99,102,241,.08); stroke: rgba(99,102,241,.3) }
-    .bi-bt { fill: #818cf8 }
-    .bi-cr { stroke: #4f46e5 }
-  </style>
-  <defs>
-    <linearGradient id="arcg-bl" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060818"/>
-      <stop offset="100%" stop-color="#0a1020"/>
-    </linearGradient>
-    <linearGradient id="arcg-bd" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060818"/>
-      <stop offset="100%" stop-color="#0a1020"/>
-    </linearGradient>
-    <radialGradient id="arcg-glow" cx="50%" cy="38%" r="32%" gradientUnits="objectBoundingBox">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="arcg-glow2" cx="80%" cy="75%" r="28%" gradientUnits="objectBoundingBox">
-      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#arcg-bl)" class="bi-bl"/>
-  <rect width="1200" height="630" fill="url(#arcg-bd)" class="bi-bd"/>
-  <rect width="1200" height="630" fill="url(#arcg-glow)"/>
-  <rect width="1200" height="630" fill="url(#arcg-glow2)"/>
-  <rect x="0" y="0" width="1200" height="4" fill="#6366f1"/>
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
   <!-- Lucide Settings — scale 5, centred at (600, 240) -->
   <g transform="translate(540, 180) scale(5)"
-     stroke="#312e81" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+     stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
     <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
     <circle cx="12" cy="12" r="3"/>
   </g>
   <text x="600" y="410"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="120" font-weight="800" fill="#eef0ff"
-    text-anchor="middle" letter-spacing="-4" class="bi-tt">config</text>
-  <line x1="380" y1="436" x2="820" y2="436" stroke="rgba(99,102,241,0.5)" stroke-width="1" class="bi-sl"/>
-  <rect x="450" y="468" width="300" height="38" rx="19"
-        fill="rgba(99,102,241,0.12)" stroke="rgba(79,70,229,0.4)" stroke-width="1" class="bi-bb"/>
-  <text x="600" y="492"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#818cf8" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
-  <path d="M 36 60 L 36 36 L 60 36"          stroke-width="2" fill="none" class="bi-cr"/>
-  <path d="M 1140 36 L 1164 36 L 1164 60"    stroke-width="2" fill="none" class="bi-cr"/>
-  <path d="M 36 570 L 36 594 L 60 594"       stroke-width="2" fill="none" class="bi-cr"/>
-  <path d="M 1140 594 L 1164 594 L 1164 570" stroke-width="2" fill="none" class="bi-cr"/>
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="120" font-weight="800" fill="#ffffff"
+    text-anchor="middle" letter-spacing="-4">config</text>
+  <line x1="380" y1="436" x2="820" y2="436" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.4"/>
+  <rect x="450" y="464" width="300" height="38" rx="19"
+        fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="600" y="488"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="13" fill="#60a5fa" text-anchor="middle" letter-spacing="2">HANSMARTENS.DEV</text>
+  <path d="M 36 60 L 36 36 L 60 36" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 36 570 L 36 594 L 60 594" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
 </svg>
