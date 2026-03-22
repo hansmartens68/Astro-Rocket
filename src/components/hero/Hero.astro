@@ -47,12 +47,13 @@ const gridClasses = cn(
 <section class={sectionClasses} {...attrs}>
   {/* Background grid pattern */}
   {/* Orange radial glow */}
-  <div class="bg-hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+  <div class="bg-hero-glow pointer-events-none absolute inset-x-0 -inset-y-[20%]" data-parallax="0.4" aria-hidden="true" />
 
   {showGrid && (
     <div
-      class="bg-grid-pattern pointer-events-none absolute inset-0 opacity-30"
+      class="bg-grid-pattern pointer-events-none absolute inset-x-0 -inset-y-[20%] opacity-30"
       style="mask-image: radial-gradient(ellipse 50% 50% at 50% 40%, black 0%, transparent 70%);"
+      data-parallax="0.2"
       aria-hidden="true"
     />
   )}
@@ -130,3 +131,31 @@ const gridClasses = cn(
     background-clip: text;
   }
 </style>
+
+<script>
+  // Parallax: move [data-parallax] layers at a fraction of scroll speed.
+  // Elements with -inset-y-[20%] have extra room to move without clipping.
+  // Skipped entirely when the user prefers reduced motion.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const layers = document.querySelectorAll<HTMLElement>('[data-parallax]');
+
+    function applyParallax() {
+      layers.forEach((el) => {
+        const section = el.closest('section');
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+        // Skip sections fully outside the viewport
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+        const speed = parseFloat(el.dataset.parallax ?? '0.3');
+        // Offset relative to how far the section top is from the viewport top
+        const offset = -rect.top * speed;
+        el.style.transform = `translateY(${offset.toFixed(2)}px)`;
+      });
+    }
+
+    window.addEventListener('scroll', applyParallax, { passive: true });
+    applyParallax();
+  }
+</script>
