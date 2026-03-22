@@ -123,7 +123,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <div class="flex flex-col gap-4" data-reveal>
-          <Badge variant="brand" pill size="sm">About me</Badge>
+          <Badge variant="brand" pill>About me</Badge>
           <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
             Designer, developer,<br />
             <span class="text-brand-500">and blogger</span>
@@ -284,7 +284,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex items-end justify-between" data-reveal>
         <div class="flex flex-col gap-4">
-          <Badge variant="brand" pill size="sm">From the blog</Badge>
+          <Badge variant="brand" pill>From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
             Featured
           </h2>
