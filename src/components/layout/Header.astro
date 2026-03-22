@@ -556,7 +556,7 @@ const buttonId = `${menuId}-button`;
   const SCROLL_THRESHOLD = 60;
 
   function initScrollWatcher() {
-    document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"]').forEach((header) => {
+    document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"], header[data-header-shape="bar"]').forEach((header) => {
       if (header.dataset.scrollInit) return;
       header.dataset.scrollInit = 'true';
 
@@ -607,6 +607,14 @@ const buttonId = `${menuId}-button`;
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ===== Bar header: scroll state ===== */
+  [data-header-shape="bar"][data-scrolled] {
+    background: color-mix(in oklch, var(--color-background) 90%, transparent);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.08);
   }
 
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
