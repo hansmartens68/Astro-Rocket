@@ -34,6 +34,8 @@ const {
   includePersonSchema = false,
   includeProfessionalServiceSchema = false,
 } = Astro.props;
+
+const isHomePage = Astro.url.pathname === '/';
 ---
 
 <BaseLayout
@@ -54,8 +56,9 @@ const {
     variant="transparent"
     colorScheme="default"
     size="lg"
-    showCta
+    showCta={!isHomePage}
     cta={{ label: 'Get in touch', href: '/contact' }}
+    showThemeSelector={isHomePage}
   />
 
   <slot />
