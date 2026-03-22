@@ -60,10 +60,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>Services</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          What I do
-        </h2>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Services</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            What I do
+          </h2>
+        </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
           From concept to launch.
         </p>
@@ -123,11 +125,13 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <div>
-          <Badge variant="brand" pill class="mb-4">About me</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Designer, developer,<br />
-            <span class="text-brand-500">and blogger.</span>
-          </h2>
+          <div class="flex flex-col gap-6 mb-6">
+            <Badge variant="brand" pill class="self-start">About me</Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Designer, developer,<br />
+              <span class="text-brand-500">and blogger.</span>
+            </h2>
+          </div>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
            I'm particular about the things most clients overlook — page speed, accessibility, and whether the design actually serves the content. That attention to detail is what I bring to every project.
           </p>
@@ -172,10 +176,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>Selected work</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          Projects I've built
-        </h2>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Selected work</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Projects I've built
+          </h2>
+        </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
           A selection of recent work.
         </p>
@@ -214,10 +220,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>Testimonials</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          What clients say
-        </h2>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>Testimonials</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            What clients say
+          </h2>
+        </div>
         <p class="text-lg text-foreground-muted">
           Real feedback from real projects.
         </p>
@@ -281,7 +289,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex items-end justify-between" data-reveal>
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-6">
           <Badge variant="brand" pill class="self-start">From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
             Featured

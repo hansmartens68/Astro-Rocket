@@ -20,4 +20,11 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
     height: auto;
     display: block;
   }
+
+  @media (min-width: 640px) {
+    .svg-host :global(svg) {
+      transform: scale(1.35);
+      transform-origin: center center;
+    }
+  }
 </style>
