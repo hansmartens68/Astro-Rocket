@@ -47,10 +47,11 @@ const hasActionsSlot = Astro.slots.has('actions');
 
 <section
   id={id}
-  class={cn(sectionStyles[variant], sizes[size], className)}
+  class={cn('relative overflow-hidden', sectionStyles[variant], sizes[size], className)}
   {...attrs}
 >
-  <div class="mx-auto max-w-6xl px-6">
+  <div class="bg-hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+  <div class="mx-auto max-w-6xl px-6 relative">
     <div class={cn(maxWidths[maxWidth], 'text-center mx-auto')}>
       {/* Logo Slot - renders before heading */}
       {hasLogoSlot && (
