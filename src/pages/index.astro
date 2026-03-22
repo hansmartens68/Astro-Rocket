@@ -44,14 +44,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       Crafting modern web experiences shaped by clean design, solid structure, and attention to detail.
     </p>
 
-    <Fragment slot="actions">
-      <Button size="lg" href="/contact" class="hero-btn-brand">
+   <Fragment slot="actions">
+      <Button size="lg" href="/contact">
         Start a project
-        <Icon name="arrow-right" size="sm" />
+      <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" href="/about" class="hero-btn-learn">
+      <Button size="lg" variant="outline" href="/about">
         Learn more
-        <Icon name="arrow-right" size="sm" />
+         <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </Hero>
@@ -118,28 +118,27 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
-  <!-- About Teaser -->
+ <!-- About Teaser -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
-        <div class="flex flex-col gap-4" data-reveal>
-          <Badge variant="brand" pill class="self-start">About me</Badge>
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
+        <div>
+          <Badge variant="brand" pill class="mb-4">About me</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
             Designer, developer,<br />
-            <span class="text-brand-500">and blogger</span>
+            <span class="text-brand-500">and blogger.</span>
           </h2>
-          <p class="text-base text-foreground-muted leading-relaxed">
+          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
            I'm particular about the things most clients overlook — page speed, accessibility, and whether the design actually serves the content. That attention to detail is what I bring to every project.
           </p>
-          <p class="text-base text-foreground-muted leading-relaxed">
+          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
            Whether you're a business looking for a polished online presence, or a creator who needs a site that matches your ambitions — I'd love to help.
           </p>
-          <Button href="/about" size="sm" class="hero-btn-brand self-start">
-            More about me
-<Icon name="arrow-right" size="sm" />
+         <Button size="lg" variant="outline" href="/about">
+            More About Me
+            <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
-
         <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
           <p class="font-semibold text-sm text-foreground text-center">Hans Martens — by the numbers</p>
           <p class="text-sm text-foreground-muted mt-0.5 mb-5 text-center">A few things about me.</p>
@@ -320,24 +319,22 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
- <!-- CTA -->
+<!-- CTA -->
   <CTA variant="invert" size="md" maxWidth="lg">
     <h2 slot="heading">Let's build something together</h2>
     <p slot="description" class="!text-lg">
-      Get in touch. Response within 1 day.
+      Get In Touch. Response within 1 day.
     </p>
-    <Fragment slot="actions">
-      <Button size="lg" href="/contact" class="hero-btn-brand">
-        Start a project
+    <div slot="actions" class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" href="/contact">
+        Start a Project
         <Icon name="arrow-right" size="sm" />
       </Button>
-      <Button size="lg" href="/about" class="hero-btn-learn">
-        More about me
-        <Icon name="arrow-right" size="sm" />
+      <Button size="lg" variant="outline" href="/about">
+        More About Me
       </Button>
-    </Fragment>
+    </div>
   </CTA>
-
 
 <script>
   const counters = document.querySelectorAll<HTMLElement>('[data-countup]');

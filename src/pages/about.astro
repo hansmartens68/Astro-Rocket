@@ -23,7 +23,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
       About me
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Hans Martens —</span><br />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
         <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
       </span>
@@ -44,35 +44,35 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
             Web design, now with a thinking partner
           </h2>
-          <p class="text-base text-foreground-muted leading-relaxed">
+          <p class="text-lg text-foreground-muted leading-relaxed">
             I'm a web designer and developer with 16 years of hands-on experience. Today I work alongside Claude — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
           </p>
         </div>
         <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4" data-reveal data-reveal-delay="1">
+        <div class="flex flex-col gap-4">
           <Card variant="elevated">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="code-2" size="sm" />
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code-2" size="md" />
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Hans Martens</h3>
+                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
                   16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge variant="brand">Astro</Badge>
-                  <Badge variant="brand">Tailwind</Badge>
-                  <Badge variant="brand">TypeScript</Badge>
+                  <Badge size="sm" variant="brand">Astro</Badge>
+                  <Badge size="sm" variant="brand">Tailwind</Badge>
+                  <Badge size="sm" variant="brand">TypeScript</Badge>
                 </div>
               </div>
             </div>
           </Card>
           <Card variant="elevated">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="sparkles" size="sm" />
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="sparkles" size="md" />
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
@@ -81,9 +81,9 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
                   Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
-                  <Badge variant="brand">Design review</Badge>
-                  <Badge variant="brand">Code QA</Badge>
-                  <Badge variant="brand">Deep thinking</Badge>
+                  <Badge size="sm" variant="brand">Design review</Badge>
+                  <Badge size="sm" variant="brand">Code QA</Badge>
+                  <Badge size="sm" variant="brand">Deep thinking</Badge>
                 </div>
               </div>
             </div>
@@ -94,21 +94,21 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   </section>
   <!-- Values -->
   <section class="py-[var(--space-section-md)] border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>My process</Badge>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-          How I work
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center">
+        <Badge variant="brand" pill class="mb-4">My Process</Badge>
+        <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+          How I Work
         </h2>
-        <p class="text-base text-foreground-muted max-w-2xl mx-auto text-balance">
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
           These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
+      <div class="grid gap-8 md:grid-cols-3">
         <Card hover>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="zap" size="sm" />
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="zap" size="md" />
             </div>
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Performance First</h3>
@@ -121,8 +121,8 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
         </Card>
         <Card hover>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="minimize-2" size="sm" />
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="minimize-2" size="md" />
             </div>
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Keep It Simple</h3>
@@ -135,8 +135,8 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
         </Card>
         <Card hover>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-              <Icon name="message-circle" size="sm" />
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="message-circle" size="md" />
             </div>
             <div class="flex-1 min-w-0">
               <h3 class="text-base font-semibold text-foreground">Clear Communication</h3>
@@ -152,20 +152,28 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   </section>
   <!-- My Stack -->
   <TechStack
-    badge="Tools & tech"
-    title="My stack"
+    badge="Tools & Tech"
+    title="My Stack"
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
   <!-- CTA -->
-  <CTA variant="default" size="md" maxWidth="md">
-    <h2 slot="heading">Ready to work together?</h2>
-    <p slot="description">I'm available for new projects. Let's talk about what you need.</p>
-    <Fragment slot="actions">
-      <Button size="lg" href="/contact" class="hero-btn-brand">
-        Start a project
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </Fragment>
-  </CTA>
- 
+  <section class="py-[var(--space-section-md)] bg-background">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+        Ready to work together?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8">
+        I'm available for new projects. Let's talk about what you need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Start a Project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/blog">
+          Read the Blog
+        </Button>
+      </div>
+    </div>
+  </section>
 </PageLayout>
