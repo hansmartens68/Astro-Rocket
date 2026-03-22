@@ -1,31 +1,31 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0a0c16"/>
-      <stop offset="100%" stop-color="#0d0f1e"/>
+      <stop offset="0%" stop-color="#060818"/>
+      <stop offset="100%" stop-color="#0a1020"/>
     </linearGradient>
     <radialGradient id="mainGlow" cx="600" cy="290" r="320" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.13"/>
-      <stop offset="60%" stop-color="#ff5d01" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.13"/>
+      <stop offset="60%" stop-color="#6366f1" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="leftGlow" cx="190" cy="315" r="240" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rightGlow" cx="1010" cy="315" r="240" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ff5d01" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="bottomFade" x1="0" y1="440" x2="0" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#0d0f1e" stop-opacity="0"/>
-      <stop offset="35%"  stop-color="#0d0f1e" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#0d0f1e" stop-opacity="1"/>
+      <stop offset="0%"   stop-color="#060818" stop-opacity="0"/>
+      <stop offset="35%"  stop-color="#060818" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#060818" stop-opacity="1"/>
     </linearGradient>
     <linearGradient id="connLine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#ff5d01" stop-opacity="0.3"/>
-      <stop offset="50%"  stop-color="#ff8c42" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#ff5d01" stop-opacity="0.3"/>
+      <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.3"/>
+      <stop offset="50%"  stop-color="#818cf8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.3"/>
     </linearGradient>
     <pattern id="grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
       <circle cx="16" cy="16" r="0.8" fill="#ffffff" fill-opacity="0.04"/>
@@ -53,10 +53,10 @@
   <circle cx="420"  cy="110" r="1.0" fill="#ffffff" opacity="0.28"/>
 
   <!-- ── LEFT CARD: GoDaddy ── -->
-  <rect x="52" y="148" width="310" height="336" rx="20" fill="#ff5d01" fill-opacity="0.04"/>
+  <rect x="52" y="148" width="310" height="336" rx="20" fill="#6366f1" fill-opacity="0.04"/>
   <rect x="56" y="152" width="302" height="328" rx="18"
-    fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
-  <rect x="56" y="152" width="302" height="2" rx="1" fill="#ff5d01" fill-opacity="0.4"/>
+    fill="#0d1120" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <rect x="56" y="152" width="302" height="2" rx="1" fill="#6366f1" fill-opacity="0.4"/>
 
   <text x="207" y="222"
     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
@@ -67,7 +67,7 @@
     font-size="11" fill="#64748b" text-anchor="middle" letter-spacing="2"
   >DOMAIN REGISTRAR</text>
 
-  <line x1="96" y1="270" x2="318" y2="270" stroke="#1e293b" stroke-width="1"/>
+  <line x1="96" y1="270" x2="318" y2="270" stroke="#1e2a40" stroke-width="1"/>
 
   <rect x="86" y="284" width="242" height="36" rx="10"
     fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.2" stroke-width="1"/>
@@ -81,15 +81,16 @@
     font-size="10" fill="#475569" letter-spacing="1.5"
   >DNS RECORDS</text>
 
-  <rect x="86" y="356" width="242" height="28" rx="7" fill="#0d1120" stroke="#1e293b" stroke-width="1"/>
-  <text x="100" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#38bdf8">A</text>
+  <!-- cyan used as nice touch for DNS record types -->
+  <rect x="86" y="356" width="242" height="28" rx="7" fill="#030614" stroke="#1e2a40" stroke-width="1"/>
+  <text x="100" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#22d3ee">A</text>
   <text x="118" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#64748b">@  →</text>
-  <text x="158" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#ff8c42">76.76.21.21</text>
+  <text x="158" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#818cf8">76.76.21.21</text>
 
-  <rect x="86" y="388" width="242" height="28" rx="7" fill="#0d1120" stroke="#1e293b" stroke-width="1"/>
-  <text x="100" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#38bdf8">CNAME</text>
+  <rect x="86" y="388" width="242" height="28" rx="7" fill="#030614" stroke="#1e2a40" stroke-width="1"/>
+  <text x="100" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#22d3ee">CNAME</text>
   <text x="158" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#64748b">www  →</text>
-  <text x="224" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#ff8c42">vercel</text>
+  <text x="224" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#818cf8">vercel</text>
 
   <text x="207" y="444"
     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
@@ -99,8 +100,8 @@
   <!-- ── CONNECTION ── -->
   <line x1="362" y1="316" x2="838" y2="316" stroke="url(#connLine)" stroke-width="1.5" stroke-dasharray="7 5"/>
   <rect x="440" y="286" width="320" height="60" rx="14"
-    fill="#0d1120" stroke="#ff5d01" stroke-opacity="0.35" stroke-width="1.2"/>
-  <rect x="441" y="287" width="318" height="1.5" rx="1" fill="#ff5d01" fill-opacity="0.3"/>
+    fill="#030614" stroke="#6366f1" stroke-opacity="0.35" stroke-width="1.2"/>
+  <rect x="441" y="287" width="318" height="1.5" rx="1" fill="#6366f1" fill-opacity="0.3"/>
   <text x="600" y="308"
     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
     font-size="10" fill="#64748b" text-anchor="middle" letter-spacing="2"
@@ -109,14 +110,14 @@
     font-family="ui-monospace, 'Fira Code', monospace"
     font-size="20" font-weight="700" fill="#f1f5f9" text-anchor="middle" letter-spacing="0.5"
   >hansmartens.dev</text>
-  <polygon points="362,309 372,316 362,323" fill="#ff8c42" opacity="0.7"/>
-  <polygon points="838,309 828,316 838,323" fill="#ff8c42" opacity="0.7"/>
+  <polygon points="362,309 372,316 362,323" fill="#818cf8" opacity="0.7"/>
+  <polygon points="838,309 828,316 838,323" fill="#818cf8" opacity="0.7"/>
 
   <!-- ── RIGHT CARD: Vercel ── -->
-  <rect x="838" y="148" width="310" height="336" rx="20" fill="#ff5d01" fill-opacity="0.04"/>
+  <rect x="838" y="148" width="310" height="336" rx="20" fill="#22d3ee" fill-opacity="0.03"/>
   <rect x="842" y="152" width="302" height="328" rx="18"
-    fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
-  <rect x="842" y="152" width="302" height="2" rx="1" fill="#ff5d01" fill-opacity="0.4"/>
+    fill="#0d1120" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <rect x="842" y="152" width="302" height="2" rx="1" fill="#22d3ee" fill-opacity="0.35"/>
 
   <polygon points="993,188 1022,236 964,236" fill="#ffffff" opacity="0.92"/>
   <text x="993" y="264"
@@ -128,7 +129,7 @@
     font-size="11" fill="#64748b" text-anchor="middle" letter-spacing="2"
   >DEPLOYMENT PLATFORM</text>
 
-  <line x1="882" y1="298" x2="1104" y2="298" stroke="#1e293b" stroke-width="1"/>
+  <line x1="882" y1="298" x2="1104" y2="298" stroke="#1e2a40" stroke-width="1"/>
 
   <rect x="872" y="312" width="242" height="36" rx="10"
     fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.2" stroke-width="1"/>
@@ -142,7 +143,7 @@
     font-size="10" fill="#475569" letter-spacing="1.5"
   >INCLUDED</text>
 
-  <rect x="872" y="384" width="242" height="80" rx="10" fill="#0d1120" stroke="#1e293b" stroke-width="1"/>
+  <rect x="872" y="384" width="242" height="80" rx="10" fill="#030614" stroke="#1e2a40" stroke-width="1"/>
   <text x="890" y="408" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">✓  Automatic HTTPS</text>
   <text x="890" y="429" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">✓  Global CDN</text>
   <text x="890" y="450" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">✓  Deploy on every git push</text>
@@ -159,9 +160,9 @@
     font-size="25" font-weight="600" fill="#f1f5f9" text-anchor="middle" letter-spacing="0.1"
   >Domain, Email &amp; Hosting — From GoDaddy to Vercel</text>
   <rect x="460" y="550" width="280" height="34" rx="17"
-    fill="#ff5d01" fill-opacity="0.08" stroke="#ff5d01" stroke-opacity="0.22" stroke-width="1"/>
+    fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.22" stroke-width="1"/>
   <text x="600" y="572"
     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#ff8c42" text-anchor="middle" letter-spacing="1.5"
+    font-size="12" fill="#818cf8" text-anchor="middle" letter-spacing="1.5"
   >hansmartens.dev · Astro Rocket</text>
 </svg>
