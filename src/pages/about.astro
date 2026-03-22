@@ -40,11 +40,11 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal>
-          <Badge variant="brand" pill>The partnership</Badge>
-          <h2 class="font-display text-4xl font-bold text-foreground">
+          <Badge variant="brand" pill size="sm">The partnership</Badge>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground">
             Web design, now with a thinking partner
           </h2>
-          <p class="text-lg text-foreground-muted leading-relaxed">
+          <p class="text-base text-foreground-muted leading-relaxed">
             I'm a web designer and developer with 16 years of hands-on experience. Today I work alongside Claude — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
           </p>
         </div>
@@ -96,11 +96,11 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>My process</Badge>
-        <h2 class="font-display text-4xl font-bold text-foreground">
+        <Badge variant="brand" pill size="sm">My process</Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           How I work
         </h2>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+        <p class="text-base text-foreground-muted max-w-2xl mx-auto text-balance">
           These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
         </p>
       </div>
@@ -157,25 +157,15 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-2xl px-6 flex flex-col items-center gap-6 text-center">
-      <h2 class="font-display text-4xl font-bold text-foreground">
-        Ready to work together?
-      </h2>
-      <p class="text-lg text-foreground-muted">
-        I'm available for new projects. Let's talk about what you need.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact" class="hero-btn-brand">
-          Get in touch
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-        <Button size="lg" href="/blog" class="hero-btn-learn">
-          Read the blog
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-      </div>
-    </div>
-  </section>
+  <CTA variant="default" size="md" maxWidth="md">
+    <h2 slot="heading">Ready to work together?</h2>
+    <p slot="description">I'm available for new projects. Let's talk about what you need.</p>
+    <Fragment slot="actions">
+      <Button size="lg" href="/contact" class="hero-btn-brand">
+        Start a project
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+    </Fragment>
+  </CTA>
  
 </PageLayout>

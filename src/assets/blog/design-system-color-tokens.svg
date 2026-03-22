@@ -29,8 +29,8 @@
   <rect width="1200" height="630" fill="url(#dsct-bd)" class="bi-bd"/>
   <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
   <!-- Lucide Droplet — scale 11, centred at (600, 240) -->
-  <g transform="translate(468, 108) scale(11)"
-     stroke="#3d6b0c" stroke-width="0.84" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#3d6b0c" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
     <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
   </g>
   <text x="600" y="490"

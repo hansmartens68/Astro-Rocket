@@ -77,8 +77,8 @@
     To place icon centre at canvas (600, 247):
       translate = (600 − 12×11,  247 − 12×11) = (468, 115)
   -->
-  <g transform="translate(468, 115) scale(11)"
-     stroke="#ddd6fe" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <g transform="translate(540, 187) scale(5)"
+     stroke="#ddd6fe" stroke-width="1.80" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <!-- Flame / booster exhaust -->
     <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
     <!-- Main rocket body -->

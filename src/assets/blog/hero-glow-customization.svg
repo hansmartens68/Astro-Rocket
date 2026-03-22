@@ -35,8 +35,8 @@
   <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
 
   <!-- Lucide Layers icon — scale 11, centred at (600, 240) -->
-  <g transform="translate(468, 108) scale(11)"
-     stroke="#3d6b0c" stroke-width="0.84" stroke-linecap="round" stroke-linejoin="round" fill="none"
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#3d6b0c" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none"
      class="bi-ic">
     <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
     <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
