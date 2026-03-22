@@ -554,12 +554,14 @@ const buttonId = `${menuId}-button`;
 
 <script>
   const SCROLL_THRESHOLD = 60;
+  const BAR_SCROLLED_CLASSES = ['bg-background/80', 'backdrop-blur-lg', 'border-b', 'border-border/50'];
 
   function initScrollWatcher() {
     document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"], header[data-header-shape="bar"]').forEach((header) => {
       if (header.dataset.scrollInit) return;
       header.dataset.scrollInit = 'true';
 
+      const isBar = header.dataset.headerShape === 'bar';
       let ticking = false;
 
       function onScroll() {
@@ -569,6 +571,10 @@ const buttonId = `${menuId}-button`;
         requestAnimationFrame(() => {
           if (window.scrollY > SCROLL_THRESHOLD) {
             header.setAttribute('data-scrolled', '');
+            if (isBar) {
+              header.classList.add(...BAR_SCROLLED_CLASSES);
+              header.classList.remove('bg-transparent');
+            }
           } else {
             // Don't remove if mobile menu is open
             const menuId = header.dataset.menuId;
@@ -576,6 +582,10 @@ const buttonId = `${menuId}-button`;
             const menuOpen = menu && !menu.classList.contains('hidden');
             if (!menuOpen) {
               header.removeAttribute('data-scrolled');
+              if (isBar) {
+                header.classList.remove(...BAR_SCROLLED_CLASSES);
+                header.classList.add('bg-transparent');
+              }
             }
           }
           ticking = false;
@@ -607,14 +617,6 @@ const buttonId = `${menuId}-button`;
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* ===== Bar header: scroll state ===== */
-  [data-header-shape="bar"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 90%, transparent);
-    backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.08);
   }
 
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
