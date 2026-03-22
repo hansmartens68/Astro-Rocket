@@ -29,8 +29,8 @@
   <rect width="1200" height="630" fill="url(#hte-bd)" class="bi-bd"/>
   <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
   <!-- Lucide Terminal — scale 11, centred at (600, 240) -->
-  <g transform="translate(468, 108) scale(11)"
-     stroke="#3d6b0c" stroke-width="0.84" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#3d6b0c" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
     <polyline points="4 17 10 11 4 5"/>
     <line x1="12" x2="20" y1="19" y2="19"/>
   </g>
