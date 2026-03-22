@@ -225,48 +225,54 @@ const getPostUrl = (postId: string) => {
 </style>
 
 <script>
-  const select = document.getElementById('tag-filter') as HTMLSelectElement;
-  const cards = document.querySelectorAll<HTMLElement>('.post-card');
-  const featuredSection = document.getElementById('featured-section');
-  const noResults = document.getElementById('no-results');
-  const filterCount = document.getElementById('filter-count');
+  function initTagFilter() {
+    const select = document.getElementById('tag-filter') as HTMLSelectElement;
+    const cards = document.querySelectorAll<HTMLElement>('.post-card');
+    const featuredSection = document.getElementById('featured-section');
+    const noResults = document.getElementById('no-results');
+    const filterCount = document.getElementById('filter-count');
 
-  select?.addEventListener('change', () => {
-    const tag = select.value;
+    if (!select) return;
 
-    if (tag === 'all') {
-      cards.forEach((card) => card.style.removeProperty('display'));
-      if (featuredSection) featuredSection.style.removeProperty('display');
-      noResults?.classList.add('hidden');
-      if (filterCount) filterCount.classList.add('hidden');
-      return;
-    }
+    select.addEventListener('change', () => {
+      const tag = select.value;
 
-    let visibleCount = 0;
-    let featuredVisible = 0;
+      if (tag === 'all') {
+        cards.forEach((card) => card.style.removeProperty('display'));
+        if (featuredSection) featuredSection.style.removeProperty('display');
+        noResults?.classList.add('hidden');
+        if (filterCount) filterCount.classList.add('hidden');
+        return;
+      }
 
-    cards.forEach((card) => {
-      const tags: string[] = JSON.parse(card.dataset.tags || '[]');
-      if (tags.includes(tag)) {
-        card.style.removeProperty('display');
-        visibleCount++;
-        if (featuredSection?.contains(card)) featuredVisible++;
-      } else {
-        card.style.display = 'none';
+      let visibleCount = 0;
+      let featuredVisible = 0;
+
+      cards.forEach((card) => {
+        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+        if (tags.includes(tag)) {
+          card.style.removeProperty('display');
+          visibleCount++;
+          if (featuredSection?.contains(card)) featuredVisible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (featuredSection) {
+        featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
+      }
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+
+      if (filterCount) {
+        filterCount.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''}`;
+        filterCount.classList.remove('hidden');
       }
     });
+  }
 
-    if (featuredSection) {
-      featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
-    }
-
-    if (noResults) {
-      noResults.classList.toggle('hidden', visibleCount > 0);
-    }
-
-    if (filterCount) {
-      filterCount.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''}`;
-      filterCount.classList.remove('hidden');
-    }
-  });
+  document.addEventListener('astro:page-load', initTagFilter);
 </script>
