@@ -26,6 +26,9 @@ const nonFeaturedPosts = posts.filter((post) => !post.data.featured);
 // If ALL posts are featured, show them all in the main listing too (to avoid empty section)
 const regularPosts = nonFeaturedPosts.length > 0 ? nonFeaturedPosts : posts;
 
+// Collect all unique tags across all posts
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+
 const getPostUrl = (postId: string) => {
   // Remove locale prefix from id (e.g., "en/welcome-to-velocity" -> "welcome-to-velocity")
   const slug = postId.replace('en/', '');
@@ -43,7 +46,7 @@ const getPostUrl = (postId: string) => {
     cta={{ label: 'Get in touch', href: '/contact' }}
   />
 
-  <div class="min-h-screen pt-16">
+  <div class="min-h-screen">
   <Hero layout="centered" size="sm" class="bg-surface-secondary border-b border-border">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="book" size="sm" />
@@ -55,10 +58,38 @@ const getPostUrl = (postId: string) => {
     <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
+  <!-- Tag Filter -->
+  {allTags.length > 0 && (
+    <div class="border-b border-border bg-background sticky top-16 z-10">
+      <div class="mx-auto max-w-6xl px-6 py-3 flex items-center gap-3">
+        <label for="tag-filter" class="text-sm font-medium text-foreground-muted whitespace-nowrap">
+          Filter by tag
+        </label>
+        <div class="relative">
+          <select
+            id="tag-filter"
+            class="tag-select appearance-none pl-3 pr-8 py-1.5 rounded-full border border-border bg-background text-sm font-medium text-foreground cursor-pointer focus:outline-none focus:border-brand-500 transition-colors"
+          >
+            <option value="all">All posts</option>
+            {allTags.map((tag) => (
+              <option value={tag}>{tag}</option>
+            ))}
+          </select>
+          <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-foreground-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </span>
+        </div>
+        <span id="filter-count" class="text-sm text-foreground-muted hidden"></span>
+      </div>
+    </div>
+  )}
+
   <!-- Featured Posts Section -->
   {
     featuredPosts.length > 0 && (
-      <section class="bg-background py-[var(--space-section-md)] border-t border-border">
+      <section id="featured-section" class="bg-background py-[var(--space-section-md)] border-t border-border">
         <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
           <h2 class="font-display text-foreground text-2xl font-bold" data-reveal>
             Featured
@@ -66,16 +97,18 @@ const getPostUrl = (postId: string) => {
 
           <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
             {featuredPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                href={getPostUrl(post.id)}
-                publishedAt={post.data.publishedAt}
-                tags={post.data.tags}
-                author={post.data.author}
-                image={post.data.image}
-                svgSlug={post.data.svgSlug}
-              />
+              <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={getPostUrl(post.id)}
+                  publishedAt={post.data.publishedAt}
+                  tags={post.data.tags}
+                  author={post.data.author}
+                  image={post.data.image}
+                  svgSlug={post.data.svgSlug}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -96,16 +129,18 @@ const getPostUrl = (postId: string) => {
         regularPosts.length > 0 ? (
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
             {regularPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                href={getPostUrl(post.id)}
-                publishedAt={post.data.publishedAt}
-                tags={post.data.tags}
-                author={post.data.author}
-                image={post.data.image}
-                svgSlug={post.data.svgSlug}
-              />
+              <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={getPostUrl(post.id)}
+                  publishedAt={post.data.publishedAt}
+                  tags={post.data.tags}
+                  author={post.data.author}
+                  image={post.data.image}
+                  svgSlug={post.data.svgSlug}
+                />
+              </div>
             ))}
           </div>
         ) : posts.length === 0 ? (
@@ -117,6 +152,14 @@ const getPostUrl = (postId: string) => {
           </div>
         ) : null
       }
+
+      <!-- Empty state when filter has no results -->
+      <div id="no-results" class="hidden py-16 text-center">
+        <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+          <Icon name="file-text" size="lg" class="text-foreground-muted" />
+        </div>
+        <p class="text-foreground-muted text-lg">No posts found for this tag</p>
+      </div>
     </div>
   </section>
 
@@ -173,3 +216,57 @@ const getPostUrl = (postId: string) => {
 
   <Footer slot="footer" layout="simple" background="secondary" />
 </BaseLayout>
+
+<style>
+  .tag-select {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+</style>
+
+<script>
+  const select = document.getElementById('tag-filter') as HTMLSelectElement;
+  const cards = document.querySelectorAll<HTMLElement>('.post-card');
+  const featuredSection = document.getElementById('featured-section');
+  const noResults = document.getElementById('no-results');
+  const filterCount = document.getElementById('filter-count');
+
+  select?.addEventListener('change', () => {
+    const tag = select.value;
+
+    if (tag === 'all') {
+      cards.forEach((card) => card.style.removeProperty('display'));
+      if (featuredSection) featuredSection.style.removeProperty('display');
+      noResults?.classList.add('hidden');
+      if (filterCount) filterCount.classList.add('hidden');
+      return;
+    }
+
+    let visibleCount = 0;
+    let featuredVisible = 0;
+
+    cards.forEach((card) => {
+      const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+      if (tags.includes(tag)) {
+        card.style.removeProperty('display');
+        visibleCount++;
+        if (featuredSection?.contains(card)) featuredVisible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (featuredSection) {
+      featuredSection.style.display = featuredVisible === 0 ? 'none' : '';
+    }
+
+    if (noResults) {
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    if (filterCount) {
+      filterCount.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''}`;
+      filterCount.classList.remove('hidden');
+    }
+  });
+</script>
