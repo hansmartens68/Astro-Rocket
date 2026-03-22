@@ -44,14 +44,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       Crafting modern web experiences shaped by clean design, solid structure, and attention to detail.
     </p>
 
-    <Fragment slot="actions">
-      <Button size="lg" href="/contact" class="hero-btn-brand">
-        Start a project
-        <Icon name="arrow-right" size="sm" />
+   <Fragment slot="actions">
+      <Button size="lg" href="https://github.com">
+        <Icon name="github" size="sm" />
+        Get it on GitHub
       </Button>
-      <Button size="lg" href="/about" class="hero-btn-learn">
+      <Button size="lg" variant="outline" href="/about">
         Learn more
-        <Icon name="arrow-right" size="sm" />
+         <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </Hero>
