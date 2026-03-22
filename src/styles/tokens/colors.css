@@ -11,10 +11,10 @@
    Theme files
    -----------
    Active in selector (ThemeSelector.astro):
-     lime, teal, cyan, sky, blue, violet, purple
+     orange, lime, emerald, teal, sky, blue, purple
 
    Hidden from selector (files kept for re-use):
-     orange, green, indigo
+     cyan, green, indigo
 
    Available but not exposed in selector:
      amber, magenta
@@ -23,16 +23,16 @@
 @import './primitives.css';
 
 /* — active in selector — */
+@import '../themes/orange.css';
 @import '../themes/lime.css';
+@import '../themes/emerald.css';
 @import '../themes/teal.css';
-@import '../themes/cyan.css';
 @import '../themes/sky.css';
 @import '../themes/blue.css';
-@import '../themes/violet.css';
 @import '../themes/purple.css';
 
 /* — hidden from selector — */
-@import '../themes/orange.css';
+@import '../themes/cyan.css';
 @import '../themes/green.css';
 @import '../themes/indigo.css';
 
