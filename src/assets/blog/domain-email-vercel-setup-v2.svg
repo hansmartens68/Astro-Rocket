@@ -1,214 +1,25 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Background -->
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060818"/>
-      <stop offset="100%" stop-color="#0a1020"/>
-    </linearGradient>
-
-    <!-- Central indigo spotlight -->
-    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Focused glow centred on the two cards -->
-    <radialGradient id="glowCards" cx="600" cy="310" r="300" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Card top accent — LEFT card (x 199→501) -->
-    <linearGradient id="accentL" x1="199" y1="0" x2="501" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#4f46e5" stop-opacity="0.25"/>
-      <stop offset="50%"  stop-color="#818cf8" stop-opacity="0.80"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.25"/>
-    </linearGradient>
-
-    <!-- Card top accent — RIGHT card (x 699→1001) -->
-    <linearGradient id="accentR" x1="699" y1="0" x2="1001" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#4f46e5" stop-opacity="0.25"/>
-      <stop offset="50%"  stop-color="#22d3ee" stop-opacity="0.70"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.25"/>
-    </linearGradient>
-
-    <!-- Connection dashed-line gradient -->
-    <linearGradient id="connLine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#4f46e5" stop-opacity="0.35"/>
-      <stop offset="50%"  stop-color="#818cf8" stop-opacity="0.75"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.35"/>
-    </linearGradient>
-
-    <!-- Bottom fade (blue-black) -->
-    <linearGradient id="bottomFade" x1="0" y1="440" x2="0" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#060818" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#060818" stop-opacity="0.96"/>
-      <stop offset="100%" stop-color="#060818" stop-opacity="1"/>
-    </linearGradient>
-
-    <!-- Divider under title -->
-    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#4f46e5" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#818cf8" stop-opacity="0.38"/>
-      <stop offset="70%"  stop-color="#818cf8" stop-opacity="0.38"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- Dot grid -->
-    <pattern id="dots" x="0" y="0" width="38" height="38" patternUnits="userSpaceOnUse">
-      <circle cx="19" cy="19" r="0.78" fill="#ffffff" fill-opacity="0.042"/>
-    </pattern>
-  </defs>
-
-  <!-- ── Background ── -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#dots)"/>
-  <rect width="1200" height="630" fill="url(#glowMain)"/>
-  <ellipse cx="600" cy="310" rx="300" ry="260" fill="url(#glowCards)"/>
-
-  <!-- ── Stars ── -->
-  <circle cx="88"   cy="50"  r="1.2" fill="#ffffff" opacity="0.50"/>
-  <circle cx="198"  cy="30"  r="0.8" fill="#ffffff" opacity="0.40"/>
-  <circle cx="355"  cy="66"  r="0.9" fill="#ffffff" opacity="0.45"/>
-  <circle cx="478"  cy="36"  r="0.7" fill="#ffffff" opacity="0.35"/>
-  <circle cx="55"   cy="188" r="1.0" fill="#ffffff" opacity="0.28"/>
-  <circle cx="65"   cy="400" r="0.9" fill="#ffffff" opacity="0.20"/>
-  <circle cx="148"  cy="455" r="0.8" fill="#ffffff" opacity="0.18"/>
-  <circle cx="820"  cy="46"  r="1.0" fill="#ffffff" opacity="0.50"/>
-  <circle cx="932"  cy="26"  r="0.8" fill="#ffffff" opacity="0.40"/>
-  <circle cx="1062" cy="58"  r="1.3" fill="#ffffff" opacity="0.36"/>
-  <circle cx="1140" cy="126" r="0.9" fill="#ffffff" opacity="0.30"/>
-  <circle cx="1158" cy="232" r="0.7" fill="#ffffff" opacity="0.24"/>
-  <circle cx="1145" cy="420" r="0.8" fill="#ffffff" opacity="0.20"/>
-  <circle cx="305"  cy="86"  r="1.7" fill="#ffffff" opacity="0.60"/>
-  <circle cx="884"  cy="66"  r="1.6" fill="#ffffff" opacity="0.55"/>
-  <circle cx="592"  cy="28"  r="1.3" fill="#ffffff" opacity="0.45"/>
-  <circle cx="44"   cy="300" r="1.5" fill="#ffffff" opacity="0.35"/>
-  <circle cx="1164" cy="322" r="1.4" fill="#ffffff" opacity="0.30"/>
-  <circle cx="225"  cy="520" r="2.2" fill="#6366f1" opacity="0.45"/>
-  <circle cx="975"  cy="520" r="2.2" fill="#22d3ee" opacity="0.35"/>
-
-  <!-- ══ LEFT CARD — GoDaddy ══ -->
-  <!-- Outer glow -->
-  <rect x="195" y="148" width="310" height="336" rx="20" fill="#4f46e5" fill-opacity="0.07"/>
-  <!-- Card body -->
-  <rect x="199" y="152" width="302" height="328" rx="18"
-    fill="#0a0d22" fill-opacity="0.94" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <!-- Top accent -->
-  <rect x="199" y="152" width="302" height="2" rx="1" fill="url(#accentL)"/>
-
-  <!-- GoDaddy heading -->
-  <text x="350" y="222"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="30" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5"
-  >GoDaddy</text>
-  <text x="350" y="252"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="11" fill="#5c62a0" text-anchor="middle" letter-spacing="2"
-  >DOMAIN REGISTRAR</text>
-
-  <line x1="239" y1="270" x2="461" y2="270" stroke="#222850" stroke-width="1"/>
-
-  <!-- Registered status -->
-  <rect x="229" y="284" width="242" height="36" rx="10"
-    fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.22" stroke-width="1"/>
-  <text x="350" y="307"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#4ade80" text-anchor="middle" letter-spacing="0.3"
-  >✓  hansmartens.dev registered</text>
-
-  <!-- DNS records -->
-  <text x="239" y="348"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="10" fill="#4a4e85" letter-spacing="1.5"
-  >DNS RECORDS</text>
-
-  <rect x="229" y="356" width="242" height="28" rx="7" fill="#07091c" stroke="#222850" stroke-width="1"/>
-  <text x="243" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#22d3ee">A</text>
-  <text x="261" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#6b7280">@  →</text>
-  <text x="301" y="375" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#818cf8">76.76.21.21</text>
-
-  <rect x="229" y="388" width="242" height="28" rx="7" fill="#07091c" stroke="#222850" stroke-width="1"/>
-  <text x="243" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#22d3ee">CNAME</text>
-  <text x="301" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#6b7280">www  →</text>
-  <text x="367" y="407" font-family="ui-monospace, 'Fira Code', monospace" font-size="12" fill="#818cf8">vercel</text>
-
-  <text x="350" y="444"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="11" fill="#303060" text-anchor="middle"
-  >SSL · WHOIS privacy · auto-renew</text>
-
-  <!-- ══ CONNECTION — dashed line + domain ══ -->
-  <line x1="505" y1="316" x2="695" y2="316"
-    stroke="url(#connLine)" stroke-width="1.5" stroke-dasharray="7 5"/>
-  <!-- Arrows pointing inward -->
-  <polygon points="505,309 515,316 505,323" fill="#818cf8" opacity="0.70"/>
-  <polygon points="695,309 685,316 695,323" fill="#818cf8" opacity="0.70"/>
-  <!-- Domain -->
-  <text x="600" y="336"
-    font-family="ui-monospace, 'Fira Code', monospace"
-    font-size="14" font-weight="600" fill="#c7d2fe" text-anchor="middle" letter-spacing="0.4"
-  >hansmartens.dev</text>
-
-  <!-- ══ RIGHT CARD — Vercel ══ -->
-  <!-- Outer glow -->
-  <rect x="695" y="148" width="310" height="336" rx="20" fill="#22d3ee" fill-opacity="0.04"/>
-  <!-- Card body -->
-  <rect x="699" y="152" width="302" height="328" rx="18"
-    fill="#0a0d22" fill-opacity="0.94" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
-  <!-- Top accent -->
-  <rect x="699" y="152" width="302" height="2" rx="1" fill="url(#accentR)"/>
-
-  <!-- Vercel triangle logo -->
-  <polygon points="850,188 879,236 821,236" fill="#ffffff" opacity="0.92"/>
-
-  <text x="850" y="264"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.3"
-  >Vercel</text>
-  <text x="850" y="285"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="11" fill="#5c62a0" text-anchor="middle" letter-spacing="2"
-  >DEPLOYMENT PLATFORM</text>
-
-  <line x1="739" y1="298" x2="961" y2="298" stroke="#222850" stroke-width="1"/>
-
-  <!-- Production status -->
-  <rect x="729" y="312" width="242" height="36" rx="10"
-    fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.22" stroke-width="1"/>
-  <text x="850" y="335"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="12" fill="#4ade80" text-anchor="middle" letter-spacing="0.3"
-  >● Production — live</text>
-
-  <!-- Features -->
-  <text x="739" y="376"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="10" fill="#4a4e85" letter-spacing="1.5"
-  >INCLUDED</text>
-
-  <rect x="729" y="384" width="242" height="80" rx="10" fill="#07091c" stroke="#222850" stroke-width="1"/>
-  <text x="747" y="408" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#9da8bc">✓  Automatic HTTPS</text>
-  <text x="747" y="429" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#9da8bc">✓  Global CDN</text>
-  <text x="747" y="450" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#9da8bc">✓  Deploy on every git push</text>
-
-  <text x="850" y="480"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="11" fill="#303060" text-anchor="middle"
-  >Domain switchable between projects</text>
-
-  <!-- ── Bottom overlay + title ── -->
-  <rect x="0" y="430" width="1200" height="200" fill="url(#bottomFade)"/>
-  <text x="600" y="528"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="25" font-weight="600" fill="#e8eaff" text-anchor="middle" letter-spacing="0.1"
-  >Domain, Email &amp; Hosting — From GoDaddy to Vercel</text>
-
-  <!-- ── hansmartens.dev pill ── -->
-  <rect x="476" y="548" width="248" height="38" rx="19"
-    fill="#4f46e5" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.30" stroke-width="1"/>
-  <text x="600" y="572"
-    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#818cf8" text-anchor="middle" letter-spacing="1.5"
-  >hansmartens.dev</text>
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+  <!-- Lucide Globe — scale 5, centred at (600, 240) -->
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+    <path d="M2 12h20"/>
+  </g>
+  <text x="600" y="390"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="100" font-weight="800" fill="#ffffff"
+    text-anchor="middle" letter-spacing="-3">domain</text>
+  <line x1="380" y1="416" x2="820" y2="416" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.4"/>
+  <rect x="390" y="440" width="420" height="38" rx="19"
+        fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="600" y="464"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="13" fill="#60a5fa" text-anchor="middle" letter-spacing="2">GODADDY · VERCEL · EMAIL</text>
+  <path d="M 36 60 L 36 36 L 60 36" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 36 570 L 36 594 L 60 594" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
 </svg>

@@ -1,113 +1,26 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Background -->
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#060818"/>
-      <stop offset="100%" stop-color="#0a1020"/>
-    </linearGradient>
-
-    <!-- Indigo glow — left-center -->
-    <radialGradient id="glowIndigo" cx="340" cy="285" r="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.24"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Text gradient: dark indigo → light indigo/periwinkle -->
-    <linearGradient id="textGrad" x1="248" y1="0" x2="952" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#3730a3"/>
-      <stop offset="50%"  stop-color="#818cf8"/>
-      <stop offset="100%" stop-color="#c7d2fe"/>
-    </linearGradient>
-
-    <!-- Line gradient: indigo fading to transparent -->
-    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#4f46e5" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#818cf8" stop-opacity="0.4"/>
-      <stop offset="70%"  stop-color="#818cf8" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- Dot grid -->
-    <pattern id="dots" x="0" y="0" width="38" height="38" patternUnits="userSpaceOnUse">
-      <circle cx="19" cy="19" r="0.78" fill="#ffffff" fill-opacity="0.045"/>
-    </pattern>
-  </defs>
-
-  <!-- ── Background layers ── -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#dots)"/>
-  <rect width="1200" height="630" fill="url(#glowIndigo)"/>
-
-  <!-- ── Sweeping decorative arcs ── -->
-  <path d="M -60 460 Q 280 -90 680 190 Q 980 390 1260 90"
-    fill="none" stroke="#4f46e5" stroke-width="1.2" stroke-opacity="0.11"/>
-  <path d="M -60 520 Q 360 10 740 230 Q 1020 400 1260 170"
-    fill="none" stroke="#6366f1" stroke-width="1" stroke-opacity="0.10"/>
-  <path d="M -60 395 Q 200 -110 630 145 Q 940 360 1260 18"
-    fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.04"/>
-  <path d="M -60 600 Q 380 320 680 460 Q 960 570 1260 350"
-    fill="none" stroke="#4f46e5" stroke-width="0.9" stroke-opacity="0.08"/>
-  <path d="M -60 560 Q 400 280 720 430 Q 990 540 1260 310"
-    fill="none" stroke="#6366f1" stroke-width="0.8" stroke-opacity="0.08"/>
-
-  <!-- ── Stars ── -->
-  <circle cx="88"   cy="50"  r="1.2" fill="#ffffff" opacity="0.50"/>
-  <circle cx="198"  cy="30"  r="0.8" fill="#ffffff" opacity="0.40"/>
-  <circle cx="142"  cy="116" r="1.4" fill="#ffffff" opacity="0.30"/>
-  <circle cx="355"  cy="66"  r="0.9" fill="#ffffff" opacity="0.45"/>
-  <circle cx="478"  cy="36"  r="0.7" fill="#ffffff" opacity="0.35"/>
-  <circle cx="55"   cy="188" r="1.0" fill="#ffffff" opacity="0.28"/>
-  <circle cx="65"   cy="395" r="0.9" fill="#ffffff" opacity="0.24"/>
-  <circle cx="148"  cy="452" r="1.1" fill="#ffffff" opacity="0.22"/>
-  <circle cx="38"   cy="558" r="0.8" fill="#ffffff" opacity="0.28"/>
-  <circle cx="240"  cy="522" r="0.9" fill="#ffffff" opacity="0.20"/>
-  <circle cx="395"  cy="490" r="0.8" fill="#ffffff" opacity="0.18"/>
-  <circle cx="820"  cy="46"  r="1.0" fill="#ffffff" opacity="0.50"/>
-  <circle cx="932"  cy="26"  r="0.8" fill="#ffffff" opacity="0.40"/>
-  <circle cx="1062" cy="58"  r="1.3" fill="#ffffff" opacity="0.36"/>
-  <circle cx="1140" cy="126" r="0.9" fill="#ffffff" opacity="0.30"/>
-  <circle cx="1158" cy="230" r="0.7" fill="#ffffff" opacity="0.24"/>
-  <circle cx="1145" cy="420" r="1.0" fill="#ffffff" opacity="0.24"/>
-  <circle cx="1055" cy="492" r="0.8" fill="#ffffff" opacity="0.20"/>
-  <circle cx="818"  cy="546" r="0.9" fill="#ffffff" opacity="0.20"/>
-  <circle cx="968"  cy="514" r="0.7" fill="#ffffff" opacity="0.18"/>
-  <circle cx="305"  cy="86"  r="1.7" fill="#ffffff" opacity="0.60"/>
-  <circle cx="884"  cy="66"  r="1.6" fill="#ffffff" opacity="0.55"/>
-  <circle cx="44"   cy="300" r="1.5" fill="#ffffff" opacity="0.38"/>
-  <circle cx="1164" cy="322" r="1.4" fill="#ffffff" opacity="0.34"/>
-  <circle cx="592"  cy="28"  r="1.3" fill="#ffffff" opacity="0.45"/>
-  <!-- Brand-coloured sparks — indigo + cyan -->
-  <circle cx="225"  cy="415" r="2.4" fill="#6366f1" opacity="0.55"/>
-  <circle cx="975"  cy="415" r="2.4" fill="#22d3ee" opacity="0.45"/>
-  <circle cx="162"  cy="310" r="1.9" fill="#6366f1" opacity="0.38"/>
-  <circle cx="1040" cy="310" r="1.9" fill="#4f46e5" opacity="0.38"/>
-  <circle cx="185"  cy="520" r="1.6" fill="#4f46e5" opacity="0.32"/>
-  <circle cx="1018" cy="520" r="1.6" fill="#22d3ee" opacity="0.28"/>
-
-  <!-- ── Giant "Astro" heading ── -->
-  <text
-    x="600" y="398"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="232" font-weight="700"
-    fill="url(#textGrad)"
-    text-anchor="middle"
-    letter-spacing="-5"
-  >Astro</text>
-
-  <!-- ── Three accent dots: indigo · periwinkle · cyan ── -->
-  <circle cx="576" cy="472" r="3.2" fill="#3730a3" opacity="0.75"/>
-  <circle cx="600" cy="472" r="3.2" fill="#818cf8" opacity="0.55"/>
-  <circle cx="624" cy="472" r="3.2" fill="#22d3ee" opacity="0.70"/>
-
-  <!-- ── Thin gradient divider line ── -->
-  <line x1="380" y1="502" x2="820" y2="502" stroke="url(#lineGrad)" stroke-width="1"/>
-
-  <!-- ── Author pill ── -->
-  <rect x="476" y="562" width="248" height="38" rx="19"
-    fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
-  <text
-    x="600" y="586"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#818cf8" text-anchor="middle" letter-spacing="1.5"
-  >hansmartens.dev</text>
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+  <!-- Lucide Rocket — scale 5, centred at (600, 240) -->
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </g>
+  <text x="600" y="410"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="120" font-weight="800" fill="#ffffff"
+    text-anchor="middle" letter-spacing="-4">astro</text>
+  <line x1="380" y1="436" x2="820" y2="436" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.4"/>
+  <rect x="390" y="464" width="420" height="38" rx="19"
+        fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="600" y="488"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="13" fill="#60a5fa" text-anchor="middle" letter-spacing="2">WHY I BUILD WITH ASTRO</text>
+  <path d="M 36 60 L 36 36 L 60 36" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 36 570 L 36 594 L 60 594" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
 </svg>
