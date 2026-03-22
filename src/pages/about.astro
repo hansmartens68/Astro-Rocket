@@ -157,21 +157,15 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
     description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
   />
   <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-2xl px-6 flex flex-col items-center gap-6 text-center">
-      <h2 class="font-display text-4xl font-bold text-foreground">
-        Ready to work together?
-      </h2>
-      <p class="text-lg text-foreground-muted">
-        I'm available for new projects. Let's talk about what you need.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="/contact" class="hero-btn-brand">
-          Start a project
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-      </div>
-    </div>
-  </section>
+  <CTA variant="default" size="md" maxWidth="md">
+    <h2 slot="heading">Ready to work together?</h2>
+    <p slot="description">I'm available for new projects. Let's talk about what you need.</p>
+    <Fragment slot="actions">
+      <Button size="lg" href="/contact" class="hero-btn-brand">
+        Start a project
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+    </Fragment>
+  </CTA>
  
 </PageLayout>
