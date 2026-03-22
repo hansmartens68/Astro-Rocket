@@ -64,6 +64,8 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <Header
     slot="header"
     position="fixed"
+    shape="floating"
+    variant="transparent"
     size="lg"
     showCta
     cta={{ label: 'Get in touch', href: '/contact' }}
