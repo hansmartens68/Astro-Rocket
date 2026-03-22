@@ -1,7 +1,5 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Header from '@/components/layout/Header.astro';
-import Footer from '@/components/layout/Footer.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -36,18 +34,8 @@ const getPostUrl = (postId: string) => {
 };
 ---
 
-<BaseLayout title="Blog — Astro Rocket" description="Articles on web design, development, and the web by Astro Rocket.">
-  <Header
-    slot="header"
-    position="fixed"
-    size="lg"
-    showActiveState
-    showCta
-    cta={{ label: 'Get in touch', href: '/contact' }}
-  />
-
-  <div class="min-h-screen pt-16">
-  <Hero layout="centered" size="sm" class="bg-surface-secondary border-b border-border">
+<PageLayout title="Blog — Astro Rocket" description="Articles on web design, development, and the web by Astro Rocket.">
+  <Hero layout="centered" size="sm" class="bg-background-secondary border-b border-border">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="book" size="sm" />
       All posts
@@ -92,7 +80,7 @@ const getPostUrl = (postId: string) => {
     featuredPosts.length > 0 && (
       <section id="featured-section" class="bg-background py-[var(--space-section-md)] border-t border-border">
         <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-          <h2 class="font-display text-foreground text-2xl font-bold" data-reveal>
+          <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>
             Featured
           </h2>
 
@@ -122,7 +110,7 @@ const getPostUrl = (postId: string) => {
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       {
         featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
-          <h2 class="font-display text-foreground text-2xl font-bold" data-reveal>All posts</h2>
+          <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>All posts</h2>
         )
       }
 
@@ -166,7 +154,7 @@ const getPostUrl = (postId: string) => {
   </section>
 
   <!-- Follow CTA Section -->
-  <CTA variant="default" size="md" maxWidth="lg" class="bg-background-secondary dark:bg-background">
+  <CTA variant="default" size="md" maxWidth="lg">
     <h2 slot="heading" class="!text-4xl">Follow along</h2>
     <p slot="description" class="!text-lg">Stay in the loop — new articles, thoughts, and updates.</p>
 
@@ -214,10 +202,7 @@ const getPostUrl = (postId: string) => {
       </a>
     </div>
   </CTA>
-  </div>
-
-  <Footer slot="footer" layout="simple" background="secondary" />
-</BaseLayout>
+</PageLayout>
 
 <!-- TAG FILTER STYLES — hidden, restore with tag filter
 <style>
