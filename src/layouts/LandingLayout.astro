@@ -52,9 +52,9 @@ const isHomePage = Astro.url.pathname === '/';
   <Header
     slot="header"
     position="fixed"
-    shape="bar"
+    shape="floating"
     variant="transparant"
-    colorScheme="invert"
+    colorScheme="default"
     size="lg"
     showCta={!isHomePage}
     cta={{ label: 'Get in touch', href: '/contact' }}
