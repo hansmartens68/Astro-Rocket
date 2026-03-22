@@ -3,43 +3,48 @@
     .bi-bd { display: none }
     html.dark .bi-bl { display: none }
     html.dark .bi-bd { display: block }
-    .bi-ic { stroke: #a3e635 }
-    .bi-tt { fill: #f0fce5 }
-    .bi-sl { stroke: rgba(163,230,53,.25) }
-    .bi-bb { fill: rgba(163,230,53,.08); stroke: rgba(163,230,53,.3) }
-    .bi-bt { fill: #a3e635 }
-    .bi-cr { stroke: #84cc16 }
+    .bi-ic { stroke: #6ee7b7 }
+    .bi-tt { fill: #ecfdf5 }
+    .bi-sl { stroke: rgba(110,231,183,.25) }
+    .bi-bb { fill: rgba(110,231,183,.08); stroke: rgba(110,231,183,.3) }
+    .bi-bt { fill: #6ee7b7 }
+    .bi-cr { stroke: #10b981 }
   </style>
   <defs>
     <linearGradient id="arf-bl" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0c1929"/>
-      <stop offset="100%" stop-color="#162236"/>
+      <stop offset="0%" stop-color="#051a12"/>
+      <stop offset="100%" stop-color="#0e2419"/>
     </linearGradient>
     <linearGradient id="arf-bd" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0c1929"/>
-      <stop offset="100%" stop-color="#162236"/>
+      <stop offset="0%" stop-color="#051a12"/>
+      <stop offset="100%" stop-color="#0e2419"/>
     </linearGradient>
+    <radialGradient id="arf-glow" cx="50%" cy="38%" r="32%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#arf-bl)" class="bi-bl"/>
   <rect width="1200" height="630" fill="url(#arf-bd)" class="bi-bd"/>
-  <rect x="0" y="0" width="1200" height="4" fill="#84cc16"/>
-  <!-- Lucide Sparkles — scale 11, centred at (600, 240) -->
+  <rect width="1200" height="630" fill="url(#arf-glow)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#10b981"/>
+  <!-- Lucide Sparkles — scale 5, centred at (600, 240) -->
   <g transform="translate(540, 180) scale(5)"
-     stroke="#3d6b0c" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
+     stroke="#065f46" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" fill="none" class="bi-ic">
     <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
     <path d="M20 3v4"/><path d="M22 5h-4"/>
     <path d="M4 17v2"/><path d="M5 18H3"/>
   </g>
   <text x="600" y="410"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="120" font-weight="800" fill="#0c1a2e"
+    font-size="120" font-weight="800" fill="#ecfdf5"
     text-anchor="middle" letter-spacing="-4" class="bi-tt">features</text>
-  <line x1="380" y1="436" x2="820" y2="436" stroke="rgba(132,204,22,0.5)" stroke-width="1" class="bi-sl"/>
+  <line x1="380" y1="436" x2="820" y2="436" stroke="rgba(110,231,183,0.5)" stroke-width="1" class="bi-sl"/>
   <rect x="450" y="468" width="300" height="38" rx="19"
-        fill="rgba(132,204,22,0.12)" stroke="rgba(53,115,10,0.4)" stroke-width="1" class="bi-bb"/>
+        fill="rgba(110,231,183,0.12)" stroke="rgba(16,185,129,0.4)" stroke-width="1" class="bi-bb"/>
   <text x="600" y="492"
     font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#3f6212" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
+    font-size="13" fill="#6ee7b7" text-anchor="middle" letter-spacing="1.5" class="bi-bt">ASTRO ROCKET THEME</text>
   <path d="M 36 60 L 36 36 L 60 36"          stroke-width="2" fill="none" class="bi-cr"/>
   <path d="M 1140 36 L 1164 36 L 1164 60"    stroke-width="2" fill="none" class="bi-cr"/>
   <path d="M 36 570 L 36 594 L 60 594"       stroke-width="2" fill="none" class="bi-cr"/>
