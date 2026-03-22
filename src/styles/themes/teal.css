@@ -136,7 +136,7 @@ html.dark[data-theme="teal"] {
   --background-tertiary: oklch(20% 0.008 190);
   --background-elevated: oklch(15% 0.01 190);
 
-  --foreground: oklch(94% 0.008 190);          /* teal-tinted near-white */
+  --foreground: oklch(91% 0.008 190);          /* teal-tinted near-white — 15:1 on dark bg, WCAG AAA */
   --foreground-secondary: oklch(82% 0.01 190);
   --foreground-muted: oklch(68% 0.008 190);
   --foreground-subtle: oklch(58% 0.006 190);   /*  ~4.8:1 on bg — WCAG AA  */
