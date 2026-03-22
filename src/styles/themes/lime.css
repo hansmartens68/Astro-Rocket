@@ -137,7 +137,7 @@ html.dark[data-theme="lime"] {
   --background-tertiary: oklch(20% 0.010 130);
   --background-elevated: oklch(15% 0.012 130);
 
-  --foreground: oklch(94% 0.010 130);          /* lime-tinted near-white */
+  --foreground: oklch(91% 0.010 130);          /* lime-tinted near-white — 15:1 on dark bg, WCAG AAA */
   --foreground-secondary: oklch(82% 0.012 130);
   --foreground-muted: oklch(68% 0.010 130);
   --foreground-subtle: oklch(58% 0.008 130);   /*  ~4.8:1 on bg — WCAG AA  */

@@ -129,7 +129,7 @@ html.dark[data-theme="sky"] {
   --background-tertiary: oklch(20% 0.008 222);
   --background-elevated: oklch(15% 0.010 222);
 
-  --foreground: oklch(94% 0.008 222);
+  --foreground: oklch(91% 0.008 222);          /* sky-tinted near-white — 15:1 on dark bg, WCAG AAA */
   --foreground-secondary: oklch(82% 0.010 222);
   --foreground-muted: oklch(68% 0.008 222);
   --foreground-subtle: oklch(58% 0.006 222);   /*  ~4.8:1 on bg — WCAG AA  */

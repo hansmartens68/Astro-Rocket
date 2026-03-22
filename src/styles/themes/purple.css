@@ -129,7 +129,7 @@ html.dark[data-theme="purple"] {
   --background-tertiary: oklch(20% 0.013 292);
   --background-elevated: oklch(15% 0.016 292);
 
-  --foreground: oklch(95% 0.012 292);
+  --foreground: oklch(91% 0.010 292);          /* purple-tinted near-white — 15:1 on dark bg, WCAG AAA */
   --foreground-secondary: oklch(83% 0.015 292);
   --foreground-muted: oklch(68% 0.012 292);
   --foreground-subtle: oklch(58% 0.009 292);   /*  ~4.8:1 on bg — WCAG AA  */
@@ -138,8 +138,8 @@ html.dark[data-theme="purple"] {
   --border-strong: oklch(27% 0.013 292);
   --border-subtle: oklch(13.5% 0.016 292);
 
-  --primary: oklch(95% 0.012 292);
-  --primary-hover: oklch(83% 0.015 292);
+  --primary: oklch(94% 0.010 292);
+  --primary-hover: oklch(82% 0.012 292);
   --primary-foreground: oklch(9.5% 0.020 292);
 
   --secondary: oklch(20% 0.013 292);
