@@ -39,9 +39,9 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <!-- Left: text -->
-        <div data-reveal>
-          <Badge variant="brand" pill class="mb-4">The partnership</Badge>
-          <h2 class="font-display text-4xl font-bold text-foreground mb-6">
+        <div class="flex flex-col gap-4" data-reveal>
+          <Badge variant="brand" pill>The partnership</Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground">
             Web design, now with a thinking partner
           </h2>
           <p class="text-lg text-foreground-muted leading-relaxed">
@@ -95,9 +95,9 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <!-- Values -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="text-center" data-reveal>
-        <Badge variant="brand" pill class="mb-4">My process</Badge>
-        <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <Badge variant="brand" pill>My process</Badge>
+        <h2 class="font-display text-4xl font-bold text-foreground">
           How I work
         </h2>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
@@ -158,11 +158,11 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   />
   <!-- CTA -->
   <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-2xl px-6 text-center">
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4">
+    <div class="mx-auto max-w-2xl px-6 flex flex-col items-center gap-6 text-center">
+      <h2 class="font-display text-4xl font-bold text-foreground">
         Ready to work together?
       </h2>
-      <p class="text-lg text-foreground-muted mb-8">
+      <p class="text-lg text-foreground-muted">
         I'm available for new projects. Let's talk about what you need.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">

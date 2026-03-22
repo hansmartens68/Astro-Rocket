@@ -59,12 +59,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Services Section -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="text-center" data-reveal>
-        <Badge variant="brand" pill class="mb-4">Services</Badge>
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <Badge variant="brand" pill>Services</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What I do
         </h2>
-        <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
           From concept to launch.
         </p>
       </div>
@@ -122,16 +122,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
-        <div data-reveal>
-          <Badge variant="brand" pill class="mb-4">About me</Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+        <div class="flex flex-col gap-4" data-reveal>
+          <Badge variant="brand" pill>About me</Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
             Designer, developer,<br />
             <span class="text-brand-500">and blogger</span>
           </h2>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-4">
+          <p class="text-lg text-foreground-muted leading-relaxed">
            I'm particular about the things most clients overlook — page speed, accessibility, and whether the design actually serves the content. That attention to detail is what I bring to every project.
           </p>
-          <p class="text-lg text-foreground-muted leading-relaxed mb-8">
+          <p class="text-lg text-foreground-muted leading-relaxed">
            Whether you're a business looking for a polished online presence, or a creator who needs a site that matches your ambitions — I'd love to help.
           </p>
           <Button href="/about" class="hero-btn-brand">
@@ -173,12 +173,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Portfolio -->
   <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="text-center" data-reveal>
-        <Badge variant="brand" pill class="mb-4">Selected work</Badge>
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <Badge variant="brand" pill>Selected work</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           Projects I've built
         </h2>
-        <p class="mt-4 text-lg text-foreground-muted max-w-2xl mx-auto">
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
           A selection of recent work.
         </p>
       </div>
@@ -215,12 +215,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <!-- Testimonials -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="text-center" data-reveal>
-        <Badge variant="brand" pill class="mb-4">Testimonials</Badge>
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <Badge variant="brand" pill>Testimonials</Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
           What clients say
         </h2>
-        <p class="mt-4 text-lg text-foreground-muted">
+        <p class="text-lg text-foreground-muted">
           Real feedback from real projects.
         </p>
       </div>
@@ -283,8 +283,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex items-end justify-between" data-reveal>
-        <div>
-          <Badge variant="brand" pill class="mb-4">From the blog</Badge>
+        <div class="flex flex-col gap-4">
+          <Badge variant="brand" pill>From the blog</Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
             Latest posts
           </h2>
