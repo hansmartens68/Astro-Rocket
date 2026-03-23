@@ -28,19 +28,19 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
     }
   }
 
-  /* Dark mode: shift background one step lighter (brand-400) to compensate
-     for the perceptual luminance drop against a near-black page surface. */
+  /* Dark mode: shift background darker so the image recedes into the page
+     rather than glowing against the near-black surface. */
   :global(html.dark) .svg-host :global(.bg) {
-    fill: var(--brand-400);
+    fill: var(--brand-700);
   }
 
   :global(html.dark) .svg-host :global(.ln),
   :global(html.dark) .svg-host :global(.cor) {
-    stroke-opacity: 0.55;
+    stroke-opacity: 0.25;
   }
 
   :global(html.dark) .svg-host :global(.pil) {
-    fill-opacity: 0.35;
-    stroke-opacity: 0.6;
+    fill-opacity: 0.15;
+    stroke-opacity: 0.3;
   }
 </style>
