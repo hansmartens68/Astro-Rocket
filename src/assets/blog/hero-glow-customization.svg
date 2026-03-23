@@ -1,25 +1,26 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0f172a"/>
-  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
-  <!-- Lucide Layers — scale 5, centred at (600, 240) -->
-  <g transform="translate(540, 180) scale(5)"
-     stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
+  <style>
+    .bg  { fill: var(--brand-500); }
+    .ico { stroke: var(--brand-100); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .txt { fill: var(--brand-50); font-family: 'Outfit Variable', Outfit, system-ui, -apple-system, sans-serif; font-weight: 800; }
+    .ln  { stroke: var(--brand-300); stroke-width: 1; stroke-opacity: 0.35; }
+    .pil { fill: var(--brand-400); fill-opacity: 0.25; stroke: var(--brand-200); stroke-opacity: 0.4; stroke-width: 1; }
+    .ptx { fill: var(--brand-100); font-family: 'Outfit Variable', Outfit, system-ui, -apple-system, sans-serif; }
+    .cor { stroke: var(--brand-300); stroke-width: 1.5; fill: none; stroke-opacity: 0.45; }
+  </style>
+  <rect width="1200" height="630" class="bg"/>
+  <!-- Lucide Layers -->
+  <g transform="translate(540, 180) scale(5)" class="ico" opacity="0.9">
     <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
     <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
     <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
   </g>
-  <text x="600" y="410"
-    font-family="system-ui, -apple-system, sans-serif"
-    font-size="120" font-weight="800" fill="#ffffff"
-    text-anchor="middle" letter-spacing="-4">hero glow</text>
-  <line x1="380" y1="436" x2="820" y2="436" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.4"/>
-  <rect x="450" y="464" width="300" height="38" rx="19"
-        fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
-  <text x="600" y="488"
-    font-family="system-ui, -apple-system, sans-serif"
-    font-size="13" fill="#60a5fa" text-anchor="middle" letter-spacing="2">HANSMARTENS.DEV</text>
-  <path d="M 36 60 L 36 36 L 60 36" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
-  <path d="M 1140 36 L 1164 36 L 1164 60" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
-  <path d="M 36 570 L 36 594 L 60 594" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
-  <path d="M 1140 594 L 1164 594 L 1164 570" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <text x="600" y="410" font-size="120" text-anchor="middle" letter-spacing="-4" class="txt">hero glow</text>
+  <line x1="380" y1="436" x2="820" y2="436" class="ln"/>
+  <rect x="450" y="464" width="300" height="38" rx="19" class="pil"/>
+  <text x="600" y="488" font-size="13" text-anchor="middle" letter-spacing="1.5" class="ptx">hansmartens.dev</text>
+  <path d="M 36 60 L 36 36 L 60 36" class="cor"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60" class="cor"/>
+  <path d="M 36 570 L 36 594 L 60 594" class="cor"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" class="cor"/>
 </svg>
