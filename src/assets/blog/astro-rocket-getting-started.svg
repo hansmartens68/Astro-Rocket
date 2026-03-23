@@ -1,54 +1,26 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#09091a"/>
-      <stop offset="100%" stop-color="#0d0b1e"/>
-    </linearGradient>
-    <radialGradient id="glowMain" cx="600" cy="310" r="420" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glowIcon" cx="600" cy="230" r="210" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="textGrad" x1="200" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#e2e8f0"/>
-      <stop offset="45%"  stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#cbd5e1"/>
-    </linearGradient>
-    <linearGradient id="lineGrad" x1="380" y1="0" x2="820" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glowMain)"/>
-  <ellipse cx="600" cy="230" rx="210" ry="185" fill="url(#glowIcon)"/>
-  <!-- Lucide Rocket — scale 11, centre at canvas (600, 247) -->
-  <g transform="translate(468, 115) scale(11)"
-     stroke="#ffffff" stroke-width="0.82" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+  <!-- Lucide Rocket — scale 5, centred at (600, 240) -->
+  <g transform="translate(540, 180) scale(5)"
+     stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
     <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
     <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
     <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
     <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
   </g>
-  <text
-    x="600" y="490"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="150" font-weight="800"
-    fill="url(#textGrad)"
-    text-anchor="middle"
-    letter-spacing="-4"
-  >started</text>
-  <line x1="380" y1="516" x2="820" y2="516" stroke="url(#lineGrad)" stroke-width="1"/>
-  <rect x="450" y="548" width="300" height="38" rx="19"
-    fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
-  <text
-    x="600" y="572"
-    font-family="'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-    font-size="13" fill="#ffffff" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.5"
-  >Astro Rocket Theme</text>
+  <text x="600" y="410"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="108" font-weight="800" fill="#ffffff"
+    text-anchor="middle" letter-spacing="-3">get started</text>
+  <line x1="380" y1="436" x2="820" y2="436" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.4"/>
+  <rect x="450" y="464" width="300" height="38" rx="19"
+        fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="600" y="488"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="13" fill="#60a5fa" text-anchor="middle" letter-spacing="2">HANSMARTENS.DEV</text>
+  <path d="M 36 60 L 36 36 L 60 36" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 36 L 1164 36 L 1164 60" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 36 570 L 36 594 L 60 594" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 1140 594 L 1164 594 L 1164 570" stroke="#3b82f6" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
 </svg>
