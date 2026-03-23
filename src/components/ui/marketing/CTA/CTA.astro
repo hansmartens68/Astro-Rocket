@@ -52,10 +52,9 @@ const hasActionsSlot = Astro.slots.has('actions');
 >
   <div
     class="pointer-events-none absolute inset-0"
-    style="background: radial-gradient(ellipse 80% 80% at 30% 30%, color-mix(in oklch, var(--color-brand-500) 20%, transparent) 0%, transparent 70%);"
+    style="background: radial-gradient(ellipse 50% 50% at 50% 50%, color-mix(in oklch, var(--color-brand-500) 20%, transparent) 0%, transparent 70%);"
     aria-hidden="true"
   />
-  <div class="mx-auto max-w-6xl px-6 relative">
     <div class={cn(maxWidths[maxWidth], 'text-center mx-auto')}>
       {/* Logo Slot - renders before heading */}
       {hasLogoSlot && (
