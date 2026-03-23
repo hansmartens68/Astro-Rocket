@@ -27,4 +27,20 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
       transform-origin: center center;
     }
   }
+
+  /* Dark mode: shift background darker so the image recedes into the page
+     rather than glowing against the near-black surface. */
+  :global(html.dark) .svg-host :global(.bg) {
+    fill: var(--brand-700);
+  }
+
+  :global(html.dark) .svg-host :global(.ln),
+  :global(html.dark) .svg-host :global(.cor) {
+    stroke-opacity: 0.25;
+  }
+
+  :global(html.dark) .svg-host :global(.pil) {
+    fill-opacity: 0.15;
+    stroke-opacity: 0.3;
+  }
 </style>
