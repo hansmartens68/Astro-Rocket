@@ -32,7 +32,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
-  <Hero layout="centered" size="xl">
+  <Hero layout="centered" size="xl" showGrid showBlob blobPosition="center">
     <Badge slot="badge" variant="brand" pill pulse>Available for new projects</Badge>
 
     <h1 slot="title">
