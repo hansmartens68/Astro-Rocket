@@ -358,14 +358,10 @@
     background-size: 16px 16px;
   }
 
-  /* Brand radial glow - for hero sections. Only visible in dark mode. 
+  /* Brand radial glow - for hero sections. Automatically uses the active theme's brand color. */
   .bg-hero-glow {
-    background: transparent;
-  }
-
-  .dark .bg-hero-glow {
     background: radial-gradient(
-      ellipse 100% 60% at 50% 50%,
+      ellipse 150% 150% at 50% 50%,
       color-mix(in oklch, var(--color-brand-500) 15%, transparent) 0%,
       transparent 70%
     );
