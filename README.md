@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <img src="src/assets/branding/readme-hero.svg" alt="Astro Rocket" width="880" />
+</p>
+
+<p align="center">
   <strong>Astro 6 Boilerplate</strong> — A production-ready starter template built on Astro 6 and Tailwind CSS v4.
 </p>
 
