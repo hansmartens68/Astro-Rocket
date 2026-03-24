@@ -367,7 +367,7 @@
     );
   }
 
-  /* Grid pattern - for hero sections (matches the React design) */
+  /* Grid pattern - for hero sections (matches the React design) 
   .bg-grid-pattern {
     background-image:
       linear-gradient(to right, var(--gray-200) 1px, transparent 1px),
