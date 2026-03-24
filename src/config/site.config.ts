@@ -62,7 +62,7 @@ const siteConfig: SiteConfig = {
   description:
     'Hans Martens — Web Designer & Developer, based in Veghel, the Netherlands ',
   url: SITE_URL || 'https://hansmartens.dev',
-  ogImage: '/og-default.png',
+  ogImage: '/og-default.svg',
   author: 'Hans Martens',
   email: 'hello@hansmartens.dev',
   address: {
