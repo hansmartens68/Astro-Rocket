@@ -1,6 +1,6 @@
 ---
 title: "Astro Rocket Configuration — Every Toggle, Theme, and Layout Option Explained"
-description: "A complete walkthrough of Astro Rocket's configuration options: 13 colour themes, live theme switching, header styles, footer text, dark mode defaults, and more."
+description: "A complete walkthrough of Astro Rocket's configuration options: 13 colour themes, OKLCH colours, typography, radius and shadow tokens, header styles, dark mode, and more."
 publishedAt: 2026-03-15
 author: "Hans Martens"
 tags: ["astro-rocket", "configuration", "customization", "themes"]
@@ -69,21 +69,21 @@ data-theme="blue"
 
 Available values — all 13 themes:
 
-| Value | Personality | In selector by default |
-|-------|-------------|:---:|
-| `lime` | Sharp yellow-green | ✓ |
-| `emerald` | Fresh mid-green | ✓ |
-| `teal` | Blue-green | ✓ |
-| `cyan` | Bright cyan | ✓ |
-| `sky` | Clear sky blue | ✓ |
-| `blue` | Classic blue — the default | ✓ |
-| `amber` | Muted gold | — |
-| `green` | Balanced mid-green | — |
-| `indigo` | Deep indigo | — |
-| `magenta` | Vivid pink-purple | — |
-| `orange` | International Orange — bold and warm | — |
-| `purple` | Rich violet | — |
-| `violet` | Soft violet | — |
+| Value | Hue | Best for | In selector |
+|-------|-----|----------|:-----------:|
+| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) | ✓ |
+| `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands | ✓ |
+| `teal` | 190° | Developer tooling, modern SaaS, trustworthy services | ✓ |
+| `cyan` | 200° | Fresh, vibrant tech — more energetic than teal | ✓ |
+| `sky` | 222° | Clean and airy — between teal and blue, great for services | ✓ |
+| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative — the default | ✓ |
+| `amber` | 75° | Editorial, luxury, food, warm creative brands | — |
+| `green` | 155° | Deep emerald, Supabase-generation aesthetic | — |
+| `indigo` | 264° | Enterprise, productivity tools, serious B2B | — |
+| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid | — |
+| `orange` | 38° | Bold and warm — the original Velocity/International Orange | — |
+| `purple` | 292° | Expressive, personality-forward, vivid | — |
+| `violet` | 277° | Creative and premium — sweet spot between indigo and purple | — |
 
 ### The live theme selector
 
@@ -106,18 +106,40 @@ Replace any entry with one of the seven additional themes. Each has a ready-made
 
 Once you've settled on your brand colour, you can remove the selector from the header entirely. Open `src/layouts/LandingLayout.astro` (or whichever layout file shows the selector) and delete the `showThemeSelector` prop — the coloured bulbs disappear without breaking anything else.
 
+### Understanding OKLCH — the three numbers
+
+All colour values in Astro Rocket use the OKLCH colour space: `oklch(lightness% chroma hue)`.
+
+| Parameter | Range | What it means |
+|-----------|-------|----------------|
+| **Lightness** | 0% (black) → 100% (white) | How light or dark the colour is |
+| **Chroma** | 0 (grey) → ~0.37 (maximum vivid) | How saturated the colour is |
+| **Hue** | 0–360° | The colour angle on the wheel |
+
+Common hue landmarks: 0°/360° = red, 38° = orange, 75° = amber, 130° = lime, 155–160° = green, 190–200° = teal/cyan, 222° = sky, 255° = blue, 264° = indigo, 292° = purple, 330° = magenta.
+
+To shift a theme to a completely different colour, you only need to change the hue number across the `--brand-50` to `--brand-900` scale — keep the lightness and chroma values the same and the whole palette moves together. Use [oklch.com](https://oklch.com) to pick visually.
+
 ### Customising a theme's brand colour
 
-Every theme is a CSS file in `src/styles/themes/`. Each file defines the full set of colour tokens for both light and dark mode using OKLCH values. Open the relevant file and adjust the `--brand-*` scale:
+Every theme is a CSS file in `src/styles/themes/`. Each file defines the full set of colour tokens for both light and dark mode. Open the relevant file and adjust the `--brand-*` scale — all ten steps from 50 to 900:
 
 ```css
 html[data-theme="blue"] {
-  --brand-500: oklch(62.5% 0.22 255); /* your primary colour */
-  ...
+  --brand-50:  oklch(97.5% 0.02 255);
+  --brand-100: oklch(94.8% 0.04 255);
+  --brand-200: oklch(87.5% 0.08 255);
+  --brand-300: oklch(77.8% 0.14 255);
+  --brand-400: oklch(68.5% 0.19 255);
+  --brand-500: oklch(62.5% 0.22 255); /* primary accent in light mode */
+  --brand-600: oklch(53.2% 0.19 255);
+  --brand-700: oklch(45.5% 0.16 255);
+  --brand-800: oklch(37.2% 0.13 255);
+  --brand-900: oklch(26.5% 0.09 255);
 }
 ```
 
-The hue value (the last number) is all you need to change to shift the entire brand palette. Use [oklch.com](https://oklch.com) to pick visually.
+To shift to a different colour, replace `255` (blue) with your target hue across all ten lines. That's the entire change required.
 
 You can also edit the shared brand scale in `src/styles/tokens/primitives.css` if you want a single consistent palette that isn't theme-dependent:
 
@@ -127,6 +149,83 @@ You can also edit the shared brand scale in `src/styles/tokens/primitives.css` i
   /* full --brand-50 to --brand-900 scale */
 }
 ```
+
+### Light mode vs dark mode: which brand step is used
+
+The theme files use **different brand steps** for light and dark mode:
+
+| Context | Brand step used | Why |
+|---------|----------------|-----|
+| Light mode accent (`--accent`) | `--brand-500` | Strong enough on white backgrounds |
+| Dark mode accent (`--accent`) | `--brand-400` | One step lighter — needed on dark backgrounds for contrast |
+| Light mode input focus / ring | `--brand-500` | |
+| Dark mode input focus / ring | `--brand-400` | |
+
+When you customise the brand colour, adjust **both** steps in each mode's block. If you only change `--brand-500`, dark mode accents will still use the old `--brand-400` value.
+
+### Typography tokens
+
+Each theme file defines the font stack and typographic rhythm for the entire site. You can override any of these per theme:
+
+```css
+html[data-theme="blue"] {
+  /* Font families */
+  --theme-font-sans:    'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --theme-font-display: 'Outfit Variable', var(--theme-font-sans);
+  --theme-font-mono:    'JetBrains Mono Variable', ui-monospace, monospace;
+
+  /* Typographic rhythm */
+  --theme-heading-weight:   700;      /* headings font weight */
+  --theme-heading-tracking: -0.02em;  /* letter-spacing on headings */
+  --theme-body-leading:     1.6;      /* line-height for body text */
+}
+```
+
+All 13 themes currently share the same font stack. To use a custom font, install it in `public/fonts/`, add a `@font-face` declaration in `src/styles/global.css`, and update `--theme-font-sans` or `--theme-font-display` in your active theme file.
+
+### Border radius tokens
+
+The global roundness of the UI is set per theme with five radius levels:
+
+```css
+--theme-radius-sm:   0.25rem;  /* 4px  — badges, small buttons */
+--theme-radius-md:   0.375rem; /* 6px  — inputs, cards */
+--theme-radius-lg:   0.5rem;   /* 8px  — panels, larger cards */
+--theme-radius-xl:   0.625rem; /* 10px — large containers */
+--theme-radius-full: 9999px;   /* pill shapes, circular avatars */
+```
+
+To give your site a sharper, more editorial feel, set all values to `0`. For a rounder, friendlier look, increase them (e.g. `--theme-radius-md: 0.75rem`). All components reference these tokens, so a single change cascades across the entire design.
+
+### Shadow tokens
+
+Each theme defines four shadow elevation levels, tinted with the theme's hue:
+
+```css
+--theme-shadow-sm  /* subtle depth: cards, list items */
+--theme-shadow-md  /* dropdowns, popovers */
+--theme-shadow-lg  /* modals, drawers */
+--theme-shadow-xl  /* high-emphasis overlays */
+```
+
+In dark mode the shadows use higher opacity (35–55%) and are tinted with the brand hue, so the depth reads naturally against dark backgrounds. To make shadows stronger or more neutral, adjust the opacity values or replace the hue-tinted OKLCH colour with a plain `rgba(0,0,0,...)`.
+
+### Inverted sections
+
+The `--surface-invert` family of tokens controls sections that have a dark background in light mode — the CTA blocks, some hero variants, and any area where you use `background="invert"` on the Footer or a section component:
+
+```css
+--surface-invert:           /* main dark surface background */
+--surface-invert-secondary: /* slightly lighter surface */
+--surface-invert-tertiary:  /* even lighter layer */
+--on-invert:                /* primary text on dark surface */
+--on-invert-secondary:      /* secondary text on dark surface */
+--on-invert-muted:          /* muted text on dark surface */
+--border-invert:            /* border on dark surface */
+--border-invert-strong:     /* stronger border on dark surface */
+```
+
+In light mode these default to near-black values (around 10–18% lightness) with a subtle hue tint. In dark mode they become slightly lighter than the main background — providing contrast between sections without the jarring jump of a fully inverted surface.
 
 ### Creating a new theme
 
@@ -289,6 +388,11 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
 | Live theme selector (6 bulbs) | `src/components/layout/ThemeSelector.astro` | `themes` array |
 | All 13 theme files | `src/styles/themes/` | One CSS file per theme |
+| Brand colour scale (light & dark) | `src/styles/themes/*.css` | `--brand-50` → `--brand-900` |
+| Typography (fonts, weight, tracking) | `src/styles/themes/*.css` | `--theme-font-*`, `--theme-heading-*` |
+| Border radius (global roundness) | `src/styles/themes/*.css` | `--theme-radius-sm/md/lg/xl/full` |
+| Shadow elevation levels | `src/styles/themes/*.css` | `--theme-shadow-sm/md/lg/xl` |
+| Inverted section colours | `src/styles/themes/*.css` | `--surface-invert`, `--on-invert` |
 | Header shape, position | `src/layouts/*.astro` | `shape`, `position` props |
 | Header toggles | `src/layouts/*.astro` | `showThemeToggle`, `showCta`, etc. |
 | Footer copyright text | `src/layouts/*.astro` | `copyright` prop |
