@@ -46,35 +46,6 @@ const getPostUrl = (postId: string) => {
     <p slot="description">Articles on Astro, web performance, design systems, and building with Astro Rocket.</p>
   </Hero>
 
-  {/* TAG FILTER — hidden, restore by uncommenting
-  {allTags.length > 0 && (
-    <div class="border-b border-border bg-background sticky top-16 z-10">
-      <div class="mx-auto max-w-6xl px-6 py-3 flex items-center gap-3">
-        <label for="tag-filter" class="text-sm font-medium text-foreground-muted whitespace-nowrap">
-          Filter by tag
-        </label>
-        <div class="relative">
-          <select
-            id="tag-filter"
-            class="tag-select appearance-none pl-3 pr-8 py-1.5 rounded-full border border-border bg-background text-sm font-medium text-foreground cursor-pointer focus:outline-none focus:border-brand-500 transition-colors"
-          >
-            <option value="all">All posts</option>
-            {allTags.map((tag) => (
-              <option value={tag}>{tag}</option>
-            ))}
-          </select>
-          <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-foreground-muted">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-          </span>
-        </div>
-        <span id="filter-count" class="text-sm text-foreground-muted hidden"></span>
-      </div>
-    </div>
-  )}
-  */}
-
   <!-- Featured Posts Section -->
   {
     featuredPosts.length > 0 && (
@@ -108,11 +79,38 @@ const getPostUrl = (postId: string) => {
   <!-- All Posts Section -->
   <section class:list={[featuredPosts.length > 0 ? 'bg-background' : 'bg-background-secondary', 'py-[var(--space-section-md)] border-t border-border']}>
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      {
-        featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
-          <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>All posts</h2>
-        )
-      }
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        {
+          featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
+            <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>All posts</h2>
+          )
+        }
+
+        {allTags.length > 0 && (
+          <div class="flex items-center gap-3 ml-auto" data-reveal>
+            <label for="tag-filter" class="text-sm font-medium text-foreground-muted whitespace-nowrap">
+              Filter by tag
+            </label>
+            <div class="relative">
+              <select
+                id="tag-filter"
+                class="tag-select appearance-none pl-3 pr-8 py-1.5 rounded-full border border-border bg-background text-sm font-medium text-foreground cursor-pointer focus:outline-none focus:border-brand-500 transition-colors"
+              >
+                <option value="all">All posts</option>
+                {allTags.map((tag) => (
+                  <option value={tag}>{tag}</option>
+                ))}
+              </select>
+              <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-foreground-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </span>
+            </div>
+            <span id="filter-count" class="text-sm text-foreground-muted hidden"></span>
+          </div>
+        )}
+      </div>
 
       {
         regularPosts.length > 0 ? (
@@ -142,14 +140,12 @@ const getPostUrl = (postId: string) => {
         ) : null
       }
 
-      {/* FILTER EMPTY STATE — hidden, restore with tag filter
       <div id="no-results" class="hidden py-16 text-center">
         <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
           <Icon name="file-text" size="lg" class="text-foreground-muted" />
         </div>
         <p class="text-foreground-muted text-lg">No posts found for this tag</p>
       </div>
-      */}
     </div>
   </section>
 
@@ -204,16 +200,13 @@ const getPostUrl = (postId: string) => {
   </CTA>
 </PageLayout>
 
-<!-- TAG FILTER STYLES — hidden, restore with tag filter
 <style>
   .tag-select {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
 </style>
--->
 
-<!-- TAG FILTER SCRIPT — hidden, restore with tag filter
 <script>
   function initTagFilter() {
     const select = document.getElementById('tag-filter') as HTMLSelectElement;
@@ -266,4 +259,3 @@ const getPostUrl = (postId: string) => {
 
   document.addEventListener('astro:page-load', initTagFilter);
 </script>
--->
