@@ -28,6 +28,35 @@ email: 'hello@yoursite.com',
 
 The `name` field is not cosmetic only — it feeds into structured data, Open Graph tags, and the auto-generated favicon and logo badge. Set it accurately from the start.
 
+### Full site config reference
+
+All fields available in `src/config/site.config.ts`:
+
+| Field | Type | Required | What it does |
+|-------|------|:--------:|--------------|
+| `name` | string | ✓ | Site name — appears in logo, page titles, copyright, and structured data |
+| `description` | string | ✓ | Default meta description used on pages without their own |
+| `url` | string | ✓ | Canonical base URL — used in sitemap, OG tags, and JSON-LD |
+| `ogImage` | string | ✓ | Path to the default fallback OG image |
+| `author` | string | ✓ | Author name for blog posts and Person schema |
+| `email` | string | ✓ | Contact email — used in structured data and the contact form |
+| `phone` | string | — | Phone number for structured data (local business schema) |
+| `address` | object | — | Physical address for structured data — `street`, `city`, `state`, `zip`, `country` |
+| `authorImage` | string | — | Path to author avatar (e.g. `'/avatar.jpg'`) — used in Person schema |
+| `socialLinks` | string[] | — | Social profile URLs — icons resolved automatically |
+| `twitter.site` | string | — | Twitter site handle — populates `twitter:site` meta tag |
+| `twitter.creator` | string | — | Twitter creator handle — populates `twitter:creator` meta tag |
+| `verification.google` | string | — | Google Search Console verification code |
+| `verification.bing` | string | — | Bing Webmaster verification code |
+| `blogImageOverlay` | boolean | — | Brand-colour tint over blog cover images (default: `true`) |
+| `branding.logo.alt` | string | ✓ | Accessible alt text for the logo |
+| `branding.logo.imageUrl` | string | — | Path to a PNG logo — used in Organization schema for rich results |
+| `branding.favicon.svg` | string | ✓ | Path to favicon SVG in `public/` |
+| `branding.colors.themeColor` | hex | ✓ | Browser toolbar colour on mobile Chrome/Safari |
+| `branding.colors.backgroundColor` | hex | ✓ | PWA splash screen background colour |
+
+The `phone` and `address` fields are optional but improve local business structured data — relevant if you're building a site for a business with a physical location. Leave them empty or remove them for a personal site.
+
 ## Boolean switches
 
 ### Blog image overlay
@@ -54,6 +83,71 @@ The `dark` class is what activates dark mode on first load. Remove it to default
 ```
 
 The user's preference during their session is stored in `sessionStorage` — so it persists while the tab is open but resets when they open a new tab. This is intentional for a portfolio or marketing site. If you want it to persist across sessions, swap the `sessionStorage` calls for `localStorage` in the same file.
+
+### Structured data: schema switches
+
+The landing page (`src/pages/index.astro`) passes three boolean props to `LandingLayout` that control which JSON-LD schemas are injected into the page `<head>`:
+
+```astro
+<LandingLayout
+  includePersonSchema={true}
+  includeOrgSchema={false}
+  includeProfessionalServiceSchema={false}
+>
+```
+
+| Prop | Default | What it adds |
+|------|:-------:|--------------|
+| `includePersonSchema` | `false` | `Person` schema — name, job title, email, social profiles, author image |
+| `includeOrgSchema` | `false` | `Organization` schema — name, URL, logo, contact email |
+| `includeProfessionalServiceSchema` | `false` | `ProfessionalService` schema — adds address, opening hours, area served |
+
+Enable `includePersonSchema` for a personal portfolio. Enable `includeOrgSchema` if the site represents a company. Enable `includeProfessionalServiceSchema` only if you have a physical address set in `site.config.ts` — search engines will show it in local results.
+
+### SEO: noindex and nofollow
+
+Any page layout accepts `noindex` and `nofollow` props that are passed through to the `<meta name="robots">` tag:
+
+```astro
+<PageLayout noindex={true} nofollow={false}>
+```
+
+| Prop | Default | What it does |
+|------|:-------:|--------------|
+| `noindex` | `false` | Tells search engines not to index the page |
+| `nofollow` | `false` | Tells search engines not to follow outbound links |
+
+Use `noindex` on pages you don't want in search results (thank-you pages, internal preview pages, staging environments). Leave both at `false` for all public content.
+
+### Branding: favicon and browser colours
+
+The favicon is auto-generated from the first letter of `siteConfig.name` and the active `--brand-500` colour — it updates live when the theme changes. No image file is needed. To replace it with a custom SVG, drop your file into `public/` and update the path:
+
+```ts
+// src/config/site.config.ts
+branding: {
+  favicon: {
+    svg: '/my-logo.svg',   // replaces the auto-generated monogram
+  },
+  colors: {
+    themeColor: '#1d4ed8',     // browser toolbar colour on mobile (use your brand hex)
+    backgroundColor: '#ffffff', // PWA splash screen background
+  },
+}
+```
+
+`themeColor` is the colour shown in Chrome's address bar and Safari's status bar on mobile — set it to your brand colour for a polished native-app feel.
+
+For structured data (Google rich results), you can also supply a static logo image:
+
+```ts
+branding: {
+  logo: {
+    alt: 'My Company',
+    imageUrl: '/logo.png',  // add a PNG to public/ and point here
+  },
+}
+```
 
 ## Colour themes
 
@@ -282,9 +376,11 @@ All Header props and what they do:
 | `layout` | `default` `centered` `minimal` | `default` | Logo and nav arrangement |
 | `showThemeToggle` | `true` `false` | `true` | Dark/light mode toggle button |
 | `showThemeSelector` | `true` `false` | `false` | Colour theme bulb picker |
+| `showSocialLinks` | `true` `false` | `false` | Social icon links (desktop only, reads from `siteConfig.socialLinks`) |
 | `showCta` | `true` `false` | `true` | CTA button in the header |
 | `showMobileMenu` | `true` `false` | `true` | Hamburger menu on small screens |
 | `showActiveState` | `true` `false` | `true` | Highlight for the current page link |
+| `hideLogo` | `true` `false` | `false` | Hide the logo entirely |
 
 Set any prop on the `<Header>` component in the layout file for the page type you want to adjust.
 
@@ -319,15 +415,57 @@ Edit the `<Footer>` line in whichever file covers the pages you want to change.
 <Footer layout="minimal" />    <!-- Copyright line only -->
 ```
 
-### Other footer props
+### Footer prop reference
 
-| Prop | Type | What it controls |
-|------|------|-----------------|
-| `showSocial` | `boolean` | Social media icons |
-| `showCopyright` | `boolean` | Copyright line |
-| `hideLogo` | `boolean` | Footer logo |
-| `tagline` | `string` | Tagline under the logo |
-| `background` | `default` `secondary` `invert` | Footer background colour |
+| Prop | Type | Default | What it controls |
+|------|------|:-------:|-----------------|
+| `layout` | `simple` `stacked` `columns` `minimal` | `simple` | Overall footer structure |
+| `background` | `default` `secondary` `invert` | `default` | Footer background colour |
+| `columns` | `2` `3` `4` | `3` | Number of link columns (only applies with `layout="columns"`) |
+| `showSocial` | boolean | `true` | Social media icons |
+| `showCopyright` | boolean | `true` | Copyright line |
+| `hideLogo` | boolean | `false` | Hide the footer logo |
+| `tagline` | string | — | Short tagline shown under the logo |
+| `copyright` | string | — | Custom copyright text — supports `{year}` and `{siteName}` placeholders |
+
+### Legal links
+
+The `legalLinks` prop adds a row of small links (Privacy Policy, Terms of Service, etc.) alongside the copyright line:
+
+```astro
+<Footer
+  legalLinks={[
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+  ]}
+/>
+```
+
+### Columns layout with link groups
+
+The `columns` layout renders grouped link sections — useful for a site with many pages:
+
+```astro
+<Footer
+  layout="columns"
+  columns={3}
+  linkGroups={[
+    {
+      title: 'Product',
+      links: [
+        { label: 'Features', href: '/features' },
+        { label: 'Pricing',  href: '/pricing' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About',   href: '/about' },
+        { label: 'Contact', href: '/contact' },
+      ],
+    },
+  ]}
+/>
 
 ## Navigation
 
@@ -382,10 +520,18 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | What | Where | Key |
 |------|-------|-----|
 | Site name, author, email | `src/config/site.config.ts` | `name`, `author`, `email` |
+| Phone, address | `src/config/site.config.ts` | `phone`, `address` |
+| Author avatar (Person schema) | `src/config/site.config.ts` | `authorImage` |
+| Browser toolbar colour | `src/config/site.config.ts` | `branding.colors.themeColor` |
 | Blog image colour overlay | `src/config/site.config.ts` | `blogImageOverlay: true/false` |
+| Social links | `src/config/site.config.ts` | `socialLinks` array |
+| Twitter card handles | `src/config/site.config.ts` | `twitter.site`, `twitter.creator` |
+| Search console verification | `.env` or `site.config.ts` | `verification.google/bing` |
 | Navigation items | `src/config/nav.config.ts` | `navItems` array |
 | Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="blue"` |
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
+| JSON-LD schema switches | `src/pages/index.astro` | `includePersonSchema`, `includeOrgSchema` |
+| noindex / nofollow | any layout | `noindex={true}`, `nofollow={true}` |
 | Live theme selector (6 bulbs) | `src/components/layout/ThemeSelector.astro` | `themes` array |
 | All 13 theme files | `src/styles/themes/` | One CSS file per theme |
 | Brand colour scale (light & dark) | `src/styles/themes/*.css` | `--brand-50` → `--brand-900` |
@@ -394,11 +540,10 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | Shadow elevation levels | `src/styles/themes/*.css` | `--theme-shadow-sm/md/lg/xl` |
 | Inverted section colours | `src/styles/themes/*.css` | `--surface-invert`, `--on-invert` |
 | Header shape, position | `src/layouts/*.astro` | `shape`, `position` props |
-| Header toggles | `src/layouts/*.astro` | `showThemeToggle`, `showCta`, etc. |
+| Header show/hide toggles | `src/layouts/*.astro` | `showThemeToggle`, `showCta`, `showSocialLinks`, etc. |
 | Footer copyright text | `src/layouts/*.astro` | `copyright` prop |
-| Footer layout | `src/layouts/*.astro` | `layout` prop |
+| Footer layout & columns | `src/layouts/*.astro` | `layout`, `columns` props |
+| Footer legal links | `src/layouts/*.astro` | `legalLinks` array |
 | Analytics IDs | `.env` | `PUBLIC_GA_MEASUREMENT_ID` etc. |
-| Social links | `src/config/site.config.ts` | `socialLinks` array |
-| Brand colour (advanced) | `src/styles/themes/*.css` | `--brand-500` OKLCH value |
 
 If you like Astro Rocket, a [star on GitHub](https://github.com/hansmartens68/astro-rocket) helps other developers find it. Takes two seconds.
