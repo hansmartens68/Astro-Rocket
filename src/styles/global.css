@@ -358,7 +358,7 @@
     background-size: 16px 16px;
   }
 
-  /* Brand radial glow - for hero sections. Only visible in dark mode. */
+  /* Brand radial glow - for hero sections. Only visible in dark mode. 
   .bg-hero-glow {
     background: transparent;
   }
