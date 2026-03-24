@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/branding/readme-hero.svg" alt="Astro Rocket" width="880" />
+  <img src="public/readme-hero.svg" alt="Astro Rocket" width="880" />
 </p>
 
 <p align="center">
