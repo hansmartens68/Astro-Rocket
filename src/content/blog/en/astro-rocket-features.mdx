@@ -7,7 +7,6 @@ tags: ["astro-rocket", "features", "components", "seo", "blog"]
 featured: false
 locale: en
 image: "../../../assets/blog/astro-rocket-features.svg"
-svgSlug: "astro-rocket-features"
 imageAlt: "Rocket icon above the word 'features' on a dark navy background"
 ---
 
@@ -96,6 +95,22 @@ If you'd rather show a **CTA button** in that position — for example a "Start 
 ```
 
 Setting `showCta` replaces the theme switcher in the header with the CTA button. It's a one-line change — no layout editing required.
+
+## Animations
+
+Every page in Astro Rocket is animated. Not in a way that gets in the way — in a way that makes the site feel fast, considered, and alive. All animations respect `prefers-reduced-motion` automatically.
+
+**Page transitions** are handled by Astro's built-in View Transitions API (`<ClientRouter />`). When you click a link, the page content fades smoothly to the next page instead of doing a full browser reload. It's enabled globally and requires no per-page setup.
+
+**Scroll-triggered counter animation** — the stats block (Years Experience, Projects Delivered, Worldwide Clients) counts up from zero when it scrolls into the viewport. Each number uses a cubic ease-out curve over 1.2 seconds, triggered by an `IntersectionObserver`. It fires once per session when the element first becomes visible.
+
+**Scroll-triggered Lighthouse score bars** — the `LighthouseScores` landing component animates its performance bars into place as the section enters the viewport, also via `IntersectionObserver`.
+
+**Scroll-reactive header** — the floating header starts transparent with inverted text. Once the user scrolls past 60px, it gains a solid background and the text flips to normal colors, all driven by a `data-scrolled` attribute and CSS transitions with no layout shift.
+
+**Card hover effects** — interactive cards lift slightly (`-translate-y-1`) and gain a subtle shadow on hover, giving the grid sections a tactile feel.
+
+**UI micro-animations** — the full animation library in `src/styles/global.css` covers every interactive pattern: dropdowns slide and scale in, the mobile menu sheet slides up from the bottom, tab panels crossfade, toasts slide in from the edge, tooltips fade and scale, and skeleton loaders pulse. Stagger utilities (`.delay-0` through `.delay-5`) let you sequence multiple elements 50ms apart.
 
 ## Performance
 
