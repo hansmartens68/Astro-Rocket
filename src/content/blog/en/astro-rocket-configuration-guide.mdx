@@ -1,6 +1,6 @@
 ---
 title: "Astro Rocket Configuration — Every Toggle, Theme, and Layout Option Explained"
-description: "A complete walkthrough of Astro Rocket's configuration options: true/false switches, colour themes, header styles, footer text, dark mode defaults, and more."
+description: "A complete walkthrough of Astro Rocket's configuration options: 13 colour themes, live theme switching, header styles, footer text, dark mode defaults, and more."
 publishedAt: 2026-03-15
 author: "Hans Martens"
 tags: ["astro-rocket", "configuration", "customization", "themes"]
@@ -26,7 +26,7 @@ author: 'Your Name',
 email: 'hello@yoursite.com',
 ```
 
-The `name` field is not cosmetic only — it feeds into structured data, Open Graph tags, and the auto-generated favicon. Set it accurately from the start.
+The `name` field is not cosmetic only — it feeds into structured data, Open Graph tags, and the auto-generated favicon and logo badge. Set it accurately from the start.
 
 ## Boolean switches
 
@@ -44,52 +44,96 @@ When `true`, a translucent brand-colour tint is applied over blog cover images. 
 The default mode is set directly in the HTML element in `src/layouts/BaseLayout.astro`:
 
 ```html
-<html lang="en" class="scroll-smooth dark" data-theme="lime">
+<html lang="en" class="scroll-smooth dark" data-theme="blue">
 ```
 
 The `dark` class is what activates dark mode on first load. Remove it to default to light:
 
 ```html
-<html lang="en" class="scroll-smooth" data-theme="lime">
+<html lang="en" class="scroll-smooth" data-theme="blue">
 ```
 
 The user's preference during their session is stored in `sessionStorage` — so it persists while the tab is open but resets when they open a new tab. This is intentional for a portfolio or marketing site. If you want it to persist across sessions, swap the `sessionStorage` calls for `localStorage` in the same file.
 
 ## Colour themes
 
-Astro Rocket ships with eight colour themes. To change the active theme, edit `data-theme` in `src/layouts/BaseLayout.astro`:
+Astro Rocket ships with **13 colour themes**. Six are shown as coloured bulbs in the header via the `ThemeSelector` component. Clicking a bulb switches the active theme instantly — no file edits, no rebuild. The logo badge, blog image gradients, and every brand colour on the page update live together.
+
+### Changing the active theme
+
+The default theme is set with `data-theme` on the `<html>` element in `src/layouts/BaseLayout.astro`:
 
 ```html
-data-theme="lime"
+data-theme="blue"
 ```
 
-Available values:
+Available values — all 13 themes:
 
-| Value | Personality |
-|-------|-------------|
-| `lime` | Sharp yellow-green — the default |
-| `orange` | International Orange — bold and warm |
-| `amber` | Muted gold |
-| `green` | Balanced mid-green |
-| `teal` | Blue-green |
-| `blue` | Classic blue |
-| `purple` | Rich violet |
-| `magenta` | Vivid pink-purple |
+| Value | Personality | In selector by default |
+|-------|-------------|:---:|
+| `lime` | Sharp yellow-green | ✓ |
+| `emerald` | Fresh mid-green | ✓ |
+| `teal` | Blue-green | ✓ |
+| `cyan` | Bright cyan | ✓ |
+| `sky` | Clear sky blue | ✓ |
+| `blue` | Classic blue — the default | ✓ |
+| `amber` | Muted gold | — |
+| `green` | Balanced mid-green | — |
+| `indigo` | Deep indigo | — |
+| `magenta` | Vivid pink-purple | — |
+| `orange` | International Orange — bold and warm | — |
+| `purple` | Rich violet | — |
+| `violet` | Soft violet | — |
 
-The site's ThemeSelector component (shown in the header when `showThemeSelector` is enabled) lets visitors pick their own theme. Their choice is saved to `localStorage` and persists across sessions.
+### The live theme selector
+
+The six themes marked ✓ appear as coloured bulbs in the header when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
+
+To swap one of the six active bulbs for a different theme, open `src/components/layout/ThemeSelector.astro` and edit the `themes` array:
+
+```ts
+const themes = [
+  { id: 'lime',    name: 'Lime',    color: 'oklch(64% 0.27 130)'   },
+  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
+  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
+  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+];
+```
+
+Replace any entry with one of the seven additional themes. Each has a ready-made CSS file in `src/styles/themes/`.
+
+Once you've settled on your brand colour, you can remove the selector from the header entirely. Open `src/layouts/LandingLayout.astro` (or whichever layout file shows the selector) and delete the `showThemeSelector` prop — the coloured bulbs disappear without breaking anything else.
 
 ### Customising a theme's brand colour
 
 Every theme is a CSS file in `src/styles/themes/`. Each file defines the full set of colour tokens for both light and dark mode using OKLCH values. Open the relevant file and adjust the `--brand-*` scale:
 
 ```css
-html[data-theme="orange"] {
-  --brand-500: oklch(62.5% 0.22 38); /* your primary colour */
+html[data-theme="blue"] {
+  --brand-500: oklch(62.5% 0.22 255); /* your primary colour */
   ...
 }
 ```
 
 The hue value (the last number) is all you need to change to shift the entire brand palette. Use [oklch.com](https://oklch.com) to pick visually.
+
+You can also edit the shared brand scale in `src/styles/tokens/primitives.css` if you want a single consistent palette that isn't theme-dependent:
+
+```css
+:root {
+  --brand-500: oklch(62.5% 0.22 255); /* primary brand color */
+  /* full --brand-50 to --brand-900 scale */
+}
+```
+
+### Creating a new theme
+
+1. Duplicate any file from `src/styles/themes/` as your starting point.
+2. Implement all ~35 semantic tokens for both `:root` (light) and `.dark` (dark mode).
+3. Add your new theme file's import to `src/styles/tokens/colors.css`.
+4. Add an entry to the `themes` array in `ThemeSelector.astro` if you want it in the live picker.
 
 ## Header: floating capsule vs. fixed bar
 
@@ -138,7 +182,7 @@ All Header props and what they do:
 | `colorScheme` | `default` `invert` | `default` | Use inverted colours — for dark hero backgrounds |
 | `layout` | `default` `centered` `minimal` | `default` | Logo and nav arrangement |
 | `showThemeToggle` | `true` `false` | `true` | Dark/light mode toggle button |
-| `showThemeSelector` | `true` `false` | `false` | Colour theme swatch picker |
+| `showThemeSelector` | `true` `false` | `false` | Colour theme bulb picker |
 | `showCta` | `true` `false` | `true` | CTA button in the header |
 | `showMobileMenu` | `true` `false` | `true` | Hamburger menu on small screens |
 | `showActiveState` | `true` `false` | `true` | Highlight for the current page link |
@@ -163,7 +207,7 @@ The Footer is used in three layout files:
 |-------------|----------------|
 | `src/layouts/PageLayout.astro` | Blog index, about, contact, any standard page |
 | `src/layouts/BlogLayout.astro` | Individual blog posts |
-| `src/layouts/MarketingLayout.astro` | The landing page |
+| `src/layouts/LandingLayout.astro` | The landing page |
 
 Edit the `<Footer>` line in whichever file covers the pages you want to change.
 
@@ -226,13 +270,13 @@ Social links in the footer come from the `socialLinks` array in `src/config/site
 
 ```ts
 socialLinks: [
-  { platform: 'github',   url: 'https://github.com/yourname' },
-  { platform: 'twitter',  url: 'https://twitter.com/yourhandle' },
-  { platform: 'linkedin', url: 'https://linkedin.com/in/yourname' },
+  'https://github.com/yourname',
+  'https://x.com/yourhandle',
+  'https://instagram.com/yourname',
 ],
 ```
 
-Remove any platform you don't use. The footer won't render an empty social section.
+Remove any URL you don't use. The footer won't render an empty social section. Icons are resolved automatically from the URL — GitHub, X, Instagram, LinkedIn, and Bluesky are all recognised out of the box.
 
 ## Quick reference
 
@@ -241,8 +285,10 @@ Remove any platform you don't use. The footer won't render an empty social secti
 | Site name, author, email | `src/config/site.config.ts` | `name`, `author`, `email` |
 | Blog image colour overlay | `src/config/site.config.ts` | `blogImageOverlay: true/false` |
 | Navigation items | `src/config/nav.config.ts` | `navItems` array |
-| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="lime"` |
+| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="blue"` |
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
+| Live theme selector (6 bulbs) | `src/components/layout/ThemeSelector.astro` | `themes` array |
+| All 13 theme files | `src/styles/themes/` | One CSS file per theme |
 | Header shape, position | `src/layouts/*.astro` | `shape`, `position` props |
 | Header toggles | `src/layouts/*.astro` | `showThemeToggle`, `showCta`, etc. |
 | Footer copyright text | `src/layouts/*.astro` | `copyright` prop |
