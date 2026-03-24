@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="src/assets/branding/logo-full.svg" alt="Velocity" width="370" />
+  <img src="src/assets/branding/readme-hero.svg" alt="Astro Rocket" width="880" />
 </p>
 
 <p align="center">
-  <strong>Astro 6 Boilerplate</strong> — A production-ready starter template built on Astro 6 and Tailwind CSS v4.
+  <strong>Astro Rocket</strong> — A production-ready Astro 6 starter theme. Change the text, launch your site.
 </p>
 
 <p align="center">
@@ -18,28 +18,59 @@
 
 ## Overview
 
-> **Astro Rocket is a fork of [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com).** Full credit to the original authors for the foundation this project builds on.
+Astro Rocket is a **launch-ready starter theme** for web designers, developers, bloggers, and anyone who needs a portfolio website. Every page is already built and styled — you change the text and content, and your site is ready to go live.
 
-Velocity accelerates Astro project delivery with a comprehensive foundation that includes a design token system, 57 components across 7 categories, SEO, dynamic OG image generation, and content management — built on Astro 6 (beta) and Tailwind CSS v4.
+It ships with a full blog, a complete component library, a built-in SEO layer, dark mode, a contact form, and 13 colour themes you can switch with one click. It's built on Astro 6 and Tailwind CSS v4.
 
-### Key Features
+**[Live demo → astrorocket.dev](https://astrorocket.dev)** · **[Built by Hans Martens → hansmartens.dev](https://hansmartens.dev)**
+
+> **Astro Rocket is a fork of [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com).** Velocity is the foundation — a powerful Astro boilerplate with a comprehensive design system and component library. Full credit to the Southwell Media team for that work. Astro Rocket builds on it with a different goal: a complete, ready-to-launch website where you only change the text to make it your own.
+
+---
+
+## What changed from Velocity
+
+The following changes were made to the free Velocity theme to create Astro Rocket:
+
+| Change | Velocity | Astro Rocket |
+|--------|----------|--------------|
+| **Theme switching** | Edit a CSS import file and rebuild | 7 colour bulbs in the header — click one and the logo badge, blog images, and every brand color update live on screen. No file edits, no rebuilds. Selector can be removed from the header once you've chosen a color. |
+| **Colour themes** | 1 default theme | 13 Tailwind-based themes — 7 active in the header selector (Lime, Emerald, Teal, Cyan, Sky, Blue, Purple), 6 more ready to activate (Orange, Amber, Magenta, Green, Indigo, Violet) |
+| **Logo badge** | Requires a custom logo file | Auto-generated monogram badge — first letter of your site name on brand color, live-updates with active theme |
+| **Favicon** | Static file to replace manually | Auto-generated SVG favicon — first letter + brand color, pre-rendered at build time from `site.config.ts`, no design tools needed |
+| **Blog image gradients** | Plain image containers | Every blog cover and card uses a brand-color gradient background that updates live when the active theme changes |
+| **Icon system** | Basic SVG `Icon` component | Unified `Icon` component powered by Iconify — 350+ Lucide UI icons + 3000+ Simple Icons brand icons |
+| **Typing effect** | Not included | Hero section includes an animated typing effect |
+| **Dark mode storage** | `localStorage` | `sessionStorage` — resets to dark on every new tab/session (see [why](#dark-mode)) |
+| **Target audience** | Developers & agencies | Web designers, developers, bloggers, and portfolio sites |
+| **Ready to launch** | Boilerplate starting point | Fully styled pages — replace the text and your site is live |
+| **Maintained by** | Southwell Media | Hans Martens |
+
+---
+
+## Key Features
 
 | Feature | Description |
 |---------|-------------|
 | **Astro 6** | Latest version with Content Layer API, security features, and performance optimizations |
 | **Tailwind CSS v4** | CSS-first configuration with OKLCH color system and fluid typography |
+| **13 Colour Themes** | 7 colour bulbs in the header let you switch themes live — see the result on screen instantly. Logo badge, blog image gradients, and all brand colors update together. The selector can be removed from the header once you've chosen your color. 6 additional themes are ready to activate. |
 | **Design Tokens** | Three-tier token architecture (reference → semantic → component) |
 | **57 Components** | 31 UI, 7 patterns, 1 hero, 4 layout, 4 blog, 7 landing, 3 SEO — all accessible with TypeScript |
+| **Auto Logo & Favicon** | First letter of your site name on brand color — generated automatically from `site.config.ts`, no design tools needed |
+| **Icon System** | Unified `Icon` component (Astro + React) — 350+ [Lucide](https://lucide.dev) UI icons and 3000+ [Simple Icons](https://simpleicons.org) brand icons via Iconify |
+| **Typing Effect** | Animated typing effect in the hero section |
+| **Page Animations** | Smooth page transitions via Astro View Transitions, scroll-triggered counter and score animations, scroll-reactive header, card hover effects, and a full suite of UI micro-animations — all with reduced-motion support |
 | **SEO Toolkit** | Meta tags, JSON-LD structured data, sitemap, and robots.txt |
 | **Dynamic OG Images** | Auto-generated Open Graph images using Satori |
-| **Dark Mode** | Dark-first design with sessionStorage persistence (resets to dark on new session) |
+| **Dark Mode** | Dark-first design with `sessionStorage` persistence |
 | **Content Collections** | Type-safe blog, pages, authors, and FAQs with Zod validation |
 | **API Routes** | Contact form and newsletter endpoints with validation |
 | **React Islands** | Optional client-side interactivity where needed |
 
 ### Internationalization (i18n)
 
-i18n support is available through the **[create-velocity-astro](https://github.com/southwellmedia/create-velocity-astro)** CLI. The base boilerplate is i18n-ready with locale-aware content collection schemas — run the CLI with the i18n option to add full translation support, language routing, and the LanguageSwitcher component.
+The base theme is i18n-ready with locale-aware content collection schemas. Full i18n support with language routing and a `LanguageSwitcher` component can be added via the **[create-velocity-astro](https://github.com/southwellmedia/create-velocity-astro)** CLI from Southwell Media.
 
 ---
 
@@ -54,7 +85,7 @@ i18n support is available through the **[create-velocity-astro](https://github.c
 
 ```bash
 # Clone the repository
-git clone https://github.com/southwellmedia/velocity.git my-project
+git clone https://github.com/hansmartens68/astro-rocket.git my-project
 cd my-project
 
 # Install dependencies
@@ -69,22 +100,12 @@ pnpm dev
 
 Visit `http://localhost:4321` to see your site.
 
-### Using the CLI (Recommended)
-
-For the full experience including i18n support:
-
-```bash
-pnpm create velocity-astro my-project
-```
-
-The CLI provides interactive prompts for optional features like i18n, additional components, and deployment configurations.
-
 ---
 
 ## Project Structure
 
 ```
-velocity/
+astro-rocket/
 ├── public/                  # Static assets (fonts, favicon)
 ├── src/
 │   ├── assets/              # Images and icons (processed by Astro)
@@ -99,7 +120,7 @@ velocity/
 │   │   │   ├── content/     # CodeBlock
 │   │   │   └── marketing/   # Logo, CTA, NpmCopyButton, SocialProof, TerminalDemo
 │   │   ├── patterns/        # Composed patterns (ContactForm, SearchInput, StatCard, etc.)
-│   │   ├── layout/          # Header, Footer, Navigation, ThemeToggle
+│   │   ├── layout/          # Header, Footer, Navigation, ThemeToggle, ThemeSelector
 │   │   ├── seo/             # SEO, JsonLd, Breadcrumbs
 │   │   ├── blog/            # Blog-specific components
 │   │   └── landing/         # Landing page components
@@ -114,7 +135,8 @@ velocity/
 │   │   ├── og/              # Dynamic OG image generation
 │   │   └── blog/            # Blog routes
 │   ├── styles/              # Global CSS and design tokens
-│   │   └── tokens/          # colors.css, typography.css, spacing.css
+│   │   ├── tokens/          # colors.css, typography.css, spacing.css
+│   │   └── themes/          # 13 colour theme files
 │   └── config/              # Site and navigation configuration
 ├── astro.config.mjs         # Astro configuration
 ├── package.json
@@ -182,11 +204,26 @@ BING_SITE_VERIFICATION=your-code
 
 ## Design System
 
-Velocity uses a three-tier design token system with OKLCH colors for perceptual uniformity:
+Astro Rocket uses a three-tier design token system with OKLCH colors for perceptual uniformity:
 
 1. **Primitives** (`src/styles/tokens/primitives.css`) — raw color scales (gray, brand, status)
 2. **Semantic tokens** (`src/styles/themes/*.css`) — purpose-based mappings (background, foreground, border, etc.)
 3. **Tailwind** (`src/styles/global.css`) — `@theme` directives that expose tokens as utility classes
+
+### Switching Themes
+
+Astro Rocket ships with 13 colour themes, all based on Tailwind's color palette. Seven are shown as coloured bulbs in the site header (`ThemeSelector`). Clicking a bulb applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is the key difference from Velocity, where switching theme requires editing a CSS import file and rebuilding.
+
+**The 7 bulbs in the header** (Lime, Emerald, Teal, Cyan, Sky, Blue, Purple — default: Emerald) can be replaced with any of the other 6 available themes (Orange, Amber, Magenta, Green, Indigo, Violet) by editing the `themes` array in `src/components/layout/ThemeSelector.astro`. You can also **remove the selector from the header entirely** once you've settled on a color — just delete the `<ThemeSelector />` line from `src/components/layout/Header.astro`.
+
+The theme files live in `src/styles/themes/`:
+
+```
+amber.css   blue.css    cyan.css    emerald.css
+green.css   indigo.css  lime.css    magenta.css
+orange.css  purple.css  sky.css     teal.css
+violet.css
+```
 
 ### Customizing Brand Colors
 
@@ -208,22 +245,6 @@ Edit `src/styles/tokens/primitives.css` and update the `--brand-*` OKLCH values:
 ```
 
 OKLCH values are `oklch(lightness chroma hue)`. To shift your brand to blue, change the hue from `38-45` to `~260`. Use [oklch.com](https://oklch.com) to pick colors visually.
-
-### Switching Themes
-
-This fork ships with multiple themes. To switch, edit `src/styles/tokens/colors.css` and set one active import:
-
-```css
-@import '../themes/violet-pro.css'; /* Violet Pro   — modern purple (default) */
-/* @import '../themes/midnight.css'; */ /* Midnight     — deep purple + electric violet */
-/* @import '../themes/amethyst.css'; */ /* Amethyst     — true violet-purple */
-/* @import '../themes/nebula.css'; */ /* Nebula       — cosmic violet-magenta */
-/* @import '../themes/obsidian.css'; */ /* Obsidian     — high-contrast vivid violet */
-/* @import '../themes/default.css'; */ /* Default      — warm neutral slate */
-/* @import '../themes/ember.css'; */ /* Ember        — International Orange + gray */
-/* @import '../themes/nord.css'; */ /* Nord         — arctic blue-gray */
-/* @import '../themes/tokyo-night.css'; */ /* Tokyo Night  — deep navy + electric blue */
-```
 
 ### Creating a New Theme
 
@@ -250,7 +271,7 @@ This fork ships with multiple themes. To switch, edit `src/styles/tokens/colors.
 
 ### Dark Mode
 
-Dark mode toggles via the `.dark` class on `<html>`. The default is **dark** — the design was built dark-first and the target audience (developers) skews heavily toward dark mode.
+Dark mode toggles via the `.dark` class on `<html>`. The default is **dark** — the design was built dark-first and it looks great for portfolios and creative sites.
 
 FOUC is prevented by an inline script that reads `sessionStorage` before first paint. Use the included `ThemeToggle` component:
 
@@ -299,7 +320,7 @@ Foreground tokens are documented with their contrast ratios inline. When customi
 
 ## Components
 
-Velocity includes 57 components across 7 categories. All UI components use [class-variance-authority (CVA)](https://cva.style) for type-safe variant management and are organized into 8 subcategories.
+Astro Rocket includes 57 components across 7 categories. All UI components use [class-variance-authority (CVA)](https://cva.style) for type-safe variant management.
 
 ### UI Components (31)
 
@@ -356,7 +377,7 @@ Velocity includes 57 components across 7 categories. All UI components use [clas
 
 | Component | Description |
 |-----------|-------------|
-| Icon | SVG icon component |
+| Icon | Unified icon component (Astro + React) powered by Iconify. Supports all [Lucide](https://lucide.dev) icons (`lucide:*`) and all [Simple Icons](https://simpleicons.org) brand icons (`simple-icons:*`). Includes shorthand names for common social and brand icons. Five size variants: `xs`, `sm`, `md`, `lg`, `xl`. |
 
 #### Content (`ui/content/`)
 
@@ -368,7 +389,7 @@ Velocity includes 57 components across 7 categories. All UI components use [clas
 
 | Component | Description |
 |-----------|-------------|
-| Logo | Brand logo with size variants and dark mode |
+| Logo | Auto-generated monogram badge — renders the first letter of `siteConfig.name` on the active brand color. Five sizes: `sm`, `md`, `lg`, `xl`, `2xl`. No logo file required. |
 | CTA | Call-to-action sections with slot-based composition |
 | NpmCopyButton | NPM install command with copy-to-clipboard |
 | SocialProof | Testimonial and trust indicator cards |
@@ -390,8 +411,8 @@ Velocity includes 57 components across 7 categories. All UI components use [clas
 
 | Category | Count | Components |
 |----------|-------|------------|
-| Hero | 1 | Hero section with centered/split layouts, grid, and blob effects |
-| Layout | 4 | Header, Footer, ThemeToggle, Analytics |
+| Hero | 1 | Hero section with centered/split layouts, grid, blob effects, and typing effect |
+| Layout | 5 | Header, Footer, ThemeToggle, ThemeSelector, Analytics |
 | Blog | 4 | ArticleHero, BlogCard, ShareButtons, RelatedPosts |
 | Landing | 5 | Credibility, LighthouseScores, TechStack, FeatureTabs, and more |
 | SEO | 3 | SEO, JsonLd, Breadcrumbs |
@@ -407,6 +428,29 @@ import { Button, Input, Card } from '@/components/ui';
   <Input label="Email" type="email" name="email" required />
   <Button variant="primary">Submit</Button>
 </Card>
+```
+
+### Icon Usage
+
+```astro
+---
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+---
+
+<!-- Lucide UI icons — use any icon name from lucide.dev -->
+<Icon name="arrow-right" size="md" />
+<Icon name="mail" size="sm" />
+<Icon name="layers" size="lg" />
+
+<!-- Simple Icons brand icons — shorthand names available -->
+<Icon name="github" size="md" />
+<Icon name="x-twitter" size="md" />
+<Icon name="brand-astro" size="md" />
+<Icon name="brand-tailwind" size="md" />
+
+<!-- Or use the full Iconify name directly -->
+<Icon name="simple-icons:vercel" size="md" />
+<Icon name="lucide:rocket" size="xl" />
 ```
 
 All UI components are imported via barrel exports from `@/components/ui`. View all components at `/components` in development.
@@ -560,13 +604,60 @@ pnpm build
 
 ## Performance
 
-Velocity is optimized for Core Web Vitals:
+Astro Rocket is optimized for Core Web Vitals:
 
 - **Lighthouse Score**: 95+ across all categories
 - **Zero JavaScript** by default (islands architecture)
 - **Optimized fonts** with `font-display: swap`
 - **Image optimization** via Astro's built-in processing
 - **Prefetching** for instant page transitions
+
+---
+
+## Animations
+
+Every page in Astro Rocket includes purposeful animations that make the site feel polished and alive. All animations respect the user's `prefers-reduced-motion` setting — they are disabled automatically for users who prefer less motion.
+
+### Page transitions
+
+Astro Rocket uses Astro's built-in `<ClientRouter />` (View Transitions API) to animate between pages. Instead of a full browser reload, content fades smoothly from one page to the next. This is enabled globally in `BaseLayout.astro` and requires no per-page configuration.
+
+### Scroll-triggered animations
+
+Two components use an `IntersectionObserver` to trigger animations when elements enter the viewport:
+
+- **Counter animation** — the stats block on the homepage (Years Experience, Projects Delivered, etc.) counts up from zero when it scrolls into view. Each number animates with a cubic ease-out over 1.2 seconds.
+- **Lighthouse score bars** — the `LighthouseScores` landing component animates its score bars into place as the section becomes visible.
+
+### Scroll-reactive header
+
+The floating header changes its appearance as the user scrolls. When the page is at the top, the header is transparent with inverted text. Once the user scrolls past 60px, the header gains a solid background and the text flips to normal colors — all driven by CSS transitions via a `data-scrolled` attribute.
+
+### Card hover effects
+
+Cards throughout the site lift slightly on hover (`-translate-y-1`) and gain a subtle shadow. This is a Tailwind utility applied consistently to all interactive cards.
+
+### UI micro-animations
+
+The full animation library is defined in `src/styles/global.css`. These classes are used by components throughout the site:
+
+| Class | What it does |
+|-------|-------------|
+| `animate-fade-in` | Fades an element from transparent to visible (0.5s ease-out) |
+| `animate-slide-up` | Slides an element up from 12px below while fading in (0.5s ease-out) |
+| `animate-slide-down` | Slides an element down from 12px above while fading in (0.5s ease-out) |
+| `animate-dropdown-in` | Slides and scales a dropdown menu into view (0.2s spring) |
+| `animate-dropdown-out` | Collapses a dropdown menu out of view (0.15s) |
+| `animate-sheet-up` | Slides a bottom sheet up from off-screen (0.25s spring) |
+| `animate-menu-down` | Slides the mobile navigation drawer open (0.25s spring) |
+| `animate-tab-enter` | Crossfades tab panel content when switching tabs |
+| `animate-toast-in` | Slides a toast notification in from the right (350ms spring) |
+| `animate-tooltip-in` | Fades and scales a tooltip into view |
+| `animate-pulse` | Breathing pulse for skeleton loading states |
+| `animate-spin` | Continuous rotation for loading spinners |
+| `animate-shake` | Brief shake for error feedback (400ms) |
+
+Animation delay utilities (`.delay-0` through `.delay-5`, in 50ms steps) let you stagger multiple elements into view.
 
 ---
 
@@ -592,11 +683,12 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Links
 
-- [Documentation](https://github.com/southwellmedia/velocity-docs)
-- [CLI Tool](https://github.com/southwellmedia/create-velocity-astro)
+- [Astro Rocket on GitHub](https://github.com/hansmartens68/astro-rocket)
+- [Velocity — the original theme](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com)
 - [Astro Documentation](https://docs.astro.build)
 - [Tailwind CSS v4](https://tailwindcss.com/docs)
 
 ---
 
-**Built & maintained by [Southwell Media](https://southwellmedia.com)**
+**Astro Rocket** is designed and maintained by [Hans Martens](https://hansmartens.dev).
+Built on [Velocity](https://github.com/southwellmedia/velocity) — the original theme by [Southwell Media](https://southwellmedia.com).
