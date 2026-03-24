@@ -282,7 +282,7 @@
     border-width: 0;
   }
 
-  /* Subtle gradient background */
+  /* Subtle gradient background 
   .bg-gradient-subtle {
     background: linear-gradient(
       to bottom,
@@ -291,7 +291,7 @@
     );
   }
 
-  /* Glow effect */
+  /* Glow effect 
   .glow {
     position: relative;
   }
@@ -334,7 +334,7 @@
     pointer-events: none;
   }
 
-  /* Grid pattern */
+  /* Grid pattern 
   .bg-grid {
     background-size: 24px 24px;
     background-image: linear-gradient(
@@ -349,7 +349,7 @@
     );
   }
 
-  /* Dot pattern */
+  /* Dot pattern 
   .bg-dots {
     background-image: radial-gradient(
       var(--color-border-strong) 1px,
@@ -358,7 +358,7 @@
     background-size: 16px 16px;
   }
 
-  /* Brand radial glow - for hero sections. Automatically uses the active theme's brand color. */
+  /* Brand radial glow - for hero sections. Automatically uses the active theme's brand color. 
   .bg-hero-glow {
     background: radial-gradient(
       ellipse 150% 150% at 50% 50%,
