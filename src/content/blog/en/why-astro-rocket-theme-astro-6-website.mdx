@@ -1,0 +1,69 @@
+---
+title: "Why I Use Astro Rocket for My New Astro 6 Website"
+description: "Why I chose Astro Rocket — an open-source Astro 6 theme with a blog, dark mode, full SEO, and a complete component library — for my new website."
+publishedAt: 2026-03-24
+author: "Hans Martens"
+tags: ["astro-rocket", "astro", "astro-6", "theme", "performance", "open-source"]
+featured: true
+locale: en
+image: "../../../assets/blog/astro-rocket-intro.svg"
+svgSlug: "astro-rocket-intro"
+imageAlt: "Rocket icon above the words 'Astro Rocket' on a dark purple starfield background with an orange glow"
+---
+
+![Astro Rocket — a complete theme built for performance](/readme-hero.svg)
+
+Starting a new website from scratch takes longer than it should. Not because of the hard parts — the design, the content, the decisions that actually matter — but because of everything that has to exist before you get to those parts. The SEO layer. The blog infrastructure. The navigation. The contact form. Dark mode. Deployment config. It all has to be there before a single page is live.
+
+That's why I built **Astro Rocket** — and why it's what I reached for when starting my own new website.
+
+## Why Astro 6
+
+[Astro](https://astro.build) has become my default framework for content-driven websites, and version 6 is the best it's ever been. The core idea — render HTML at build time, ship minimal JavaScript to the browser — hasn't changed. But the developer experience, the performance, and the ecosystem around it have all matured significantly.
+
+With Astro 6, every page is pre-rendered to static HTML by default. Visitors get your content the moment their request lands. No hydration delay, no loading spinners, no blank screens. On a fast connection, pages feel instant. On a slow one, they're still genuinely fast. That's not a marketing claim — it's what the architecture produces by default.
+
+Pair that with [Tailwind CSS v4](https://tailwindcss.com) and its CSS-first configuration model, and TypeScript keeping everything predictable at build time, and you have a stack that's fast to build with and fast to ship.
+
+## Why not build from scratch
+
+I've built enough sites from scratch to know what it costs. You start with good intentions — "I'll keep it simple" — and three weeks later you're still wiring up the sitemap, debugging the OG image generation, and rebuilding the mobile nav for the fourth time.
+
+The parts that make a website *work* — not look good, but actually work — are not glamorous. They're mostly invisible to visitors. But they take real time to build well.
+
+Astro Rocket solves this by being the complete starting point I wished existed. Everything below comes ready to go on day one.
+
+## What Astro Rocket ships with
+
+**A production-ready blog** — built on Astro Content Collections with MDX support. Every post has typed frontmatter, tag filtering, a related-posts section, and full Open Graph metadata generated automatically. Writing a new post is a matter of dropping a `.mdx` file in the right folder.
+
+**A complete SEO layer** — not just meta tags. Every page outputs schema.org structured data (JSON-LD), correct Open Graph and Twitter Card tags, a canonical URL, and a sitemap via `@astrojs/sitemap`. Blog posts output `BlogPosting` structured data with author, dates, and image. The kind of SEO that actually helps in practice.
+
+**Dark mode with no flash** — the `<html>` element starts with `class="dark"`, and an inline script in `<head>` applies the correct class before the browser paints anything. No flash. No React, no JavaScript framework required. The user's preference is stored and respected for the entire session.
+
+**A full component library** — Hero, Features, FAQ, Pricing, Testimonials, CTA, Logo strip, Newsletter, Header, and Footer. All typed, all built with Tailwind v4 design tokens, all ready to drop into a page and configure via props.
+
+**A contact form that actually works** — connected to [Resend](https://resend.com) for email delivery. Client-side validation, accessible error states, a loading indicator, a success confirmation. No third-party form embeds, no iframes.
+
+**Lighthouse 100 across the board** — Performance, Accessibility, Best Practices, and SEO. That's not aspirational; it's what the theme ships at out of the box.
+
+**One-click Vercel deployment** — connect your repo, push to `main`, and you're live. All environment variables are documented in `.env.example`. None are required for basic functionality, so the site runs the moment you clone it.
+
+## What it felt like to use
+
+Setting up my new site with Astro Rocket took a fraction of the time a from-scratch build would have. Clone the repo, run `npm install`, update `site.config.ts` with the site name and brand colour, and the whole site already works. The blog is live, the navigation is in place, dark mode works, SEO is configured.
+
+The code is clean and well-structured — no magic, no hidden abstractions. Every component is readable and easy to extend. When I needed to customise something, I could find it quickly and change it without touching anything unrelated.
+
+## It's open source — and ready to download
+
+Astro Rocket is free and open source, available now on GitHub. The demo site is live so you can see exactly what you're getting before you clone anything.
+
+Whether you're building a personal portfolio, a small business site, a developer blog, or something you plan to scale — Astro Rocket gives you a well-built foundation and gets out of your way.
+
+- **GitHub:** [github.com/hansmartens68/rocket](https://github.com/hansmartens68/rocket)
+- **Demo:** [astrorocket.dev](https://astrorocket.dev)
+
+If you're in the Astro community and you've been looking for a complete, opinionated starting point for your next Astro 6 project — this is what I built, and it's ready for you to use.
+
+The [full feature overview](/blog/astro-rocket-features) covers everything in detail. And the [getting started guide](/blog/astro-rocket-getting-started) walks you from clone to deployed in minutes.
