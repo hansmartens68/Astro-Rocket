@@ -6,7 +6,7 @@ export const inputVariants = cva(
     'transition-colors duration-(--transition-fast)',
     'focus-visible:outline-none focus-visible:ring-2',
     'disabled:cursor-not-allowed disabled:opacity-50',
-    'bg-background border-border',
+    'bg-background border-border dark:border-brand-600',
     'placeholder:text-muted-foreground',
     'focus-visible:ring-ring',
   ],
