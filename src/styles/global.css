@@ -365,9 +365,9 @@
 
   .dark .bg-hero-glow {
     background: radial-gradient(
-      ellipse 80% 40% at 50% 40%,
-      color-mix(in oklch, var(--color-brand-500) 20%, transparent) 0%,
-      transparent 70%
+      ellipse 0% 0% at 0% 0%,
+      color-mix(in oklch, var(--color-brand-500) 0%, transparent) 0%,
+      transparent 0%
     );
   }
 
