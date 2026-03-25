@@ -13,19 +13,26 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-// Hidden themes (files kept, not shown in selector): orange, green, indigo, lime
+// All 13 themes in Tailwind color order
 const themes = [
-  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
-  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
-  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
-  { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
-  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
-  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
+  { id: 'orange',  name: 'Orange',  color: 'oklch(62.5% 0.22  38)'  },
+  { id: 'amber',   name: 'Amber',   color: 'oklch(68%   0.19  75)'  },
+  { id: 'lime',    name: 'Lime',    color: 'oklch(64%   0.27 130)'  },
+  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)'  },
+  { id: 'green',   name: 'Green',   color: 'oklch(62.5% 0.22 155)'  },
+  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)'  },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65%   0.22 200)'  },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67%   0.21 222)'  },
+  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)'  },
+  { id: 'indigo',  name: 'Indigo',  color: 'oklch(60%   0.24 264)'  },
+  { id: 'violet',  name: 'Violet',  color: 'oklch(62.5% 0.26 277)'  },
+  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)'  },
+  { id: 'magenta', name: 'Magenta', color: 'oklch(58%   0.28 330)'  },
 ];
 ---
 
 <div
-  class:list={['theme-selector flex items-center gap-1', className]}
+  class:list={['theme-selector flex flex-wrap items-center gap-1', className]}
   role="group"
   aria-label="Select colour theme"
 >
@@ -78,7 +85,7 @@ const themes = [
 
 <script>
   const STORAGE_KEY = 'color-theme';
-  const DEFAULT_THEME = 'emerald';
+  const DEFAULT_THEME = 'purple';
 
   function getActiveTheme(): string {
     try {
