@@ -29,7 +29,7 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
     <h1 slot="title">Projects</h1>
 
     <p slot="description">
-      Projects I've built.
+      A look at the websites, tools, and open-source work I'm most proud of.
     </p>
   </Hero>
 
@@ -37,8 +37,6 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
   {projects.length > 0 && (
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-
-        <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>What I've built</h2>
 
         <div class="grid gap-6 md:grid-cols-2" data-reveal>
           {projects.map((project) => (
