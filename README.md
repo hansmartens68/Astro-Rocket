@@ -412,7 +412,7 @@ Astro Rocket includes 57 components across 7 categories. All UI components use [
 
 | Category | Count | Components |
 |----------|-------|------------|
-| Hero | 1 | Hero section with centered/split layouts, grid, blob effects, and typing effect |
+| Hero | 1 | Hero section with centered/split layouts, grid pattern, and typing effect |
 | Layout | 6 | Header (with scroll progress bar), Footer, ThemeToggle, ThemeSelector, ThemeSelectorDropdown, Analytics |
 | Blog | 4 | ArticleHero, BlogCard, ShareButtons, RelatedPosts |
 | Landing | 5 | Credibility, LighthouseScores, TechStack, FeatureTabs, and more |

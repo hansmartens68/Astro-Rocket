@@ -14,21 +14,4 @@ export const heroSectionVariants = cva('relative overflow-hidden bg-background',
   },
 });
 
-export const heroBlobVariants = cva(
-  'bg-brand-200/20 pointer-events-none absolute h-64 w-64 rounded-full blur-3xl',
-  {
-    variants: {
-      position: {
-        left: '-left-20 -top-20',
-        right: '-right-20 -top-20',
-        center: 'left-1/2 -translate-x-1/2 -top-20',
-      },
-    },
-    defaultVariants: {
-      position: 'right',
-    },
-  }
-);
-
 export type HeroSectionVariants = VariantProps<typeof heroSectionVariants>;
-export type HeroBlobVariants = VariantProps<typeof heroBlobVariants>;

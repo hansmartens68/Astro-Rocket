@@ -18,7 +18,7 @@ This post explains the reasoning, shows exactly how the implementation works, an
 
 ## The design decision
 
-Dark mode is not a fallback for Astro Rocket. It is the primary visual experience. The typography, colour palette, glow effects, and contrast ratios were all designed and tested in dark mode first. Light mode works and is fully supported, but the site is at its best in the dark.
+Dark mode is not a fallback for Astro Rocket. It is the primary visual experience. The typography, colour palette, and contrast ratios were all designed and tested in dark mode first. Light mode works and is fully supported, but the site is at its best in the dark.
 
 `sessionStorage` encodes this intent precisely. The site always loads in dark mode. If a visitor switches to light during a session, that preference is respected for the duration of that visit. When they open a new tab or return the next day, they are back in the dark — the designed state.
 
