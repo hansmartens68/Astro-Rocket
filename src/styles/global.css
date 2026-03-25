@@ -147,7 +147,7 @@
   }
 
   /* Typography - headings use explicit foreground color to prevent any
-     gradient or glow-through effects from showing between heading text */
+     gradient text effects from showing between heading characters */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     line-height: 1.1;
@@ -294,25 +294,6 @@
     );
   }
 
-  /* Glow effect */
-  .glow {
-    position: relative;
-  }
-
-  .glow::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0) 50%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-    border-radius: inherit;
-    pointer-events: none;
-  }
-
   /* Gradient border */
   .border-gradient {
     position: relative;
@@ -359,19 +340,6 @@
       transparent 1px
     );
     background-size: 16px 16px;
-  }
-
-  /* Brand radial glow - for hero sections. Only visible in dark mode. */
-  .bg-hero-glow {
-    background: transparent;
-  }
-
-  .dark .bg-hero-glow {
-    background: radial-gradient(
-      ellipse 80% 60% at 50% 50%,
-      color-mix(in oklch, var(--color-brand-500) 10%, transparent) 0%,
-      transparent 70%
-    );
   }
 
   /* Grid pattern - for hero sections (matches the React design) */
