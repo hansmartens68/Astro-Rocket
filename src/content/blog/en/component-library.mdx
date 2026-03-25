@@ -185,6 +185,97 @@ The same applies to dark mode: all token values change when the `dark` class is 
 
 ---
 
+## Adding your own components
+
+When you need something that isn't in the library, Velocity's [component documentation](https://docs.deployvelocity.com/customization/adding-components/) describes exactly how to create new components that fit the existing patterns.
+
+### Where to put it
+
+Place new components in the matching subdirectory under `src/components/`:
+
+```
+src/components/
+├── ui/
+│   ├── form/          # Button, Input, Select, Checkbox, Radio, Switch, Textarea
+│   ├── data-display/  # Card, Badge, Avatar, Table, Pagination, Progress, Skeleton
+│   ├── feedback/      # Alert, Toast, Tooltip
+│   ├── overlay/       # Dialog, Dropdown, Tabs, VerticalTabs, Accordion
+│   ├── layout/        # Separator
+│   ├── primitives/    # Icon
+│   ├── content/       # CodeBlock
+│   └── marketing/     # Logo, CTA, NpmCopyButton, SocialProof, TerminalDemo
+├── patterns/          # Composed patterns (ContactForm, SearchInput, etc.)
+├── layout/            # Page structure (Header, Footer)
+├── blog/              # Blog-specific
+└── landing/           # Marketing pages
+```
+
+### Basic component structure
+
+A typical UI component defines its props in the frontmatter, maps variants to class strings, and uses `class:list` to compose the final class:
+
+```astro
+---
+interface Props {
+  variant?: 'default' | 'primary' | 'success';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  default: 'bg-background-secondary text-foreground',
+  primary:  'bg-primary text-primary-foreground',
+  success:  'bg-success-light text-success-foreground',
+};
+
+const sizes = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm',
+};
+---
+<span
+  class:list={[
+    'inline-flex items-center rounded-full font-medium',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+>
+  <slot />
+</span>
+```
+
+### Three rules to follow
+
+**Use design tokens, not hardcoded values.** Every built-in component uses `bg-background`, `text-foreground`, `border-border`, and the brand tokens. If you hardcode `bg-white` or `text-gray-900`, your component will break in dark mode and ignore the active colour theme.
+
+**Support named slots for flexible content.** Slots let the consumer pass in icons, actions, or footer content without the component needing to know about them:
+
+```astro
+<FeatureCard title="Fast">
+  <Icon name="zap" slot="icon" />
+  Lightning quick builds.
+  <Button slot="footer">Learn more</Button>
+</FeatureCard>
+```
+
+**Use React for interactivity.** Astro components are server-rendered and have no client-side state. For anything that needs `useState`, `onClick`, or real-time updates, create a `.tsx` file and use the `client:visible` directive when you include it:
+
+```astro
+---
+import { Counter } from '@/components/ui';
+---
+<Counter client:visible />
+```
+
+---
+
 ## Browse the live demo
 
 The fastest way to get a feel for all 57 components is the Velocity component demo. Every component is rendered with live props you can inspect:
