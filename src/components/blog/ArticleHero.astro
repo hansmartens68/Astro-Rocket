@@ -1,9 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { formatDate } from '@/lib/utils';
-import Logo from '@/components/ui/marketing/Logo/Logo.astro';
-import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
 
 interface Props {
   title: string;
@@ -62,7 +59,6 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     <div class="flex flex-wrap items-center gap-[var(--space-stack-lg)] text-sm text-foreground-muted">
       <!-- Author -->
       <div class="flex items-center gap-3">
-        <Logo size="sm" letter={author.charAt(0).toUpperCase()} />
         <p class="font-semibold text-foreground">{author}</p>
       </div>
 
@@ -104,29 +100,4 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     </div>
   </div>
 
-  {(svgSlug || image) && (
-    <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)]">
-      {svgSlug ? (
-        <div
-          class="relative overflow-hidden rounded-xl border border-border shadow-2xl
-            bg-gradient-to-br from-brand-100/50 to-brand-50/30 dark:from-brand-900/50 dark:to-brand-800/30"
-          style="color: var(--brand-500);"
-        >
-          <BlogImageSVG slug={svgSlug} title={imageAlt || title} />
-        </div>
-      ) : image ? (
-        <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
-          <Image
-            src={image}
-            alt={imageAlt || title}
-            layout="full-width"
-            widths={[640, 960, 1280, 1920]}
-            sizes="100vw"
-            class="aspect-video w-full object-cover"
-            loading="eager"
-          />
-        </div>
-      ) : null}
-    </div>
-  )}
 </header>
