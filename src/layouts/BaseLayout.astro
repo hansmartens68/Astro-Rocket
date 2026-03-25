@@ -54,7 +54,7 @@ if (includeProfessionalServiceSchema) {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth dark" data-theme="blue">
+<html lang="en" class="scroll-smooth dark" data-theme="emerald">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -135,7 +135,7 @@ if (includeProfessionalServiceSchema) {
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
-        var COLOR_THEMES = ['orange', 'lime', 'emerald', 'green', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple'];
+        var COLOR_THEMES = ['orange', 'amber', 'lime', 'emerald', 'green', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'magenta'];
 
         function applyTheme(el) {
           try {
@@ -191,6 +191,47 @@ if (includeProfessionalServiceSchema) {
     <slot name="footer" />
 
     <ConsentBanner />
+
+    <!-- Back to top button -->
+    <button
+      id="back-to-top"
+      aria-label="Back to top"
+      class="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-background border border-border-strong text-foreground-muted shadow-md opacity-0 translate-y-2 pointer-events-none transition-[opacity,transform] duration-200"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script is:inline>
+      (function () {
+        var THRESHOLD = 400;
+
+        function initBackToTop() {
+          var btn = document.getElementById('back-to-top');
+          if (!btn || btn.dataset.bttInit) return;
+          btn.dataset.bttInit = 'true';
+
+          function update() {
+            if (window.scrollY > THRESHOLD) {
+              btn.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              btn.classList.add('opacity-100', 'translate-y-0');
+            } else {
+              btn.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              btn.classList.remove('opacity-100', 'translate-y-0');
+            }
+          }
+
+          window.addEventListener('scroll', update, { passive: true });
+          btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          update();
+        }
+
+        initBackToTop();
+        document.addEventListener('astro:page-load', initBackToTop);
+        document.addEventListener('astro:after-swap', initBackToTop);
+      })();
+    </script>
 
     <!-- Scroll reveal: adds .is-visible to [data-reveal] elements as they enter the viewport -->
     <script is:inline>
