@@ -12,20 +12,14 @@ interface Props {
 
 const { class: className } = Astro.props;
 
+// Hidden themes (files kept, not shown in selector): orange, amber, lime, green, indigo, violet, magenta
 const themes = [
-  { id: 'orange',  name: 'Orange',  color: 'oklch(62.5% 0.22  38)'  },
-  { id: 'amber',   name: 'Amber',   color: 'oklch(68%   0.19  75)'  },
-  { id: 'lime',    name: 'Lime',    color: 'oklch(64%   0.27 130)'  },
-  { id: 'green',   name: 'Green',   color: 'oklch(62.5% 0.22 155)'  },
-  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)'  },
-  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)'  },
-  { id: 'cyan',    name: 'Cyan',    color: 'oklch(62.5% 0.22 200)'  },
-  { id: 'sky',     name: 'Sky',     color: 'oklch(62.5% 0.22 222)'  },
-  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)'  },
-  { id: 'indigo',  name: 'Indigo',  color: 'oklch(60%   0.24 264)'  },
-  { id: 'violet',  name: 'Violet',  color: 'oklch(62.5% 0.26 277)'  },
-  { id: 'purple',  name: 'Purple',  color: 'oklch(62%   0.28 292)'  },
-  { id: 'magenta', name: 'Magenta', color: 'oklch(58%   0.28 330)'  },
+  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
+  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
+  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
 ];
 ---
 
@@ -59,13 +53,13 @@ const themes = [
     aria-label="Colour theme"
     class={cn(
       'absolute right-0 top-full mt-2 z-50',
-      'w-48 rounded-xl border border-border bg-background shadow-lg',
+      'w-36 rounded-xl border border-border bg-background shadow-lg',
       'p-2.5',
       'hidden'
     )}
   >
     <p class="text-xs font-medium text-foreground-muted mb-2.5 px-0.5">Colour theme</p>
-    <div class="grid grid-cols-4 gap-1.5">
+    <div class="grid grid-cols-3 gap-1.5">
       {themes.map((theme) => (
         <button
           type="button"
