@@ -35,7 +35,7 @@ The following changes were made to the free Velocity theme to create Astro Rocke
 | Change | Velocity | Astro Rocket |
 |--------|----------|--------------|
 | **Theme switching** | Edit a CSS import file and rebuild | 7 colour bulbs in the header — click one and the logo badge, blog images, and every brand color update live on screen. No file edits, no rebuilds. Selector can be removed from the header once you've chosen a color. |
-| **Colour themes** | 1 default theme | 13 Tailwind-based themes — 7 active in the header selector (Lime, Emerald, Teal, Cyan, Sky, Blue, Purple), 6 more ready to activate (Orange, Amber, Magenta, Green, Indigo, Violet) |
+| **Colour themes** | 1 default theme | 13 Tailwind-based themes — 6 active in the header selector (Emerald, Teal, Cyan, Sky, Blue, Purple), 7 more ready to activate (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) |
 | **Logo badge** | Requires a custom logo file | Auto-generated monogram badge — first letter of your site name on brand color, live-updates with active theme |
 | **Favicon** | Static file to replace manually | Auto-generated SVG favicon — first letter + brand color, pre-rendered at build time from `site.config.ts`, no design tools needed |
 | **Blog image gradients** | Plain image containers | Every blog cover and card uses a brand-color gradient background that updates live when the active theme changes |
@@ -54,7 +54,8 @@ The following changes were made to the free Velocity theme to create Astro Rocke
 |---------|-------------|
 | **Astro 6** | Latest version with Content Layer API, security features, and performance optimizations |
 | **Tailwind CSS v4** | CSS-first configuration with OKLCH color system and fluid typography |
-| **13 Colour Themes** | 7 colour bulbs in the header let you switch themes live — see the result on screen instantly. Logo badge, blog image gradients, and all brand colors update together. The selector can be removed from the header once you've chosen your color. 6 additional themes are ready to activate. |
+| **13 Colour Themes** | 6 colour swatches in the header dropdown let you switch themes live — see the result on screen instantly. Logo badge, blog image gradients, and all brand colors update together. The selector can be removed from the header once you've chosen your color. 7 additional themes are ready to activate. |
+| **Scroll Progress Bar** | A thin 2px brand-coloured bar on the header edge that fills as you scroll. Enabled on the homepage (above the floating header), blog index, and post pages (below the solid header). Controlled via `showScrollProgress` and `scrollProgressPosition` props on the Header component. |
 | **Design Tokens** | Three-tier token architecture (reference → semantic → component) |
 | **57 Components** | 31 UI, 7 patterns, 1 hero, 4 layout, 4 blog, 7 landing, 3 SEO — all accessible with TypeScript |
 | **Auto Logo & Favicon** | First letter of your site name on brand color — generated automatically from `site.config.ts`, no design tools needed |
@@ -212,9 +213,9 @@ Astro Rocket uses a three-tier design token system with OKLCH colors for percept
 
 ### Switching Themes
 
-Astro Rocket ships with 13 colour themes, all based on Tailwind's color palette. Seven are shown as coloured bulbs in the site header (`ThemeSelector`). Clicking a bulb applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is the key difference from Velocity, where switching theme requires editing a CSS import file and rebuilding.
+Astro Rocket ships with 13 colour themes, all based on Tailwind's color palette. Six are shown as colour swatches in the header dropdown (`ThemeSelectorDropdown`) on desktop and in the mobile menu (`ThemeSelector`). Clicking a swatch applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is the key difference from Velocity, where switching theme requires editing a CSS import file and rebuilding.
 
-**The 7 bulbs in the header** (Lime, Emerald, Teal, Cyan, Sky, Blue, Purple — default: Emerald) can be replaced with any of the other 6 available themes (Orange, Amber, Magenta, Green, Indigo, Violet) by editing the `themes` array in `src/components/layout/ThemeSelector.astro`. You can also **remove the selector from the header entirely** once you've settled on a color — just delete the `<ThemeSelector />` line from `src/components/layout/Header.astro`.
+**The 6 swatches in the header** (Emerald, Teal, Cyan, Sky, Blue, Purple — default: Emerald) can be replaced with any of the other 7 available themes (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) by editing the `themes` array in `src/components/layout/ThemeSelector.astro`. You can also **remove the selector from the header entirely** once you've settled on a color — just remove `showThemeSelector` from the layout file.
 
 The theme files live in `src/styles/themes/`:
 
@@ -412,7 +413,7 @@ Astro Rocket includes 57 components across 7 categories. All UI components use [
 | Category | Count | Components |
 |----------|-------|------------|
 | Hero | 1 | Hero section with centered/split layouts, grid, blob effects, and typing effect |
-| Layout | 5 | Header, Footer, ThemeToggle, ThemeSelector, Analytics |
+| Layout | 6 | Header (with scroll progress bar), Footer, ThemeToggle, ThemeSelector, ThemeSelectorDropdown, Analytics |
 | Blog | 4 | ArticleHero, BlogCard, ShareButtons, RelatedPosts |
 | Landing | 5 | Credibility, LighthouseScores, TechStack, FeatureTabs, and more |
 | SEO | 3 | SEO, JsonLd, Breadcrumbs |
@@ -632,6 +633,17 @@ Two components use an `IntersectionObserver` to trigger animations when elements
 ### Scroll-reactive header
 
 The floating header changes its appearance as the user scrolls. When the page is at the top, the header is transparent with inverted text. Once the user scrolls past 60px, the header gains a solid background and the text flips to normal colors — all driven by CSS transitions via a `data-scrolled` attribute.
+
+### Scroll progress bar
+
+A thin 2px brand-coloured bar on the header edge that grows from left to right as the user scrolls, showing reading progress at a glance. Enable it with two props on the `<Header>` component:
+
+| Prop | Type | Default | What it does |
+|------|------|:-------:|--------------|
+| `showScrollProgress` | `boolean` | `false` | Renders the progress bar |
+| `scrollProgressPosition` | `'top'` \| `'bottom'` | `'bottom'` | Edge of the header where the bar sits |
+
+The bar is enabled by default on three page types: the **homepage** (above the floating header), the **blog index**, and **individual blog posts** (both below the solid bar header). Use `scrollProgressPosition="top"` on a floating capsule header and `'bottom'` on a solid bar header. The bar colour always matches `--color-brand-500` and updates instantly when the visitor switches themes.
 
 ### Card hover effects
 
