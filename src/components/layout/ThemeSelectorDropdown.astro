@@ -44,6 +44,22 @@ const themes = [
       style="background-color: var(--color-brand-500)"
       aria-hidden="true"
     />
+    <!-- Chevron below the dot, outside normal flow -->
+    <svg
+      class="theme-chevron absolute top-full left-1/2 -translate-x-1/2 mt-[3px] transition-transform duration-200"
+      xmlns="http://www.w3.org/2000/svg"
+      width="8"
+      height="8"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
   </button>
 
   <!-- Dropdown panel -->
@@ -131,6 +147,7 @@ const themes = [
     const trigger = document.getElementById('theme-dropdown-trigger');
     panel?.classList.add('hidden');
     trigger?.setAttribute('aria-expanded', 'false');
+    trigger?.querySelector('.theme-chevron')?.classList.remove('rotate-180');
   }
 
   function initThemeDropdown() {
@@ -168,6 +185,7 @@ const themes = [
       } else {
         panel.classList.remove('hidden');
         trigger.setAttribute('aria-expanded', 'true');
+        trigger.querySelector('.theme-chevron')?.classList.add('rotate-180');
       }
     });
 
