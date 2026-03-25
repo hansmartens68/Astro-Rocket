@@ -30,6 +30,7 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import ThemeToggle from '@/components/layout/ThemeToggle.astro';
 import ThemeSelector from '@/components/layout/ThemeSelector.astro';
+import ThemeSelectorDropdown from '@/components/layout/ThemeSelectorDropdown.astro';
 import siteConfig from '@/config/site.config';
 
 export interface NavItem {
@@ -239,7 +240,7 @@ const buttonId = `${menuId}-button`;
           <>
             {showThemeSelector && (
               <div class="hidden md:flex">
-                <ThemeSelector class={isFloating ? 'hdr-invert-text' : undefined} />
+                <ThemeSelectorDropdown class={isFloating ? 'hdr-invert-text' : undefined} />
               </div>
             )}
 

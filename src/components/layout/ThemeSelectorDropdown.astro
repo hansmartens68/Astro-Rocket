@@ -1,0 +1,188 @@
+---
+/**
+ * ThemeSelectorDropdown
+ * A dropdown button for desktop that exposes the colour-theme swatches.
+ * The mobile menu still uses the flat ThemeSelector component.
+ */
+import { cn } from '@/lib/cn';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const themes = [
+  { id: 'lime',    name: 'Lime',    color: 'oklch(64% 0.27 130)'   },
+  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
+  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
+  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+];
+---
+
+<div class={cn('relative theme-dropdown-wrapper', className)}>
+  <!-- Trigger button -->
+  <button
+    type="button"
+    id="theme-dropdown-trigger"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label="Select colour theme"
+    class={cn(
+      'inline-flex items-center justify-center rounded-md p-2',
+      'text-muted-foreground hover:text-foreground hover:bg-secondary',
+      'transition-colors duration-(--transition-fast)',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+    )}
+  >
+    <!-- Palette icon -->
+    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 11c-.83 0-1.5-.67-1.5-1.5S5.67 10 6.5 10s1.5.67 1.5 1.5S7.33 13 6.5 13zm3-4C8.67 9 8 8.33 8 7.5S8.67 6 9.5 6s1.5.67 1.5 1.5S10.33 9 9.5 9zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 6 14.5 6s1.5.67 1.5 1.5S15.33 9 14.5 9zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 10 17.5 10s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+    </svg>
+  </button>
+
+  <!-- Dropdown panel -->
+  <div
+    id="theme-dropdown-panel"
+    role="dialog"
+    aria-label="Colour theme"
+    class={cn(
+      'absolute right-0 top-full mt-2 z-50',
+      'w-44 rounded-xl border border-border bg-background shadow-lg',
+      'p-3',
+      'hidden'
+    )}
+  >
+    <p class="text-xs font-medium text-foreground-muted mb-2.5 px-0.5">Colour theme</p>
+    <div class="grid grid-cols-3 gap-2">
+      {themes.map((theme) => (
+        <button
+          type="button"
+          class="theme-swatch-dd group flex flex-col items-center gap-1.5 rounded-lg p-1.5 hover:bg-secondary transition-colors duration-(--transition-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          data-theme-id={theme.id}
+          aria-label={`${theme.name} theme`}
+        >
+          <span
+            class="h-6 w-6 rounded-full block"
+            style={`background-color:${theme.color}`}
+          />
+          <span class="text-[10px] font-medium text-foreground-muted group-hover:text-foreground leading-none">
+            {theme.name}
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .theme-swatch-dd[data-active] {
+    background-color: var(--color-secondary);
+  }
+
+  .theme-swatch-dd[data-active] span:first-child {
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-brand-500);
+  }
+
+  .theme-swatch-dd[data-active] span:last-child {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'color-theme';
+  const DEFAULT_THEME = 'emerald';
+
+  function getActiveTheme(): string {
+    try {
+      return localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+    } catch {
+      return DEFAULT_THEME;
+    }
+  }
+
+  function setTheme(id: string) {
+    document.documentElement.setAttribute('data-theme', id);
+    try { localStorage.setItem(STORAGE_KEY, id); } catch { /* private mode */ }
+
+    // Update dropdown swatches
+    document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
+      btn.dataset.themeId === id
+        ? btn.setAttribute('data-active', '')
+        : btn.removeAttribute('data-active');
+    });
+
+    // Also sync flat ThemeSelector swatches (mobile menu)
+    document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
+      btn.dataset.themeId === id
+        ? btn.setAttribute('data-active', '')
+        : btn.removeAttribute('data-active');
+    });
+  }
+
+  function closeDropdown() {
+    const panel = document.getElementById('theme-dropdown-panel');
+    const trigger = document.getElementById('theme-dropdown-trigger');
+    panel?.classList.add('hidden');
+    trigger?.setAttribute('aria-expanded', 'false');
+  }
+
+  function initThemeDropdown() {
+    const trigger = document.getElementById('theme-dropdown-trigger');
+    const panel = document.getElementById('theme-dropdown-panel');
+    if (!trigger || !panel) return;
+
+    // Guard against double-binding
+    if (trigger.dataset.dropdownInit) return;
+    trigger.dataset.dropdownInit = 'true';
+
+    const active = getActiveTheme();
+
+    // Mark active swatch
+    document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
+      btn.dataset.themeId === active
+        ? btn.setAttribute('data-active', '')
+        : btn.removeAttribute('data-active');
+
+      if (!btn.dataset.selectorInit) {
+        btn.dataset.selectorInit = 'true';
+        btn.addEventListener('click', () => {
+          setTheme(btn.dataset.themeId!);
+          closeDropdown();
+        });
+      }
+    });
+
+    // Toggle dropdown
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = panel.classList.contains('hidden') === false;
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        panel.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      const wrapper = trigger.closest('.theme-dropdown-wrapper');
+      if (wrapper && !wrapper.contains(e.target as Node)) {
+        closeDropdown();
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDropdown();
+    });
+  }
+
+  initThemeDropdown();
+  document.addEventListener('astro:page-load', initThemeDropdown);
+  document.addEventListener('astro:after-swap', initThemeDropdown);
+</script>
