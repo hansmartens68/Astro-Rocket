@@ -12,13 +12,14 @@ interface Props {
 
 const { class: className } = Astro.props;
 
+// Hidden themes (files kept, not shown in selector): orange, green, indigo, lime
 const themes = [
-  { id: 'lime',    name: 'Lime',    color: 'oklch(64% 0.27 130)'   },
   { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
   { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
   { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
   { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
   { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
 ];
 ---
 
