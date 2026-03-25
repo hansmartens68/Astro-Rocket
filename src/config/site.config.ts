@@ -58,13 +58,13 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Hans Martens',
+  name: 'Astro Rocket',
   description:
-    'Hans Martens — Web Designer & Developer, based in Veghel, the Netherlands ',
-  url: SITE_URL || 'https://hansmartens.dev',
+    'Astro Rocket —  A production-ready Astro 6 starter with 8 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
+  url: SITE_URL || 'https://astrorocket.dev',
   ogImage: '/og-default.svg',
   author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+  email: 'hello@yourmail.com',
   address: {
     street: '',
     city: 'Veghel',
@@ -73,13 +73,13 @@ const siteConfig: SiteConfig = {
     country: 'NL',
   },
   socialLinks: [
-    'https://github.com/hansmartens68',
-    'https://instagram.com/hansmartens.dev',
-    'https://x.com/hansmartens_dev',
+    'https://github.com',
+    'https://instagram.com',
+    'https://x.com',
   ],
   twitter: {
-    site: 'https://hansmartens.dev',
-    creator: 'Hans Martens',
+    site: 'https://x.com',
+    creator: 'Astro Rocket',
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
@@ -89,7 +89,7 @@ const siteConfig: SiteConfig = {
   blogImageOverlay: true,
   branding: {
     logo: {
-      alt: 'Hans Martens',
+      alt: 'Astro Rocket',
       imageUrl: '/favicon.svg',
     },
     favicon: {
