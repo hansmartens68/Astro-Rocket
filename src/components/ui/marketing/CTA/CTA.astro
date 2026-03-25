@@ -60,7 +60,7 @@ const hasActionsSlot = Astro.slots.has('actions');
       aria-hidden="true"
     />
   )}
-    <div class={cn(maxWidths[maxWidth], 'text-center mx-auto')}>
+    <div class={cn(maxWidths[maxWidth], 'relative z-10 text-center mx-auto')}>
       {/* Logo Slot - renders before heading */}
       {hasLogoSlot && (
         <div class="mb-[var(--space-stack-lg)]">
