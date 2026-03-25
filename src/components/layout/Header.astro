@@ -563,6 +563,7 @@ const buttonId = `${menuId}-button`;
       header.dataset.scrollInit = 'true';
 
       const isBar = header.dataset.headerShape === 'bar';
+      const isTransparentBar = isBar && header.dataset.headerVariant === 'transparent';
       let ticking = false;
 
       function onScroll() {
@@ -572,7 +573,7 @@ const buttonId = `${menuId}-button`;
         requestAnimationFrame(() => {
           if (window.scrollY > SCROLL_THRESHOLD) {
             header.setAttribute('data-scrolled', '');
-            if (isBar) {
+            if (isTransparentBar) {
               header.classList.add(...BAR_SCROLLED_CLASSES);
               header.classList.remove('bg-transparent');
             }
@@ -583,7 +584,7 @@ const buttonId = `${menuId}-button`;
             const menuOpen = menu && !menu.classList.contains('hidden');
             if (!menuOpen) {
               header.removeAttribute('data-scrolled');
-              if (isBar) {
+              if (isTransparentBar) {
                 header.classList.remove(...BAR_SCROLLED_CLASSES);
                 header.classList.add('bg-transparent');
               }
