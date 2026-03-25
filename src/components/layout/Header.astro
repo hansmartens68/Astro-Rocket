@@ -85,6 +85,8 @@ interface Props extends HTMLAttributes<'header'> {
   showLanguageSwitcher?: boolean;
   /** Show social icon links (desktop/tablet only, reads from siteConfig.socialLinks) */
   showSocialLinks?: boolean;
+  /** Show scroll progress bar at the bottom of the header */
+  showScrollProgress?: boolean;
 }
 
 const {
@@ -104,6 +106,7 @@ const {
   showMobileMenu = true,
   showSocialLinks = false,
   showActiveState = true,
+  showScrollProgress = false,
   logoText,
   hideLogo = false,
   class: className,
@@ -334,6 +337,15 @@ const buttonId = `${menuId}-button`;
       }
     </div>
   </div>
+
+  {/* Scroll Progress Bar */}
+  {showScrollProgress && (
+    <div
+      id="scroll-progress-bar"
+      class="absolute bottom-0 left-0 h-[2px] w-0 bg-brand-500 transition-none"
+      aria-hidden="true"
+    />
+  )}
 
   {/* Mobile Menu */}
   {
@@ -604,6 +616,38 @@ const buttonId = `${menuId}-button`;
   initScrollWatcher();
   document.addEventListener('astro:page-load', initScrollWatcher);
   document.addEventListener('astro:after-swap', initScrollWatcher);
+</script>
+
+<script>
+  function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    if (bar.dataset.progressInit) return;
+    bar.dataset.progressInit = 'true';
+
+    let ticking = false;
+
+    function update() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = `${pct}%`;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+
+    update();
+  }
+
+  initScrollProgress();
+  document.addEventListener('astro:page-load', initScrollProgress);
+  document.addEventListener('astro:after-swap', initScrollProgress);
 </script>
 
 <style is:global>
