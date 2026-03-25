@@ -113,24 +113,6 @@ const gridClasses = cn(
   </div>
 </section>
 
-<style>
-  /*
-   * Dark mode: apply a top-to-bottom gradient on hero H1s.
-   * Uses the theme's own --foreground (near-white) → --foreground-secondary
-   * (slightly dimmer, brand-tinted) so the effect adapts to every theme.
-   * Light mode: untouched — dark text on white needs no treatment.
-   */
-  :global(.dark) .hero-title-slot h1 {
-    background: linear-gradient(
-      180deg,
-      var(--color-foreground) 0%,
-      var(--color-foreground-secondary) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>
 
 <script>
   // Parallax: move [data-parallax] layers at a fraction of scroll speed.

@@ -35,7 +35,7 @@ const estimatedWords = description.split(' ').length * 15;
 const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 ---
 
-<header class="relative overflow-hidden bg-background-secondary border-b border-border pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
+<header class="relative overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
 <div class="relative mx-auto max-w-4xl px-6">
     <!-- Tags -->
     {tags.length > 0 && (
