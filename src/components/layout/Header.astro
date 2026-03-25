@@ -238,6 +238,10 @@ const buttonId = `${menuId}-button`;
           <slot name="actions" />
         ) : (
           <>
+            {showThemeToggle && (
+              <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
+            )}
+
             {showThemeSelector && (
               <div class="hidden md:flex">
                 <ThemeSelectorDropdown class={isFloating ? 'hdr-invert-text' : undefined} />
@@ -267,10 +271,6 @@ const buttonId = `${menuId}-button`;
                   );
                 })}
               </div>
-            )}
-
-            {showThemeToggle && (
-              <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
             )}
 
             {actions.map((action) => (
