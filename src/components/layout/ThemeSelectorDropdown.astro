@@ -32,28 +32,26 @@ const themes = [
     aria-expanded="false"
     aria-label="Select colour theme"
     class={cn(
-      'inline-flex items-center justify-center rounded-md p-2',
-      'text-muted-foreground hover:text-foreground hover:bg-secondary',
+      'inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1.5',
+      'text-foreground-muted hover:text-foreground hover:bg-secondary hover:border-border-strong',
       'transition-colors duration-(--transition-fast)',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
     )}
   >
     <!-- Active theme dot -->
     <span
-      class="h-4 w-4 rounded-full block ring-2 ring-border"
+      class="h-3.5 w-3.5 rounded-full block flex-shrink-0"
       style="background-color: var(--color-brand-500)"
       aria-hidden="true"
     />
-    <!-- Chevron below the dot, outside normal flow -->
+    <!-- Chevron — inline, rotates on open -->
     <svg
-      class="theme-chevron absolute top-full left-1/2 -translate-x-1/2 mt-[3px] transition-transform duration-200"
+      class="theme-chevron h-3 w-3 flex-shrink-0 transition-transform duration-200"
       xmlns="http://www.w3.org/2000/svg"
-      width="8"
-      height="8"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="3"
+      stroke-width="2.5"
       stroke-linecap="round"
       stroke-linejoin="round"
       aria-hidden="true"
