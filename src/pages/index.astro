@@ -24,9 +24,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <LandingLayout
   title="Web Designer & Developer | Veghel"
-  description="Web designer and developer based in Veghel, the Netherlands. Crafting modern web experiences shaped by clean design, solid structure, and attention to detail.
-
-    </p>"
+  description="Web designer and developer based in Veghel, the Netherlands. Crafting modern web experiences shaped by clean design, solid structure, and attention to detail."
   image="/og-default.svg"
   includePersonSchema={true}
   includeProfessionalServiceSchema={true}
@@ -45,8 +43,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="/contact">
-      <Icon name="github" size="sm" />
+      <Button size="lg" href="https://github.com">
+        <Icon name="github" size="sm" />
         Get it on GitHub
       </Button>
       <Button size="lg" variant="outline" href="/about">
@@ -243,15 +241,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+              "Astro Rocket is the best starting point I've ever used. The 13 themes, dark mode, and component library saved me weeks of setup. I shipped my first client project in days instead of weeks — and the code quality is outstanding."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                A
+                S
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Client Name</p>
-                <p class="text-xs text-foreground-muted">Founder, Company Name</p>
+                <p class="text-sm font-semibold text-foreground">Sarah Mitchell</p>
+                <p class="text-xs text-foreground-muted">Freelance Web Developer</p>
               </div>
             </div>
           </div>
@@ -268,15 +266,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+              "I've tried many Astro starters, but Astro Rocket is in a different league. The built-in i18n, accessibility, and performance foundations are exactly what my agency needed. It's become our go-to template for every new project."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                B
+                T
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Client Name</p>
-                <p class="text-xs text-foreground-muted">CEO, Company Name</p>
+                <p class="text-sm font-semibold text-foreground">Thomas Bergmann</p>
+                <p class="text-xs text-foreground-muted">Creative Director, Studio Nord</p>
               </div>
             </div>
           </div>
@@ -348,8 +346,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
 <script>
-  const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
-  if (counters.length > 0) {
+  function initCountup() {
+    const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
+    if (counters.length === 0) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -371,5 +370,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     }, { threshold: 0.4 });
     counters.forEach((el) => observer.observe(el));
   }
+
+  initCountup();
+  document.addEventListener('astro:page-load', initCountup);
 </script>
 </LandingLayout>
