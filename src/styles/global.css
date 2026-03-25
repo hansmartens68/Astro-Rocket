@@ -146,11 +146,14 @@
     min-height: 100vh;
   }
 
-  /* Typography - headings inherit color by default for flexibility */
+  /* Typography - headings use explicit foreground color to prevent any
+     gradient or glow-through effects from showing between heading text */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     line-height: 1.1;
     letter-spacing: var(--theme-heading-tracking);
+    color: var(--color-foreground);
+    -webkit-text-fill-color: currentColor;
   }
 
   h1, h2 { font-weight: 700; }
