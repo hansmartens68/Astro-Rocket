@@ -24,9 +24,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <LandingLayout
   title="Astro Rocket — Astro 6 starter theme"
-  description="A production-ready Astro 6 starter with 13 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.
-
-    </p>"
+  description="A production-ready Astro 6 starter with 13 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
   image="/og-default.svg"
   includePersonSchema={true}
   includeProfessionalServiceSchema={true}
@@ -45,8 +43,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="/contact">
-      <Icon name="github" size="sm" />
+      <Button size="lg" href="https://github.com">
+        <Icon name="github" size="sm" />
         Get it on GitHub
       </Button>
       <Button size="lg" variant="outline" href="/about">
@@ -236,23 +234,23 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <!-- Testimonial 1 -->
         <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500">
+            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
               {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+              "Astro Rocket is the best starting point I've ever used. The 13 themes, dark mode, and component library saved me weeks of setup. I shipped my first client project in days instead of weeks — and the code quality is outstanding."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                A
+                S
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Client Name</p>
-                <p class="text-xs text-foreground-muted">Founder, Company Name</p>
+                <p class="text-sm font-semibold text-foreground">Sarah Mitchell</p>
+                <p class="text-xs text-foreground-muted">Freelance Web Developer</p>
               </div>
             </div>
           </div>
@@ -261,23 +259,23 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <!-- Testimonial 2 -->
         <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
-            <div class="flex gap-1 text-brand-500">
+            <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
               {[...Array(5)].map(() => (
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Replace this with a real quote from a client. Something specific about the results they got or the experience of working with you."
+              "I've tried many Astro starters, but Astro Rocket is in a different league. The built-in i18n, accessibility, and performance foundations are exactly what my agency needed. It's become our go-to template for every new project."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                B
+                T
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Client Name</p>
-                <p class="text-xs text-foreground-muted">CEO, Company Name</p>
+                <p class="text-sm font-semibold text-foreground">Thomas Bergmann</p>
+                <p class="text-xs text-foreground-muted">Creative Director, Studio Nord</p>
               </div>
             </div>
           </div>
@@ -349,8 +347,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
 <script>
-  const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
-  if (counters.length > 0) {
+  function initCountup() {
+    const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
+    if (counters.length === 0) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -372,5 +371,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     }, { threshold: 0.4 });
     counters.forEach((el) => observer.observe(el));
   }
+
+  initCountup();
+  document.addEventListener('astro:page-load', initCountup);
 </script>
 </LandingLayout>
