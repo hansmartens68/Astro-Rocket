@@ -25,9 +25,9 @@ Astro Rocket is made for web designers, developers, bloggers, and anyone who nee
 
 Velocity is the foundation. Here's everything I built on top of it:
 
-**Live theme switching with 13 colour themes** — Velocity required editing a CSS import file and rebuilding every time you wanted to change your brand colour. In Astro Rocket, you click one of the 7 colour bulbs in the header and everything updates on screen instantly: the logo badge, the blog image gradients, and every brand colour across the site. No file edits, no rebuilds. Once you've settled on a colour, you remove the selector from the header with a single line deletion.
+**Live theme switching with 13 colour themes** — Velocity required editing a CSS import file and rebuilding every time you wanted to change your brand colour. In Astro Rocket, you click one of the 6 colour swatches in the header dropdown and everything updates on screen instantly: the logo badge, the blog image gradients, and every brand colour across the site. No file edits, no rebuilds. Once you've settled on a colour, you remove the selector from the header with a single line deletion.
 
-The 7 active themes in the header are Lime, Emerald, Teal, Cyan, Sky, Blue, and Purple — Emerald is the default. Six additional themes (Orange, Amber, Magenta, Green, Indigo, Violet) are fully built and ready to activate. All 13 themes are based on the official Tailwind CSS colour palette.
+The 6 active themes in the header are Emerald, Teal, Cyan, Sky, Blue, and Purple — Emerald is the default. Seven additional themes (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) are fully built and ready to activate. All 13 themes are based on the official Tailwind CSS colour palette.
 
 **Auto-generated logo badge** — Velocity required a custom logo file. Astro Rocket generates the logo automatically: the first letter of your site name on the active brand colour. It updates live when you switch themes.
 
@@ -40,6 +40,8 @@ The 7 active themes in the header are Lime, Emerald, Teal, Cyan, Sky, Blue, and 
 **Animated typing effect** — the hero section includes an animated typing effect that cycles through words, with configurable typing and delete speed.
 
 **Full animation library** — smooth page transitions via Astro View Transitions, scroll-triggered counter and score animations, a scroll-reactive header, card hover effects, and a complete set of UI micro-animations for dropdowns, toasts, modals, tab switches, and more. All with full `prefers-reduced-motion` support.
+
+**Scroll progress bar** — a thin 2px brand-coloured line in the header that fills from left to right as you scroll down the page. It's enabled on the homepage (sitting on top of the floating capsule header), the blog index, and individual post pages (both underneath the solid header). Each position is independently configurable via two `Header` props: `showScrollProgress` and `scrollProgressPosition`. [Read the full post](/blog/scroll-progress-bar).
 
 **sessionStorage for dark mode** — Velocity uses `localStorage`, which stores the user's preference permanently. I deliberately switched this to `sessionStorage`, so every new visitor sees the site the way it was designed: dark. Dark mode is a design choice here, not a user setting. I wrote a [full post explaining why](/blog/dark-mode-sessionstorage).
 

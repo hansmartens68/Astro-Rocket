@@ -165,34 +165,34 @@ Available values — all 13 themes:
 
 | Value | Hue | Best for | In selector |
 |-------|-----|----------|:-----------:|
-| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) | ✓ |
 | `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands | ✓ |
 | `teal` | 190° | Developer tooling, modern SaaS, trustworthy services | ✓ |
 | `cyan` | 200° | Fresh, vibrant tech — more energetic than teal | ✓ |
 | `sky` | 222° | Clean and airy — between teal and blue, great for services | ✓ |
 | `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative — the default | ✓ |
+| `purple` | 292° | Expressive, personality-forward, vivid | ✓ |
+| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) | — |
 | `amber` | 75° | Editorial, luxury, food, warm creative brands | — |
 | `green` | 155° | Deep emerald, Supabase-generation aesthetic | — |
 | `indigo` | 264° | Enterprise, productivity tools, serious B2B | — |
 | `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid | — |
 | `orange` | 38° | Bold and warm — the original Velocity/International Orange | — |
-| `purple` | 292° | Expressive, personality-forward, vivid | — |
 | `violet` | 277° | Creative and premium — sweet spot between indigo and purple | — |
 
 ### The live theme selector
 
-The six themes marked ✓ appear as coloured bulbs in the header when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
+The six themes marked ✓ appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
 
-To swap one of the six active bulbs for a different theme, open `src/components/layout/ThemeSelector.astro` and edit the `themes` array:
+To swap one of the six active swatches for a different theme, open `src/components/layout/ThemeSelector.astro` and edit the `themes` array:
 
 ```ts
 const themes = [
-  { id: 'lime',    name: 'Lime',    color: 'oklch(64% 0.27 130)'   },
   { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
   { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
   { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
   { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
   { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
 ];
 ```
 
@@ -375,12 +375,14 @@ All Header props and what they do:
 | `colorScheme` | `default` `invert` | `default` | Use inverted colours — for dark hero backgrounds |
 | `layout` | `default` `centered` `minimal` | `default` | Logo and nav arrangement |
 | `showThemeToggle` | `true` `false` | `true` | Dark/light mode toggle button |
-| `showThemeSelector` | `true` `false` | `false` | Colour theme bulb picker |
+| `showThemeSelector` | `true` `false` | `false` | Colour theme swatch picker (desktop dropdown + mobile menu) |
 | `showSocialLinks` | `true` `false` | `false` | Social icon links (desktop only, reads from `siteConfig.socialLinks`) |
 | `showCta` | `true` `false` | `true` | CTA button in the header |
 | `showMobileMenu` | `true` `false` | `true` | Hamburger menu on small screens |
 | `showActiveState` | `true` `false` | `true` | Highlight for the current page link |
 | `hideLogo` | `true` `false` | `false` | Hide the logo entirely |
+| `showScrollProgress` | `true` `false` | `false` | Thin brand-coloured scroll progress bar on the header edge |
+| `scrollProgressPosition` | `top` `bottom` | `bottom` | Edge of the header where the progress bar sits — `top` suits the floating capsule header, `bottom` suits the solid bar header |
 
 Set any prop on the `<Header>` component in the layout file for the page type you want to adjust.
 
