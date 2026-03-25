@@ -93,7 +93,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
       <!-- Article Content -->
       <div
-        class="prose prose-lg prose-p:font-medium prose-headings:font-display prose-h1:font-bold prose-h2:font-extrabold prose-h3:font-bold prose-h4:font-medium prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-code:text-brand-600 prose-code:bg-brand-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-background-secondary prose-pre:border prose-pre:border-border dark:prose-invert dark:prose-a:text-brand-400 dark:hover:prose-a:text-brand-300 dark:prose-code:text-brand-400 dark:prose-code:bg-brand-900/30 max-w-none"
+        class="prose prose-lg max-w-none"
       >
         <slot />
       </div>
