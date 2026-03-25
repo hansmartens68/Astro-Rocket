@@ -52,15 +52,15 @@ const isHomePage = Astro.url.pathname === '/';
   <Header
     slot="header"
     position="fixed"
-    shape="bar"
-    variant="solid"
+    shape="floating"
+    variant="transparent"
     colorScheme="default"
     size="lg"
     showCta={!isHomePage}
     cta={{ label: 'Get in touch', href: '/contact' }}
     showThemeSelector
     showScrollProgress={isHomePage}
-    scrollProgressPosition="bottom"
+    scrollProgressPosition="top"
   />
 
   <slot />
