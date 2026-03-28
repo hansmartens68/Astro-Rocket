@@ -39,7 +39,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 items-center">
         <!-- Left: text -->
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4" data-reveal>
           <div class="flex flex-col gap-6">
             <Badge variant="brand" pill class="self-start">The partnership</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -51,7 +51,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
           </p>
         </div>
         <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4" data-reveal data-reveal-delay="1">
           <Card variant="elevated">
             <div class="flex items-start gap-4">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
@@ -97,7 +97,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <!-- Values -->
   <section class="py-[var(--space-section-md)] border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-8 text-center flex flex-col items-center gap-4">
+      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>My Process</Badge>
           <h2 class="font-display text-4xl font-bold text-foreground">
@@ -108,7 +108,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
           These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3">
+      <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
         <Card hover>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
@@ -162,7 +162,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   />
   <!-- CTA -->
   <section class="py-[var(--space-section-md)] bg-background hero-dark-gradient">
-    <div class="mx-auto max-w-2xl px-6 text-center">
+    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
         Sound like a good fit?
       </h2>
