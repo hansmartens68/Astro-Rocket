@@ -1,0 +1,128 @@
+---
+title: "Dark Mode Hero Gradient — CSS-Only Depth for Every Section"
+description: "Astro Rocket's hero and CTA sections now fade from pure black to your active brand colour in dark mode. One CSS class, zero JavaScript, zero impact on light mode."
+publishedAt: 2026-03-28
+author: "Hans Martens"
+tags: ["astro-rocket", "dark-mode", "css", "design", "features"]
+featured: false
+locale: en
+image: "../../../assets/blog/dark-mode-hero-gradient.svg"
+svgSlug: "dark-mode-hero-gradient"
+imageAlt: "Stacked gradient bands fading from dark to brand colour above the word 'gradient' on a brand background"
+---
+
+Astro Rocket's hero sections, closing CTA sections, and "Follow along" newsletter sections now carry a dark mode gradient: pure black at the top, fading to your active brand colour at the bottom. Switch to light mode and nothing changes — the effect is fully scoped to `.dark`.
+
+## What it looks like
+
+In dark mode, the hero at the top of every page is no longer a flat dark background. It opens with pure black — `oklch(0% 0 0)` — and transitions smoothly into the theme's `--brand-700` colour. The closing CTA sections before the footer and the "Follow along" sections on the blog repeat the same treatment, giving the page a consistent visual rhythm: open dark, close warm.
+
+In light mode, all sections use their original backgrounds unchanged. The gradient is a pure dark-mode enhancement — your light-mode design is untouched.
+
+## The CSS
+
+A single utility class in `src/styles/global.css` does the work:
+
+```css
+.dark .hero-dark-gradient {
+  background: linear-gradient(
+    to bottom,
+    oklch(0% 0 0) 0%,
+    var(--brand-700) 100%
+  ) !important;
+}
+```
+
+The `!important` is safe here: the rule is fully scoped to `.dark`, so it only applies in dark mode. It overrides the `bg-background` Tailwind utility on the section elements without leaking into light mode.
+
+A second rule lightens brand-coloured text inside headings within gradient sections. In dark mode, `text-brand-500` on a `<h1>` or `<h2>` inside a gradient section shifts to `--brand-400` — one step lighter — so it reads well against the darker top of the gradient:
+
+```css
+.dark .hero-dark-gradient :is(h1, h2) .text-brand-500 {
+  color: var(--brand-400);
+  -webkit-text-fill-color: var(--brand-400);
+}
+```
+
+Both rules live together in the "Dark mode hero gradient" section at the bottom of `global.css`. No images, no JavaScript, no build step required. The gradient is pure CSS and has zero performance impact.
+
+## Where it is applied
+
+### Hero sections — all pages
+
+The Hero component's base class string in `src/components/hero/hero.variants.ts` includes `hero-dark-gradient`:
+
+```ts
+export const heroSectionVariants = cva(
+  'relative overflow-hidden bg-background hero-dark-gradient',
+  { ... }
+);
+```
+
+Because every page's `<Hero>` component uses this CVA, every page with a hero gets the gradient automatically. No per-page markup change is needed.
+
+### Closing CTA sections — homepage, about, projects
+
+The inline `<section>` at the bottom of each page (before the footer) has `hero-dark-gradient` in its class list:
+
+```html
+<!-- src/pages/index.astro, about.astro, projects.astro -->
+<section class="py-[var(--space-section-md)] bg-background hero-dark-gradient">
+```
+
+In light mode, `bg-background` is the active background. In dark mode, the gradient overrides it via `!important`.
+
+### Follow Along CTA — blog index and blog posts
+
+The `<CTA>` component on the blog index page and on every individual blog post layout receives `hero-dark-gradient` via the `class` or `class:list` prop:
+
+```astro
+<!-- src/pages/blog/index.astro -->
+<CTA ... class:list={['hero-dark-gradient', ...]} />
+
+<!-- src/layouts/BlogLayout.astro -->
+<CTA ... class="bg-background-secondary hero-dark-gradient" />
+```
+
+The CTA component passes extra classes through to its outer element, so the gradient takes effect there without any modification to the `CTA.astro` component itself.
+
+## Semi-transparent header
+
+For the gradient to bleed through behind the header, the header's `variant` prop in `src/layouts/LandingLayout.astro` was changed from `"solid"` to `"default"`:
+
+```astro
+<!-- Before -->
+<Header variant="solid" ... />
+
+<!-- After -->
+<Header variant="default" ... />
+```
+
+The `"default"` variant renders the header with a semi-transparent background and backdrop blur instead of a fully opaque fill. This lets the top of the hero gradient show through behind the header as the page loads, creating a seamless transition from the header into the hero section below.
+
+## How the colours work
+
+The gradient endpoints use the active theme's tokens:
+
+| Stop | Value | What it does |
+|------|-------|--------------|
+| `0%` | `oklch(0% 0 0)` | Pure black — theme-agnostic, always dark at the very top |
+| `100%` | `var(--brand-700)` | A deep, saturated shade of your active brand colour |
+
+`--brand-700` sits two steps darker than the primary brand accent (`--brand-500`). It is dark enough that it feels natural against the black at the top of the gradient, but saturated enough that your theme colour reads clearly at the bottom. When you switch themes in the header selector, the gradient endpoint updates instantly — no rebuild, no page reload.
+
+## Adding it to your own sections
+
+Any section that should carry the gradient in dark mode needs just one class:
+
+```html
+<section class="your-existing-classes hero-dark-gradient">
+```
+
+That is all. The CSS handles the rest: in dark mode the gradient overrides the background; in light mode the section renders as if `hero-dark-gradient` is not there.
+
+To remove the gradient from a specific section, delete `hero-dark-gradient` from its class list. The `bg-background` (or whatever background utility you are using) immediately takes over.
+
+## Light mode behaviour
+
+In light mode there is nothing to disable or special-case. The `.dark .hero-dark-gradient` rule does not match when `.dark` is absent, so the gradient class on a section element has no visual effect whatsoever. You can leave `hero-dark-gradient` on any section without affecting light mode at all.
