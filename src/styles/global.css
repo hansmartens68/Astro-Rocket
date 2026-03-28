@@ -300,7 +300,7 @@
       to bottom,
       oklch(0% 0 0) 0%,
       var(--brand-700) 100%
-    );
+    ) !important;
   }
 
   /* Lighten brand-colored heading text to brand-400 in dark mode heroes */
