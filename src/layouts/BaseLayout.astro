@@ -54,7 +54,7 @@ if (includeProfessionalServiceSchema) {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth dark" data-theme="purple">
+<html lang="en" class="scroll-smooth dark" data-theme="sky">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -148,8 +148,8 @@ if (includeProfessionalServiceSchema) {
           } catch (_) {}
 
           try {
-            // Color theme — persisted in localStorage so it survives across tabs
-            var saved = localStorage.getItem('color-theme');
+            // Color theme — persisted in sessionStorage so it resets to sky on every new visit
+            var saved = sessionStorage.getItem('color-theme');
             if (saved && COLOR_THEMES.indexOf(saved) !== -1) {
               el.setAttribute('data-theme', saved);
             }

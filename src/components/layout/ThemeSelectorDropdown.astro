@@ -118,11 +118,11 @@ const themes = [
 
 <script>
   const STORAGE_KEY = 'color-theme';
-  const DEFAULT_THEME = 'purple';
+  const DEFAULT_THEME = 'sky';
 
   function getActiveTheme(): string {
     try {
-      return localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
+      return sessionStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
     } catch {
       return DEFAULT_THEME;
     }
@@ -130,7 +130,7 @@ const themes = [
 
   function setTheme(id: string) {
     document.documentElement.setAttribute('data-theme', id);
-    try { localStorage.setItem(STORAGE_KEY, id); } catch { /* private mode */ }
+    try { sessionStorage.setItem(STORAGE_KEY, id); } catch { /* private mode */ }
 
     // Update dropdown swatches
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
