@@ -294,6 +294,15 @@
     );
   }
 
+  /* Dark mode hero gradient: black to brand */
+  .dark .hero-dark-gradient {
+    background: linear-gradient(
+      to bottom,
+      oklch(0% 0 0) 0%,
+      var(--brand-600) 100%
+    );
+  }
+
   /* Gradient border */
   .border-gradient {
     position: relative;
