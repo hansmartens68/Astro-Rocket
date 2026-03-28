@@ -955,19 +955,6 @@
    transition shorthand is always valid.
    ------------------------------------------------------------------------- */
 
-@keyframes rocket-launch {
-  0%   { transform: translate(0, 0)     rotate(0deg);   }
-  50%  { transform: translate(3px, -3px) rotate(-25deg); }
-  100% { transform: translate(0, 0)     rotate(0deg);   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:hover .rocket-icon,
-  button:hover .rocket-icon {
-    animation: rocket-launch 0.5s ease-in-out;
-  }
-}
-
 @keyframes hero-slide-up {
   from { transform: translateY(28px); }
   to   { transform: translateY(0); }
