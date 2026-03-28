@@ -305,8 +305,8 @@
 
   /* Lighten brand-colored heading text to brand-400 in dark mode heroes */
   .dark .hero-dark-gradient :is(h1, h2) .text-brand-500 {
-    color: var(--brand-400);
-    -webkit-text-fill-color: var(--brand-400);
+    color: var(--brand-300);
+    -webkit-text-fill-color: var(--brand-300);
   }
 
   /* Gradient border */
