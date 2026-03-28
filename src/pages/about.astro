@@ -23,7 +23,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
       About me
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Hans Martens —</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
         <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
       </span>
@@ -37,32 +37,32 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
   <!-- What's possible now -->
   <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-12 lg:grid-cols-2 items-start">
+      <div class="grid gap-12 lg:grid-cols-2">
         <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal>
           <div class="flex flex-col gap-6">
             <Badge variant="brand" pill class="self-start">The partnership</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Web design, now with a thinking partner
+              Meet the team: Hans & Claude
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed">
-           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside Claude — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="text-foreground underline underline-offset-2 hover:text-brand-500 transition-colors">Claude</a> — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed">
             This isn't about automating the work — it's about raising the standard of it. Every design decision still comes from craft and experience. Every line of code is still written with intention. Claude helps me think more rigorously, not less. The work stays mine. The thinking gets sharper.
           </p>
         </div>
         <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4" data-reveal data-reveal-delay="1">
-          <Card variant="elevated">
+        <div class="flex flex-col gap-4 h-full" data-reveal data-reveal-delay="1">
+          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center cursor-default">
             <div class="flex items-start gap-4">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
                 <Icon name="code-2" size="md" />
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
-                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
+                <h3 class="text-base font-semibold text-foreground">Hans Martens</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
                   16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
                 </p>
@@ -74,13 +74,14 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
               </div>
             </div>
           </Card>
-          <Card variant="elevated">
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="sparkles" size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
+          <Card variant="elevated" hover href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex-1 flex flex-col justify-center">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-4 flex-1 min-w-0">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="sparkles" size="md" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
                 <h3 class="text-base font-semibold text-foreground">Claude</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
                   Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
@@ -91,6 +92,8 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
                   <Badge size="sm" variant="brand">Deep thinking</Badge>
                 </div>
               </div>
+              </div>
+              <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
             </div>
           </Card>
         </div>
@@ -112,7 +115,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
-        <Card hover>
+        <Card hover class="cursor-default">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="zap" size="md" />
@@ -126,7 +129,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
             </div>
           </div>
         </Card>
-        <Card hover>
+        <Card hover class="cursor-default">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="minimize-2" size="md" />
@@ -140,7 +143,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
             </div>
           </div>
         </Card>
-        <Card hover>
+        <Card hover class="cursor-default">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="message-circle" size="md" />
