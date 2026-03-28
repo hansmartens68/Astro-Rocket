@@ -51,11 +51,11 @@ const getPostUrl = (postId: string) => {
     featuredPosts.length > 0 && (
       <section id="featured-section" class="bg-background-secondary py-[var(--space-section-md)] border-t border-border">
         <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-          <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold">
+          <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold" data-reveal>
             Featured
           </h2>
 
-          <div class="grid gap-6 md:grid-cols-2">
+          <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
             {featuredPosts.map((post) => (
               <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
                 <BlogCard
@@ -79,7 +79,7 @@ const getPostUrl = (postId: string) => {
   <!-- All Posts Section -->
   <section class:list={[featuredPosts.length > 0 ? 'bg-background' : 'bg-background-secondary', 'py-[var(--space-section-md)] border-t border-border']}>
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center justify-between gap-4" data-reveal>
         {
           featuredPosts.length > 0 && nonFeaturedPosts.length > 0 && (
             <h2 class="font-display text-foreground text-3xl md:text-4xl font-bold">All posts</h2>
@@ -114,7 +114,7 @@ const getPostUrl = (postId: string) => {
 
       {
         regularPosts.length > 0 ? (
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
             {regularPosts.map((post) => (
               <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
                 <BlogCard
@@ -150,7 +150,7 @@ const getPostUrl = (postId: string) => {
   </section>
 
   <!-- Follow CTA Section -->
-  <CTA variant="default" size="md" maxWidth="lg" glow={false} class:list={['hero-dark-gradient', featuredPosts.length > 0 && '!bg-background-secondary']}>
+  <CTA variant="default" size="md" maxWidth="lg" glow={false} data-reveal class:list={['hero-dark-gradient', featuredPosts.length > 0 && '!bg-background-secondary']}>
     <h2 slot="heading" class="!text-4xl">Follow along</h2>
     <p slot="description" class="!text-lg text-balance">Stay in the loop — new articles, thoughts, and updates.</p>
 

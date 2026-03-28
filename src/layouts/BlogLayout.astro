@@ -99,7 +99,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
       </div>
 
       <!-- Article Footer -->
-      <footer class="border-border mt-12 border-t pt-8">
+      <footer class="border-border mt-12 border-t pt-8" data-reveal>
         <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <!-- Back link -->
           <a
@@ -129,13 +129,13 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
   <!-- Related Posts -->
   {tags.length > 0 && (
-    <div class="mx-auto max-w-screen-xl px-6">
+    <div class="mx-auto max-w-screen-xl px-6" data-reveal>
       <RelatedPosts currentSlug={slug} tags={tags} locale="en" maxPosts={3} />
     </div>
   )}
 
   <!-- Follow Along -->
-  <CTA variant="default" size="md" maxWidth="lg" glow={false} class="bg-background-secondary hero-dark-gradient">
+  <CTA variant="default" size="md" maxWidth="lg" glow={false} data-reveal class="bg-background-secondary hero-dark-gradient">
     <h2 slot="heading" class="!text-4xl">Follow along</h2>
     <p slot="description" class="!text-lg text-balance">Stay in the loop — new articles, thoughts, and updates.</p>
 
