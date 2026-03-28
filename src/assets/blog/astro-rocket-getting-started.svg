@@ -1,4 +1,4 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" class="rkt-svg">
   <style>
     .bg  { fill: var(--brand-500); }
     .ico { stroke: var(--brand-100); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
@@ -7,6 +7,13 @@
     .pil { fill: var(--brand-400); fill-opacity: 0.25; stroke: var(--brand-200); stroke-opacity: 0.4; stroke-width: 1; }
     .ptx { fill: var(--brand-100); font-family: 'Outfit Variable', Outfit, system-ui, -apple-system, sans-serif; }
     .cor { stroke: var(--brand-300); stroke-width: 1.5; fill: none; stroke-opacity: 0.45; }
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes rkt-draw { to { stroke-dashoffset: 0; } }
+      .rkt-svg .ico path:nth-child(1) { stroke-dasharray: 200; stroke-dashoffset: 200; animation: rkt-draw .5s ease-out forwards .2s; }
+      .rkt-svg .ico path:nth-child(2) { stroke-dasharray: 200; stroke-dashoffset: 200; animation: rkt-draw .7s ease-out forwards .4s; }
+      .rkt-svg .ico path:nth-child(3) { stroke-dasharray: 200; stroke-dashoffset: 200; animation: rkt-draw .4s ease-out forwards .8s; }
+      .rkt-svg .ico path:nth-child(4) { stroke-dasharray: 200; stroke-dashoffset: 200; animation: rkt-draw .4s ease-out forwards .9s; }
+    }
   </style>
   <rect width="1200" height="630" class="bg"/>
   <!-- Lucide Rocket -->
