@@ -79,6 +79,11 @@ html[data-theme="amber"] {
   --gradient-start: oklch(96.5% 0 0);
   --gradient-end: oklch(100% 0 0);
 
+  /* Status colors - light mode backgrounds */
+  --success-light: oklch(94% 0.05 145);
+  --warning-light: oklch(95% 0.05 85);
+  --error-light:   oklch(94% 0.05 25);
+
   /* -------------------------------------------------------------------------
      Inverted/Contrast Section — deep warm-dark
      ------------------------------------------------------------------------- */
