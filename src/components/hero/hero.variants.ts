@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const heroSectionVariants = cva('relative overflow-hidden bg-background hero-dark-gradient', {
+export const heroSectionVariants = cva('relative overflow-hidden bg-background', {
   variants: {
     size: {
       sm: 'pt-[var(--space-page-top-sm)] pb-[var(--space-section-sm)]',

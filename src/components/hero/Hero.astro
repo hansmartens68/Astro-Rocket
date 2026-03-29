@@ -10,12 +10,15 @@ interface Props extends HTMLAttributes<'section'> {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   /** Show background grid pattern */
   showGrid?: boolean;
+  /** Apply the dark-mode hero gradient (black → brand). Homepage only. */
+  gradient?: boolean;
 }
 
 const {
   layout = 'centered',
   size = 'lg',
   showGrid = false,
+  gradient = false,
   class: className,
   ...attrs
 } = Astro.props;
@@ -31,7 +34,7 @@ const hasAsideSlot = Astro.slots.has('aside');
 const alignment = layout === 'centered' ? 'text-center items-center' : 'text-left items-start';
 
 // Compute classes
-const sectionClasses = cn(heroSectionVariants({ size }), className);
+const sectionClasses = cn(heroSectionVariants({ size }), gradient && 'hero-dark-gradient', className);
 
 const contentClasses = cn(
   'z-10 flex flex-col',
