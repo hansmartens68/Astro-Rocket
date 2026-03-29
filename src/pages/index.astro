@@ -30,8 +30,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
-  <Hero layout="centered" size="xl" gradient>
-    <Badge slot="badge" variant="brand" pill pulse>Available for new projects</Badge>
+  <Hero layout="centered" size="xl" gradient class="sticky top-0 z-0 overflow-clip">
+    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
 
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
@@ -56,7 +56,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </Hero>
 
   <!-- Services Section -->
-  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
@@ -120,10 +120,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
  <!-- About Teaser -->
-  <section class="py-[var(--space-section-md)] border-t border-border">
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2 lg:items-stretch">
-        <div data-reveal class="lg:flex lg:flex-col lg:justify-center lg:items-start">
+        <div class="flex flex-col justify-center" data-reveal>
           <div class="flex flex-col gap-6 mb-6">
             <Badge variant="brand" pill class="self-start">About me</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -172,7 +172,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <!-- Portfolio -->
-  <section id="work" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
@@ -216,7 +216,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <!-- Testimonials -->
-  <section class="py-[var(--space-section-md)] border-t border-border">
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
@@ -285,7 +285,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <!-- Blog -->
-  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex items-end justify-between" data-reveal>
         <div class="flex flex-col gap-6">
@@ -326,7 +326,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
  <!-- CTA -->
-  <section class="py-[var(--space-section-md)] bg-background">
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background">
     <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
         Have a project in mind?

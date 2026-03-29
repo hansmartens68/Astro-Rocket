@@ -294,12 +294,12 @@
     );
   }
 
-  /* Dark mode hero gradient: black to brand */
+  /* Dark mode hero gradient: brand to black */
   .dark .hero-dark-gradient {
     background: linear-gradient(
       to bottom,
-      oklch(0% 0 0) 0%,
-      var(--brand-700) 100%
+      var(--brand-700) 0%,
+      oklch(0% 0 0) 100%
     ) !important;
   }
 
