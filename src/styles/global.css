@@ -303,15 +303,6 @@
     ) !important;
   }
 
-  /* Dark mode CTA gradient: brand top to black bottom */
-  .dark .cta-dark-gradient {
-    background: linear-gradient(
-      to bottom,
-      var(--brand-700) 0%,
-      oklch(0% 0 0) 100%
-    ) !important;
-  }
-
   /* Keep brand-colored heading text at brand-500 in dark mode heroes */
   .dark .hero-dark-gradient :is(h1, h2) .text-brand-500 {
     color: var(--brand-500);
