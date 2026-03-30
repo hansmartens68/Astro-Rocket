@@ -18,7 +18,7 @@ export const cardVariants = cva(
         lg: 'p-8',
       },
       hover: {
-        true: 'hover:border-brand-500 hover:shadow-md hover:-translate-y-0.5 cursor-pointer',
+        true: 'hover:border-brand-500 hover:shadow-md hover:-translate-y-0.5',
       },
     },
     defaultVariants: {
