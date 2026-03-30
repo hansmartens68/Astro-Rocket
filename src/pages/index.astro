@@ -122,7 +122,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
  <!-- About Teaser -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-12 lg:grid-cols-2 lg:items-stretch">
+      <div class="grid gap-12 lg:grid-cols-2">
         <div class="flex flex-col justify-center" data-reveal>
           <div class="flex flex-col gap-6 mb-6">
             <Badge variant="brand" pill class="self-start">About me</Badge>
@@ -141,28 +141,27 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             More about me
           </Button>
         </div>
-        <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center" data-reveal data-reveal-delay="1">
-          <p class="text-sm text-foreground-muted mb-5 text-center">A few things about me.</p>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default">
-              <Icon name="history" size="md" class="text-brand-500" />
-              <p class="font-display text-2xl md:text-3xl font-bold text-brand-500" data-countup="16" data-suffix="+">10+</p>
-              <p class="text-sm text-foreground-muted">Years Experience</p>
+        <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1">
+          <p class="text-sm text-foreground mb-5 text-center">A few things about me.</p>
+          <div class="grid grid-cols-2 gap-3 flex-1 auto-rows-fr">
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="history" class="w-10 h-10 text-brand-500" />
+              <p class="text-sm font-semibold text-foreground">16 Years Experience</p>
             </div>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default">
-              <Icon name="check-circle" size="md" class="text-brand-500" />
-              <p class="font-display text-2xl md:text-3xl font-bold text-brand-500" data-countup="150" data-suffix="+">150+</p>
-              <p class="text-sm text-foreground-muted">Projects Delivered</p>
+            <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 h-full">
+              <svg class="w-10 h-10 text-brand-500" viewBox="0 0 1280 1280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M815.039 94.6439C824.758 106.709 829.714 122.99 839.626 155.553L1056.17 866.901C976.107 825.368 889.072 795.413 797.281 779.252L656.29 302.798C653.983 295.002 646.822 289.654 638.693 289.654C630.542 289.654 623.368 295.03 621.08 302.853L481.795 779.011C389.579 795.1 302.146 825.109 221.741 866.793L439.347 155.388L439.348 155.388C449.291 122.882 454.262 106.629 463.982 94.5853C472.562 83.9531 483.723 75.6958 496.4 70.6002C510.76 64.8284 527.756 64.8284 561.749 64.8284H717.174C751.212 64.8284 768.23 64.8284 782.603 70.6123C795.292 75.7184 806.459 83.9923 815.039 94.6439Z" fill="currentColor"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M840.951 900.754C805.253 931.279 734.002 952.097 651.929 952.097C551.197 952.097 466.767 920.737 444.363 878.561C436.354 902.732 434.558 930.396 434.558 948.068C434.558 948.068 429.281 1034.84 489.636 1095.2C489.636 1063.86 515.042 1038.46 546.381 1038.46C600.097 1038.46 600.036 1085.32 599.987 1123.34C599.986 1124.48 599.984 1125.61 599.984 1126.73C599.984 1184.44 635.255 1233.91 685.416 1254.77C677.924 1239.36 673.721 1222.05 673.721 1203.77C673.721 1148.73 706.034 1128.23 743.588 1104.41L743.588 1104.41C773.469 1085.46 806.668 1064.41 829.548 1022.17C841.486 1000.13 848.265 974.893 848.265 948.068C848.265 931.573 845.702 915.676 840.951 900.754Z" fill="currentColor"/>
+              </svg>
+              <p class="text-sm font-semibold text-foreground">Building with Astro</p>
+            </a>
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="globe" class="w-10 h-10 text-brand-500" />
+              <p class="text-sm font-semibold text-foreground">Working worldwide</p>
             </div>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default">
-              <Icon name="globe" size="md" class="text-brand-500" />
-              <p class="font-display text-2xl md:text-3xl font-bold text-brand-500" data-countup="25" data-suffix="+">50+</p>
-              <p class="text-sm text-foreground-muted">Worldwide Clients</p>
-            </div>
-            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default">
-              <Icon name="map-pin" size="md" class="text-brand-500" />
-              <p class="font-display text-2xl md:text-3xl font-bold text-brand-500">NL</p>
-              <p class="text-sm text-foreground-muted">Based in Veghel</p>
+            <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
+              <Icon name="map-pin" class="w-10 h-10 text-brand-500" />
+              <p class="text-sm font-semibold text-foreground">Based in <br class="sm:hidden" />Veghel, NL</p>
             </div>
           </div>
         </Card>
