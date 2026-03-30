@@ -53,4 +53,18 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
   :global(html.dark) .svg-host :global(.ptx) { fill: var(--brand-100); }
   :global(html.dark) .svg-host :global(.cor) { stroke: var(--brand-300); stroke-opacity: 0.6; }
   :global(html.dark) .svg-host :global(.num) { fill: var(--brand-50); fill-opacity: 0.18; }
+
+  /* ── Magenta light mode ──────────────────────────────────────────────────
+     The light palette maps brand-200 → rose/pink background which looks
+     washed out for this theme. Override with the dark palette so images
+     look vivid in both modes. Only applies to light mode (no .dark class).
+  ── */
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.bg)  { fill: var(--brand-800); }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ico) { stroke: var(--brand-200); }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.txt) { fill: var(--brand-50); }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ln)  { stroke: var(--brand-300); stroke-opacity: 0.5; }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.pil) { fill: var(--brand-600); fill-opacity: 0.4; stroke: var(--brand-300); stroke-opacity: 0.7; }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ptx) { fill: var(--brand-100); }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.cor) { stroke: var(--brand-300); stroke-opacity: 0.6; }
+  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.num) { fill: var(--brand-50); fill-opacity: 0.18; }
 </style>
