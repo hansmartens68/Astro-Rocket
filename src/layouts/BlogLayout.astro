@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import siteConfig from '@/config/site.config';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -37,7 +38,7 @@ const {
   slug = '',
 } = Astro.props;
 
-const ogImage = image?.src || `/og${Astro.url.pathname}.png`;
+const ogImage = image?.src || siteConfig.ogImage;
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
