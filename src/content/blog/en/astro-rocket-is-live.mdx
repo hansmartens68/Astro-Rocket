@@ -1,6 +1,6 @@
 ---
 title: "Astro Rocket Is Live — My New Open Source Astro Theme"
-description: "Astro Rocket is a production-ready Astro 6 theme with a full blog, 57 components, 13 colour themes, dark mode, SEO, and a contact form. Free and open source."
+description: "Astro Rocket is a production-ready Astro 6 theme with a full blog, 57 components, 12 colour themes, dark mode, SEO, and a contact form. Free and open source."
 publishedAt: 2026-03-28
 author: "Hans Martens"
 tags: ["astro-rocket", "open-source", "astro", "launch"]
@@ -21,9 +21,9 @@ Astro Rocket is made for web designers, developers, bloggers, and anyone who nee
 
 Velocity is the foundation. Here's everything I built on top of it:
 
-**Live theme switching with 13 colour themes** — Velocity required editing a CSS import file and rebuilding every time you wanted to change your brand colour. In Astro Rocket, you click one of the 6 colour swatches in the header dropdown and everything updates on screen instantly: the logo badge, the blog image gradients, and every brand colour across the site. No file edits, no rebuilds. Once you've settled on a colour, you remove the selector from the header with a single line deletion.
+**Live theme switching with 12 colour themes** — Velocity required editing a CSS import file and rebuilding every time you wanted to change your brand colour. In Astro Rocket, you click one of the 12 colour swatches in the header and everything updates on screen instantly: the logo badge, the blog image gradients, and every brand colour across the site. No file edits, no rebuilds. Once you've settled on a colour, you remove the selector from the header with a single line deletion.
 
-The 6 active themes in the header are Emerald, Teal, Cyan, Sky, Blue, and Purple — Emerald is the default. Seven additional themes (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) are fully built and ready to activate. All 13 themes are based on the official Tailwind CSS colour palette.
+All 12 themes are shown as swatches in the header: Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, and Magenta — Purple is the default. Every theme is based on the official Tailwind CSS colour palette.
 
 **Auto-generated logo badge** — Velocity required a custom logo file. Astro Rocket generates the logo automatically: the first letter of your site name on the active brand colour. It updates live when you switch themes.
 
@@ -39,6 +39,8 @@ The 6 active themes in the header are Emerald, Teal, Cyan, Sky, Blue, and Purple
 
 **Scroll progress bar** — a thin 2px brand-coloured line in the header that fills from left to right as you scroll down the page. It's enabled on the homepage (sitting on top of the floating capsule header), the blog index, and individual post pages (both underneath the solid header). Each position is independently configurable via two `Header` props: `showScrollProgress` and `scrollProgressPosition`. [Read the full post](/blog/scroll-progress-bar).
 
+**Dark mode hero gradient** — the homepage hero fades from your active brand colour at the top to pure black at the bottom in dark mode. One prop on the `Hero` component (`gradient`), zero JavaScript, zero impact on light mode. The homepage header is a floating capsule that lets the brand colour bleed through behind it. On all other pages the header is a full-width solid bar. [Read the full post](/blog/dark-mode-hero-gradient).
+
 **sessionStorage for dark mode** — Velocity uses `localStorage`, which stores the user's preference permanently. I deliberately switched this to `sessionStorage`, so every new visitor sees the site the way it was designed: dark. Dark mode is a design choice here, not a user setting. I wrote a [full post explaining why](/blog/dark-mode-sessionstorage).
 
 ## What Astro Rocket ships with
@@ -51,7 +53,7 @@ Everything from Velocity is still there, and it's all fully integrated:
 
 **A complete SEO layer** — meta tags, Open Graph, Twitter Cards, JSON-LD structured data (WebSite, Organization, BlogPosting, Breadcrumb, FAQ), an auto-generated sitemap, and robots.txt.
 
-**Auto-generated OG images** — for every page and every blog post, generated at build time with Satori.
+**Static OG image** — a single polished default Open Graph image serves as the social preview for all pages and blog posts. No build-time generation required.
 
 **Dark mode without a flash** — dark-first design with sessionStorage (see above), so every new visitor sees the site as intended.
 

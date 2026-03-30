@@ -1,6 +1,6 @@
 ---
 title: "Astro Rocket Configuration — Every Toggle, Theme, and Layout Option Explained"
-description: "A complete walkthrough of Astro Rocket's configuration options: 13 colour themes, OKLCH colours, typography, radius and shadow tokens, header styles, dark mode, and more."
+description: "A complete walkthrough of Astro Rocket's configuration options: 12 colour themes, OKLCH colours, typography, radius and shadow tokens, header styles, dark mode, and more."
 publishedAt: 2026-03-24
 author: "Hans Martens"
 tags: ["astro-rocket", "configuration", "customization", "themes"]
@@ -151,7 +151,7 @@ branding: {
 
 ## Colour themes
 
-Astro Rocket ships with **13 colour themes**. Six are shown as coloured bulbs in the header via the `ThemeSelector` component. Clicking a bulb switches the active theme instantly — no file edits, no rebuild. The logo badge, blog image gradients, and every brand colour on the page update live together.
+Astro Rocket ships with **12 colour themes**. All 12 are shown as coloured swatches in the header via the `ThemeSelector` component. Clicking a swatch switches the active theme instantly — no file edits, no rebuild. The logo badge, blog image gradients, and every brand colour on the page update live together.
 
 ### Changing the active theme
 
@@ -161,44 +161,47 @@ The default theme is set with `data-theme` on the `<html>` element in `src/layou
 data-theme="blue"
 ```
 
-Available values — all 13 themes:
+Available values — all 12 themes:
 
-| Value | Hue | Best for | In selector |
-|-------|-----|----------|:-----------:|
-| `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands | ✓ |
-| `teal` | 190° | Developer tooling, modern SaaS, trustworthy services | ✓ |
-| `cyan` | 200° | Fresh, vibrant tech — more energetic than teal | ✓ |
-| `sky` | 222° | Clean and airy — between teal and blue, great for services | ✓ |
-| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative — the default | ✓ |
-| `purple` | 292° | Expressive, personality-forward, vivid | ✓ |
-| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) | — |
-| `amber` | 75° | Editorial, luxury, food, warm creative brands | — |
-| `green` | 155° | Deep emerald, Supabase-generation aesthetic | — |
-| `indigo` | 264° | Enterprise, productivity tools, serious B2B | — |
-| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid | — |
-| `orange` | 38° | Bold and warm — the original Velocity/International Orange | — |
-| `violet` | 277° | Creative and premium — sweet spot between indigo and purple | — |
+| Value | Hue | Best for |
+|-------|-----|----------|
+| `orange` | 38° | Bold and warm — the original Velocity/International Orange |
+| `amber` | 75° | Editorial, luxury, food, warm creative brands |
+| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) |
+| `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands |
+| `teal` | 190° | Developer tooling, modern SaaS, trustworthy services |
+| `cyan` | 200° | Fresh, vibrant tech — more energetic than teal |
+| `sky` | 222° | Clean and airy — between teal and blue, great for services |
+| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative |
+| `indigo` | 264° | Enterprise, productivity tools, serious B2B |
+| `violet` | 277° | Creative and premium — sweet spot between indigo and purple |
+| `purple` | 292° | Expressive, personality-forward, vivid — the default |
+| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid |
 
 ### The live theme selector
 
-The six themes marked ✓ appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
+All 12 themes appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
 
-To swap one of the six active swatches for a different theme, open `src/components/layout/ThemeSelector.astro` and edit the `themes` array:
+The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. The current set:
 
 ```ts
 const themes = [
+  { id: 'orange',  name: 'Orange',  color: 'oklch(62.5% 0.22  38)' },
+  { id: 'amber',   name: 'Amber',   color: 'oklch(68%   0.19  75)' },
+  { id: 'lime',    name: 'Lime',    color: 'oklch(64%   0.27 130)' },
   { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
   { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
-  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65% 0.22 200)'   },
-  { id: 'sky',     name: 'Sky',     color: 'oklch(67% 0.21 222)'   },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65%   0.22 200)' },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67%   0.21 222)' },
   { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+  { id: 'indigo',  name: 'Indigo',  color: 'oklch(60%   0.24 264)' },
+  { id: 'violet',  name: 'Violet',  color: 'oklch(62.5% 0.26 277)' },
   { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
+  { id: 'magenta', name: 'Magenta', color: 'oklch(58%   0.28 330)' },
 ];
 ```
 
-Replace any entry with one of the seven additional themes. Each has a ready-made CSS file in `src/styles/themes/`.
-
-Once you've settled on your brand colour, you can remove the selector from the header entirely. Open `src/layouts/LandingLayout.astro` (or whichever layout file shows the selector) and delete the `showThemeSelector` prop — the coloured bulbs disappear without breaking anything else.
+Once you've settled on your brand colour, you can remove the selector from the header entirely. Open `src/layouts/LandingLayout.astro` and delete the `showThemeSelector` prop — the swatches disappear without breaking anything else.
 
 ### Understanding OKLCH — the three numbers
 
@@ -275,7 +278,7 @@ html[data-theme="blue"] {
 }
 ```
 
-All 13 themes currently share the same font stack. To use a custom font, install it in `public/fonts/`, add a `@font-face` declaration in `src/styles/global.css`, and update `--theme-font-sans` or `--theme-font-display` in your active theme file.
+All 12 themes currently share the same font stack. To use a custom font, install it in `public/fonts/`, add a `@font-face` declaration in `src/styles/global.css`, and update `--theme-font-sans` or `--theme-font-display` in your active theme file.
 
 ### Border radius tokens
 
@@ -530,12 +533,12 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | Twitter card handles | `src/config/site.config.ts` | `twitter.site`, `twitter.creator` |
 | Search console verification | `.env` or `site.config.ts` | `verification.google/bing` |
 | Navigation items | `src/config/nav.config.ts` | `navItems` array |
-| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="blue"` |
+| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="purple"` |
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
 | JSON-LD schema switches | `src/pages/index.astro` | `includePersonSchema`, `includeOrgSchema` |
 | noindex / nofollow | any layout | `noindex={true}`, `nofollow={true}` |
 | Live theme selector (6 bulbs) | `src/components/layout/ThemeSelector.astro` | `themes` array |
-| All 13 theme files | `src/styles/themes/` | One CSS file per theme |
+| All 12 theme files | `src/styles/themes/` | One CSS file per theme |
 | Brand colour scale (light & dark) | `src/styles/themes/*.css` | `--brand-50` → `--brand-900` |
 | Typography (fonts, weight, tracking) | `src/styles/themes/*.css` | `--theme-font-*`, `--theme-heading-*` |
 | Border radius (global roundness) | `src/styles/themes/*.css` | `--theme-radius-sm/md/lg/xl/full` |

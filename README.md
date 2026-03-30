@@ -20,7 +20,7 @@
 
 Astro Rocket is a **launch-ready starter theme** for web designers, developers, bloggers, and anyone who needs a portfolio website. Every page is already built and styled — you change the text and content, and your site is ready to go live.
 
-It ships with a full blog, a complete component library, a built-in SEO layer, dark mode, a contact form, and 13 colour themes you can switch with one click. It's built on Astro 6 and Tailwind CSS v4.
+It ships with a full blog, a complete component library, a built-in SEO layer, dark mode, a contact form, and 12 colour themes you can switch with one click. It's built on Astro 6 and Tailwind CSS v4.
 
 **[Live demo → astrorocket.dev](https://astrorocket.dev)** · **[Built by Hans Martens → hansmartens.dev](https://hansmartens.dev)**
 
@@ -34,8 +34,8 @@ The following changes were made to the free Velocity theme to create Astro Rocke
 
 | Change | Velocity | Astro Rocket |
 |--------|----------|--------------|
-| **Theme switching** | Edit a CSS import file and rebuild | 7 colour bulbs in the header — click one and the logo badge, blog images, and every brand color update live on screen. No file edits, no rebuilds. Selector can be removed from the header once you've chosen a color. |
-| **Colour themes** | 1 default theme | 13 Tailwind-based themes — 6 active in the header selector (Emerald, Teal, Cyan, Sky, Blue, Purple), 7 more ready to activate (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) |
+| **Theme switching** | Edit a CSS import file and rebuild | 12 colour swatches in the header — click one and the logo badge, blog images, and every brand color update live on screen. No file edits, no rebuilds. Selector can be removed from the header once you've chosen a color. |
+| **Colour themes** | 1 default theme | 12 Tailwind-based themes — all 12 shown as swatches in the header selector (Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, Magenta) |
 | **Logo badge** | Requires a custom logo file | Auto-generated monogram badge — first letter of your site name on brand color, live-updates with active theme |
 | **Favicon** | Static file to replace manually | Auto-generated SVG favicon — first letter + brand color, pre-rendered at build time from `site.config.ts`, no design tools needed |
 | **Blog image gradients** | Plain image containers | Every blog cover and card uses a brand-color gradient background that updates live when the active theme changes |
@@ -54,7 +54,7 @@ The following changes were made to the free Velocity theme to create Astro Rocke
 |---------|-------------|
 | **Astro 6** | Latest version with Content Layer API, security features, and performance optimizations |
 | **Tailwind CSS v4** | CSS-first configuration with OKLCH color system and fluid typography |
-| **13 Colour Themes** | 6 colour swatches in the header dropdown let you switch themes live — see the result on screen instantly. Logo badge, blog image gradients, and all brand colors update together. The selector can be removed from the header once you've chosen your color. 7 additional themes are ready to activate. |
+| **12 Colour Themes** | All 12 colour swatches are shown in the header dropdown — click one and the logo badge, blog image gradients, and every brand color update live instantly. No file edits, no rebuilds. The selector can be removed from the header once you've settled on a color. |
 | **Scroll Progress Bar** | A thin 2px brand-coloured bar on the header edge that fills as you scroll. Enabled on the homepage (above the floating header), blog index, and post pages (below the solid header). Controlled via `showScrollProgress` and `scrollProgressPosition` props on the Header component. |
 | **Design Tokens** | Three-tier token architecture (reference → semantic → component) |
 | **57 Components** | 31 UI, 7 patterns, 1 hero, 4 layout, 4 blog, 7 landing, 3 SEO — all accessible with TypeScript |
@@ -63,7 +63,7 @@ The following changes were made to the free Velocity theme to create Astro Rocke
 | **Typing Effect** | Animated typing effect in the hero section |
 | **Page Animations** | Smooth page transitions via Astro View Transitions, scroll-triggered counter and score animations, scroll-reactive header, card hover effects, and a full suite of UI micro-animations — all with reduced-motion support |
 | **SEO Toolkit** | Meta tags, JSON-LD structured data, sitemap, and robots.txt |
-| **Dynamic OG Images** | Auto-generated Open Graph images using Satori |
+| **Static OG Image** | A polished default Open Graph image serves as social preview for all pages — no build-time generation required |
 | **Dark Mode** | Dark-first design with `sessionStorage` persistence |
 | **Content Collections** | Type-safe blog, pages, authors, and FAQs with Zod validation |
 | **API Routes** | Contact form and newsletter endpoints with validation |
@@ -130,14 +130,13 @@ astro-rocket/
 │   │   ├── authors/         # Author profiles
 │   │   └── faqs/            # FAQ entries
 │   ├── layouts/             # Page layouts
-│   ├── lib/                 # Utilities (schema, cn, og)
+│   ├── lib/                 # Utilities (schema, cn)
 │   ├── pages/               # Routes and API endpoints
 │   │   ├── api/             # Contact, newsletter endpoints
-│   │   ├── og/              # Dynamic OG image generation
 │   │   └── blog/            # Blog routes
 │   ├── styles/              # Global CSS and design tokens
 │   │   ├── tokens/          # colors.css, typography.css, spacing.css
-│   │   └── themes/          # 13 colour theme files
+│   │   └── themes/          # 12 colour theme files
 │   └── config/              # Site and navigation configuration
 ├── astro.config.mjs         # Astro configuration
 ├── package.json
@@ -174,7 +173,7 @@ const siteConfig = {
   name: 'Your Site Name',
   description: 'Your site description for SEO',
   url: 'https://yoursite.com',
-  ogImage: '/og/index.png',
+  ogImage: '/og-default.svg',
   author: 'Your Name',
   email: 'hello@yoursite.com',
   twitter: {
@@ -213,9 +212,9 @@ Astro Rocket uses a three-tier design token system with OKLCH colors for percept
 
 ### Switching Themes
 
-Astro Rocket ships with 13 colour themes, all based on Tailwind's color palette. Six are shown as colour swatches in the header dropdown (`ThemeSelectorDropdown`) on desktop and in the mobile menu (`ThemeSelector`). Clicking a swatch applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is the key difference from Velocity, where switching theme requires editing a CSS import file and rebuilding.
+Astro Rocket ships with 12 colour themes, all based on Tailwind's color palette. All 12 are shown as colour swatches in the header dropdown (`ThemeSelectorDropdown`) on desktop and in the mobile menu (`ThemeSelector`). Clicking a swatch applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is the key difference from Velocity, where switching theme requires editing a CSS import file and rebuilding.
 
-**The 6 swatches in the header** (Emerald, Teal, Cyan, Sky, Blue, Purple — default: Emerald) can be replaced with any of the other 7 available themes (Lime, Orange, Amber, Magenta, Green, Indigo, Violet) by editing the `themes` array in `src/components/layout/ThemeSelector.astro`. You can also **remove the selector from the header entirely** once you've settled on a color — just remove `showThemeSelector` from the layout file.
+The 12 themes in order: Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple (default), and Magenta. The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. You can also **remove the selector from the header entirely** once you've settled on a color — just remove `showThemeSelector` from the layout file.
 
 The theme files live in `src/styles/themes/`:
 
@@ -501,7 +500,7 @@ const posts = await getCollection('blog', ({ data }) => {
 - **JSON-LD**: WebSite, Organization, BlogPosting, Breadcrumb, FAQ schemas
 - **Sitemap**: Auto-generated at `/sitemap-index.xml`
 - **robots.txt**: Dynamic generation with sitemap reference
-- **OG Images**: Auto-generated for all pages and blog posts
+- **OG Images**: A static default OG image serves all pages and blog posts
 
 ### Using the SEO Component
 
@@ -518,9 +517,9 @@ import SEO from '@/components/seo/SEO.astro';
 </head>
 ```
 
-### Dynamic OG Images
+### OG Image
 
-OG images are automatically generated at `/og/[slug].png`. The SEO component references these automatically. Customize the design in `src/lib/og.ts`.
+A static default OG image (`public/og-default.svg`) serves as the social preview for all pages. The path is set via `ogImage` in `src/config/site.config.ts`. To use a custom image for a specific page, pass it as the `image` prop to the layout component.
 
 ---
 
