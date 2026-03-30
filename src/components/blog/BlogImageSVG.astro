@@ -28,24 +28,29 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
     }
   }
 
-  /* Light mode: use a deeper brand tone for the image background. */
-  .svg-host :global(.bg) {
-    fill: var(--brand-800);
-  }
+  /* ── Light mode ─────────────────────────────────────────────────────────
+     Soft, airy canvas — light background with deep brand-color details.
+     The SVG defaults assume a dark bg (light text on dark fill), so we
+     flip the full palette here for a fresh, bright result.
+  ── */
+  .svg-host :global(.bg)  { fill: var(--brand-200); }
+  .svg-host :global(.ico) { stroke: var(--brand-700); }
+  .svg-host :global(.txt) { fill: var(--brand-900); }
+  .svg-host :global(.ln)  { stroke: var(--brand-500); stroke-opacity: 0.5; }
+  .svg-host :global(.pil) { fill: var(--brand-400); fill-opacity: 0.35; stroke: var(--brand-600); stroke-opacity: 1; }
+  .svg-host :global(.ptx) { fill: var(--brand-800); }
+  .svg-host :global(.cor) { stroke: var(--brand-600); stroke-opacity: 0.7; }
+  .svg-host :global(.num) { fill: var(--brand-700); fill-opacity: 0.15; }
 
-  /* Dark mode: shift background darker so the image recedes into the page
-     rather than glowing against the near-black surface. */
-  :global(html.dark) .svg-host :global(.bg) {
-    fill: var(--brand-800);
-  }
-
-  :global(html.dark) .svg-host :global(.ln),
-  :global(html.dark) .svg-host :global(.cor) {
-    stroke-opacity: 0.25;
-  }
-
-  :global(html.dark) .svg-host :global(.pil) {
-    fill-opacity: 0.15;
-    stroke-opacity: 0.3;
-  }
+  /* ── Dark mode ───────────────────────────────────────────────────────────
+     Deep background with all brand colors at full opacity — vivid, not faded.
+  ── */
+  :global(html.dark) .svg-host :global(.bg)  { fill: var(--brand-800); }
+  :global(html.dark) .svg-host :global(.ico) { stroke: var(--brand-200); }
+  :global(html.dark) .svg-host :global(.txt) { fill: var(--brand-50); }
+  :global(html.dark) .svg-host :global(.ln)  { stroke: var(--brand-300); stroke-opacity: 0.5; }
+  :global(html.dark) .svg-host :global(.pil) { fill: var(--brand-600); fill-opacity: 0.4; stroke: var(--brand-300); stroke-opacity: 0.7; }
+  :global(html.dark) .svg-host :global(.ptx) { fill: var(--brand-100); }
+  :global(html.dark) .svg-host :global(.cor) { stroke: var(--brand-300); stroke-opacity: 0.6; }
+  :global(html.dark) .svg-host :global(.num) { fill: var(--brand-50); fill-opacity: 0.18; }
 </style>

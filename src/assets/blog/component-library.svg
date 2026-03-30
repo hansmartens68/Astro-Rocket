@@ -11,7 +11,7 @@
   </style>
   <rect width="1200" height="630" class="bg"/>
   <!-- Large faint "57" in background -->
-  <text x="600" y="320" font-size="340" text-anchor="middle" letter-spacing="-8" class="num">57</text>
+  <text x="600" y="435" font-size="340" text-anchor="middle" letter-spacing="-8" class="num">57</text>
   <!-- Lucide layout-dashboard icon: 4 panels of different sizes, scale=5, centered at (600,255) -->
   <g transform="translate(540, 195) scale(5)" class="ico" opacity="0.9">
     <rect width="7" height="9" x="3" y="3" rx="1"/>
