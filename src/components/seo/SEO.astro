@@ -30,14 +30,12 @@ const pageTitle = title ? `${title} — ${siteConfig.name}` : siteConfig.name;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Process image - use dynamic OG image if no custom image provided
+// Process image - fall back to the static default OG image
 let ogImage: string;
 if (image) {
   ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).toString();
 } else {
-  // Generate dynamic OG image path based on current URL
-  const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '') || 'index';
-  ogImage = new URL(`/og/${pathname}.png`, Astro.site).toString();
+  ogImage = new URL(siteConfig.ogImage, Astro.site).toString();
 }
 
 const robotsContent = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
@@ -53,8 +51,7 @@ const locale = rawLocale.includes('_') || rawLocale.includes('-')
   ? rawLocale.replace('-', '_')
   : (localeMap[rawLocale] || `${rawLocale}_${rawLocale.toUpperCase()}`);
 
-// Determine OG image metadata — only emit width/height/type for the auto-generated fallback
-const isGeneratedOgImage = !image;
+// Determine OG image MIME type from file extension
 const extToMime: Record<string, string> = {
   '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
   '.webp': 'image/webp', '.gif': 'image/gif', '.svg': 'image/svg+xml',
@@ -63,7 +60,7 @@ function getImageType(url: string): string | undefined {
   const ext = url.match(/(\.\w+)(?:\?|$)/)?.[1]?.toLowerCase();
   return ext ? extToMime[ext] : undefined;
 }
-const ogImageType = isGeneratedOgImage ? 'image/png' : getImageType(ogImage);
+const ogImageType = getImageType(ogImage);
 ---
 
 <!-- Primary Meta Tags -->
@@ -81,8 +78,8 @@ const ogImageType = isGeneratedOgImage ? 'image/png' : getImageType(ogImage);
 <meta property="og:site_name" content={siteConfig.name} />
 <meta property="og:locale" content={locale} />
 <meta property="og:image:alt" content={imageAlt || pageTitle} />
-{isGeneratedOgImage && <meta property="og:image:width" content="1200" />}
-{isGeneratedOgImage && <meta property="og:image:height" content="630" />}
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 {ogImageType && <meta property="og:image:type" content={ogImageType} />}
 
 <!-- Article Metadata -->

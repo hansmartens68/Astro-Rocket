@@ -58,10 +58,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^6.9.3",
-    "satori": "^0.19.1",
-    "satori-html": "^0.3.2",
     "schema-dts": "^1.1.2",
-    "sharp": "^0.34.5",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
@@ -87,8 +84,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
+      "esbuild"
     ]
   },
   "engines": {
