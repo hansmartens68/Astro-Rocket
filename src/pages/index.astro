@@ -346,7 +346,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <script>
   function initCountup() {
-    const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
+    const counters = document.querySelectorAll<HTMLElement>('[data-countup]:not([data-countup-init])');
     if (counters.length === 0) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -367,10 +367,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         requestAnimationFrame(tick);
       });
     }, { threshold: 0.4 });
-    counters.forEach((el) => observer.observe(el));
+    counters.forEach((el) => {
+      el.dataset.countupInit = 'true';
+      observer.observe(el);
+    });
   }
 
-  initCountup();
   document.addEventListener('astro:page-load', initCountup);
 </script>
 </LandingLayout>
