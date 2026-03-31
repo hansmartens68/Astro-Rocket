@@ -29,18 +29,17 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
   }
 
   /* ── Light mode ─────────────────────────────────────────────────────────
-     Soft, airy canvas — light background with deep brand-color details.
-     The SVG defaults assume a dark bg (light text on dark fill), so we
-     flip the full palette here for a fresh, bright result.
+     Brand-500 background — the saturated mid-tone brand colour. Light
+     icons and text sit on top for vivid, colourful images in both modes.
   ── */
-  .svg-host :global(.bg)  { fill: var(--brand-200); }
-  .svg-host :global(.ico) { stroke: var(--brand-700); }
-  .svg-host :global(.txt) { fill: var(--brand-900); }
-  .svg-host :global(.ln)  { stroke: var(--brand-500); stroke-opacity: 0.5; }
-  .svg-host :global(.pil) { fill: var(--brand-400); fill-opacity: 0.35; stroke: var(--brand-600); stroke-opacity: 1; }
-  .svg-host :global(.ptx) { fill: var(--brand-800); }
-  .svg-host :global(.cor) { stroke: var(--brand-600); stroke-opacity: 0.7; }
-  .svg-host :global(.num) { fill: var(--brand-700); fill-opacity: 0.15; }
+  .svg-host :global(.bg)  { fill: var(--brand-500); }
+  .svg-host :global(.ico) { stroke: var(--brand-50); }
+  .svg-host :global(.txt) { fill: var(--brand-50); }
+  .svg-host :global(.ln)  { stroke: var(--brand-200); stroke-opacity: 0.5; }
+  .svg-host :global(.pil) { fill: var(--brand-300); fill-opacity: 0.35; stroke: var(--brand-100); stroke-opacity: 0.8; }
+  .svg-host :global(.ptx) { fill: var(--brand-50); }
+  .svg-host :global(.cor) { stroke: var(--brand-200); stroke-opacity: 0.7; }
+  .svg-host :global(.num) { fill: var(--brand-100); fill-opacity: 0.18; }
 
   /* ── Dark mode ───────────────────────────────────────────────────────────
      Deep background with all brand colors at full opacity — vivid, not faded.
@@ -54,17 +53,4 @@ const svgContent = svgs[`/src/assets/blog/${slug}.svg`] ?? '';
   :global(html.dark) .svg-host :global(.cor) { stroke: var(--brand-300); stroke-opacity: 0.6; }
   :global(html.dark) .svg-host :global(.num) { fill: var(--brand-50); fill-opacity: 0.18; }
 
-  /* ── Magenta light mode ──────────────────────────────────────────────────
-     The light palette maps brand-200 → rose/pink background which looks
-     washed out for this theme. Override with the dark palette so images
-     look vivid in both modes. Only applies to light mode (no .dark class).
-  ── */
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.bg)  { fill: var(--brand-800); }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ico) { stroke: var(--brand-200); }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.txt) { fill: var(--brand-50); }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ln)  { stroke: var(--brand-300); stroke-opacity: 0.5; }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.pil) { fill: var(--brand-600); fill-opacity: 0.4; stroke: var(--brand-300); stroke-opacity: 0.7; }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.ptx) { fill: var(--brand-100); }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.cor) { stroke: var(--brand-300); stroke-opacity: 0.6; }
-  :global(html[data-theme="magenta"]:not(.dark)) .svg-host :global(.num) { fill: var(--brand-50); fill-opacity: 0.18; }
 </style>
