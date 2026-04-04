@@ -67,10 +67,10 @@ const siteConfig: SiteConfig = {
   email: 'hello@yoursite.com',
   address: {
     street: '',
-    city: 'Veghel',
-    state: 'Noord-Brabant',
+    city: 'Your City',
+    state: '',
     zip: '',
-    country: 'NL',
+    country: 'Your Country',
   },
   socialLinks: [
     'https://github.com/hansmartens68/Astro-Rocket',
