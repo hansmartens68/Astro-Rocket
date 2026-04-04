@@ -73,7 +73,7 @@ const siteConfig: SiteConfig = {
     country: 'NL',
   },
   socialLinks: [
-    'https://github.com',
+    'https://github.com/hansmartens68/Astro-Rocket',
     'https://instagram.com',
     'https://x.com',
   ],
