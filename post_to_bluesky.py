@@ -1,54 +1,45 @@
 """
-Post 4 blog posts to Bluesky with images and hashtags.
+Post blog posts to Bluesky with images and hashtags.
 Usage: python3 post_to_bluesky.py
 
 Requires:
   pip install cairosvg atproto
 
-Set credentials via environment variables or edit the constants below.
+Set credentials via environment variables:
+  BSKY_HANDLE       — your Bluesky handle (e.g. yourname.bsky.social)
+  BSKY_APP_PASSWORD — your Bluesky app password (create one at bsky.app/settings)
+  SITE_BASE_URL     — your blog's base URL (e.g. https://yoursite.com/blog/en)
+
+Customize the `posts` list below with your own blog posts before running.
 """
 
 import os
+import sys
 import cairosvg
 from atproto import Client, models
 
-HANDLE = os.getenv("BSKY_HANDLE", "hansmartens-online.bsky.social")
-APP_PASSWORD = os.getenv("BSKY_APP_PASSWORD", "YOUR_APP_PASSWORD_HERE")
-BASE_URL = "https://hansmartens.dev/blog/en"
+HANDLE = os.getenv("BSKY_HANDLE")
+APP_PASSWORD = os.getenv("BSKY_APP_PASSWORD")
+BASE_URL = os.getenv("SITE_BASE_URL")
+
+if not HANDLE or not APP_PASSWORD or not BASE_URL:
+    print("Error: BSKY_HANDLE, BSKY_APP_PASSWORD, and SITE_BASE_URL must all be set as environment variables.")
+    sys.exit(1)
 
 # Adjust this path to wherever your project lives
 ASSETS = os.path.join(os.path.dirname(__file__), "src/assets/blog")
 
+# ---- Customize this list with your own blog posts ----
 posts = [
-    {
-        "slug": "using-claude-ai-for-web-design-and-development",
-        "title": "How I Use Claude AI for Web Design and Development",
-        "description": "Discover how I use Claude AI to build faster, better websites — what it can do, which model to pick, and the difference between Claude Sonnet and Opus.",
-        "image": f"{ASSETS}/claude-ai-web-design.svg",
-        "hashtags": ["AI", "Claude", "WebDevelopment", "WebDesign", "Productivity"],
-    },
-    {
-        "slug": "why-i-build-with-astro",
-        "title": "Why I Build Every Website with Astro",
-        "description": "I'm genuinely enthusiastic about Astro — here's why I chose it, how it works, and why I use it for every website I build.",
-        "image": f"{ASSETS}/why-i-build-with-astro-v3.svg",
-        "hashtags": ["Astro", "WebDevelopment", "Performance", "StaticSites"],
-    },
-    {
-        "slug": "domain-email-vercel-setup",
-        "title": "How I Set Up My Domain, Email, and Hosting",
-        "description": "Buying hansmartens.dev at GoDaddy, adding a Microsoft 365 mailbox, pointing the domain to Vercel — a walkthrough of the full setup.",
-        "image": f"{ASSETS}/domain-email-vercel-setup-v2.svg",
-        "hashtags": ["WebDevelopment", "Vercel", "GoDaddy", "Domain", "Tutorial"],
-    },
-    {
-        "slug": "dark-mode-sessionstorage",
-        "title": "Why I Use sessionStorage for Dark Mode (Not localStorage)",
-        "description": "Dark mode is the default on my site — and I store the preference in sessionStorage instead of localStorage. Here's the reasoning.",
-        "image": f"{ASSETS}/dark-mode-sessionstorage.svg",
-        "hashtags": ["WebDevelopment", "DarkMode", "CSS", "Performance"],
-    },
+    # {
+    #     "slug": "your-post-slug",
+    #     "title": "Your Post Title",
+    #     "description": "A short description of your post.",
+    #     "image": f"{ASSETS}/your-post-image.svg",
+    #     "hashtags": ["Tag1", "Tag2", "Tag3"],
+    # },
 ]
+# ------------------------------------------------------
 
 
 def svg_to_png_bytes(path: str) -> bytes:
@@ -99,6 +90,10 @@ def create_facets(text: str, hashtags: list[str], url: str) -> list:
 
 
 def main():
+    if not posts:
+        print("No posts configured. Edit the `posts` list in this script before running.")
+        sys.exit(1)
+
     client = Client()
     client.login(HANDLE, APP_PASSWORD)
     print("Logged in successfully")
@@ -126,7 +121,7 @@ def main():
         response = client.send_post(text=text, facets=facets, embed=embed)
         print(f"  Posted! URI: {response.uri}")
 
-    print("\nAll 4 posts published!")
+    print(f"\nAll {len(posts)} post(s) published!")
 
 
 if __name__ == "__main__":

@@ -19,11 +19,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hansmartens68/Rocket-Theme"
+    "url": "https://github.com/hansmartens68/astro-rocket"
   },
-  "homepage": "https://github.com/hansmartens68/Rocket-Theme#readme",
+  "homepage": "https://github.com/hansmartens68/astro-rocket#readme",
   "bugs": {
-    "url": "https://github.com/hansmartens68/Rocket-Theme/issues"
+    "url": "https://github.com/hansmartens68/astro-rocket/issues"
   },
   "scripts": {
     "dev": "astro dev",
@@ -80,7 +80,8 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.18.0",
-    "vitest": "^3.2.0"
+    "vitest": "^3.2.0",
+    "zod": "^4.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
