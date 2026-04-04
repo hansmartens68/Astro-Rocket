@@ -64,7 +64,7 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://astrorocket.dev',
   ogImage: '/og-default.svg',
   author: 'Hans Martens',
-  email: 'hello@yourmail.com',
+  email: 'hello@yoursite.com',
   address: {
     street: '',
     city: 'Veghel',
