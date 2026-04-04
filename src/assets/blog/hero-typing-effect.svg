@@ -17,6 +17,7 @@
   <text x="600" y="410" font-size="96" text-anchor="middle" letter-spacing="-2" class="txt">typing effect</text>
   <line x1="380" y1="436" x2="820" y2="436" class="ln"/>
   <rect x="450" y="464" width="300" height="38" rx="19" class="pil"/>
+  <text x="600" y="487" font-size="16" text-anchor="middle" class="ptx">hansmartens.dev</text>
   <path d="M 36 60 L 36 36 L 60 36" class="cor"/>
   <path d="M 1140 36 L 1164 36 L 1164 60" class="cor"/>
   <path d="M 36 570 L 36 594 L 60 594" class="cor"/>
