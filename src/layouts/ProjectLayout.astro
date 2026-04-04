@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -8,7 +9,6 @@ import ProjectHero from '@/components/projects/ProjectHero.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import { getCollection } from 'astro:content';
 import siteConfig from '@/config/site.config';
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
   tags?: string[];
   image?: ImageMetadata;
   imageAlt?: string;
-  slug?: string;
+  related?: CollectionEntry<'projects'>[];
 }
 
 const {
@@ -38,7 +38,7 @@ const {
   tags = [],
   image,
   imageAlt,
-  slug = '',
+  related = [],
 } = Astro.props;
 
 const ogImage = image?.src || siteConfig.ogImage;
@@ -48,13 +48,6 @@ const breadcrumbs = [
   { label: 'Projects', href: '/projects' },
   { label: title },
 ];
-
-// Related projects: same tags, excluding current
-const allProjects = await getCollection('projects', ({ data }) => !data.draft);
-const related = allProjects
-  .filter((p) => p.id !== slug && p.data.tags.some((t) => tags.includes(t)))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -129,7 +122,7 @@ const related = allProjects
                 variant="elevated"
                 hover
                 padding="lg"
-                href={`/projects/${project.id}`}
+                href={`/projects/${project.id.replace(/\.mdx?$/, '')}`}
                 class="group flex flex-col"
               >
                 <div class="flex flex-1 flex-col">
