@@ -3,17 +3,22 @@ import ProjectLayout from '@/layouts/ProjectLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects', ({ data }) => {
+  const allProjects = await getCollection('projects', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true;
   });
 
-  return projects.map((project) => ({
+  return allProjects.map((project) => ({
     params: { slug: project.id.replace(/\.mdx?$/, '') },
-    props: { project },
+    props: {
+      project,
+      related: allProjects
+        .filter((p) => p.id !== project.id)
+        .slice(0, 3),
+    },
   }));
 }
 
-const { project } = Astro.props;
+const { project, related } = Astro.props;
 const { Content } = await render(project);
 ---
 
@@ -29,7 +34,7 @@ const { Content } = await render(project);
   tags={project.data.tags}
   image={project.data.image}
   imageAlt={project.data.imageAlt}
-  slug={project.id}
+  related={related}
 >
   <Content />
 </ProjectLayout>
