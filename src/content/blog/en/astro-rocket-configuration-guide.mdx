@@ -73,13 +73,13 @@ When `true`, a translucent brand-colour tint is applied over blog cover images. 
 The default mode is set directly in the HTML element in `src/layouts/BaseLayout.astro`:
 
 ```html
-<html lang="en" class="scroll-smooth dark" data-theme="indigo">
+<html lang="en" class="scroll-smooth dark" data-theme="magenta">
 ```
 
 The `dark` class is what activates dark mode on first load. Remove it to default to light:
 
 ```html
-<html lang="en" class="scroll-smooth" data-theme="indigo">
+<html lang="en" class="scroll-smooth" data-theme="magenta">
 ```
 
 The user's preference during their session is stored in `sessionStorage` — so it persists while the tab is open but resets when they open a new tab. This is intentional for a portfolio or marketing site. If you want it to persist across sessions, swap the `sessionStorage` calls for `localStorage` in the same file.
@@ -158,7 +158,7 @@ Astro Rocket ships with **12 colour themes**. All 12 are shown as coloured swatc
 The default theme is set with `data-theme` on the `<html>` element in `src/layouts/BaseLayout.astro`:
 
 ```html
-data-theme="indigo"
+data-theme="magenta"
 ```
 
 Available values — all 12 themes:
@@ -173,10 +173,10 @@ Available values — all 12 themes:
 | `cyan` | 200° | Fresh, vibrant tech — more energetic than teal |
 | `sky` | 222° | Clean and airy — between teal and blue, great for services |
 | `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative |
-| `indigo` | 264° | Enterprise, productivity tools, serious B2B — the default |
+| `indigo` | 264° | Enterprise, productivity tools, serious B2B |
 | `violet` | 277° | Creative and premium — sweet spot between indigo and purple |
 | `purple` | 292° | Expressive, personality-forward, vivid |
-| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid |
+| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid — the default |
 
 ### The live theme selector
 
@@ -534,7 +534,7 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | Twitter card handles | `src/config/site.config.ts` | `twitter.site`, `twitter.creator` |
 | Search console verification | `.env` or `site.config.ts` | `verification.google/bing` |
 | Navigation items | `src/config/nav.config.ts` | `navItems` array |
-| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="indigo"` |
+| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="magenta"` |
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
 | JSON-LD schema switches | `src/pages/index.astro` | `includePersonSchema`, `includeOrgSchema` |
 | noindex / nofollow | any layout | `noindex={true}`, `nofollow={true}` |
