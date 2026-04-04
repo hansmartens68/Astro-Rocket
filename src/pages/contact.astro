@@ -104,8 +104,8 @@ const channels = [
                 <Icon name="map-pin" size="sm" />
               </div>
               <div>
-                <p class="font-semibold text-sm text-foreground">Veghel</p>
-                <p class="text-xs text-foreground-muted mt-0.5">Based in the Netherlands</p>
+                <p class="font-semibold text-sm text-foreground">{siteConfig.address?.city ?? 'Your City'}</p>
+                <p class="text-xs text-foreground-muted mt-0.5">Based in {siteConfig.address?.country ?? 'Your Country'}</p>
               </div>
             </div>
           </Card>
