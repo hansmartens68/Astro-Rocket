@@ -9,7 +9,7 @@ const consentConfig: ConsentConfig = {
   mode: 'consent_mode_v2',
 
   /** localStorage key for stored preferences */
-  storageKey: 'hansmartens-consent',
+  storageKey: 'cookie-consent',
 
   categories: {
     necessary: {

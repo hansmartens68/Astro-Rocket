@@ -12,9 +12,14 @@ import { Hero } from '@/components/hero';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import TechStack from '@/components/landing/TechStack.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
+import siteConfig from '@/config/site.config';
+
+const location = siteConfig.address?.city
+  ? `${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}`
+  : null;
 ---
 <PageLayout
-  title="About Astro Rocket — Web Designer & Developer | Veghel"
+  title={`About — ${siteConfig.name}`}
   description="Astro Rocket is a production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
 >
   <Hero layout="centered" size="sm">
@@ -64,7 +69,7 @@ import CTA from '@/components/ui/marketing/CTA/CTA.astro';
                 <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
                 <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
                 <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  16 years of craft — design, code, performance, and honest communication. Based in Veghel, working worldwide.
+                  16 years of craft — design, code, performance, and honest communication.{location ? ` Based in ${location}, working worldwide.` : ' Working worldwide.'}
                 </p>
                 <div class="flex flex-wrap gap-1.5 mt-3">
                   <Badge size="sm" variant="brand">Astro</Badge>
