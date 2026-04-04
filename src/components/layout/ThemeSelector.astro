@@ -100,9 +100,11 @@ const themes = [
 
     // Update every swatch on the page (handles multiple selector instances)
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
-      btn.dataset.themeId === id
-        ? btn.setAttribute('data-active', '')
-        : btn.removeAttribute('data-active');
+      if (btn.dataset.themeId === id) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
     });
   }
 
@@ -111,9 +113,11 @@ const themes = [
 
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
       // Mark current active
-      btn.dataset.themeId === active
-        ? btn.setAttribute('data-active', '')
-        : btn.removeAttribute('data-active');
+      if (btn.dataset.themeId === active) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
 
       // Guard against double-binding across re-runs
       if (btn.dataset.selectorInit) return;

@@ -133,16 +133,20 @@ const themes = [
 
     // Update dropdown swatches
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
-      btn.dataset.themeId === id
-        ? btn.setAttribute('data-active', '')
-        : btn.removeAttribute('data-active');
+      if (btn.dataset.themeId === id) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
     });
 
     // Also sync flat ThemeSelector swatches (mobile menu)
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
-      btn.dataset.themeId === id
-        ? btn.setAttribute('data-active', '')
-        : btn.removeAttribute('data-active');
+      if (btn.dataset.themeId === id) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
     });
   }
 
@@ -167,9 +171,11 @@ const themes = [
 
     // Mark active swatch
     document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
-      btn.dataset.themeId === active
-        ? btn.setAttribute('data-active', '')
-        : btn.removeAttribute('data-active');
+      if (btn.dataset.themeId === active) {
+        btn.setAttribute('data-active', '');
+      } else {
+        btn.removeAttribute('data-active');
+      }
 
       if (!btn.dataset.selectorInit) {
         btn.dataset.selectorInit = 'true';

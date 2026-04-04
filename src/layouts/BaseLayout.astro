@@ -91,19 +91,19 @@ if (includeProfessionalServiceSchema) {
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
       (function () {
-        var LETTER = _faviconLetter;
+        const LETTER = _faviconLetter;
 
         function updateFavicon() {
-          var color = getComputedStyle(document.documentElement).getPropertyValue('--brand-500').trim();
+          const color = getComputedStyle(document.documentElement).getPropertyValue('--brand-500').trim();
           if (!color) return;
-          var svg =
+          const svg =
             '<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">' +
             '<rect width="48" height="48" rx="8" fill="' + color + '"/>' +
             '<text x="24" y="24" text-anchor="middle" dominant-baseline="central" ' +
             'font-family="Outfit, system-ui, sans-serif" font-weight="700" font-size="34" fill="white">' +
             LETTER +
             '</text></svg>';
-          var link = document.querySelector('link[rel="icon"]');
+          const link = document.querySelector('link[rel="icon"]');
           if (link) link.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(svg));
         }
 
@@ -118,7 +118,7 @@ if (includeProfessionalServiceSchema) {
 
           // Re-run whenever data-theme or dark/light class changes
           new MutationObserver(function (mutations) {
-            for (var i = 0; i < mutations.length; i++) {
+            for (let i = 0; i < mutations.length; i++) {
               if (mutations[i].attributeName === 'data-theme' || mutations[i].attributeName === 'class') {
                 updateFavicon();
                 break;
@@ -135,7 +135,7 @@ if (includeProfessionalServiceSchema) {
     <!-- Theme script (runs before body paint; <html> starts with class="dark" as default) -->
     <script is:inline>
       (function () {
-        var COLOR_THEMES = ['orange', 'amber', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'magenta'];
+        const COLOR_THEMES = ['orange', 'amber', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'magenta'];
 
         function applyTheme(el) {
           try {
@@ -145,15 +145,15 @@ if (includeProfessionalServiceSchema) {
             } else {
               el.classList.add('dark');
             }
-          } catch (_) {}
+          } catch (_) { /* ignored */ }
 
           try {
             // Color theme — persisted in sessionStorage so it resets to sky on every new visit
-            var saved = sessionStorage.getItem('color-theme');
+            const saved = sessionStorage.getItem('color-theme');
             if (saved && COLOR_THEMES.indexOf(saved) !== -1) {
               el.setAttribute('data-theme', saved);
             }
-          } catch (_) {}
+          } catch (_) { /* ignored */ }
         }
 
         applyTheme(document.documentElement);
@@ -203,10 +203,10 @@ if (includeProfessionalServiceSchema) {
 
     <script is:inline>
       (function () {
-        var THRESHOLD = 400;
+        const THRESHOLD = 400;
 
         function initBackToTop() {
-          var btn = document.getElementById('back-to-top');
+          const btn = document.getElementById('back-to-top');
           if (!btn || btn.dataset.bttInit) return;
           btn.dataset.bttInit = 'true';
 
@@ -237,9 +237,9 @@ if (includeProfessionalServiceSchema) {
     <script is:inline>
       (function () {
         function initReveal() {
-          var els = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+          const els = document.querySelectorAll('[data-reveal]:not(.is-visible)');
           if (!els.length) return;
-          var observer = new IntersectionObserver(function (entries) {
+          const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
               if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');

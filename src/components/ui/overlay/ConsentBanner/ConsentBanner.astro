@@ -145,7 +145,7 @@ const configJson = JSON.stringify(consentConfig);
     <script>
       interface ConsentWindow extends Window {
         dataLayer: Record<string, unknown>[];
-        gtag: Function;
+        gtag: (...args: unknown[]) => void;
         __consentState: { decided: boolean; categories: Record<string, boolean> } | undefined;
         __consentAnalyticsInjected: boolean | undefined;
         __consentBannerIsSetupBound: boolean | undefined;
@@ -196,7 +196,7 @@ const configJson = JSON.stringify(consentConfig);
           if (typeof w.gtag !== 'function') {
             w.dataLayer = w.dataLayer || [];
             if (typeof w.gtag !== 'function') {
-              w.gtag = function() { w.dataLayer.push(arguments as unknown as Record<string, unknown>); };
+              w.gtag = function(...args: unknown[]) { w.dataLayer.push(args as unknown as Record<string, unknown>); };
             }
           }
 
