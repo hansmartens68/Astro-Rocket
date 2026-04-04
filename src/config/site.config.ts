@@ -60,7 +60,7 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Astro Rocket',
   description:
-    'Astro Rocket —  A production-ready Astro 6 starter with 13 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
+    'Astro Rocket — A production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on.',
   url: SITE_URL || 'https://astrorocket.dev',
   ogImage: '/og-default.svg',
   author: 'Hans Martens',
