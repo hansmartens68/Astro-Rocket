@@ -78,6 +78,10 @@ const projects = defineCollection({
       featured: z.boolean().default(false),
       order: z.number().default(99),
       year: z.number().optional(),
+      client: z.string().optional(),
+      role: z.string().optional(),
+      services: z.array(z.string()).default([]),
+      draft: z.boolean().default(false),
     }),
 });
 
