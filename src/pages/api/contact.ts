@@ -3,6 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
 import { Resend } from 'resend';
+import siteConfig from '@/config/site.config';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -63,13 +64,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     const resend = new Resend(apiKey);
 
+    const toEmail = siteConfig.email;
+    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || toEmail;
+    const siteLabel = siteConfig.name;
+
     const subject = result.data.subject
-      ? `[hansmartens.dev] ${result.data.subject}`
-      : `[hansmartens.dev] New contact from ${result.data.name}`;
+      ? `[${siteLabel}] ${result.data.subject}`
+      : `[${siteLabel}] New contact from ${result.data.name}`;
 
     const { error } = await resend.emails.send({
-      from: 'Contact Form <hello@youremail.com>',
-      to: 'hello@youremail.com',
+      from: `Contact Form <${fromEmail}>`,
+      to: toEmail,
       replyTo: result.data.email,
       subject,
       html: `

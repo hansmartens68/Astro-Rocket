@@ -76,7 +76,7 @@ Blog posts use their cover image automatically:
 The default OG image for non-blog pages is configured in `site.config.ts`:
 
 ```ts
-defaultOgImage: '/og-default.jpg',
+ogImage: '/og-default.svg',
 ```
 
 Drop your 1200×630 image into `/public/` and update the path. Every page that does not have its own image will use it.
@@ -117,32 +117,32 @@ Use this for admin pages, thank-you pages after form submissions, staging pages,
 
 ## Verification tags
 
-Search console verification codes go in `site.config.ts` — no template editing, no separate file:
+Search console verification codes go in your `.env` file — no template editing:
 
-```ts
-googleSiteVerification: 'your-code-here',
-bingWebmasterVerification: 'your-code-here',
+```bash
+GOOGLE_SITE_VERIFICATION=your-code-here
+BING_SITE_VERIFICATION=your-code-here
 ```
 
-Set them and they render in `<head>` on every page. Leave them empty and nothing is rendered.
+These are read by `site.config.ts` via `astro:env/server` and rendered in `<head>` on every page through the `verification.google` and `verification.bing` fields. Leave them empty and nothing is rendered.
 
 ## Configuring the site identity
 
-All structured data pulls from the `site` object in `site.config.ts`. The fields that feed directly into SEO output:
+All structured data pulls from `siteConfig` in `src/config/site.config.ts`. The fields that feed directly into SEO output:
 
 ```ts
-export const site = {
+const siteConfig = {
   name: 'Your Site Name',
   url: 'https://yoursite.com',
   description: 'Your site description for meta tags',
-  author: {
-    name: 'Your Name',
-    url: 'https://yoursite.com/about',
-  },
-  organization: {
-    name: 'Your Organisation',
-    url: 'https://yoursite.com',
-    logo: 'https://yoursite.com/logo.png',
+  author: 'Your Name',
+  email: 'hello@yoursite.com',
+  authorImage: '/avatar.jpg',        // used in Person schema
+  branding: {
+    logo: {
+      alt: 'Your Site Name',
+      imageUrl: '/logo.png',         // used in Organization schema
+    },
   },
 };
 ```

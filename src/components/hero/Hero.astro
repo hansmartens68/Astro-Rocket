@@ -138,5 +138,10 @@ const gridClasses = cn(
 
     window.addEventListener('scroll', applyParallax, { passive: true });
     applyParallax();
+
+    // Clean up the listener when navigating away to prevent accumulation
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('scroll', applyParallax);
+    }, { once: true });
   }
 </script>

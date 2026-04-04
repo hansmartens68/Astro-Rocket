@@ -8,6 +8,10 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
+import siteConfig from '@/config/site.config';
+import { resolveSocialLinks } from '@/lib/utils';
+
+const githubUrl = resolveSocialLinks(siteConfig.socialLinks).find((l) => l.key === 'github')?.href ?? 'https://github.com';
 
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
@@ -30,12 +34,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   includeProfessionalServiceSchema={true}
 >
   <!-- Hero -->
-  <Hero layout="centered" size="xl" gradient class="sticky top-0 z-0 overflow-clip">
+  <Hero layout="centered" size="xl" class="hero-dark-gradient">
     <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">Available for new projects</Badge>
 
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] dark:text-foreground dark:[-webkit-text-fill-color:currentColor]">Web Designer</span><span class="text-foreground [-webkit-text-fill-color:currentColor]"> &amp; Developer</span>
     </h1>
 
     <p slot="description">
@@ -43,7 +47,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="https://github.com">
+      <Button size="lg" href={githubUrl}>
         <Icon name="github" size="sm" />
         Get it on GitHub
       </Button>
@@ -132,7 +136,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-           Sixteen years of hands-on experience, based in Veghel and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
+           Sixteen years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}` : ''} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed mb-8">
            On the blog, I share the ideas and decisions that shape my work.
@@ -161,7 +165,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </div>
             <div class="bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500 cursor-default h-full">
               <Icon name="map-pin" class="w-10 h-10 text-brand-500" />
-              <p class="text-sm font-semibold text-foreground">Based in <br class="sm:hidden" />Veghel, NL</p>
+              <p class="text-sm font-semibold text-foreground">Based in <br class="sm:hidden" />{siteConfig.address?.city ?? 'Your City'}{siteConfig.address?.country ? `, ${siteConfig.address.country}` : ''}</p>
             </div>
           </div>
         </Card>
@@ -224,7 +228,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           </h2>
         </div>
         <p class="text-lg text-foreground-muted">
-          Real feedback from real projects.
+          Replace these with your own client quotes.
         </p>
       </div>
 
@@ -240,15 +244,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Astro Rocket delivered our new website on time and exactly to spec. The performance improvements alone made it worth every penny — our load times dropped significantly and the feedback from customers has been great."
+              "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                J
+                A
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">John Doe</p>
-                <p class="text-xs text-foreground-muted">Founder, Example Company</p>
+                <p class="text-sm font-semibold text-foreground">Alex Morgan</p>
+                <p class="text-xs text-foreground-muted">Founder, Bright Studio</p>
               </div>
             </div>
           </div>
@@ -265,15 +269,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
               ))}
             </div>
             <blockquote class="flex-1 text-foreground-muted leading-relaxed">
-              "Working with Astro Rocket was straightforward from start to finish. The right questions were asked, we were kept in the loop throughout, and the end result looks and works better than we imagined. Would recommend without hesitation."
+              "Straightforward from first conversation to final handover. The right questions were asked, we were kept in the loop throughout, and the end result exceeded what we imagined. Would recommend without hesitation."
             </blockquote>
             <div class="flex items-center gap-3 pt-4 border-t border-border">
               <div class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500/30 to-brand-500/10 flex items-center justify-center text-brand-500 font-bold text-sm shrink-0">
-                J
+                S
               </div>
               <div>
-                <p class="text-sm font-semibold text-foreground">Jane Doe</p>
-                <p class="text-xs text-foreground-muted">CEO, Example Company</p>
+                <p class="text-sm font-semibold text-foreground">Sarah Chen</p>
+                <p class="text-xs text-foreground-muted">CEO, Luma Agency</p>
               </div>
             </div>
           </div>
@@ -346,7 +350,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <script>
   function initCountup() {
-    const counters = document.querySelectorAll<HTMLElement>('[data-countup]');
+    const counters = document.querySelectorAll<HTMLElement>('[data-countup]:not([data-countup-init])');
     if (counters.length === 0) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -367,10 +371,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         requestAnimationFrame(tick);
       });
     }, { threshold: 0.4 });
-    counters.forEach((el) => observer.observe(el));
+    counters.forEach((el) => {
+      el.dataset.countupInit = 'true';
+      observer.observe(el);
+    });
   }
 
-  initCountup();
   document.addEventListener('astro:page-load', initCountup);
 </script>
 </LandingLayout>

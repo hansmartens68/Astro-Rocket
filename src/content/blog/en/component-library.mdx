@@ -114,7 +114,7 @@ import Accordion from '@/components/ui/overlay/Accordion/Accordion.astro';
 | `Separator` | Horizontal or vertical divider line. |
 | `CodeBlock` | Syntax-highlighted code block with copy button and language label. |
 
-The `Icon` component is used throughout the theme. You reference any Lucide icon by name, or any Simple Icons brand icon with the `si-` prefix:
+The `Icon` component is used throughout the theme. You reference any Lucide icon by name, or any Simple Icons brand icon by its shorthand name (e.g. `github`, `x-twitter`, `instagram`) or with the full `simple-icons:` prefix:
 
 ```astro
 ---
@@ -122,7 +122,8 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 ---
 
 <Icon name="arrow-right" size="sm" />
-<Icon name="si-github" size="md" />
+<Icon name="github" size="md" />
+<Icon name="simple-icons:vercel" size="md" />
 ```
 
 ### Marketing UI (5 components)
@@ -167,7 +168,7 @@ These components are fixed parts of the site architecture. They are used once pe
 
 **Breadcrumbs** — auto-generated from the current URL path. Used at the top of blog posts and inner pages.
 
-**ThemeToggle / ThemeSelector** — dark/light mode toggle and the live theme switcher pill button with 6-colour dropdown.
+**ThemeToggle / ThemeSelector** — dark/light mode toggle and the live theme switcher with 12-colour swatch picker.
 
 **Blog components** — `BlogCard` (post listing card with cover image, tags, and reading time), `ArticleHero` (full-width post header with cover image and metadata), `RelatedPosts` (three-card section at the bottom of every post), `ShareButtons` (Twitter/X, LinkedIn, clipboard copy), and `BlogImageSVG` (the brand-color SVG backgrounds for post covers).
 

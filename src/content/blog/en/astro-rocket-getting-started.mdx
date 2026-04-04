@@ -15,7 +15,7 @@ This guide walks you through everything needed to get Astro Rocket running local
 
 ## What you need before you start
 
-- [Node.js](https://nodejs.org) version 20 or later
+- [Node.js](https://nodejs.org) version 22.12.0 or later
 - A package manager: `npm`, `pnpm`, or `yarn`
 - A [Vercel account](https://vercel.com) (free) for deployment
 - A code editor — [VS Code](https://code.visualstudio.com) with the [Astro extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) is recommended
@@ -27,8 +27,8 @@ Astro Rocket is free and open source. Clone the repository from GitHub and insta
 ```bash
 git clone https://github.com/hansmartens68/astro-rocket my-site
 cd my-site
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open `http://localhost:4321` and you'll see the full site running locally. Every change you make updates instantly without a full page reload.
@@ -111,12 +111,14 @@ The contact form uses [Resend](https://resend.com) for email delivery. To activa
 
 1. Create a free Resend account and get your API key
 2. Verify your sending domain in Resend
-3. Copy `.env.example` to `.env.local` and fill in your values:
+3. Set your `email` in `src/config/site.config.ts` — this is where form submissions are delivered
+4. Add your API key to `.env`:
 
 ```
 RESEND_API_KEY=re_xxxxxxxxxxxx
-CONTACT_FORM_ENDPOINT=hello@yoursite.com
 ```
+
+Optionally, set `RESEND_FROM_EMAIL` to a verified sender address on your domain. If omitted, the form uses the `email` value from `site.config.ts` as the sender address.
 
 The form works without these variables — it simply disables submission — so you can develop and deploy the rest of the site before setting up email.
 
@@ -161,7 +163,7 @@ With the site live, here's a sensible order for next steps:
 
 1. **Replace the placeholder content** — update the hero text, the about section, and landing page copy to reflect your actual work
 2. **Write your first real post** — publishing regularly is the highest-value thing you can do for search visibility
-3. **Set up Google Search Console** — add `GOOGLE_SITE_VERIFICATION` in `site.config.ts` and submit your sitemap
+3. **Set up Google Search Console** — add `GOOGLE_SITE_VERIFICATION` to your `.env` file and submit your sitemap
 4. **Add your social links** — the `socialLinks` array in `site.config.ts` populates the footer social icons
 5. **Set up analytics** — add `PUBLIC_GA_MEASUREMENT_ID` or `PUBLIC_GTM_ID` to activate the built-in analytics integration
 

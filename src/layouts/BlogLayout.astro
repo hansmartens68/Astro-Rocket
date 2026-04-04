@@ -11,6 +11,9 @@ import RelatedPosts from '@/components/blog/RelatedPosts.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import { resolveSocialLinks } from '@/lib/utils';
+
+const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
 
 interface Props {
   title: string;
@@ -149,39 +152,23 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
         <Icon name="rss" size="sm" />
         RSS Feed
       </a>
+      {socialLinks.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
+        >
+          <Icon name={link.icon} size="sm" />
+          {link.label}
+        </a>
+      ))}
       <a
-        href="https://x.com"
-        target="_blank"
-        rel="noopener noreferrer"
+        href={`mailto:${siteConfig.email}`}
         class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
       >
-        <Icon name="x-twitter" size="sm" />
-        X / Twitter
-      </a>
-      <a
-        href="https://linkedin.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
-      >
-        <Icon name="linkedin" size="sm" />
-        LinkedIn
-      </a>
-      <a
-        href="https://github.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
-      >
-       <Icon name="github" size="sm" />
-       GitHub
-      </a>
-      <a
-       href="mailto:hello@yourmail.com"
-       class="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand-500 hover:text-brand-500"
-      >
-       <Icon name="mail" size="sm" />
-       Email
+        <Icon name="mail" size="sm" />
+        Email
       </a>
     </div>
   </CTA>

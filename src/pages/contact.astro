@@ -9,40 +9,28 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
 import ContactForm from '@/components/patterns/ContactForm.astro';
+import siteConfig from '@/config/site.config';
+import { resolveSocialLinks } from '@/lib/utils';
+
+const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
 
 const channels = [
   {
     icon: 'mail',
     label: 'Email',
-    value: 'hello@astrorocket.com',
+    value: siteConfig.email,
     note: 'Drop us a line',
-    href: 'mailto:hello@astrorocket.com',
+    href: `mailto:${siteConfig.email}`,
     external: false,
   },
-  {
-    icon: 'x-twitter',
-    label: 'X / Twitter',
-    value: 'astrorocket_dev',
-    note: 'Follow for updates',
-    href: 'https://x.com/hansmartens_dev',
+  ...socialLinks.map((link) => ({
+    icon: link.icon,
+    label: link.label,
+    value: link.href.replace(/^https?:\/\//, ''),
+    note: 'Follow along',
+    href: link.href,
     external: true,
-  },
-  {
-    icon: 'github',
-    label: 'GitHub',
-    value: 'astrorocket',
-    note: 'View the source code',
-    href: 'https://github.com',
-    external: true,
-  },
-  {
-    icon: 'linkedin',
-    label: 'LinkedIn',
-    value: 'astrorocket.dev',
-    note: 'View my work',
-    href: 'https://linkedin.com',
-    external: true,
-  },
+  })),
 ];
 ---
 
