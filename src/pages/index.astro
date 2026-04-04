@@ -8,6 +8,10 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import { getCollection } from 'astro:content';
+import siteConfig from '@/config/site.config';
+import { resolveSocialLinks } from '@/lib/utils';
+
+const githubUrl = resolveSocialLinks(siteConfig.socialLinks).find((l) => l.key === 'github')?.href ?? 'https://github.com';
 
 const projectItems = await getCollection('projects');
 const featuredProjects = projectItems
@@ -43,7 +47,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="https://github.com">
+      <Button size="lg" href={githubUrl}>
         <Icon name="github" size="sm" />
         Get it on GitHub
       </Button>
