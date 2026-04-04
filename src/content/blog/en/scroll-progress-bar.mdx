@@ -1,0 +1,88 @@
+---
+title: "Scroll Progress Bar — Reading Progress at a Glance"
+description: "Astro Rocket now has a scroll progress bar: a thin brand-coloured line that fills as you scroll. Here's how it works, where it lives, and how to enable it on any page."
+publishedAt: 2026-03-25
+author: "Hans Martens"
+tags: ["astro-rocket", "features", "header", "ux"]
+featured: false
+locale: en
+image: "../../../assets/blog/scroll-progress-bar.svg"
+svgSlug: "scroll-progress-bar"
+imageAlt: "A brand-coloured horizontal progress bar, partially filled, on a brand background"
+---
+
+Astro Rocket now has a scroll progress bar. It's the thin 2px line at the top or bottom of the header that fills from left to right as you scroll down the page — a quiet signal to the reader of how far through the content they are.
+
+It's off by default. When you enable it, it tracks the page scroll position in real time using `requestAnimationFrame`, so it stays smooth even on long pages.
+
+## Where it shows up
+
+The bar is enabled on three page types, each with a different position:
+
+**Homepage** — the bar sits on top of the floating capsule header. On the homepage the header is transparent and floating, so placing the bar above it keeps it visible and out of the way of the header content. As the page scrolls and the header gains its solid background, the bar sits cleanly on the very top edge.
+
+**Blog index** — the bar sits underneath the solid bar header, exactly at the bottom border of the header. This is the standard position for a reading progress indicator on a content listing page.
+
+**Individual blog posts** — same as the blog index: the bar runs along the bottom of the header. On a long-form post this is where it matters most — a reader can glance at the header and know at a glance how far through the article they are.
+
+## How it works
+
+The bar is an absolutely positioned `div` inside the `<header>` element. A small script updates its `width` on every scroll event, capped with `requestAnimationFrame` to avoid layout thrashing:
+
+```ts
+function update() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  bar.style.width = `${pct}%`;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+}, { passive: true });
+```
+
+The bar colour is `var(--color-brand-500)` — it automatically matches your active colour theme and updates instantly when the visitor switches themes.
+
+## The two props
+
+The `Header` component exposes two props that control the scroll progress bar:
+
+| Prop | Type | Default | What it does |
+|------|------|:-------:|--------------|
+| `showScrollProgress` | `boolean` | `false` | Renders the progress bar |
+| `scrollProgressPosition` | `'top'` \| `'bottom'` | `'bottom'` | Places the bar on the top or bottom edge of the header |
+
+## Enabling it on any page
+
+To add the scroll progress bar to a page, open the layout file that the page uses and add `showScrollProgress` to the `<Header>` component. For the standard page layout (`PageLayout.astro`) the layout accepts a `showScrollProgress` prop that passes through automatically:
+
+```astro
+<!-- src/pages/your-page.astro -->
+<PageLayout title="Your Page" showScrollProgress>
+  ...
+</PageLayout>
+```
+
+To control which edge of the header the bar sits on, pass `scrollProgressPosition` directly to the `<Header>` component in the layout file:
+
+```astro
+<!-- Bottom of header (default) -->
+<Header showScrollProgress />
+
+<!-- Top of header -->
+<Header showScrollProgress scrollProgressPosition="top" />
+```
+
+The homepage uses `scrollProgressPosition="top"` because the floating capsule header looks better with the bar above it. All other pages use the default `'bottom'` position.
+
+## Turning it off
+
+Each page layout controls the bar independently. To disable it on a specific page, remove `showScrollProgress` from the layout call or set it to `false`. The blog index, for example, can have the bar removed by opening `src/pages/blog/index.astro` and deleting the `showScrollProgress` prop from `<PageLayout>`.
+
+## Performance note
+
+The scroll listener uses `{ passive: true }` and `requestAnimationFrame` throttling, so it adds no measurable overhead to scrolling performance. The bar has `transition-none` applied so there is no CSS transition lag — the fill tracks the scroll position directly with no animation delay.

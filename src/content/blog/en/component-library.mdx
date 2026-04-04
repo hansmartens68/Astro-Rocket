@@ -1,0 +1,286 @@
+---
+title: "57 Components Ready to Use — Astro Rocket's Full UI Library"
+description: "Astro Rocket ships with 57 production-ready components from the Velocity library — buttons, cards, dialogs, forms, data display, and full page-structure components. All accessible, all themed."
+publishedAt: 2026-03-28
+author: "Hans Martens"
+tags: ["astro-rocket", "components", "ui", "velocity"]
+featured: false
+locale: en
+image: "../../../assets/blog/component-library.svg"
+svgSlug: "component-library"
+imageAlt: "Dashboard layout icon above the word 'components' with a large faint '57' in the background"
+---
+
+Astro Rocket inherits a complete UI component library from [Velocity](https://github.com/southwellmedia/velocity) by Southwell Media. That means 57 production-ready components are available the moment you install the theme — no npm packages to install, no extra setup. Every component is already styled with the design system's color tokens, so they adapt automatically when you switch themes or toggle dark mode.
+
+**See every component live:** [demo.deployvelocity.com/components](https://demo.deployvelocity.com/components)
+
+The library is organized in three layers: 31 UI primitives that form the building blocks, 7 higher-level pattern components, and a set of page-structure components for the Hero, Header, Footer, Blog, and SEO layers.
+
+---
+
+## UI primitives
+
+These 31 components cover every common UI need. They accept variants and sizes through props and are built with accessibility in mind — keyboard navigation, ARIA attributes, and focus management are handled for you.
+
+### Form (7 components)
+
+The form layer covers every standard input type.
+
+| Component | What it does |
+|-----------|--------------|
+| `Button` | Primary interactive element. Supports `variant` (brand, secondary, outline, ghost, destructive) and `size` (sm, md, lg). Works as a `<button>` or renders as an `<a>` when an `href` is provided. |
+| `Input` | Single-line text input with label, helper text, and error state support. |
+| `Textarea` | Multi-line text input with the same label/error pattern as Input. |
+| `Select` | Styled native select element with the same form field pattern. |
+| `Checkbox` | Accessible checkbox with custom styling that follows the active theme. |
+| `Radio` | Radio button with the same theming as Checkbox. |
+| `Switch` | Toggle switch for on/off states, with smooth CSS transition. |
+
+```astro
+---
+import Button from '@/components/ui/form/Button/Button.astro';
+import Input from '@/components/ui/form/Input/Input.astro';
+---
+
+<Button variant="brand" size="md">Get started</Button>
+<Button variant="outline" size="md">Learn more</Button>
+
+<Input label="Email address" type="email" placeholder="you@example.com" />
+```
+
+### Data display (8 components)
+
+| Component | What it does |
+|-----------|--------------|
+| `Card` | Container with border and rounded corners. Use it for any grouped content block. |
+| `Badge` | Small inline label. Supports `variant` (brand, secondary, success, warning, destructive) and `pill` prop for rounded style. |
+| `Avatar` | Circular image or initials fallback. |
+| `AvatarGroup` | Stacked row of Avatars for team or contributor lists. |
+| `Table` | Styled HTML table with header, body, and striped row support. |
+| `Pagination` | Page navigation with prev/next and numbered page buttons. |
+| `Progress` | Horizontal progress bar that fills to a percentage value. |
+| `Skeleton` | Loading placeholder that pulses in the shape of the content it replaces. |
+
+```astro
+---
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+---
+
+<Badge variant="brand" pill>New</Badge>
+<Badge variant="success">Active</Badge>
+
+<Card>
+  <p>Any content goes here.</p>
+</Card>
+```
+
+### Feedback (3 components)
+
+| Component | What it does |
+|-----------|--------------|
+| `Alert` | Inline message for info, success, warning, or error states. |
+| `Toast` | Temporary notification that appears in the corner of the screen and auto-dismisses. |
+| `Tooltip` | Text label that appears on hover or focus above any element. |
+
+### Overlay (6 components)
+
+| Component | What it does |
+|-----------|--------------|
+| `Accordion` | Collapsible content panels — any number of items, only one open at a time. |
+| `Dialog` | Modal window with backdrop, focus trapping, and keyboard close. |
+| `Dropdown` | Floating menu that opens below a trigger button. |
+| `Tabs` | Horizontal tab bar that switches between content panels. |
+| `VerticalTabs` | Same as Tabs but with the tab list on the left. Good for settings panels. |
+| `ConsentBanner` | Cookie consent banner with accept/decline actions. |
+
+```astro
+---
+import Accordion from '@/components/ui/overlay/Accordion/Accordion.astro';
+---
+
+<Accordion items={[
+  { title: 'What is Astro Rocket?', content: 'A production-ready Astro 6 theme.' },
+  { title: 'Is it free?', content: 'Yes. MIT licensed.' },
+]} />
+```
+
+### Layout & content (3 components)
+
+| Component | What it does |
+|-----------|--------------|
+| `Icon` | Unified icon component. Covers 350+ Lucide UI icons and 3,000+ Simple Icons brand icons via Iconify. |
+| `Separator` | Horizontal or vertical divider line. |
+| `CodeBlock` | Syntax-highlighted code block with copy button and language label. |
+
+The `Icon` component is used throughout the theme. You reference any Lucide icon by name, or any Simple Icons brand icon by its shorthand name (e.g. `github`, `x-twitter`, `instagram`) or with the full `simple-icons:` prefix:
+
+```astro
+---
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+---
+
+<Icon name="arrow-right" size="sm" />
+<Icon name="github" size="md" />
+<Icon name="simple-icons:vercel" size="md" />
+```
+
+### Marketing UI (5 components)
+
+These are UI-level marketing components, distinct from the full landing-page section components below.
+
+| Component | What it does |
+|-----------|--------------|
+| `CTA` | Call-to-action block with heading, description, and button. |
+| `Logo` | Auto-generated logo badge — the first letter of your site name on the active brand color. Updates live on theme switch. |
+| `SocialProof` | Avatar stack plus a short proof statement (e.g., "Join 2,000+ developers"). |
+| `NpmCopyButton` | One-click npm install command with copy icon — useful for open-source project pages. |
+| `TerminalDemo` | Animated terminal window showing a sequence of commands. |
+
+---
+
+## Pattern components
+
+Pattern components compose the UI primitives into specific real-world use cases. They are higher-level and more opinionated.
+
+| Component | What it does |
+|-----------|--------------|
+| `ContactForm` | Full contact form connected to Resend. Server-side Zod validation and honeypot spam protection included. |
+| `NewsletterForm` | Email capture form, also connected to Resend. |
+| `StatCard` | Metric display card with a large number, label, and optional trend indicator. Used on dashboard or about pages. |
+| `EmptyState` | Placeholder for empty lists or zero-result searches. Accepts icon, heading, description, and action button. |
+| `FormField` | Shared label + input + error wrapper used internally by all form components. |
+| `SearchInput` | Input with a search icon and clear button. |
+| `PasswordInput` | Input with a show/hide password toggle. |
+
+---
+
+## Page-structure components
+
+These components are fixed parts of the site architecture. They are used once per page type and are not generally composed with other components — they define the page.
+
+**Hero** — the `Hero` component supports four layouts (`centered`, `split`, `minimal`, `card`) and three sizes. All hero content uses named slots: `badge`, `title`, `description`, `actions`, and optionally `image`.
+
+**Header** — fixed top navigation bar with logo, nav links, dark mode toggle, theme selector, and optional CTA button. Three rendering variants: `solid` (solid bar), `transparent` (transparent, used on blog posts), and `floating` (the capsule header on the homepage). Includes the scroll progress bar when enabled.
+
+**Footer** — bottom navigation with site links, social icons, and copyright text.
+
+**Breadcrumbs** — auto-generated from the current URL path. Used at the top of blog posts and inner pages.
+
+**ThemeToggle / ThemeSelector** — dark/light mode toggle and the live theme switcher with 12-colour swatch picker.
+
+**Blog components** — `BlogCard` (post listing card with cover image, tags, and reading time), `ArticleHero` (full-width post header with cover image and metadata), `RelatedPosts` (three-card section at the bottom of every post), `ShareButtons` (Twitter/X, LinkedIn, clipboard copy), and `BlogImageSVG` (the brand-color SVG backgrounds for post covers).
+
+**Landing page sections** — `Credibility` (logo bar), `FeatureTabs` (interactive tabbed feature showcase), `LighthouseScores` (animated score dials), and `TechStack` (technology badge strip).
+
+**SEO** — `SEO` (all meta tags, Open Graph, Twitter Cards), `JsonLd` (structured data for WebSite, Organization, BlogPosting, Breadcrumb, FAQ), and `Analytics` (analytics script slot).
+
+---
+
+## Everything responds to the active theme
+
+Every component uses the design system's CSS color tokens — `--color-brand-500`, `--color-foreground`, `--color-background`, and so on. Switch from Emerald to Purple and every button, badge, progress bar, and focus ring updates instantly. No component has a hardcoded brand color.
+
+The same applies to dark mode: all token values change when the `dark` class is toggled on `<html>`, and every component updates without any extra code.
+
+---
+
+## Adding your own components
+
+When you need something that isn't in the library, Velocity's [component documentation](https://docs.deployvelocity.com/customization/adding-components/) describes exactly how to create new components that fit the existing patterns.
+
+### Where to put it
+
+Place new components in the matching subdirectory under `src/components/`:
+
+```
+src/components/
+├── ui/
+│   ├── form/          # Button, Input, Select, Checkbox, Radio, Switch, Textarea
+│   ├── data-display/  # Card, Badge, Avatar, Table, Pagination, Progress, Skeleton
+│   ├── feedback/      # Alert, Toast, Tooltip
+│   ├── overlay/       # Dialog, Dropdown, Tabs, VerticalTabs, Accordion
+│   ├── layout/        # Separator
+│   ├── primitives/    # Icon
+│   ├── content/       # CodeBlock
+│   └── marketing/     # Logo, CTA, NpmCopyButton, SocialProof, TerminalDemo
+├── patterns/          # Composed patterns (ContactForm, SearchInput, etc.)
+├── layout/            # Page structure (Header, Footer)
+├── blog/              # Blog-specific
+└── landing/           # Marketing pages
+```
+
+### Basic component structure
+
+A typical UI component defines its props in the frontmatter, maps variants to class strings, and uses `class:list` to compose the final class:
+
+```astro
+---
+interface Props {
+  variant?: 'default' | 'primary' | 'success';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  default: 'bg-background-secondary text-foreground',
+  primary:  'bg-primary text-primary-foreground',
+  success:  'bg-success-light text-success-foreground',
+};
+
+const sizes = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm',
+};
+---
+<span
+  class:list={[
+    'inline-flex items-center rounded-full font-medium',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+>
+  <slot />
+</span>
+```
+
+### Three rules to follow
+
+**Use design tokens, not hardcoded values.** Every built-in component uses `bg-background`, `text-foreground`, `border-border`, and the brand tokens. If you hardcode `bg-white` or `text-gray-900`, your component will break in dark mode and ignore the active colour theme.
+
+**Support named slots for flexible content.** Slots let the consumer pass in icons, actions, or footer content without the component needing to know about them:
+
+```astro
+<FeatureCard title="Fast">
+  <Icon name="zap" slot="icon" />
+  Lightning quick builds.
+  <Button slot="footer">Learn more</Button>
+</FeatureCard>
+```
+
+**Use React for interactivity.** Astro components are server-rendered and have no client-side state. For anything that needs `useState`, `onClick`, or real-time updates, create a `.tsx` file and use the `client:visible` directive when you include it:
+
+```astro
+---
+import { Counter } from '@/components/ui';
+---
+<Counter client:visible />
+```
+
+---
+
+## Browse the live demo
+
+The fastest way to get a feel for all 57 components is the Velocity component demo. Every component is rendered with live props you can inspect:
+
+**[demo.deployvelocity.com/components](https://demo.deployvelocity.com/components)**
+
+The demo is Velocity's own showcase. All 57 components shown there are included in Astro Rocket unchanged — same markup, same variants, same props.

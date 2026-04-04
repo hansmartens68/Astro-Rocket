@@ -1,0 +1,124 @@
+---
+import Input from '@/components/ui/form/Input/Input.astro';
+import Textarea from '@/components/ui/form/Textarea/Textarea.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { cn } from '@/lib/cn';
+
+interface Props {
+  action?: string;
+  successMessage?: string;
+  class?: string;
+}
+
+const {
+  action = '/api/contact',
+  successMessage = 'Message sent successfully!',
+  class: className,
+} = Astro.props;
+---
+
+<form
+  id="contact-form"
+  action={action}
+  method="POST"
+  class={cn('space-y-6', className)}
+  data-success-message={successMessage}
+>
+  <!-- Name + Email side by side on sm+ -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <Input
+      label="Name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+    />
+    <Input
+      label="Email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+    />
+  </div>
+
+  <Input
+    label="Subject"
+    name="subject"
+    type="text"
+  />
+
+  <Textarea
+    label="Message"
+    name="message"
+    required
+    rows={5}
+  />
+
+  <!-- Honeypot field for spam protection -->
+  <div class="hidden" aria-hidden="true">
+    <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div id="form-message" class="hidden text-sm"></div>
+
+  <div class="flex justify-center">
+    <Button type="submit" id="submit-button" class="gap-2">
+      Send message
+      <Icon name="arrow-right" size="sm" />
+    </Button>
+  </div>
+</form>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const button = document.getElementById('submit-button') as HTMLButtonElement;
+    const message = document.getElementById('form-message') as HTMLDivElement;
+
+    if (!form || !button || !message) return;
+
+    const successMessage = form.dataset.successMessage || 'Message sent successfully!';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      message.classList.add('hidden');
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          message.textContent = successMessage;
+          message.className = 'text-sm text-success';
+          form.reset();
+        } else {
+          const errors = data.errors
+            ? Object.values(data.errors).flat().join(', ')
+            : 'Something went wrong';
+          message.textContent = errors as string;
+          message.className = 'text-sm text-destructive';
+        }
+      } catch {
+        message.textContent = 'Failed to send message. Please try again.';
+        message.className = 'text-sm text-destructive';
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Send message';
+        message.classList.remove('hidden');
+      }
+    });
+  }
+
+  initContactForm();
+  document.addEventListener('astro:after-swap', initContactForm);
+</script>

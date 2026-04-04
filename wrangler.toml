@@ -1,0 +1,8 @@
+# Cloudflare Pages configuration
+# This file is used when deploying to Cloudflare Pages with wrangler
+
+name = "velocity"
+compatibility_date = "2026-01-31"
+
+[site]
+bucket = "./dist"

@@ -1,0 +1,168 @@
+{
+  "version": "1.0.0",
+  "minCliVersion": "1.8.0",
+  "files": {
+    "safe": [
+      "src/components/ui/",
+      "src/components/seo/",
+      "src/components/layout/",
+      "src/layouts/",
+      "src/lib/",
+      "src/styles/tokens/",
+      "src/styles/themes/",
+      "src/styles/global.css",
+      "src/content.config.ts",
+      "tsconfig.json",
+      "eslint.config.js",
+      ".prettierrc",
+      ".prettierignore",
+      ".gitignore",
+      "vercel.json",
+      "netlify.toml",
+      "wrangler.toml",
+      "src/config/nav.config.ts"
+    ],
+    "protected": [
+      "astro.config.mjs",
+      "src/config/site.config.ts",
+      "src/config/consent.config.ts",
+      "src/pages/",
+      "src/content/",
+      "src/assets/",
+      "src/components/landing/",
+      "src/components/blog/",
+      "src/components/patterns/",
+      ".env",
+      ".env.example"
+    ]
+  },
+  "dependencies": {
+    "update": {
+      "astro": "6.0.0",
+      "@astrojs/mdx": "5.0.0",
+      "@astrojs/react": "5.0.0",
+      "@astrojs/check": "0.9.7",
+      "vitest": "^3.2.0"
+    },
+    "remove": ["zod", "astro-seo"],
+    "add": {
+      "class-variance-authority": "^0.7.1"
+    }
+  },
+  "migrations": [
+    {
+      "title": "Update zod imports",
+      "description": "Replace `import { z } from 'zod'` with `import { z } from 'astro/zod'` in all files.",
+      "pattern": "import.*from ['\"]zod['\"]",
+      "searchPaths": ["src/"],
+      "toVersion": "0.2.0-beta"
+    },
+    {
+      "title": "Update Zod 4 API calls",
+      "description": "Replace `z.string().email()` with `z.email()` and `.errors` with `.issues` on ZodError.",
+      "pattern": "z\\.string\\(\\)\\.email\\(\\)",
+      "toVersion": "0.2.0-beta"
+    },
+    {
+      "title": "Remove experimental.contentIntellisense",
+      "description": "Delete the `experimental: { contentIntellisense: true }` block from astro.config.mjs.",
+      "toVersion": "0.2.0-beta"
+    },
+    {
+      "title": "Configure astro:env",
+      "description": "Add env schema to astro.config.mjs and update import.meta.env references to use astro:env imports.",
+      "toVersion": "0.3.0-beta"
+    },
+    {
+      "title": "Remove colorScheme prop from Button",
+      "description": "The `colorScheme` prop has been removed from Button. Wrap the Button in a `<div class=\"invert-section\">` instead.",
+      "pattern": "colorScheme\\s*[=:]",
+      "toVersion": "0.3.0-beta"
+    },
+    {
+      "title": "Remove variant=\"invert\" from Input",
+      "description": "The `variant=\"invert\"` prop has been removed from Input. Wrap the Input in a `<div class=\"invert-section\">` instead.",
+      "pattern": "variant\\s*=\\s*['\"]invert['\"]",
+      "toVersion": "0.3.0-beta"
+    },
+    {
+      "title": "Rename selectSize to size on Select",
+      "description": "The `selectSize` prop on Select has been renamed to `size`. Update: `selectSize=\"sm\"` → `size=\"sm\"`.",
+      "pattern": "selectSize\\s*[=:]",
+      "toVersion": "0.3.0-beta"
+    },
+    {
+      "title": "Rename textareaSize to size on Textarea",
+      "description": "The `textareaSize` prop on Textarea has been renamed to `size`. Update: `textareaSize=\"sm\"` → `size=\"sm\"`.",
+      "pattern": "textareaSize\\s*[=:]",
+      "toVersion": "0.3.0-beta"
+    },
+    {
+      "title": "Migrate routes.ts to nav.config.ts",
+      "description": "Replace `src/config/routes.ts` with `src/config/nav.config.ts`. Delete routes.ts and update imports.",
+      "pattern": "config/routes",
+      "searchPaths": ["src/"],
+      "toVersion": "0.4.0-beta"
+    },
+    {
+      "title": "Verify image rendering after Astro 6 beta.20 upgrade",
+      "description": "Astro 6 changed image defaults: cropping is now enabled by default and images are never upscaled. Visually verify hero images, blog post images, and OG images render correctly. If images appear cropped unexpectedly, add `fit: 'contain'` to your Image components.",
+      "fromVersion": "0.4.0-beta",
+      "toVersion": "0.5.0-beta"
+    },
+    {
+      "title": "Check heading anchor links in MDX content",
+      "description": "Astro 6 changed the heading ID generation algorithm. If you have internal links to heading anchors (e.g., `#my-heading`), verify they still resolve correctly after the upgrade.",
+      "fromVersion": "0.4.0-beta",
+      "toVersion": "0.5.0-beta"
+    },
+    {
+      "title": "Review script and style ordering",
+      "description": "Astro 6 now renders `<script>` and `<style>` tags in definition order instead of grouping them. If you have custom components with scripts that depend on specific load ordering, verify they still work correctly.",
+      "fromVersion": "0.4.0-beta",
+      "toVersion": "0.5.0-beta"
+    },
+    {
+      "title": "Upgrade Vitest to v3.2+",
+      "description": "Astro 6 bundles Vite 7, which requires Vitest 3.2+. The dependency update handles the version bump, but if you have a vitest.config.ts or custom Vitest configuration, review the Vitest 3 migration guide: https://vitest.dev/guide/migration.html",
+      "fromVersion": "0.4.0-beta",
+      "toVersion": "0.5.0-beta"
+    },
+    {
+      "title": "Verify @astrojs/check stable compatibility",
+      "description": "The @astrojs/check package has been upgraded from 0.9.7-beta.1 to 0.9.7 stable. Run `pnpm check` to verify your project passes type checking with the stable release.",
+      "fromVersion": "0.5.0-beta",
+      "toVersion": "1.0.0"
+    },
+    {
+      "title": "Confirm all beta packages are replaced with stable releases",
+      "description": "All Astro packages have moved from beta to stable: astro 6.0.0, @astrojs/mdx 5.0.0, @astrojs/react 5.0.0. Run `pnpm install && pnpm build` to verify compatibility. No code changes should be needed — this is a dependency-only upgrade.",
+      "fromVersion": "0.5.0-beta",
+      "toVersion": "1.0.0"
+    },
+    {
+      "title": "Restore --color-background-deep if used",
+      "description": "The CSS variable `--color-background-deep` was removed from global.css, default.css, and midnight.css. If your components reference this token (e.g., Showcase, MarketingFooter), add it back to your theme files: `--color-background-deep: oklch(0.13 0.02 260);`",
+      "pattern": "--color-background-deep",
+      "searchPaths": ["src/"],
+      "fromVersion": "0.5.0-beta",
+      "toVersion": "1.0.0"
+    },
+    {
+      "title": "Restore heading font-size rules if needed",
+      "description": "Base `h1`–`h6` font-size rules were removed from global.css. If your pages rely on these global heading sizes rather than Tailwind utility classes, add them back to your own stylesheet.",
+      "pattern": "<h[1-6]",
+      "searchPaths": ["src/pages/", "src/components/landing/", "src/content/"],
+      "fromVersion": "0.5.0-beta",
+      "toVersion": "1.0.0"
+    },
+    {
+      "title": "Header max-width changed from max-w-6xl to max-w-4xl",
+      "description": "The floating header variant changed its max-width from `max-w-6xl` to `max-w-4xl`. If your layout depends on the wider header, override this in your Header component or layout.",
+      "pattern": "max-w-6xl",
+      "searchPaths": ["src/components/layout/", "src/layouts/"],
+      "fromVersion": "0.5.0-beta",
+      "toVersion": "1.0.0"
+    }
+  ]
+}

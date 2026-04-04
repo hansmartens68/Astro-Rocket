@@ -1,0 +1,7 @@
+{
+  "question": "What is Astro Rocket?",
+  "answer": "Astro Rocket is a free, open-source website theme built on Astro 6 and Tailwind CSS v4. It includes a full component library, a blog with MDX support, built-in dark mode, SEO, and everything else you need to ship a fast, modern website without starting from scratch.",
+  "category": "general",
+  "order": 1,
+  "locale": "en"
+}

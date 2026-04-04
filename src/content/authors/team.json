@@ -1,0 +1,9 @@
+{
+  "name": "Astro Rocket",
+  "bio": "Astro Rocket is a free, open-source Astro 6 starter theme. Built for speed, accessibility, and developer experience — clone it and start shipping.",
+  "social": {
+    "github": "https://github.com",
+    "linkedin": "https://linkedin.com",
+    "twitter": "https://x.com"
+  }
+}
