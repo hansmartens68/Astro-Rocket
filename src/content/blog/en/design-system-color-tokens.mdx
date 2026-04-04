@@ -91,7 +91,7 @@ Component tokens inherit this automatically because they point to semantic token
 
 ## Changing the brand colour
 
-The entire brand colour system lives in one place: `src/styles/tokens.css`. To switch from lime to, say, violet:
+The base brand colour scale lives in `src/styles/tokens/primitives.css`. To switch from lime to, say, violet:
 
 **1. Add or verify your reference tokens exist:**
 
@@ -138,4 +138,4 @@ The token system is not an abstraction for its own sake. It has three concrete b
 
 **Dark mode for free** — because all colours are semantic, every new component you build inherits dark mode automatically as long as you use token-based utilities rather than hardcoded values.
 
-The next time you want to adjust the site's look — a slightly different brand hue, a tighter border radius, a different heading weight — start in `tokens.css`. The change will be smaller than you expect.
+The next time you want to adjust the site's look — a slightly different brand hue, a tighter border radius, a different heading weight — start in `src/styles/tokens/primitives.css` or the relevant theme file in `src/styles/themes/`. The change will be smaller than you expect.
