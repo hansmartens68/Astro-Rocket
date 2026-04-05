@@ -189,7 +189,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
       <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
         {featuredProjects.map((project) => (
-          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} data-astro-reload class="group flex flex-col">
+          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
             <div class="flex flex-1 flex-col">
               <div class="mb-3 flex items-start justify-between gap-4">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
