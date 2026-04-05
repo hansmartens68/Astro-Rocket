@@ -102,7 +102,8 @@ const sizes = {
 
 <script>
   function initDialogs() {
-    document.querySelectorAll<HTMLElement>('[data-dialog]').forEach((dialog) => {
+    const dialogs = document.querySelectorAll<HTMLElement>('[data-dialog]');
+    dialogs.forEach((dialog) => {
       if (dialog.dataset.dialogInit) return;
       dialog.dataset.dialogInit = 'true';
 

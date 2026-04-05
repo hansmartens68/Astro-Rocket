@@ -399,7 +399,8 @@ const defaultTab = tabs.find(t => t.id === defaultValue);
 
 <script>
   function initVerticalTabs() {
-    document.querySelectorAll<HTMLElement>('[data-vtabs]').forEach((container) => {
+    const vtabContainers = document.querySelectorAll<HTMLElement>('[data-vtabs]');
+    vtabContainers.forEach((container) => {
       if (container.dataset.vtabsInit) return;
       container.dataset.vtabsInit = 'true';
 

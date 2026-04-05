@@ -99,7 +99,8 @@ const themes = [
     try { sessionStorage.setItem(STORAGE_KEY, id); } catch { /* private mode */ }
 
     // Update every swatch on the page (handles multiple selector instances)
-    document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
+    const swatches = document.querySelectorAll<HTMLButtonElement>('.theme-swatch');
+    swatches.forEach((btn) => {
       if (btn.dataset.themeId === id) {
         btn.setAttribute('data-active', '');
       } else {
@@ -111,7 +112,8 @@ const themes = [
   function initThemeSelector() {
     const active = getActiveTheme();
 
-    document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
+    const activeSwatches = document.querySelectorAll<HTMLButtonElement>('.theme-swatch');
+    activeSwatches.forEach((btn) => {
       // Mark current active
       if (btn.dataset.themeId === active) {
         btn.setAttribute('data-active', '');

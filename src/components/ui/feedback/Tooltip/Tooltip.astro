@@ -35,7 +35,8 @@ const { content, position = 'top', delay = 200, class: className, ...attrs } = A
 
 <script>
   function initTooltips() {
-    document.querySelectorAll<HTMLElement>('[data-tooltip]').forEach((wrapper) => {
+    const tooltips = document.querySelectorAll<HTMLElement>('[data-tooltip]');
+    tooltips.forEach((wrapper) => {
       if (wrapper.dataset.tooltipInit) return;
       wrapper.dataset.tooltipInit = 'true';
 

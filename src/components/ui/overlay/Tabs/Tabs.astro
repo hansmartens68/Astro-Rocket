@@ -58,7 +58,8 @@ const { tabs, defaultValue = tabs[0]?.id, class: className } = Astro.props;
 
 <script>
   function initTabs() {
-    document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((container) => {
+    const tabContainers = document.querySelectorAll<HTMLElement>('[data-tabs]');
+    tabContainers.forEach((container) => {
       if (container.dataset.tabsInit) return;
       container.dataset.tabsInit = 'true';
 
