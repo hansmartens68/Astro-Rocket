@@ -128,6 +128,7 @@ astro-rocket/
 │   │   └── landing/         # Landing page components
 │   ├── content/             # Content collections
 │   │   ├── blog/            # Blog posts (en/, es/, fr/)
+│   │   ├── projects/        # Portfolio project pages
 │   │   ├── authors/         # Author profiles
 │   │   └── faqs/            # FAQ entries
 │   ├── layouts/             # Page layouts
