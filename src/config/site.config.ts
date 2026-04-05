@@ -74,7 +74,7 @@ const siteConfig: SiteConfig = {
   },
   socialLinks: [
     'https://github.com/hansmartens68/Astro-Rocket',
-    'https://instagram.com',
+    'https://linkedin.com',
     'https://x.com',
   ],
   twitter: {
