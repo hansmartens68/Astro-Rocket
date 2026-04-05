@@ -132,7 +132,8 @@ const themes = [
     try { sessionStorage.setItem(STORAGE_KEY, id); } catch { /* private mode */ }
 
     // Update dropdown swatches
-    document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
+    const ddSwatches = document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd');
+    ddSwatches.forEach((btn) => {
       if (btn.dataset.themeId === id) {
         btn.setAttribute('data-active', '');
       } else {
@@ -141,7 +142,8 @@ const themes = [
     });
 
     // Also sync flat ThemeSelector swatches (mobile menu)
-    document.querySelectorAll<HTMLButtonElement>('.theme-swatch').forEach((btn) => {
+    const flatSwatches = document.querySelectorAll<HTMLButtonElement>('.theme-swatch');
+    flatSwatches.forEach((btn) => {
       if (btn.dataset.themeId === id) {
         btn.setAttribute('data-active', '');
       } else {
@@ -170,7 +172,8 @@ const themes = [
     const active = getActiveTheme();
 
     // Mark active swatch
-    document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd').forEach((btn) => {
+    const activeDdSwatches = document.querySelectorAll<HTMLButtonElement>('.theme-swatch-dd');
+    activeDdSwatches.forEach((btn) => {
       if (btn.dataset.themeId === active) {
         btn.setAttribute('data-active', '');
       } else {

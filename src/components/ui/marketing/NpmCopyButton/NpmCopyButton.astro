@@ -53,7 +53,8 @@ const sizes = {
 
 <script>
   function initCopyButtons() {
-    document.querySelectorAll<HTMLButtonElement>('[data-npm-copy]').forEach((button) => {
+    const npmCopyButtons = document.querySelectorAll<HTMLButtonElement>('[data-npm-copy]');
+    npmCopyButtons.forEach((button) => {
       if (button.dataset.initialized) return;
       button.dataset.initialized = 'true';
 

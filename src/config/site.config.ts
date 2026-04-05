@@ -64,22 +64,21 @@ const siteConfig: SiteConfig = {
   url: SITE_URL || 'https://astrorocket.dev',
   ogImage: '/og-default.svg',
   author: 'Hans Martens',
-  email: 'hello@yoursite.com',
+  email: 'hello@hansmartens.dev',
   address: {
     street: '',
-    city: 'Your City',
+    city: 'Veghel',
     state: '',
     zip: '',
-    country: 'Your Country',
+    country: 'the Netherlands',
   },
   socialLinks: [
     'https://github.com/hansmartens68/Astro-Rocket',
-    'https://linkedin.com',
-    'https://x.com',
+    'https://x.com/hansmartens_dev',
   ],
   twitter: {
-    site: 'https://x.com',
-    creator: 'Astro Rocket',
+    site: 'https://x.com/hansmartens_dev',
+    creator: '@hansmartens_dev',
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,

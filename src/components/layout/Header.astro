@@ -435,7 +435,8 @@ const buttonId = `${menuId}-button`;
 
 <script>
   function initMobileMenu() {
-    document.querySelectorAll<HTMLElement>('header[data-menu-id]').forEach((header) => {
+    const menuHeaders = document.querySelectorAll<HTMLElement>('header[data-menu-id]');
+    menuHeaders.forEach((header) => {
       const menuId = header.dataset.menuId!;
       const buttonId = header.dataset.buttonId!;
       const isFloating = header.dataset.headerShape === 'floating';
@@ -573,7 +574,8 @@ const buttonId = `${menuId}-button`;
   const BAR_SCROLLED_CLASSES = ['bg-background/80', 'backdrop-blur-lg', 'border-b', 'border-border/50'];
 
   function initScrollWatcher() {
-    document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"], header[data-header-shape="bar"]').forEach((header) => {
+    const scrollHeaders = document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"], header[data-header-shape="bar"]');
+    scrollHeaders.forEach((header) => {
       if (header.dataset.scrollInit) return;
       header.dataset.scrollInit = 'true';
 
