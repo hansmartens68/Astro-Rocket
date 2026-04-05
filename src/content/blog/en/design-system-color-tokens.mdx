@@ -1,0 +1,141 @@
+---
+title: "How Astro Rocket's Design System Works — Tokens, Colors, and Dark Mode"
+description: "Astro Rocket uses a three-tier token architecture with OKLCH colors. Change one value and the entire site updates. Here's how it works and how to make it yours."
+publishedAt: 2026-03-16
+author: "Hans Martens"
+tags: ["astro-rocket", "design-system", "tailwind", "customization", "tutorial"]
+featured: false
+locale: en
+image: "../../../assets/blog/design-system-color-tokens.svg"
+svgSlug: "design-system-color-tokens"
+imageAlt: "Palette icon above the words 'design system' on a dark background"
+---
+
+Most themes give you a stylesheet full of hardcoded values. Change the brand colour and you are hunting through dozens of files. Astro Rocket works differently — one change propagates everywhere, instantly, in both light and dark mode.
+
+The reason is a three-tier token architecture. Understanding it takes ten minutes. Using it makes every customisation faster and more consistent.
+
+## The three-tier architecture
+
+Tokens are organised in three layers, each building on the one below.
+
+### Tier 1 — Reference tokens
+
+Reference tokens are raw values: specific colors, sizes, radii. They have no semantic meaning — they just define the palette.
+
+```css
+--color-lime-500: oklch(0.768 0.233 130.85);
+--color-lime-600: oklch(0.702 0.213 130.85);
+```
+
+You rarely touch these directly. They are the raw material.
+
+### Tier 2 — Semantic tokens
+
+Semantic tokens map intent to reference values. `--color-brand-500` does not know what hex value it holds — it knows what role it plays.
+
+```css
+:root {
+  --color-brand-500: var(--color-lime-500);
+  --color-brand-600: var(--color-lime-600);
+}
+```
+
+This is the layer you edit when switching themes. Change which reference token feeds into `--color-brand-500` and every button, link, badge, and highlight on the entire site updates in one move.
+
+### Tier 3 — Component tokens
+
+Component tokens are scoped to specific UI elements. The button does not reach for `--color-brand-500` directly — it uses `--btn-primary-bg`, which itself points to `--color-brand-500`.
+
+```css
+--btn-primary-bg: var(--color-brand-500);
+--btn-primary-bg-hover: var(--color-brand-600);
+```
+
+This means you can restyle a single component without disturbing anything else. Change `--btn-primary-bg` and only buttons change. The badge, the logo highlight, the link colour — all untouched.
+
+## Why OKLCH
+
+Astro Rocket uses [OKLCH](https://oklch.com/) for all colour values instead of hex or HSL.
+
+OKLCH describes colour in three dimensions: lightness (`L`), chroma (`C`), and hue (`H`). The key advantage is perceptual uniformity — two colours with the same `L` value look equally bright to the human eye. Hex and HSL do not guarantee this, which is why manually constructed palettes often look uneven.
+
+In practice, this means the design token palette stays visually consistent across the full range of shades without manual correction. Dark mode colours remain readable. Brand accents stay vivid without looking garish.
+
+```css
+/* The same hue (130.85°) across lightness levels stays visually balanced */
+--color-lime-300: oklch(0.897 0.181 130.85);
+--color-lime-500: oklch(0.768 0.233 130.85);
+--color-lime-700: oklch(0.593 0.174 130.85);
+```
+
+## Dark mode through tokens
+
+Dark mode in Astro Rocket is not a separate stylesheet. It is the same token system with different values applied under the `.dark` selector.
+
+```css
+:root {
+  --color-background: oklch(0.98 0 0);
+  --color-foreground: oklch(0.15 0 0);
+}
+
+.dark {
+  --color-background: oklch(0.10 0.02 265);
+  --color-foreground: oklch(0.95 0 0);
+}
+```
+
+When the `dark` class is toggled on `<html>`, every semantic token remaps simultaneously. No JavaScript. No style recalculation cascade. One class change, entire site repaints.
+
+Component tokens inherit this automatically because they point to semantic tokens. `--btn-primary-bg` → `--color-brand-500` → correct value for the active mode. Nothing in the component layer needs to know about dark mode at all.
+
+## Changing the brand colour
+
+The base brand colour scale lives in `src/styles/tokens/primitives.css`. To switch from lime to, say, violet:
+
+**1. Add or verify your reference tokens exist:**
+
+```css
+--color-violet-500: oklch(0.606 0.258 292.72);
+--color-violet-600: oklch(0.541 0.229 292.72);
+```
+
+**2. Remap the semantic brand tokens:**
+
+```css
+:root {
+  --color-brand-500: var(--color-violet-500);
+  --color-brand-600: var(--color-violet-600);
+}
+```
+
+That is the complete change. Every button, link, badge, logo badge, favicon letter, and highlighted text across the entire site now uses violet — in both light and dark mode — without touching a single component file.
+
+The `themeColor` value in `site.config.ts` controls the browser's `<meta name="theme-color">` tag (the mobile browser chrome colour) and should be updated to match:
+
+```ts
+themeColor: '#7c3aed', // violet-600 as hex for browser chrome
+```
+
+## The Tailwind connection
+
+Astro Rocket uses Tailwind CSS v4, which reads CSS custom properties directly. The `brand-500` utility class maps to `--color-brand-500` — no `tailwind.config.js` entry required.
+
+```html
+<!-- This reads --color-brand-500 automatically -->
+<span class="text-brand-500">highlighted text</span>
+```
+
+When you update the semantic token, the Tailwind utility updates with it. You do not need to touch the templates.
+
+## What this means in practice
+
+The token system is not an abstraction for its own sake. It has three concrete benefits:
+
+**Single source of truth** — brand colour, spacing scale, border radius, and typography sizes are all defined once. Inconsistencies cannot creep in because there is only one value to change.
+
+**Safe component customisation** — you can restyle a specific component at the component token level without risking side effects elsewhere. The blast radius of any change is exactly as large as you intend.
+
+**Dark mode for free** — because all colours are semantic, every new component you build inherits dark mode automatically as long as you use token-based utilities rather than hardcoded values.
+
+The next time you want to adjust the site's look — a slightly different brand hue, a tighter border radius, a different heading weight — start in `src/styles/tokens/primitives.css` or the relevant theme file in `src/styles/themes/`. The change will be smaller than you expect.

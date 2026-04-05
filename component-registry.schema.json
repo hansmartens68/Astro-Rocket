@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hansmartens68/astro--rocket/component-registry.schema.json",
+  "title": "Astro Rocket Component Registry",
+  "description": "Schema for the Astro Rocket component registry",
+  "type": "object",
+  "required": ["version", "categories", "utilities", "components"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON schema reference"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Registry version (semver)"
+    },
+    "categories": {
+      "type": "object",
+      "description": "Component categories",
+      "additionalProperties": {
+        "$ref": "#/$defs/category"
+      }
+    },
+    "utilities": {
+      "type": "object",
+      "description": "Shared utility files",
+      "additionalProperties": {
+        "$ref": "#/$defs/utility"
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Component definitions",
+      "additionalProperties": {
+        "$ref": "#/$defs/component"
+      }
+    }
+  },
+  "$defs": {
+    "category": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name of the category"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the category"
+        }
+      }
+    },
+    "utility": {
+      "type": "object",
+      "required": ["name", "description", "files", "npm"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name of the utility"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the utility"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File paths for this utility"
+        },
+        "npm": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "NPM packages required by this utility"
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "required": ["name", "category", "files", "dependencies", "premium"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name of the component"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category ID this component belongs to"
+        },
+        "subcategory": {
+          "type": "string",
+          "description": "Subcategory within the main category (e.g., form, data-display, feedback)"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File paths for this component"
+        },
+        "dependencies": {
+          "type": "object",
+          "required": ["utilities", "components"],
+          "properties": {
+            "utilities": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Utility IDs this component depends on"
+            },
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Component IDs this component depends on"
+            }
+          }
+        },
+        "premium": {
+          "type": "boolean",
+          "description": "Whether this is a premium component"
+        }
+      }
+    }
+  }
+}

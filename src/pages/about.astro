@@ -1,0 +1,190 @@
+---
+/**
+ * About page
+ * URL: /about
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
+import TechStack from '@/components/landing/TechStack.astro';
+import siteConfig from '@/config/site.config';
+
+const location = siteConfig.address?.city
+  ? `${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}`
+  : null;
+---
+<PageLayout
+  title={`About — ${siteConfig.name}`}
+  description="Astro Rocket is a production-ready Astro 6 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="user" size="sm" />
+      About me
+    </Badge>
+    <h1 slot="title">
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
+        <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Claude Code User", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
+      </span>
+    </h1>
+
+    <p slot="description">
+      I care about both sides of the craft — how a site looks and how it
+      performs. Here's a bit more about how I think and work.
+    </p>
+  </Hero>
+  <!-- What's possible now -->
+  <section class="py-[var(--space-section-md)] bg-brand-500/8 dark:bg-background-secondary">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <!-- Left: text -->
+        <div class="flex flex-col gap-4" data-reveal>
+          <div class="flex flex-col gap-6">
+            <Badge variant="brand" pill class="self-start">The partnership</Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Meet the team: Astro Rocket & Claude
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+           I'm a web designer and developer with 16 years of hands‑on experience. Today I work alongside Claude — not as a shortcut, but as a genuine collaborator that helps me think through design decisions, review code, and build more thoroughly than I could alone.
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed">
+            This isn't about automating the work — it's about raising the standard of it. Every design decision still comes from craft and experience. Every line of code is still written with intention. Claude helps me think more rigorously, not less. The work stays mine. The thinking gets sharper.
+          </p>
+        </div>
+        <!-- Right: two stacked partner cards -->
+        <div class="flex flex-col gap-4 h-full" data-reveal data-reveal-delay="1">
+          <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="code-2" size="md" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">Web Designer & Developer</p>
+                <h3 class="text-base font-semibold text-foreground">Astro Rocket</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  16 years of craft — design, code, performance, and honest communication.{location ? ` Based in ${location}, working worldwide.` : ' Working worldwide.'}
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Astro</Badge>
+                  <Badge size="sm" variant="brand">Tailwind</Badge>
+                  <Badge size="sm" variant="brand">TypeScript</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+          <Card variant="elevated" hover href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex-1 flex flex-col justify-center">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-4 flex-1 min-w-0">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                  <Icon name="sparkles" size="md" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-bold tracking-wide casesensitive text-foreground-muted mb-1">AI Thinking Partner</p>
+                <h3 class="text-base font-semibold text-foreground">Claude</h3>
+                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                  Reasoning through decisions, reviewing code and copy, exploring alternatives — a second perspective at every stage of a project.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <Badge size="sm" variant="brand">Design review</Badge>
+                  <Badge size="sm" variant="brand">Code QA</Badge>
+                  <Badge size="sm" variant="brand">Deep thinking</Badge>
+                </div>
+              </div>
+              </div>
+              <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Values -->
+  <section class="py-[var(--space-section-md)] border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>My Process</Badge>
+          <h2 class="font-display text-4xl font-bold text-foreground">
+            How I Work
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
+        </p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3" data-reveal data-reveal-delay="1">
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="zap" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Performance First</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Fast sites rank better, convert better, and keep users happy. I optimise for speed from the ground up.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="award" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Experience That Shows</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Sixteen years of experience means I know what works, what doesn't, and exactly what your project needs.
+              </p>
+            </div>
+          </div>
+        </Card>
+        <Card hover>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+              <Icon name="rocket" size="md" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-base font-semibold text-foreground">Modern from the Ground Up</h3>
+              <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
+                Built with today's tooling. Fast, maintainable, and ready for whatever comes next.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+  <!-- My Stack -->
+  <TechStack
+    badge="Tools & Tech"
+    title="My Stack"
+    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
+  />
+  <!-- CTA -->
+  <section class="py-[var(--space-section-md)] bg-background">
+    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Sound like a good fit?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        If my background and approach match what you're looking for, I'm open to new projects. Let's have a conversation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Start a Project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/blog">
+          Read the Blog
+        </Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>

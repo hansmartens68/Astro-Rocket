@@ -1,0 +1,55 @@
+---
+/**
+ * MarketingLayout
+ * Layout wrapper for marketing pages with floating capsule header
+ * Uses Header shape="floating" for a distinctive visual identity
+ */
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  includeOrgSchema?: boolean;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  noindex = false,
+  nofollow = false,
+  includeOrgSchema = false,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  imageAlt={imageAlt}
+  noindex={noindex}
+  nofollow={nofollow}
+  includeOrgSchema={includeOrgSchema}
+>
+  <Header
+    slot="header"
+    shape="bar"
+    variant="solid"
+    position="fixed"
+    colorScheme="default"
+    showLanguageSwitcher={false}
+    showCta={false}
+    cta={{ label: 'Start a Project', href: '/contact' }}
+  />
+
+  <slot />
+
+  <Footer slot="footer" layout="simple" background="secondary" />
+</BaseLayout>

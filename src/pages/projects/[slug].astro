@@ -1,0 +1,40 @@
+---
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection('projects', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+
+  return allProjects.map((project) => ({
+    params: { slug: project.id.replace(/\.mdx?$/, '') },
+    props: {
+      project,
+      related: allProjects
+        .filter((p) => p.id !== project.id)
+        .slice(0, 3),
+    },
+  }));
+}
+
+const { project, related } = Astro.props;
+const { Content } = await render(project);
+---
+
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+  year={project.data.year}
+  client={project.data.client}
+  role={project.data.role}
+  services={project.data.services}
+  url={project.data.url}
+  repo={project.data.repo}
+  tags={project.data.tags}
+  image={project.data.image}
+  imageAlt={project.data.imageAlt}
+  related={related}
+>
+  <Content />
+</ProjectLayout>

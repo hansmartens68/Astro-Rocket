@@ -1,0 +1,136 @@
+---
+title: "Why Astro Rocket Uses sessionStorage for Dark Mode (Not localStorage)"
+description: "Dark mode is the default experience in Astro Rocket — and that's a deliberate design decision. Here's the reasoning, the code, and exactly how to change it."
+publishedAt: 2026-03-15
+author: "Hans Martens"
+tags: ["dark-mode", "astro-rocket", "design", "tutorial"]
+featured: false
+locale: en
+image: "../../../assets/blog/dark-mode-sessionstorage.svg"
+svgSlug: "dark-mode-sessionstorage"
+imageAlt: "Split panel showing dark mode on the left with a moon and sessionStorage badge, and light mode on the right with a sun and localStorage badge"
+---
+
+Most dark mode implementations ask: "what did the user last choose?" Astro Rocket asks a different question: "what is the right default for this site?" The answer is dark — always — and `sessionStorage` is the technical expression of that decision.
+
+This post explains the reasoning, shows exactly how the implementation works, and gives you the precise code to change it if your own site calls for something different.
+
+
+## The design decision
+
+Dark mode is not a fallback for Astro Rocket. It is the primary visual experience. The typography, colour palette, and contrast ratios were all designed and tested in dark mode first. Light mode works and is fully supported, but the site is at its best in the dark.
+
+`sessionStorage` encodes this intent precisely. The site always loads in dark mode. If a visitor switches to light during a session, that preference is respected for the duration of that visit. When they open a new tab or return the next day, they are back in the dark — the designed state.
+
+`localStorage` would say "your last choice is always right." `sessionStorage` says "dark is the default; light is available when you need it." For this site, that distinction matters.
+
+## How it works
+
+The implementation has three parts.
+
+### 1. The HTML default
+
+`BaseLayout.astro` renders the `<html>` element with `class="dark"` baked in:
+
+```html
+<html lang="en" class="scroll-smooth dark" data-theme="blue">
+```
+
+This means the server always sends dark markup. There is no flash of an incorrect theme on load, regardless of what any script does next.
+
+### 2. The inline script (before first paint)
+
+An inline `<script is:inline>` runs immediately in `<head>`, before the browser paints anything. It checks `sessionStorage` and removes the `dark` class only if the visitor explicitly chose light in this session:
+
+```js
+if (sessionStorage.getItem('theme') === 'light') {
+  el.classList.remove('dark');
+} else {
+  el.classList.add('dark'); // dark is the default — always
+}
+```
+
+Because `dark` is the HTML default and the script only removes it, there is no flash in either direction. Dark-mode visitors see dark immediately. Light-mode visitors see light immediately, with a single class removal so fast it is invisible.
+
+### 3. The toggle
+
+`ThemeToggle.astro` writes to `sessionStorage` on each click:
+
+```js
+toggle.addEventListener('click', () => {
+  const isDark = document.documentElement.classList.contains('dark');
+
+  if (isDark) {
+    document.documentElement.classList.remove('dark');
+    sessionStorage.setItem('theme', 'light');
+  } else {
+    document.documentElement.classList.add('dark');
+    sessionStorage.removeItem('theme'); // dark needs no storage — it is the default
+  }
+});
+```
+
+Note that switching back to dark removes the key entirely rather than storing `'dark'`. Dark does not need to be remembered — it is what the site is.
+
+## How to switch to localStorage
+
+If you are building a site for a general audience and want the user's preference to persist across sessions, two small changes are all it takes.
+
+**In `BaseLayout.astro`**, change the inline script's storage check:
+
+```js
+// Before
+if (sessionStorage.getItem('theme') === 'light') {
+
+// After
+if (localStorage.getItem('theme') === 'light') {
+```
+
+**In `ThemeToggle.astro`**, update both reads and writes in the click handler:
+
+```js
+// Before
+sessionStorage.setItem('theme', 'light');
+sessionStorage.removeItem('theme');
+
+// After
+localStorage.setItem('theme', 'light');
+localStorage.removeItem('theme');
+```
+
+That is the complete change. The toggle now remembers the user's choice permanently — across tabs, across sessions, across visits.
+
+## The third option: respect the OS preference
+
+If you want to defer entirely to the user's operating system setting — the most widely recommended approach for general-purpose sites — replace the `sessionStorage` check in `BaseLayout.astro` with a `prefers-color-scheme` media query:
+
+```js
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const stored = localStorage.getItem('theme');
+
+if (stored === 'light' || (!stored && !prefersDark)) {
+  el.classList.remove('dark');
+} else {
+  el.classList.add('dark');
+}
+```
+
+This gives you a layered fallback: a stored preference wins if it exists; otherwise the OS setting is used. A visitor who has set their system to light mode gets light mode automatically. One who has set it to dark gets dark. The toggle still works and overrides both.
+
+This is the right pattern for a site with a broad, unknown audience. It is more work to maintain, but it is the most respectful of user intent.
+
+## Which approach is right for your site?
+
+| | sessionStorage | localStorage | OS preference |
+|---|---|---|---|
+| Dark is always the default | ✓ | only if set first | depends on system |
+| No flash on load | ✓ | ✓ | ✓ |
+| Preference survives new tab | ✗ | ✓ | n/a |
+| Preference survives next visit | ✗ | ✓ | n/a |
+| Respects OS dark/light setting | ✗ | ✗ | ✓ |
+| Best for opinionated design sites | ✓ | — | — |
+| Best for general-audience sites | — | ✓ | ✓ |
+
+Astro Rocket uses `sessionStorage` because the site has a clear visual identity and dark mode is part of it. If you are building a business site, a documentation portal, or anything serving a broad audience, `localStorage` or OS preference is the more considerate default.
+
+The code is yours. Change two lines and it behaves exactly the way your users expect.

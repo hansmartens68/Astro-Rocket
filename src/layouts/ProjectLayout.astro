@@ -1,0 +1,152 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import Breadcrumbs from '@/components/seo/Breadcrumbs.astro';
+import ProjectHero from '@/components/projects/ProjectHero.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import siteConfig from '@/config/site.config';
+
+interface Props {
+  title: string;
+  description: string;
+  year?: number;
+  client?: string;
+  role?: string;
+  services?: string[];
+  url?: string;
+  repo?: string;
+  tags?: string[];
+  image?: ImageMetadata;
+  imageAlt?: string;
+  related?: CollectionEntry<'projects'>[];
+}
+
+const {
+  title,
+  description,
+  year,
+  client,
+  role,
+  services = [],
+  url,
+  repo,
+  tags = [],
+  image,
+  imageAlt,
+  related = [],
+} = Astro.props;
+
+const ogImage = image?.src || siteConfig.ogImage;
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects' },
+  { label: title },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  imageAlt={imageAlt || title}
+>
+  <Header
+    slot="header"
+    position="fixed"
+    shape="bar"
+    variant="solid"
+    size="lg"
+    showThemeSelector
+    showCta={false}
+    showScrollProgress
+  />
+
+  <div class="min-h-screen pt-16">
+    <ProjectHero
+      title={title}
+      description={description}
+      tags={tags}
+      year={year}
+      client={client}
+      role={role}
+      services={services}
+      url={url}
+      repo={repo}
+      image={image}
+      imageAlt={imageAlt}
+    />
+
+    <article class="pt-8 pb-[var(--space-section-md)]">
+      <div class="mx-auto max-w-4xl px-6">
+        <Breadcrumbs items={breadcrumbs} class="mb-8" />
+
+        {services.length > 0 && (
+          <div class="mb-10 flex flex-wrap gap-2 pb-10 border-b border-border" data-reveal>
+            {services.map((service) => (
+              <Badge variant="brand">{service}</Badge>
+            ))}
+          </div>
+        )}
+
+        <div class="prose prose-lg max-w-none">
+          <slot />
+        </div>
+
+        <footer class="border-border mt-12 border-t pt-8" data-reveal>
+          <a
+            href="/projects"
+            class="text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center gap-2 text-sm font-medium transition-colors"
+          >
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Projects
+          </a>
+        </footer>
+      </div>
+    </article>
+
+    {related.length > 0 && (
+      <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border" data-reveal>
+        <div class="mx-auto max-w-4xl px-6">
+          <h2 class="font-display text-2xl font-bold text-foreground mb-6">More projects</h2>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((project) => (
+              <Card
+                variant="elevated"
+                hover
+                padding="lg"
+                href={`/projects/${project.id.replace(/\.mdx?$/, '')}`}
+                class="group flex flex-col"
+              >
+                <div class="flex flex-1 flex-col">
+                  <div class="mb-3 flex items-start justify-between gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                      <Icon name="layers" size="sm" />
+                    </div>
+                    <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+                  </div>
+                  <div class="mb-2 flex items-baseline gap-2">
+                    <h3 class="font-display text-base font-bold text-foreground">{project.data.title}</h3>
+                    {project.data.year && (
+                      <span class="text-xs text-foreground-muted">{project.data.year}</span>
+                    )}
+                  </div>
+                  <p class="text-sm text-foreground-muted leading-relaxed flex-1">{project.data.description}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </div>
+
+  <Footer slot="footer" layout="simple" background="secondary" />
+</BaseLayout>

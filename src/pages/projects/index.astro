@@ -1,0 +1,96 @@
+---
+/**
+ * Projects page
+ * URL: /projects
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { Hero } from '@/components/hero';
+import { getCollection } from 'astro:content';
+
+const items = await getCollection('projects', ({ data }) => !data.draft);
+const projects = items.sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Projects — Astro Rocket"
+  description="Selected work — websites, tools, and open-source projects built by Astro Rocket."
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="layers" size="sm" />
+      Selected work
+    </Badge>
+
+    <h1 slot="title">Projects</h1>
+
+    <p slot="description">
+      Work I'm most proud of.
+    </p>
+  </Hero>
+
+  <!-- All projects -->
+  {projects.length > 0 && (
+    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+      <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+
+        <div class="grid gap-6 md:grid-cols-2" data-reveal>
+          {projects.map((project) => (
+            <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
+              <div class="flex flex-1 flex-col">
+                <!-- Header -->
+                <div class="mb-3 flex items-start justify-between gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                    <Icon name="layers" size="sm" />
+                  </div>
+                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+                </div>
+
+                <!-- Title + year -->
+                <div class="mb-2 flex items-baseline gap-2">
+                  <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
+                  {project.data.year && (
+                    <span class="text-xs text-foreground-muted">{project.data.year}</span>
+                  )}
+                </div>
+
+                <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5">
+                  {project.data.tags.map((tag) => (
+                    <Badge variant="brand">{tag}</Badge>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+ <!-- CTA -->
+  <section class="py-[var(--space-section-md)] bg-background">
+    <div class="mx-auto max-w-2xl px-6 text-center" data-reveal>
+      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+        Want something like this?
+      </h2>
+      <p class="text-lg text-foreground-muted mb-8 text-balance">
+        I build with the same care and craft you see here. If you've got a project, let's see what we can make together.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button size="lg" href="/contact">
+          Start a project
+          <Icon name="arrow-right" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" href="/about">
+          More about me
+        </Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>

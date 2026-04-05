@@ -1,0 +1,73 @@
+---
+title: "Astro Rocket Is Live — My New Open Source Astro Theme"
+description: "Astro Rocket is a production-ready Astro 6 theme with a full blog, 57 components, 12 colour themes, dark mode, SEO, and a contact form. Free and open source."
+publishedAt: 2026-03-28
+author: "Hans Martens"
+tags: ["astro-rocket", "open-source", "astro", "launch"]
+featured: true
+locale: en
+svgSlug: "astro-rocket-is-live"
+---
+
+I'm so happy to share this: Astro Rocket is live. It's a fully built website theme for Astro 6 and Tailwind CSS v4, and it's free for anyone to use.
+
+Astro Rocket is a fork of [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com) — a powerful Astro boilerplate with a comprehensive design system and component library. All credit to the Southwell Media team for that work. That was the foundation. I built Astro Rocket on top of it with a different goal: a complete website you can launch immediately — you change the text, and your site is ready.
+
+## Who is it for?
+
+Astro Rocket is made for web designers, developers, bloggers, and anyone who needs a portfolio or business website. Every page is already built and styled — you update the text and your site is live.
+
+## What I added to Velocity
+
+Velocity is the foundation. Here's everything I built on top of it:
+
+**Live theme switching with 12 colour themes** — Velocity required editing a CSS import file and rebuilding every time you wanted to change your brand colour. In Astro Rocket, you click one of the 12 colour swatches in the header and everything updates on screen instantly: the logo badge, the blog image gradients, and every brand colour across the site. No file edits, no rebuilds. Once you've settled on a colour, you remove the selector from the header with a single line deletion.
+
+All 12 themes are shown as swatches in the header: Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, and Magenta — Blue is the default. Every theme is based on the official Tailwind CSS colour palette.
+
+**Auto-generated logo badge** — Velocity required a custom logo file. Astro Rocket generates the logo automatically: the first letter of your site name on the active brand colour. It updates live when you switch themes.
+
+**Auto-generated favicon** — no design tools needed. The favicon is an SVG pre-rendered at build time from `site.config.ts` — the same letter, the same colour as your logo badge.
+
+**Blog image gradients** — every blog cover and card uses a brand-colour gradient background that updates live when the active theme changes.
+
+**Unified icon system via Iconify** — Velocity had a basic SVG Icon component. Astro Rocket has a unified `Icon` component with 350+ Lucide UI icons and 3000+ Simple Icons brand icons, all via one component.
+
+**Animated typing effect** — the hero section includes an animated typing effect that cycles through words, with configurable typing and delete speed.
+
+**Full animation library** — smooth page transitions via Astro View Transitions, scroll-triggered counter and score animations, a scroll-reactive header, card hover effects, and a complete set of UI micro-animations for dropdowns, toasts, modals, tab switches, and more. All with full `prefers-reduced-motion` support.
+
+**Scroll progress bar** — a thin 2px brand-coloured line in the header that fills from left to right as you scroll down the page. It's enabled on the homepage (sitting on top of the floating capsule header), the blog index, and individual post pages (both underneath the solid header). Each position is independently configurable via two `Header` props: `showScrollProgress` and `scrollProgressPosition`. [Read the full post](/blog/scroll-progress-bar).
+
+**Dark mode hero gradient** — the homepage hero fades from your active brand colour at the top to pure black at the bottom in dark mode. One prop on the `Hero` component (`gradient`), zero JavaScript, zero impact on light mode. The homepage header is a floating capsule that lets the brand colour bleed through behind it. On all other pages the header is a full-width solid bar. [Read the full post](/blog/dark-mode-hero-gradient).
+
+**sessionStorage for dark mode** — Velocity uses `localStorage`, which stores the user's preference permanently. I deliberately switched this to `sessionStorage`, so every new visitor sees the site the way it was designed: dark. Dark mode is a design choice here, not a user setting. I wrote a [full post explaining why](/blog/dark-mode-sessionstorage).
+
+## What Astro Rocket ships with
+
+Everything from Velocity is still there, and it's all fully integrated:
+
+**A full blog** — built on Astro Content Collections with MDX support. Every post has a typed frontmatter schema, tag filtering, a related posts section, a reading time indicator, and automatically generated Open Graph metadata.
+
+**57 components** — 31 UI components (Button, Input, Card, Badge, Avatar, Table, Tabs, Dialog, Accordion, and more), 7 pattern components (ContactForm, NewsletterForm, StatCard, and more), plus Hero, Header, Footer, BlogCard, ShareButtons, and SEO components.
+
+**A complete SEO layer** — meta tags, Open Graph, Twitter Cards, JSON-LD structured data (WebSite, Organization, BlogPosting, Breadcrumb, FAQ), an auto-generated sitemap, and robots.txt.
+
+**Static OG image** — a single polished default Open Graph image serves as the social preview for all pages and blog posts. No build-time generation required.
+
+**Dark mode without a flash** — dark-first design with sessionStorage (see above), so every new visitor sees the site as intended.
+
+**Contact form and newsletter form** — both connected to Resend for email delivery, with server-side Zod validation and honeypot spam protection.
+
+**One-click deployment** — configuration files for Vercel, Netlify, and Cloudflare Pages are all included.
+
+**Lighthouse 95+** across Performance, Accessibility, Best Practices, and SEO.
+
+## Give it a star on GitHub
+
+It's open source, MIT-licensed, and ready to use.
+
+- **[Astro Rocket on GitHub](https://github.com/hansmartens68/astro-rocket)** — if you find it useful, a star on GitHub is hugely appreciated. It costs you one click and helps other developers discover the theme. Thank you!
+- **[Live demo → astrorocket.dev](https://astrorocket.dev)**
+
+I'm looking forward to seeing what you build with it.

@@ -1,0 +1,75 @@
+---
+/**
+ * TechStack — MDX-driven stack showcase
+ *
+ * Content lives in src/content/stack/*.mdx — add, remove, or
+ * edit a tool there without touching this component.
+ */
+import { getCollection } from 'astro:content';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  badge?: string;
+}
+
+const { title, description, badge } = Astro.props;
+
+const items = await getCollection('stack');
+const stack = items.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="border-y border-border bg-background-secondary py-[var(--space-section-md)]">
+  <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+    {(badge || title || description) && (
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        {(badge || title) && (
+          <div class="flex flex-col items-center gap-6">
+            {badge && (
+              <Badge variant="brand" pill>{badge}</Badge>
+            )}
+            {title && (
+              <h2 class="font-display text-4xl font-bold text-foreground">{title}</h2>
+            )}
+          </div>
+        )}
+        {description && (
+          <p class="text-lg text-foreground-muted max-w-2xl mx-auto">{description}</p>
+        )}
+      </div>
+    )}
+    <div class="grid grid-cols-2 gap-[var(--space-content-gap)] md:grid-cols-4" data-reveal data-reveal-delay="1">
+      {stack.map((item) => (
+        <div
+          style={`--tech-color: oklch(${item.data.colorOklch}); --tech-bg: oklch(${item.data.colorOklch} / 0.1);`}
+        >
+          <Card variant="elevated" padding="md" hover={true} href={item.data.url} target="_blank" rel="noopener noreferrer" class="h-full text-center">
+            <div class="flex flex-col items-center gap-[var(--space-stack-sm)]">
+              <div class="tech-icon-wrap">
+                <Icon name={item.data.icon} size="lg" />
+              </div>
+              <span class="font-display text-lg font-bold text-foreground">{item.data.name}</span>
+            </div>
+          </Card>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ─── Shared icon container ─────────────────────────────── */
+  .tech-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-full);
+    color: var(--color-brand-500);
+    background: color-mix(in srgb, var(--color-brand-500) 10%, transparent);
+  }
+</style>

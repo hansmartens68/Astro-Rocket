@@ -1,0 +1,555 @@
+---
+title: "Astro Rocket Configuration — Every Toggle, Theme, and Layout Option Explained"
+description: "A complete walkthrough of Astro Rocket's configuration options: 12 colour themes, OKLCH colours, typography, radius and shadow tokens, header styles, dark mode, and more."
+publishedAt: 2026-03-24
+author: "Hans Martens"
+tags: ["astro-rocket", "configuration", "customization", "themes"]
+featured: false
+locale: en
+image: "../../../assets/blog/astro-rocket-configuration-guide.svg"
+svgSlug: "astro-rocket-configuration-guide"
+imageAlt: "Feature overview graphic for Astro Rocket on a dark background"
+---
+
+Astro Rocket ships configured with sensible defaults. This post documents every meaningful option you can change — what it does, where to find it, and what value to set.
+
+
+## The main config file
+
+Almost everything lives in `src/config/site.config.ts`. Open it and you'll see the full `siteConfig` object. The fields you're most likely to change:
+
+```ts
+name: 'Your Site Name',          // Logo, titles, footer copyright
+description: 'Short description', // Default meta description
+url: 'https://yoursite.com',     // Canonical URLs and sitemap
+author: 'Your Name',
+email: 'hello@yoursite.com',
+```
+
+The `name` field is not cosmetic only — it feeds into structured data, Open Graph tags, and the auto-generated favicon and logo badge. Set it accurately from the start.
+
+### Full site config reference
+
+All fields available in `src/config/site.config.ts`:
+
+| Field | Type | Required | What it does |
+|-------|------|:--------:|--------------|
+| `name` | string | ✓ | Site name — appears in logo, page titles, copyright, and structured data |
+| `description` | string | ✓ | Default meta description used on pages without their own |
+| `url` | string | ✓ | Canonical base URL — used in sitemap, OG tags, and JSON-LD |
+| `ogImage` | string | ✓ | Path to the default fallback OG image |
+| `author` | string | ✓ | Author name for blog posts and Person schema |
+| `email` | string | ✓ | Contact email — used in structured data and the contact form |
+| `phone` | string | — | Phone number for structured data (local business schema) |
+| `address` | object | — | Physical address for structured data — `street`, `city`, `state`, `zip`, `country` |
+| `authorImage` | string | — | Path to author avatar (e.g. `'/avatar.jpg'`) — used in Person schema |
+| `socialLinks` | string[] | — | Social profile URLs — icons resolved automatically |
+| `twitter.site` | string | — | Twitter site handle — populates `twitter:site` meta tag |
+| `twitter.creator` | string | — | Twitter creator handle — populates `twitter:creator` meta tag |
+| `verification.google` | string | — | Google Search Console verification code |
+| `verification.bing` | string | — | Bing Webmaster verification code |
+| `blogImageOverlay` | boolean | — | Brand-colour tint over blog cover images (default: `true`) |
+| `branding.logo.alt` | string | ✓ | Accessible alt text for the logo |
+| `branding.logo.imageUrl` | string | — | Path to a PNG logo — used in Organization schema for rich results |
+| `branding.favicon.svg` | string | ✓ | Path to favicon SVG in `public/` |
+| `branding.colors.themeColor` | hex | ✓ | Browser toolbar colour on mobile Chrome/Safari |
+| `branding.colors.backgroundColor` | hex | ✓ | PWA splash screen background colour |
+
+The `phone` and `address` fields are optional but improve local business structured data — relevant if you're building a site for a business with a physical location. Leave them empty or remove them for a personal site.
+
+## Boolean switches
+
+### Blog image overlay
+
+```ts
+// src/config/site.config.ts
+blogImageOverlay: true,
+```
+
+When `true`, a translucent brand-colour tint is applied over blog cover images. This helps images blend with your theme if they have neutral or mismatched colours. Set it to `false` if your images are already on-brand or if you prefer photographs to appear unaltered.
+
+### Dark mode default
+
+The default mode is set directly in the HTML element in `src/layouts/BaseLayout.astro`:
+
+```html
+<html lang="en" class="scroll-smooth dark" data-theme="blue">
+```
+
+The `dark` class is what activates dark mode on first load. Remove it to default to light:
+
+```html
+<html lang="en" class="scroll-smooth" data-theme="blue">
+```
+
+The user's preference during their session is stored in `sessionStorage` — so it persists while the tab is open but resets when they open a new tab. This is intentional for a portfolio or marketing site. If you want it to persist across sessions, swap the `sessionStorage` calls for `localStorage` in the same file.
+
+### Structured data: schema switches
+
+The landing page (`src/pages/index.astro`) passes three boolean props to `LandingLayout` that control which JSON-LD schemas are injected into the page `<head>`:
+
+```astro
+<LandingLayout
+  includePersonSchema={true}
+  includeOrgSchema={false}
+  includeProfessionalServiceSchema={false}
+>
+```
+
+| Prop | Default | What it adds |
+|------|:-------:|--------------|
+| `includePersonSchema` | `false` | `Person` schema — name, job title, email, social profiles, author image |
+| `includeOrgSchema` | `false` | `Organization` schema — name, URL, logo, contact email |
+| `includeProfessionalServiceSchema` | `false` | `ProfessionalService` schema — adds address, opening hours, area served |
+
+Enable `includePersonSchema` for a personal portfolio. Enable `includeOrgSchema` if the site represents a company. Enable `includeProfessionalServiceSchema` only if you have a physical address set in `site.config.ts` — search engines will show it in local results.
+
+### SEO: noindex and nofollow
+
+Any page layout accepts `noindex` and `nofollow` props that are passed through to the `<meta name="robots">` tag:
+
+```astro
+<PageLayout noindex={true} nofollow={false}>
+```
+
+| Prop | Default | What it does |
+|------|:-------:|--------------|
+| `noindex` | `false` | Tells search engines not to index the page |
+| `nofollow` | `false` | Tells search engines not to follow outbound links |
+
+Use `noindex` on pages you don't want in search results (thank-you pages, internal preview pages, staging environments). Leave both at `false` for all public content.
+
+### Branding: favicon and browser colours
+
+The favicon is auto-generated from the first letter of `siteConfig.name` and the active `--brand-500` colour — it updates live when the theme changes. No image file is needed. To replace it with a custom SVG, drop your file into `public/` and update the path:
+
+```ts
+// src/config/site.config.ts
+branding: {
+  favicon: {
+    svg: '/my-logo.svg',   // replaces the auto-generated monogram
+  },
+  colors: {
+    themeColor: '#1d4ed8',     // browser toolbar colour on mobile (use your brand hex)
+    backgroundColor: '#ffffff', // PWA splash screen background
+  },
+}
+```
+
+`themeColor` is the colour shown in Chrome's address bar and Safari's status bar on mobile — set it to your brand colour for a polished native-app feel.
+
+For structured data (Google rich results), you can also supply a static logo image:
+
+```ts
+branding: {
+  logo: {
+    alt: 'My Company',
+    imageUrl: '/logo.png',  // add a PNG to public/ and point here
+  },
+}
+```
+
+## Colour themes
+
+Astro Rocket ships with **12 colour themes**. All 12 are shown as coloured swatches in the header via the `ThemeSelector` component. Clicking a swatch switches the active theme instantly — no file edits, no rebuild. The logo badge, blog image gradients, and every brand colour on the page update live together.
+
+### Changing the active theme
+
+The default theme is set with `data-theme` on the `<html>` element in `src/layouts/BaseLayout.astro`:
+
+```html
+data-theme="blue"
+```
+
+Available values — all 12 themes:
+
+| Value | Hue | Best for |
+|-------|-----|----------|
+| `orange` | 38° | Bold and warm — the original Velocity/International Orange |
+| `amber` | 75° | Editorial, luxury, food, warm creative brands |
+| `lime` | 130° | Dev tools, high-energy product sites (Vercel/Linear aesthetic) |
+| `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands |
+| `teal` | 190° | Developer tooling, modern SaaS, trustworthy services |
+| `cyan` | 200° | Fresh, vibrant tech — more energetic than teal |
+| `sky` | 222° | Clean and airy — between teal and blue, great for services |
+| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative — the default |
+| `indigo` | 264° | Enterprise, productivity tools, serious B2B |
+| `violet` | 277° | Creative and premium — sweet spot between indigo and purple |
+| `purple` | 292° | Expressive, personality-forward, vivid |
+| `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid |
+
+### The live theme selector
+
+All 12 themes appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
+
+The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. The current set:
+
+```ts
+const themes = [
+  { id: 'orange',  name: 'Orange',  color: 'oklch(62.5% 0.22  38)' },
+  { id: 'amber',   name: 'Amber',   color: 'oklch(68%   0.19  75)' },
+  { id: 'lime',    name: 'Lime',    color: 'oklch(64%   0.27 130)' },
+  { id: 'emerald', name: 'Emerald', color: 'oklch(62.5% 0.22 160)' },
+  { id: 'teal',    name: 'Teal',    color: 'oklch(62.5% 0.22 190)' },
+  { id: 'cyan',    name: 'Cyan',    color: 'oklch(65%   0.22 200)' },
+  { id: 'sky',     name: 'Sky',     color: 'oklch(67%   0.21 222)' },
+  { id: 'blue',    name: 'Blue',    color: 'oklch(62.5% 0.22 255)' },
+  { id: 'indigo',  name: 'Indigo',  color: 'oklch(60%   0.24 264)' },
+  { id: 'violet',  name: 'Violet',  color: 'oklch(62.5% 0.26 277)' },
+  { id: 'purple',  name: 'Purple',  color: 'oklch(62.5% 0.25 303)' },
+  { id: 'magenta', name: 'Magenta', color: 'oklch(58%   0.28 330)' },
+];
+```
+
+Once you've settled on your brand colour, you can remove the selector from the header entirely. Open `src/layouts/LandingLayout.astro` and delete the `showThemeSelector` prop — the swatches disappear without breaking anything else.
+
+### Understanding OKLCH — the three numbers
+
+All colour values in Astro Rocket use the OKLCH colour space: `oklch(lightness% chroma hue)`.
+
+| Parameter | Range | What it means |
+|-----------|-------|----------------|
+| **Lightness** | 0% (black) → 100% (white) | How light or dark the colour is |
+| **Chroma** | 0 (grey) → ~0.37 (maximum vivid) | How saturated the colour is |
+| **Hue** | 0–360° | The colour angle on the wheel |
+
+Common hue landmarks: 0°/360° = red, 38° = orange, 75° = amber, 130° = lime, 155–160° = green, 190–200° = teal/cyan, 222° = sky, 255° = blue, 264° = indigo, 292° = purple, 330° = magenta.
+
+To shift a theme to a completely different colour, you only need to change the hue number across the `--brand-50` to `--brand-900` scale — keep the lightness and chroma values the same and the whole palette moves together. Use [oklch.com](https://oklch.com) to pick visually.
+
+### Customising a theme's brand colour
+
+Every theme is a CSS file in `src/styles/themes/`. Each file defines the full set of colour tokens for both light and dark mode. Open the relevant file and adjust the `--brand-*` scale — all ten steps from 50 to 900:
+
+```css
+html[data-theme="blue"] {
+  --brand-50:  oklch(97.5% 0.02 255);
+  --brand-100: oklch(94.8% 0.04 255);
+  --brand-200: oklch(87.5% 0.08 255);
+  --brand-300: oklch(77.8% 0.14 255);
+  --brand-400: oklch(68.5% 0.19 255);
+  --brand-500: oklch(62.5% 0.22 255); /* primary accent in light mode */
+  --brand-600: oklch(53.2% 0.19 255);
+  --brand-700: oklch(45.5% 0.16 255);
+  --brand-800: oklch(37.2% 0.13 255);
+  --brand-900: oklch(26.5% 0.09 255);
+}
+```
+
+To shift to a different colour, replace `255` (blue) with your target hue across all ten lines. That's the entire change required.
+
+You can also edit the shared brand scale in `src/styles/tokens/primitives.css` if you want a single consistent palette that isn't theme-dependent:
+
+```css
+:root {
+  --brand-500: oklch(62.5% 0.22 255); /* primary brand color */
+  /* full --brand-50 to --brand-900 scale */
+}
+```
+
+### Light mode vs dark mode: which brand step is used
+
+The theme files use **different brand steps** for light and dark mode:
+
+| Context | Brand step used | Why |
+|---------|----------------|-----|
+| Light mode accent (`--accent`) | `--brand-500` | Strong enough on white backgrounds |
+| Dark mode accent (`--accent`) | `--brand-400` | One step lighter — needed on dark backgrounds for contrast |
+| Light mode input focus / ring | `--brand-500` | |
+| Dark mode input focus / ring | `--brand-400` | |
+
+When you customise the brand colour, adjust **both** steps in each mode's block. If you only change `--brand-500`, dark mode accents will still use the old `--brand-400` value.
+
+### Typography tokens
+
+Each theme file defines the font stack and typographic rhythm for the entire site. You can override any of these per theme:
+
+```css
+html[data-theme="blue"] {
+  /* Font families */
+  --theme-font-sans:    'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  --theme-font-display: 'Outfit Variable', var(--theme-font-sans);
+  --theme-font-mono:    'JetBrains Mono Variable', ui-monospace, monospace;
+
+  /* Typographic rhythm */
+  --theme-heading-weight:   700;      /* headings font weight */
+  --theme-heading-tracking: -0.02em;  /* letter-spacing on headings */
+  --theme-body-leading:     1.6;      /* line-height for body text */
+}
+```
+
+All 12 themes currently share the same font stack. To use a custom font, install it in `public/fonts/`, add a `@font-face` declaration in `src/styles/global.css`, and update `--theme-font-sans` or `--theme-font-display` in your active theme file.
+
+### Border radius tokens
+
+The global roundness of the UI is set per theme with five radius levels:
+
+```css
+--theme-radius-sm:   0.25rem;  /* 4px  — badges, small buttons */
+--theme-radius-md:   0.375rem; /* 6px  — inputs, cards */
+--theme-radius-lg:   0.5rem;   /* 8px  — panels, larger cards */
+--theme-radius-xl:   0.625rem; /* 10px — large containers */
+--theme-radius-full: 9999px;   /* pill shapes, circular avatars */
+```
+
+To give your site a sharper, more editorial feel, set all values to `0`. For a rounder, friendlier look, increase them (e.g. `--theme-radius-md: 0.75rem`). All components reference these tokens, so a single change cascades across the entire design.
+
+### Shadow tokens
+
+Each theme defines four shadow elevation levels, tinted with the theme's hue:
+
+```css
+--theme-shadow-sm  /* subtle depth: cards, list items */
+--theme-shadow-md  /* dropdowns, popovers */
+--theme-shadow-lg  /* modals, drawers */
+--theme-shadow-xl  /* high-emphasis overlays */
+```
+
+In dark mode the shadows use higher opacity (35–55%) and are tinted with the brand hue, so the depth reads naturally against dark backgrounds. To make shadows stronger or more neutral, adjust the opacity values or replace the hue-tinted OKLCH colour with a plain `rgba(0,0,0,...)`.
+
+### Inverted sections
+
+The `--surface-invert` family of tokens controls sections that have a dark background in light mode — the CTA blocks, some hero variants, and any area where you use `background="invert"` on the Footer or a section component:
+
+```css
+--surface-invert:           /* main dark surface background */
+--surface-invert-secondary: /* slightly lighter surface */
+--surface-invert-tertiary:  /* even lighter layer */
+--on-invert:                /* primary text on dark surface */
+--on-invert-secondary:      /* secondary text on dark surface */
+--on-invert-muted:          /* muted text on dark surface */
+--border-invert:            /* border on dark surface */
+--border-invert-strong:     /* stronger border on dark surface */
+```
+
+In light mode these default to near-black values (around 10–18% lightness) with a subtle hue tint. In dark mode they become slightly lighter than the main background — providing contrast between sections without the jarring jump of a fully inverted surface.
+
+### Creating a new theme
+
+1. Duplicate any file from `src/styles/themes/` as your starting point.
+2. Implement all ~35 semantic tokens for both `:root` (light) and `.dark` (dark mode).
+3. Add your new theme file's import to `src/styles/tokens/colors.css`.
+4. Add an entry to the `themes` array in `ThemeSelector.astro` if you want it in the live picker.
+
+## Header: floating capsule vs. fixed bar
+
+Astro Rocket has two header shapes. The landing and marketing layouts use a floating capsule:
+
+```astro
+<Header shape="floating" variant="transparent" colorScheme="invert" position="fixed" />
+```
+
+The blog and standard page layouts use a full-width bar:
+
+```astro
+<Header position="fixed" size="lg" />
+```
+
+### Switching the blog header to a floating style
+
+Open `src/layouts/BlogLayout.astro` and find the `<Header>` line. Change it to:
+
+```astro
+<Header shape="floating" variant="transparent" position="fixed" />
+```
+
+### Switching any page header from floating to a bar
+
+Find the Header component in the relevant layout file and remove `shape="floating"`:
+
+```astro
+<!-- Before -->
+<Header shape="floating" variant="transparent" position="fixed" />
+
+<!-- After -->
+<Header position="fixed" size="lg" />
+```
+
+### Header prop reference
+
+All Header props and what they do:
+
+| Prop | Options | Default | What it controls |
+|------|---------|---------|-----------------|
+| `position` | `fixed` `sticky` `static` | `fixed` | Whether the header stays at the top while scrolling |
+| `shape` | `bar` `floating` | `bar` | Full-width bar or centred floating capsule |
+| `size` | `sm` `md` `lg` | `md` | Header height |
+| `variant` | `default` `solid` `transparent` | `default` | Background fill |
+| `colorScheme` | `default` `invert` | `default` | Use inverted colours — for dark hero backgrounds |
+| `layout` | `default` `centered` `minimal` | `default` | Logo and nav arrangement |
+| `showThemeToggle` | `true` `false` | `true` | Dark/light mode toggle button |
+| `showThemeSelector` | `true` `false` | `false` | Colour theme swatch picker (desktop dropdown + mobile menu) |
+| `showSocialLinks` | `true` `false` | `false` | Social icon links (desktop only, reads from `siteConfig.socialLinks`) |
+| `showCta` | `true` `false` | `true` | CTA button in the header |
+| `showMobileMenu` | `true` `false` | `true` | Hamburger menu on small screens |
+| `showActiveState` | `true` `false` | `true` | Highlight for the current page link |
+| `hideLogo` | `true` `false` | `false` | Hide the logo entirely |
+| `showScrollProgress` | `true` `false` | `false` | Thin brand-coloured scroll progress bar on the header edge |
+| `scrollProgressPosition` | `top` `bottom` | `bottom` | Edge of the header where the progress bar sits — `top` suits the floating capsule header, `bottom` suits the solid bar header |
+
+Set any prop on the `<Header>` component in the layout file for the page type you want to adjust.
+
+## Footer
+
+### Changing the copyright text
+
+The footer copyright line reads from the `copyright` prop. Passing a custom value overrides it:
+
+```astro
+<Footer copyright="© {year} Your Name. All rights reserved." />
+```
+
+The `{year}` and `{siteName}` placeholders are replaced automatically at build time. Without a `copyright` prop it falls back to the site name from `site.config.ts`.
+
+The Footer is used in three layout files:
+
+| Layout file | Pages it covers |
+|-------------|----------------|
+| `src/layouts/PageLayout.astro` | Blog index, about, contact, any standard page |
+| `src/layouts/BlogLayout.astro` | Individual blog posts |
+| `src/layouts/LandingLayout.astro` | The landing page |
+
+Edit the `<Footer>` line in whichever file covers the pages you want to change.
+
+### Footer layout options
+
+```astro
+<Footer layout="simple" />     <!-- Single row: logo, nav, social, copyright -->
+<Footer layout="stacked" />    <!-- Vertically stacked sections -->
+<Footer layout="columns" />    <!-- Multi-column link groups -->
+<Footer layout="minimal" />    <!-- Copyright line only -->
+```
+
+### Footer prop reference
+
+| Prop | Type | Default | What it controls |
+|------|------|:-------:|-----------------|
+| `layout` | `simple` `stacked` `columns` `minimal` | `simple` | Overall footer structure |
+| `background` | `default` `secondary` `invert` | `default` | Footer background colour |
+| `columns` | `2` `3` `4` | `3` | Number of link columns (only applies with `layout="columns"`) |
+| `showSocial` | boolean | `true` | Social media icons |
+| `showCopyright` | boolean | `true` | Copyright line |
+| `hideLogo` | boolean | `false` | Hide the footer logo |
+| `tagline` | string | — | Short tagline shown under the logo |
+| `copyright` | string | — | Custom copyright text — supports `{year}` and `{siteName}` placeholders |
+
+### Legal links
+
+The `legalLinks` prop adds a row of small links (Privacy Policy, Terms of Service, etc.) alongside the copyright line:
+
+```astro
+<Footer
+  legalLinks={[
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+  ]}
+/>
+```
+
+### Columns layout with link groups
+
+The `columns` layout renders grouped link sections — useful for a site with many pages:
+
+```astro
+<Footer
+  layout="columns"
+  columns={3}
+  linkGroups={[
+    {
+      title: 'Product',
+      links: [
+        { label: 'Features', href: '/features' },
+        { label: 'Pricing',  href: '/pricing' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About',   href: '/about' },
+        { label: 'Contact', href: '/contact' },
+      ],
+    },
+  ]}
+/>
+```
+
+## Navigation
+
+Edit `src/config/nav.config.ts` to change the header and footer navigation in one place:
+
+```ts
+export const navItems: NavItem[] = [
+  { label: 'Blog',    href: '/blog',    order: 1 },
+  { label: 'About',   href: '/about',   order: 2 },
+  { label: 'Contact', href: '/contact', order: 3 },
+];
+```
+
+Add, remove, or reorder items freely. Both the header and footer read from this array.
+
+## Analytics and verification
+
+Set these in your `.env` file (copy from `.env.example`):
+
+```bash
+# Analytics
+PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX   # Google Analytics 4
+PUBLIC_GTM_ID=GTM-XXXXXXX               # Google Tag Manager
+
+# Cookie consent
+PUBLIC_CONSENT_ENABLED=true             # Show cookie consent banner
+PUBLIC_PRIVACY_POLICY_URL=/privacy      # Link in the consent banner
+
+# Search console verification
+GOOGLE_SITE_VERIFICATION=your-code
+BING_SITE_VERIFICATION=your-code
+```
+
+None of these are required during development. The analytics components simply render nothing if the IDs are absent.
+
+## Social links
+
+Social links in the footer come from the `socialLinks` array in `src/config/site.config.ts`:
+
+```ts
+socialLinks: [
+  'https://github.com/yourname',
+  'https://x.com/yourhandle',
+  'https://instagram.com/yourname',
+],
+```
+
+Remove any URL you don't use. The footer won't render an empty social section. Icons are resolved automatically from the URL — GitHub, X, Instagram, LinkedIn, and Bluesky are all recognised out of the box.
+
+## Quick reference
+
+| What | Where | Key |
+|------|-------|-----|
+| Site name, author, email | `src/config/site.config.ts` | `name`, `author`, `email` |
+| Phone, address | `src/config/site.config.ts` | `phone`, `address` |
+| Author avatar (Person schema) | `src/config/site.config.ts` | `authorImage` |
+| Browser toolbar colour | `src/config/site.config.ts` | `branding.colors.themeColor` |
+| Blog image colour overlay | `src/config/site.config.ts` | `blogImageOverlay: true/false` |
+| Social links | `src/config/site.config.ts` | `socialLinks` array |
+| Twitter card handles | `src/config/site.config.ts` | `twitter.site`, `twitter.creator` |
+| Search console verification | `.env` or `site.config.ts` | `verification.google/bing` |
+| Navigation items | `src/config/nav.config.ts` | `navItems` array |
+| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="blue"` |
+| Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
+| JSON-LD schema switches | `src/pages/index.astro` | `includePersonSchema`, `includeOrgSchema` |
+| noindex / nofollow | any layout | `noindex={true}`, `nofollow={true}` |
+| Live theme selector (12 swatches) | `src/components/layout/ThemeSelector.astro` | `themes` array |
+| All 12 theme files | `src/styles/themes/` | One CSS file per theme |
+| Brand colour scale (light & dark) | `src/styles/themes/*.css` | `--brand-50` → `--brand-900` |
+| Typography (fonts, weight, tracking) | `src/styles/themes/*.css` | `--theme-font-*`, `--theme-heading-*` |
+| Border radius (global roundness) | `src/styles/themes/*.css` | `--theme-radius-sm/md/lg/xl/full` |
+| Shadow elevation levels | `src/styles/themes/*.css` | `--theme-shadow-sm/md/lg/xl` |
+| Inverted section colours | `src/styles/themes/*.css` | `--surface-invert`, `--on-invert` |
+| Header shape, position | `src/layouts/*.astro` | `shape`, `position` props |
+| Header show/hide toggles | `src/layouts/*.astro` | `showThemeToggle`, `showCta`, `showSocialLinks`, etc. |
+| Footer copyright text | `src/layouts/*.astro` | `copyright` prop |
+| Footer layout & columns | `src/layouts/*.astro` | `layout`, `columns` props |
+| Footer legal links | `src/layouts/*.astro` | `legalLinks` array |
+| Analytics IDs | `.env` | `PUBLIC_GA_MEASUREMENT_ID` etc. |
+
+If you like Astro Rocket, a [star on GitHub](https://github.com/hansmartens68/astro-rocket) helps other developers find it. Takes two seconds.

@@ -1,0 +1,378 @@
+---
+/**
+ * GoogleMap — consent-aware Google Maps embed
+ *
+ * 3 states:
+ * 1. No API key → setup prompt with instructions
+ * 2. API key + consent required but not granted → placeholder with "Load Map" button
+ * 3. API key + consent granted (or consent disabled) → iframe loads immediately
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { PUBLIC_GOOGLE_MAPS_API_KEY, PUBLIC_CONSENT_ENABLED } from 'astro:env/client';
+import siteConfig from '@/config/site.config';
+import { cn } from '@/lib/cn';
+import { googleMapVariants } from './googleMap.variants';
+
+interface Props extends HTMLAttributes<'div'> {
+  lat?: number;
+  lng?: number;
+  address?: string;
+  zoom?: number;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  mode?: 'place' | 'view' | 'directions' | 'streetview' | 'search';
+  mapType?: 'roadmap' | 'satellite';
+  consentCategory?: string;
+  ariaLabel?: string;
+  placeholderTitle?: string;
+  placeholderDescription?: string;
+  externalLinkText?: string;
+}
+
+const {
+  lat,
+  lng,
+  address,
+  zoom = 15,
+  size = 'md',
+  mode = 'place',
+  mapType = 'roadmap',
+  consentCategory = 'marketing',
+  ariaLabel = 'Google Maps',
+  placeholderTitle = 'Map',
+  placeholderDescription = 'Accept cookies to load the interactive map.',
+  externalLinkText = 'View on Google Maps',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const hasApiKey = !!PUBLIC_GOOGLE_MAPS_API_KEY;
+
+// Build query — prefer lat/lng, fall back to address, then siteConfig.address
+let query = '';
+if (lat !== undefined && lng !== undefined) {
+  query = `${lat},${lng}`;
+} else if (address) {
+  query = address;
+} else if (siteConfig.address) {
+  const a = siteConfig.address;
+  query = [a.street, a.city, a.state, a.zip, a.country].filter(Boolean).join(', ');
+}
+
+// Build iframe src (only when key exists)
+let iframeSrc = '';
+if (hasApiKey) {
+  const params = new URLSearchParams({
+    key: PUBLIC_GOOGLE_MAPS_API_KEY,
+    q: query,
+    zoom: String(zoom),
+    maptype: mapType,
+  });
+  iframeSrc = `https://www.google.com/maps/embed/v1/${mode}?${params.toString()}`;
+}
+
+// External link for placeholder
+const externalUrl = query
+  ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+  : 'https://maps.google.com';
+
+const consentEnabled = PUBLIC_CONSENT_ENABLED;
+
+// Config for client script
+const mapConfig = JSON.stringify({
+  consentCategory,
+  consentEnabled,
+});
+
+const id = `google-map-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class={cn(googleMapVariants({ size }), className)}
+  data-google-map={id}
+  {...rest}
+>
+  {!hasApiKey ? (
+    /* No API key — setup prompt */
+    <div class="google-map-setup">
+      <div class="google-map-setup__inner">
+        {/* Lucide map-pin-off */}
+        <svg class="google-map-setup__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.43 5.43A8.06 8.06 0 0 0 4 10c0 6 8 12 8 12a29.94 29.94 0 0 0 5-5" />
+          <path d="M19.18 13.52A8.66 8.66 0 0 0 20 10a8 8 0 0 0-8-8 7.88 7.88 0 0 0-3.52.82" />
+          <path d="M9.13 9.13a3 3 0 0 0 3.74 3.74" />
+          <path d="M14.9 9.25a3 3 0 0 0-2.15-2.16" />
+          <line x1="2" x2="22" y1="2" y2="22" />
+        </svg>
+        <p class="google-map-setup__title">Google Maps</p>
+        <p class="google-map-setup__desc">
+          Add <code>PUBLIC_GOOGLE_MAPS_API_KEY</code> to your <code>.env</code> file to enable the map.
+        </p>
+      </div>
+    </div>
+  ) : (
+    <>
+      {/* Consent placeholder — shown when consent is required but not granted */}
+      <div class="google-map-placeholder" data-map-placeholder={id}>
+        <div class="google-map-placeholder__icon">
+          {/* Lucide map-pin */}
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </div>
+
+        {query && <p class="google-map-placeholder__address">{query}</p>}
+
+        <p class="google-map-placeholder__title">{placeholderTitle}</p>
+        <p class="google-map-placeholder__desc">{placeholderDescription}</p>
+
+        <button class="google-map-placeholder__btn" data-map-load={id} type="button">
+          Load Map
+        </button>
+
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="google-map-placeholder__link"
+        >
+          {/* Lucide external-link */}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6" />
+            <path d="M10 14 21 3" />
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          </svg>
+          {externalLinkText}
+        </a>
+      </div>
+
+      {/* Iframe — hidden until consent granted */}
+      <iframe
+        data-map-iframe={id}
+        data-src={iframeSrc}
+        hidden
+        width="100%"
+        height="100%"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allow="fullscreen"
+        aria-label={ariaLabel}
+      ></iframe>
+
+      <script type="application/json" data-google-map-config={id} set:html={mapConfig} />
+    </>
+  )}
+</div>
+
+<script>
+  interface MapWindow extends Window {
+    __consentState?: { decided: boolean; categories: Record<string, boolean> };
+  }
+
+  function initGoogleMaps() {
+    const maps = document.querySelectorAll<HTMLElement>('[data-google-map]');
+
+    maps.forEach((container) => {
+      const id = container.dataset.googleMap!;
+      const configEl = container.querySelector<HTMLScriptElement>(`[data-google-map-config="${id}"]`);
+      if (!configEl) return;
+
+      const config = JSON.parse(configEl.textContent!);
+      const iframe = container.querySelector<HTMLIFrameElement>(`[data-map-iframe="${id}"]`);
+      const placeholder = container.querySelector<HTMLElement>(`[data-map-placeholder="${id}"]`);
+      const loadBtn = container.querySelector<HTMLButtonElement>(`[data-map-load="${id}"]`);
+
+      if (!iframe) return;
+
+      // Already loaded (idempotent)
+      if (iframe.src && iframe.src !== 'about:blank') return;
+
+      const w = window as unknown as MapWindow;
+
+      function loadMap() {
+        const src = iframe!.dataset.src;
+        if (!src || (iframe!.src && iframe!.src !== 'about:blank')) return;
+        iframe!.src = src;
+        iframe!.removeAttribute('hidden');
+        if (placeholder) placeholder.hidden = true;
+      }
+
+      function hasConsent(): boolean {
+        if (!config.consentEnabled) return true;
+        if (!w.__consentState?.decided) return false;
+        return !!w.__consentState.categories[config.consentCategory];
+      }
+
+      // Check if consent is already granted
+      if (hasConsent()) {
+        loadMap();
+        return;
+      }
+
+      // Consent required — show placeholder
+      if (config.consentEnabled) {
+        if (placeholder) placeholder.hidden = false;
+
+        // "Load Map" button grants consent for this embed only
+        if (loadBtn) {
+          loadBtn.addEventListener('click', loadMap, { once: true });
+        }
+
+        // Listen for consent-updated event
+        window.addEventListener('consent-updated', function onConsent(e: Event) {
+          const detail = (e as CustomEvent).detail;
+          if (detail?.categories?.[config.consentCategory]) {
+            loadMap();
+            window.removeEventListener('consent-updated', onConsent);
+          }
+        });
+      } else {
+        // No consent system — load immediately
+        loadMap();
+      }
+    });
+  }
+
+  initGoogleMaps();
+  document.addEventListener('astro:page-load', initGoogleMaps);
+</script>
+
+<style>
+  /* ── No API key: setup prompt ── */
+  .google-map-setup {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 8px,
+      color-mix(in srgb, var(--foreground-muted) 4%, transparent) 8px,
+      color-mix(in srgb, var(--foreground-muted) 4%, transparent) 9px
+    );
+  }
+
+  .google-map-setup__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 1.5rem 2rem;
+    background-color: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 0.75rem;
+  }
+
+  .google-map-setup__icon {
+    color: var(--foreground-muted);
+    opacity: 0.6;
+  }
+
+  .google-map-setup__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .google-map-setup__desc {
+    font-size: 0.8125rem;
+    color: var(--foreground-muted);
+    max-width: 22rem;
+    line-height: 1.6;
+  }
+
+  .google-map-setup__desc code {
+    font-family: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.375rem;
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    white-space: nowrap;
+  }
+
+  /* ── Consent placeholder ── */
+  .google-map-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--secondary);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .google-map-placeholder__icon {
+    color: var(--brand-500);
+    margin-bottom: 0.25rem;
+  }
+
+  .google-map-placeholder__address {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+    max-width: 24rem;
+  }
+
+  .google-map-placeholder__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .google-map-placeholder__desc {
+    font-size: 0.875rem;
+    color: var(--foreground-muted);
+    max-width: 20rem;
+  }
+
+  .google-map-placeholder__btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    background-color: var(--brand-500);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: opacity var(--transition-fast) ease;
+  }
+
+  .google-map-placeholder__btn:hover {
+    opacity: 0.9;
+  }
+
+  .google-map-placeholder__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--foreground-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast) ease;
+  }
+
+  .google-map-placeholder__link:hover {
+    color: var(--foreground);
+  }
+
+  /* ── Iframe ── */
+  [data-map-iframe] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

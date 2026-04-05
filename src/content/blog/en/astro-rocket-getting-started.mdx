@@ -1,0 +1,172 @@
+---
+title: "Getting Started with Astro Rocket — From Install to Live in Minutes"
+description: "How to install, configure, and deploy Astro Rocket — covering site.config.ts, brand colours, navigation, writing posts, and deploying to Vercel."
+publishedAt: 2026-03-27
+author: "Hans Martens"
+tags: ["astro-rocket", "getting-started", "configuration", "vercel"]
+featured: true
+locale: en
+image: "../../../assets/blog/astro-rocket-getting-started.svg"
+svgSlug: "astro-rocket-getting-started"
+imageAlt: "Rocket icon above the words 'get started' on a dark background"
+---
+
+This guide walks you through everything needed to get Astro Rocket running locally, configured to your brand, and deployed to the web. No previous Astro experience required.
+
+## What you need before you start
+
+- [Node.js](https://nodejs.org) version 22.12.0 or later
+- A package manager: `npm`, `pnpm`, or `yarn`
+- A [Vercel account](https://vercel.com) (free) for deployment
+- A code editor — [VS Code](https://code.visualstudio.com) with the [Astro extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) is recommended
+
+## Installation
+
+Astro Rocket is free and open source. Clone the repository from GitHub and install dependencies:
+
+```bash
+git clone https://github.com/hansmartens68/astro-rocket my-site
+cd my-site
+pnpm install
+pnpm dev
+```
+
+Open `http://localhost:4321` and you'll see the full site running locally. Every change you make updates instantly without a full page reload.
+
+## Configuring your site
+
+Almost everything about the site is controlled from a single file: `src/config/site.config.ts`.
+
+```ts
+const siteConfig: SiteConfig = {
+  name: 'Your Site Name',
+  description: 'A short description for search engines.',
+  url: 'https://yoursite.com',
+  author: 'Your Name',
+  email: 'hello@yoursite.com',
+```
+
+Start here. The `name` field populates the logo badge, page titles, footer copyright, and structured data. The `description` becomes the default meta description on any page that doesn't provide its own.
+
+### Brand colour
+
+Set your brand colour in the `branding.colors` section:
+
+```ts
+branding: {
+  colors: {
+    themeColor: '#F94C10',       // Your primary brand colour
+    backgroundColor: '#ffffff',  // Used in the web app manifest
+  },
+},
+```
+
+The `themeColor` drives every brand-coloured element across the site — buttons, links, the logo badge, highlights, and the favicon — through a single CSS custom property. Change it once and the entire site updates.
+
+### Navigation
+
+Open `src/config/nav.config.ts`. This is the only file you need to touch to change the site navigation:
+
+```ts
+export const navItems: NavItem[] = [
+  { label: 'Home',    href: '/'        },
+  { label: 'Blog',    href: '/blog'    },
+  { label: 'About',   href: '/about'   },
+  { label: 'Contact', href: '/contact' },
+];
+```
+
+Add, remove, or reorder items. The header and footer both read from this config automatically.
+
+## Writing blog posts
+
+Create a new `.mdx` file in `src/content/blog/en/`. Use this frontmatter template:
+
+```mdx
+---
+title: "Your Post Title"
+description: "A short summary under 200 characters."
+publishedAt: 2026-03-15
+author: "Your Name"
+tags: ["tag-one", "tag-two"]
+featured: false
+locale: en
+image: "../../../assets/blog/your-image.svg"
+imageAlt: "Describe the image for screen readers."
+---
+
+Your post content starts here. Standard Markdown works — headings,
+lists, links, bold, italic — plus any MDX components you need.
+```
+
+Save the file and the post appears in the blog index immediately. No rebuilds, no cache clearing required.
+
+### Cover images
+
+Blog post cover images live in `src/assets/blog/`. The recommended format is SVG at 1200×630 pixels — the standard Open Graph image size. SVGs keep file sizes minimal and scale perfectly to every screen. PNG and JPG work equally well if you prefer photographs; Astro's `<Image>` component handles optimisation automatically.
+
+## Setting up the contact form
+
+The contact form uses [Resend](https://resend.com) for email delivery. To activate it:
+
+1. Create a free Resend account and get your API key
+2. Verify your sending domain in Resend
+3. Set your `email` in `src/config/site.config.ts` — this is where form submissions are delivered
+4. Add your API key to `.env`:
+
+```
+RESEND_API_KEY=re_xxxxxxxxxxxx
+```
+
+Optionally, set `RESEND_FROM_EMAIL` to a verified sender address on your domain. If omitted, the form uses the `email` value from `site.config.ts` as the sender address.
+
+The form works without these variables — it simply disables submission — so you can develop and deploy the rest of the site before setting up email.
+
+## Deploying to Vercel
+
+1. Create a new repository on GitHub (or GitLab / Bitbucket) and push your local project to it
+2. Go to [vercel.com](https://vercel.com) and click **Add New Project**
+3. Import your repository — Vercel detects Astro automatically
+4. Add your environment variables under **Settings → Environment Variables**
+5. Click **Deploy**
+
+Your site is live. Every subsequent push to `main` triggers a new deployment automatically. Pull request previews are created for every branch.
+
+Set your `SITE_URL` environment variable to your production domain:
+
+```
+SITE_URL=https://yoursite.com
+```
+
+This ensures canonical URLs, the sitemap, and structured data all use the correct domain.
+
+## Deploying to Netlify
+
+Astro Rocket also supports [Netlify](https://netlify.com) out of the box. A `netlify.toml` is included with the correct build settings and security headers pre-configured.
+
+1. Create a new repository on GitHub (or GitLab / Bitbucket) and push your local project to it
+2. Go to [netlify.com](https://netlify.com), click **Add new site → Import an existing project**, and connect your repository
+3. Under **Site configuration → Environment variables**, add your variables including:
+
+```
+SITE_URL=https://yoursite.com
+DEPLOY_TARGET=netlify
+```
+
+4. Click **Deploy site**
+
+Setting `DEPLOY_TARGET=netlify` tells the build to use the Netlify adapter instead of the default Vercel one. Everything else — the contact form, API routes, image optimisation — works identically on both platforms.
+
+## What to do next
+
+With the site live, here's a sensible order for next steps:
+
+1. **Replace the placeholder content** — update the hero text, the about section, and landing page copy to reflect your actual work
+2. **Write your first real post** — publishing regularly is the highest-value thing you can do for search visibility
+3. **Set up Google Search Console** — add `GOOGLE_SITE_VERIFICATION` to your `.env` file and submit your sitemap
+4. **Add your social links** — the `socialLinks` array in `site.config.ts` populates the footer social icons
+5. **Set up analytics** — add `PUBLIC_GA_MEASUREMENT_ID` or `PUBLIC_GTM_ID` to activate the built-in analytics integration
+
+The site is yours. Everything is documented, everything is changeable, and nothing is hidden behind abstractions you can't read.
+
+If Astro Rocket saved you time, a [star on GitHub](https://github.com/hansmartens68/astro-rocket) helps other developers find it. Takes two seconds.

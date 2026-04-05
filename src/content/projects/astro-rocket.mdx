@@ -1,0 +1,46 @@
+---
+title: "Astro Rocket"
+description: "A production-ready Astro 6 starter for designers and developers — 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
+url: "https://astrorocket.dev"
+repo: "https://github.com/hansmartens68/Astro-Rocket"
+tags: ["Astro", "TypeScript", "Tailwind CSS", "Open Source"]
+featured: true
+order: 1
+year: 2026
+role: "Designer & Developer"
+services: ["Design System", "Component Library", "Open Source"]
+---
+
+## The Brief
+
+I wanted a starter theme that was genuinely ready to launch — not a boilerplate that still requires hours of setup. The goal was simple: clone it, change the text, go live. Everything else should already be done.
+
+Most Astro starters are developer-focused scaffolding. Astro Rocket is different — it ships as a complete, styled website aimed at designers, freelancers, and anyone who needs a portfolio or marketing site without starting from scratch.
+
+## What I Built
+
+Astro Rocket is built on top of [Velocity](https://github.com/southwellmedia/velocity) by Southwell Media, which provided a strong foundation — a well-structured Astro boilerplate with a solid design system. I extended it substantially:
+
+- **12 colour themes** switchable live in the header with no rebuild required
+- **57+ components** across UI, patterns, layout, blog, landing, and SEO categories
+- **Auto-generated logo and favicon** from the site name — no design tools needed
+- **Typing effect** in the hero section
+- **Dark mode** with `sessionStorage` persistence (resets on new tab by design)
+- **Scroll progress bar**, parallax grid, and full animation suite
+- **Content collections** for blog, projects, authors, FAQs, and tech stack
+- **RSS feed**, sitemap, and full JSON-LD structured data
+
+## Design Decisions
+
+**Theme switching without rebuilds.** Velocity required editing a CSS import file and rebuilding to change themes. Astro Rocket uses CSS custom properties scoped to `data-theme` attributes, so switching is instant — no server round-trip, no rebuild.
+
+**`sessionStorage` over `localStorage` for dark mode.** A portfolio site should always show its best face. With `localStorage`, a returning visitor might see the wrong mode if they changed it on a whim. `sessionStorage` resets on each new tab, so every first impression is intentional.
+
+**Auto-generated branding.** Logo badges and favicons are generated at runtime from the site name and active brand colour. Cloners don't need Figma or Illustrator to get a polished result.
+
+## Results
+
+- Lighthouse scores of 95+ across all categories
+- Zero JavaScript shipped by default (Astro islands architecture)
+- Submitted to the official Astro themes directory
+- Open source under the MIT licence

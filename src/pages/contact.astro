@@ -1,0 +1,118 @@
+---
+/**
+ * Contact page
+ * URL: /contact
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import { Hero } from '@/components/hero';
+import ContactForm from '@/components/patterns/ContactForm.astro';
+import siteConfig from '@/config/site.config';
+import { resolveSocialLinks } from '@/lib/utils';
+
+const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
+
+const channels = [
+  {
+    icon: 'mail',
+    label: 'Email',
+    value: siteConfig.email,
+    note: 'Drop us a line',
+    href: `mailto:${siteConfig.email}`,
+    external: false,
+  },
+  ...socialLinks.map((link) => ({
+    icon: link.icon,
+    label: link.label,
+    value: link.href.replace(/^https?:\/\//, ''),
+    note: 'Follow along',
+    href: link.href,
+    external: true,
+  })),
+];
+---
+
+<PageLayout
+  title="Contact — Astro Rocket"
+  description="Get in touch"
+>
+  <Hero layout="centered" size="sm">
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="mail" size="sm" />
+      Get in touch
+    </Badge>
+
+    <h1 slot="title">
+      Send me a <span class="text-brand-500">message.</span>
+    </h1>
+
+    <p slot="description">
+      Use the form below or reach out on any of these channels. I'll get back to you within 1 business day.
+    </p>
+  </Hero>
+
+  <!-- Contact Section -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+
+        <!-- Left column: contact form -->
+        <div class="lg:col-span-3" data-reveal>
+          <Card padding="lg">
+            <h2 class="font-display text-xl font-bold text-foreground mb-6">Send a message</h2>
+            <ContactForm />
+          </Card>
+        </div>
+
+        <!-- Right column: contact channels -->
+        <div class="lg:col-span-2 space-y-4" data-reveal data-reveal-delay="1">
+          <div>
+            <h2 class="font-display text-lg font-bold text-foreground mb-1">Other channels</h2>
+            <p class="text-sm text-foreground-muted">Prefer a direct channel? Pick whichever works best.</p>
+          </div>
+
+          <!-- Channel list -->
+          <div class="space-y-2">
+            {channels.map((ch) => (
+              <a
+                href={ch.href}
+                {...ch.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+                class="block group"
+              >
+                <Card hover padding="sm" class="h-full">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                      <Icon name={ch.icon} size="sm" />
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <p class="font-semibold text-sm text-foreground">{ch.label}</p>
+                      <p class="text-xs text-foreground-muted truncate">{ch.value}</p>
+                    </div>
+                    <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+                  </div>
+                </Card>
+              </a>
+            ))}
+          </div>
+
+          <!-- Location card -->
+          <Card hover padding="sm" class="bg-brand-500/5 border-brand-500/20">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                <Icon name="map-pin" size="sm" />
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-foreground">{siteConfig.address?.city ?? 'Your City'}</p>
+                <p class="text-xs text-foreground-muted mt-0.5">Based in {siteConfig.address?.country ?? 'Your Country'}</p>
+              </div>
+            </div>
+          </Card>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</PageLayout>

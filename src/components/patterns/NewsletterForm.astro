@@ -1,0 +1,98 @@
+---
+import Input from '@/components/ui/form/Input/Input.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import { cn } from '@/lib/cn';
+
+interface Props {
+  action?: string;
+  placeholder?: string;
+  buttonText?: string;
+  successMessage?: string;
+  class?: string;
+}
+
+const {
+  action = '/api/newsletter',
+  placeholder = 'Enter your email',
+  buttonText = 'Subscribe',
+  successMessage = 'Thanks for subscribing!',
+  class: className,
+} = Astro.props;
+---
+
+<form
+  class={cn('newsletter-form', className)}
+  action={action}
+  method="POST"
+  data-success-message={successMessage}
+>
+  <div class="flex flex-col sm:flex-row gap-3">
+    <div class="flex-1">
+      <Input
+        name="email"
+        type="email"
+        placeholder={placeholder}
+        required
+        autocomplete="email"
+      />
+    </div>
+    <Button type="submit" class="newsletter-submit">
+      {buttonText}
+    </Button>
+  </div>
+
+  <p class="newsletter-message hidden mt-3 text-sm"></p>
+</form>
+
+<script>
+  function initNewsletterForms() {
+    const forms = document.querySelectorAll('.newsletter-form') as NodeListOf<HTMLFormElement>;
+
+    forms.forEach((form) => {
+      const button = form.querySelector('.newsletter-submit') as HTMLButtonElement;
+      const message = form.querySelector('.newsletter-message') as HTMLParagraphElement;
+
+      if (!button || !message) return;
+
+      const successMessage = form.dataset.successMessage || 'Thanks for subscribing!';
+      const originalText = button.textContent || 'Subscribe';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        button.disabled = true;
+        button.textContent = 'Subscribing...';
+        message.classList.add('hidden');
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            message.textContent = successMessage;
+            message.className = 'newsletter-message mt-3 text-sm text-success';
+            form.reset();
+          } else {
+            message.textContent = data.error || 'Something went wrong';
+            message.className = 'newsletter-message mt-3 text-sm text-destructive';
+          }
+        } catch {
+          message.textContent = 'Subscription failed. Please try again.';
+          message.className = 'newsletter-message mt-3 text-sm text-destructive';
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+          message.classList.remove('hidden');
+        }
+      });
+    });
+  }
+
+  initNewsletterForms();
+  document.addEventListener('astro:after-swap', initNewsletterForms);
+</script>

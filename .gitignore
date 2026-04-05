@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.vercel/
+.netlify/
+
+# Astro
+.astro/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Misc
+*.local
+*.tsbuildinfo
+
+# Pagefind
+public/pagefind/
+
+# Claude Code
+.claude/
+
+# npm lockfile (pnpm only)
+package-lock.json
+
+# Internal docs
+southwell-astro-boilerplate-docs.md
+southwell-astro-boilerplate-prd.md
+claude-ai-web-design.png
+dark-mode-sessionstorage.png
+domain-email-vercel-setup.png
+why-i-build-with-astro.png
