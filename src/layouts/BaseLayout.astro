@@ -4,7 +4,7 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
-import { ClientRouter } from 'astro:transitions';
+// ClientRouter removed — was interfering with project card navigation
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -85,8 +85,6 @@ if (includeProfessionalServiceSchema) {
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
 
-    <!-- Client-side routing for view transitions -->
-    <ClientRouter />
 
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
