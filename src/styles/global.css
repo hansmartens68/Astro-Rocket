@@ -298,7 +298,7 @@
   .dark .hero-dark-gradient {
     background: linear-gradient(
       to bottom,
-      var(--brand-700) 0%,
+      var(--brand-600) 0%,
       oklch(0% 0 0) 100%
     ) !important;
   }
