@@ -274,9 +274,7 @@ function getSocialIcon(platform: string): string {
             ) : (
               <>
                 {showCopyright && (
-                  <p class="text-sm text-foreground-muted">
-                    {processedCopyright}
-                  </p>
+                  <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
                 )}
                 {legalLinks.length > 0 && (
                   <div class="flex items-center gap-[var(--space-inline-lg)]">
@@ -300,9 +298,7 @@ function getSocialIcon(platform: string): string {
     {layout === 'minimal' && (
       <div class="text-center">
         {showCopyright && (
-          <p class="text-sm text-foreground-muted">
-            {processedCopyright}
-          </p>
+          <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
         )}
       </div>
     )}
@@ -365,9 +361,7 @@ function getSocialIcon(platform: string): string {
         {(showCopyright || legalLinks.length > 0) && (
           <div class="pt-[var(--space-stack-lg)] border-t border-border w-full flex flex-col items-center gap-[var(--space-stack-md)]">
             {showCopyright && (
-              <p class="text-sm text-foreground-muted">
-                {processedCopyright}
-              </p>
+              <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
             )}
             {legalLinks.length > 0 && (
               <div class="flex items-center gap-[var(--space-inline-lg)]">
