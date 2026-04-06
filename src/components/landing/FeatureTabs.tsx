@@ -162,7 +162,7 @@ export const defaultLang = 'en';
 export default {
   'nav.home': 'Home',
   'nav.about': 'About',
-  'hero.title': 'Ship faster with Velocity',
+  'hero.title': 'Ship faster with Astro Rocket',
   'hero.subtitle': 'The modern Astro starter',
 } as const;
 

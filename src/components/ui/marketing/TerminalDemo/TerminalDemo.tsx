@@ -22,58 +22,33 @@ interface ScriptLine {
   type: LineType;
 }
 
-// Replicate the actual CLI experience from create-velocity-astro
+// Astro Rocket setup flow: clone → install → dev
 const script: ScriptLine[] = [
-  // Initial command
-  { text: '$ pnpm create velocity-astro@latest', delay: 1200, type: 'command' },
-  { text: '', delay: 300, type: 'command' },
+  // Step 1: clone
+  { text: '$ git clone https://github.com/hansmartens68/Astro-Rocket.git', delay: 1200, type: 'command' },
+  { text: '', delay: 200, type: 'command' },
+  { text: 'Cloning into \'Astro-Rocket\'...', delay: 300, type: 'prompt-hint' },
+  { text: '✔  Repository cloned', delay: 600, type: 'success' },
+  { text: '', delay: 200, type: 'prompt-label' },
 
-  // Intro banner (clack style)
-  { text: '┌  Create Velocity', delay: 400, type: 'intro' },
+  // Step 2: install
+  { text: '$ cd Astro-Rocket && pnpm install', delay: 600, type: 'command' },
+  { text: '', delay: 200, type: 'command' },
+  { text: '◐  Resolving dependencies...', delay: 400, type: 'spinner' },
+  { text: '✔  Dependencies installed', delay: 700, type: 'success' },
+  { text: '', delay: 200, type: 'prompt-label' },
+
+  // Step 3: dev
+  { text: '$ pnpm dev', delay: 600, type: 'command' },
+  { text: '', delay: 200, type: 'command' },
+  { text: '◐  Starting Astro dev server...', delay: 400, type: 'spinner' },
+  { text: '✔  Astro dev server started', delay: 600, type: 'success' },
   { text: '│', delay: 100, type: 'prompt-label' },
 
-  // Project name prompt
-  { text: '◇  What is your project name?', delay: 400, type: 'prompt-label' },
-  { text: '│  my-awesome-site', delay: 800, type: 'prompt-input' },
-  { text: '│', delay: 200, type: 'prompt-label' },
-
-  // Demo content selection
-  { text: '◇  Include demo landing page and sample content?', delay: 400, type: 'select-label' },
-  { text: '│  ○ No  · Minimal starter with basic pages', delay: 300, type: 'select-option' },
-  { text: '│  ● Yes · Full demo with landing page, blog posts', delay: 600, type: 'select-option-active' },
-  { text: '│', delay: 200, type: 'prompt-label' },
-
-  // Components library selection
-  { text: '◇  Include UI component library?', delay: 400, type: 'select-label' },
-  { text: '│  ● Yes · Buttons, forms, cards, dialogs, etc.', delay: 500, type: 'select-option-active' },
-  { text: '│', delay: 200, type: 'prompt-label' },
-
-  // i18n selection
-  { text: '◇  Add internationalization (i18n)?', delay: 400, type: 'select-label' },
-  { text: '│  ● Yes · Locale routing, translations', delay: 500, type: 'select-option-active' },
-  { text: '│', delay: 200, type: 'prompt-label' },
-
-  // Package manager selection
-  { text: '◇  Which package manager?', delay: 400, type: 'select-label' },
-  { text: '│  ● pnpm · recommended', delay: 400, type: 'select-option-active' },
-  { text: '│', delay: 300, type: 'prompt-label' },
-
-  // Scaffolding progress
-  { text: '◐  Scaffolding project...', delay: 400, type: 'spinner' },
-  { text: '✔  Scaffolding project', delay: 300, type: 'success' },
-  { text: '◐  Copying demo content...', delay: 300, type: 'spinner' },
-  { text: '✔  Copying demo content', delay: 250, type: 'success' },
-  { text: '◐  Setting up components...', delay: 300, type: 'spinner' },
-  { text: '✔  Setting up components', delay: 250, type: 'success' },
-  { text: '◐  Configuring i18n...', delay: 300, type: 'spinner' },
-  { text: '✔  Configuring i18n', delay: 250, type: 'success' },
-  { text: '│', delay: 200, type: 'prompt-label' },
-
-  // Next steps note (clack style)
-  { text: '◇  Next steps ─────────────────────╮', delay: 300, type: 'note-header' },
+  // Next steps note
+  { text: '◇  Ready ──────────────────────────╮', delay: 300, type: 'note-header' },
   { text: '│                                  │', delay: 50, type: 'note-content' },
-  { text: '│  cd my-awesome-site              │', delay: 100, type: 'note-content' },
-  { text: '│  pnpm dev                        │', delay: 100, type: 'note-content' },
+  { text: '│  localhost:4321                  │', delay: 100, type: 'note-content' },
   { text: '│                                  │', delay: 50, type: 'note-content' },
   { text: '├──────────────────────────────────╯', delay: 200, type: 'note-content' },
   { text: '│', delay: 100, type: 'prompt-label' },

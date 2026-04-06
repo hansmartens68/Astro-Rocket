@@ -1,18 +1,16 @@
 ---
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
-const cliFlags = [
-  { flag: '--demo', desc: 'Sample landing page + blog posts' },
-  { flag: '--components', desc: '24 optional UI components' },
-  { flag: '--i18n', desc: 'Multi-language routing configured' },
-  { flag: '--pages', desc: 'Generate pages (+ i18n versions)' },
-  { flag: '-y', desc: 'Skip prompts, use defaults' },
+const steps = [
+  { cmd: 'git clone https://github.com/hansmartens68/Astro-Rocket.git', desc: 'Clone the repository' },
+  { cmd: 'cd Astro-Rocket && pnpm install', desc: 'Install dependencies' },
+  { cmd: 'pnpm dev', desc: 'Start dev server on localhost:4321' },
 ];
 
 const stats = [
-  { value: '1', label: 'command to start' },
-  { value: '5', label: 'flags to customize' },
-  { value: '40+', label: 'components included' },
+  { value: '3', label: 'steps to start' },
+  { value: '57+', label: 'components included' },
+  { value: '40+', label: 'pages & layouts' },
 ];
 ---
 
@@ -25,22 +23,22 @@ const stats = [
         class="text-brand-500 mb-4 flex items-center gap-2 text-sm font-bold tracking-wide uppercase"
       >
         <Icon name="terminal" size="sm" />
-        <span>One Command</span>
+        <span>Up and running fast</span>
       </div>
 
       <h2 class="font-display mb-[var(--space-heading-gap)] text-3xl font-bold text-balance md:text-4xl">
-        Scaffold exactly <span class="text-brand-500">what you need.</span>
+        Clone, install, <span class="text-brand-500">ship.</span>
       </h2>
 
       <div class="text-foreground-secondary space-y-4 text-lg leading-relaxed">
         <p>
-          Not every project needs everything. The Velocity CLI lets you pick your starting point.
+          Astro Rocket is a ready-to-go starter — no CLI wizard, no configuration maze. Clone the repo and you have a full production-grade site in minutes.
         </p>
         <p>
-          Need custom pages? Use <code class="font-mono text-base text-cyan-400">--pages</code> and they're generated with routes and nav already wired. Pair it with <code class="font-mono text-base text-cyan-400">--i18n</code> and you get localized versions too—translations scaffolded and ready.
+          Swap out the content, adjust the design tokens, and deploy. Everything is already wired: routing, components, blog, i18n support, dark mode, and SEO.
         </p>
         <p class="text-foreground-muted">
-          No prompts to click through. No wizard to escape. Just flags that do what they say.
+          Open source. No licence fees. No hidden dependencies.
         </p>
       </div>
 
@@ -76,38 +74,24 @@ const stats = [
 
         <!-- Terminal Body -->
         <div class="p-5 font-mono text-sm leading-relaxed">
-          <!-- Command Line -->
-          <div class="mb-4 flex items-start gap-2">
-            <span class="shrink-0 text-green-400 select-none">$</span>
-            <div>
-              <span class="text-foreground">pnpm create </span>
-              <span class="text-cyan-400">velocity-astro@latest</span>
-              <span class="text-foreground"> my-site</span>
-            </div>
-          </div>
-
-          <!-- Comment -->
-          <div class="text-foreground-muted mb-3 pl-4"># Add what you need</div>
-
-          <!-- Flags -->
-          <div class="space-y-2 pl-4">
-            {
-              cliFlags.map((item) => (
-                <div class="flex items-center gap-3">
-                  <span class="shrink-0 font-semibold text-cyan-400">{item.flag}</span>
-                  <span class="text-foreground-muted"># {item.desc}</span>
+          {
+            steps.map((step, i) => (
+              <div class="mb-4">
+                <div class="text-foreground-muted mb-1 text-xs">#{i + 1} {step.desc}</div>
+                <div class="flex items-start gap-2">
+                  <span class="shrink-0 text-green-400 select-none">$</span>
+                  <span class="text-cyan-400 break-all">{step.cmd}</span>
                 </div>
-              ))
-            }
-          </div>
+              </div>
+            ))
+          }
 
           <!-- Output -->
-          <div class="border-border mt-6 border-t pt-4">
+          <div class="border-border mt-2 border-t pt-4">
             <div class="flex items-center gap-2">
               <span class="text-green-400">✓</span>
-              <span class="text-foreground">Project created successfully!</span>
+              <span class="text-foreground">Ready at <span class="text-cyan-400">localhost:4321</span></span>
             </div>
-            <div class="text-foreground-muted mt-1 pl-5">cd my-site && pnpm dev</div>
           </div>
         </div>
       </div>
