@@ -160,7 +160,7 @@ const id = `google-map-${Math.random().toString(36).slice(2, 9)}`;
         aria-label={ariaLabel}
       ></iframe>
 
-      <script type="application/json" data-google-map-config={id} set:html={mapConfig} />
+      <script is:inline type="application/json" data-google-map-config={id} set:html={mapConfig} />
     </>
   )}
 </div>

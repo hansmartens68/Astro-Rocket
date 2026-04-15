@@ -48,7 +48,7 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
   }
 </style>
 
-<script define:vars={{ id, words, typeSpeed, deleteSpeed, pauseAfterType, pauseAfterDelete }}>
+<script is:inline define:vars={{ id, words, typeSpeed, deleteSpeed, pauseAfterType, pauseAfterDelete }}>
   function startTyping() {
     const root = document.getElementById(id);
     if (!root) return;

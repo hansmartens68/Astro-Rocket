@@ -224,7 +224,7 @@ const gridClasses = cn(
 
     function onScroll() {
       if (window.scrollY > 50) {
-        indicator.classList.add('is-hidden');
+        indicator!.classList.add('is-hidden');
         window.removeEventListener('scroll', onScroll);
       }
     }

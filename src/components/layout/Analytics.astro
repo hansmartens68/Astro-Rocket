@@ -97,7 +97,7 @@ const analyticsDataJson = JSON.stringify({
 
 {/* Analytics data element — read by all inline scripts below */}
 {hasAnalytics && (
-  <script type="application/json" id="analytics-data" set:html={analyticsDataJson} />
+  <script is:inline type="application/json" id="analytics-data" set:html={analyticsDataJson} />
 )}
 
 {/* ── No consent: load GTM directly ── */}

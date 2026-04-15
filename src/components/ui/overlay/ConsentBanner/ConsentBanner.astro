@@ -139,8 +139,8 @@ const configJson = JSON.stringify(consentConfig);
     </button>
 
     <!-- Config data for client script -->
-    <script type="application/json" id="consent-config-data" set:html={configJson} />
-    <script type="application/json" id="consent-gcm-map-data" set:html={categoryGcmMapJson} />
+    <script is:inline type="application/json" id="consent-config-data" set:html={configJson} />
+    <script is:inline type="application/json" id="consent-gcm-map-data" set:html={categoryGcmMapJson} />
 
     <script>
       interface ConsentWindow extends Window {
