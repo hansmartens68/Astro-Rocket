@@ -294,12 +294,12 @@
     );
   }
 
-  /* Hero radial gradient — top-center brand glow, theme-aware */
+  /* Hero gradient — theme-aware */
   .hero-dark-gradient {
     background: radial-gradient(circle at 50% -20%, oklch(from var(--brand-500) l c h / 0.12), transparent 60%), var(--background);
   }
   .dark .hero-dark-gradient {
-    background: radial-gradient(circle at 50% -20%, oklch(from var(--brand-500) l c h / 0.55), transparent 60%), var(--background);
+    background: linear-gradient(to bottom, var(--brand-600), black);
   }
 
   /* Gradient border */
