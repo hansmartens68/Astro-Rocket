@@ -146,29 +146,37 @@ const gridClasses = cn(
 </section>
 
 <style>
+  /* Fade in after the hero slide-up animation completes */
   .scroll-indicator {
     animation: si-fade-in 0.6s ease-out 1.4s both;
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
+
   .scroll-indicator.is-hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateY(4px);
   }
+
   @keyframes si-fade-in {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  /* First chevron bounces, second follows with a slight delay */
   .scroll-indicator-chevron {
     animation: si-bounce 2s ease-in-out 2s infinite;
   }
+
   .scroll-indicator-chevron-2 {
     animation: si-bounce 2s ease-in-out 2.15s infinite;
   }
+
   @keyframes si-bounce {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(5px); }
   }
+
   @media (prefers-reduced-motion: reduce) {
     .scroll-indicator              { animation: none; opacity: 1; }
     .scroll-indicator-chevron,
@@ -177,8 +185,44 @@ const gridClasses = cn(
 </style>
 
 <script>
+  // Parallax: move [data-parallax] layers at a fraction of scroll speed.
+  // Elements with -inset-y-[20%] have extra room to move without clipping.
+  // Skipped entirely when the user prefers reduced motion.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    function initParallax() {
+      const layers = document.querySelectorAll<HTMLElement>('[data-parallax]');
+      if (!layers.length) return;
+
+      function applyParallax() {
+        layers.forEach((el) => {
+          const section = el.closest('section');
+          if (!section) return;
+
+          const rect = section.getBoundingClientRect();
+          // Skip sections fully outside the viewport
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+          const speed = parseFloat(el.dataset.parallax ?? '0.3');
+          // Offset relative to how far the section top is from the viewport top
+          const offset = -rect.top * speed;
+          el.style.transform = `translateY(${offset.toFixed(2)}px)`;
+        });
+      }
+
+      window.addEventListener('scroll', applyParallax, { passive: true });
+      applyParallax();
+
+      document.addEventListener('astro:before-swap', () => {
+        window.removeEventListener('scroll', applyParallax);
+      }, { once: true });
+    }
+
+    document.addEventListener('astro:page-load', initParallax);
+  }
+
+  // Scroll indicator: fade out once the user starts scrolling.
   function initScrollIndicator() {
-    const indicator = document.querySelector('.scroll-indicator');
+    const indicator = document.querySelector<HTMLElement>('.scroll-indicator');
     if (!indicator) return;
 
     function onScroll() {
@@ -196,35 +240,4 @@ const gridClasses = cn(
   }
 
   document.addEventListener('astro:page-load', initScrollIndicator);
-
-  // Parallax: move [data-parallax] layers at a fraction of scroll speed.
-  // Elements with -inset-y-[20%] have extra room to move without clipping.
-  // Skipped entirely when the user prefers reduced motion.
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const layers = document.querySelectorAll<HTMLElement>('[data-parallax]');
-
-    function applyParallax() {
-      layers.forEach((el) => {
-        const section = el.closest('section');
-        if (!section) return;
-
-        const rect = section.getBoundingClientRect();
-        // Skip sections fully outside the viewport
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        const speed = parseFloat(el.dataset.parallax ?? '0.3');
-        // Offset relative to how far the section top is from the viewport top
-        const offset = -rect.top * speed;
-        el.style.transform = `translateY(${offset.toFixed(2)}px)`;
-      });
-    }
-
-    window.addEventListener('scroll', applyParallax, { passive: true });
-    applyParallax();
-
-    // Clean up the listener when navigating away to prevent accumulation
-    document.addEventListener('astro:before-swap', () => {
-      window.removeEventListener('scroll', applyParallax);
-    }, { once: true });
-  }
 </script>
