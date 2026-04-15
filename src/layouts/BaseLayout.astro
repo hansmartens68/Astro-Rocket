@@ -211,20 +211,20 @@ if (includeProfessionalServiceSchema) {
 
     <script is:inline>
       (function () {
-        var THRESHOLD = 400;
-        var CIRCUMFERENCE = 131.95;
+        const THRESHOLD = 400;
+        const CIRCUMFERENCE = 131.95;
 
         function initBackToTop() {
-          var btn = document.getElementById('back-to-top');
+          const btn = document.getElementById('back-to-top');
           if (!btn || btn.dataset.bttInit) return;
           btn.dataset.bttInit = 'true';
 
-          var ring = document.getElementById('back-to-top-ring');
-          var ticking = false;
+          const ring = document.getElementById('back-to-top-ring');
+          let ticking = false;
 
           function updateFrame() {
-            var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-            var pct = scrollable > 0 ? window.scrollY / scrollable : 0;
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
             if (ring) {
               ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - pct));
             }
