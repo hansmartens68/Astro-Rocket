@@ -195,7 +195,7 @@ const buttonId = `${menuId}-button`;
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500 dark:text-foreground')
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500')
               )}
             >
               {logoText || siteConfig.name}
@@ -694,6 +694,9 @@ const buttonId = `${menuId}-button`;
   /* Non-invert floating: use normal colors */
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
     color: var(--color-brand-500);
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-foreground);
   }
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
     color: var(--color-foreground-muted);
