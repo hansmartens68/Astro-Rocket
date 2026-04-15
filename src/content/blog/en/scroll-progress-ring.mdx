@@ -1,0 +1,139 @@
+---
+title: "Scroll Progress Ring — A Circular Indicator on the Back-to-Top Button"
+description: "Astro Rocket's back-to-top button now has a circular SVG progress ring that fills as you scroll. It's brand-coloured, theme-aware, and runs entirely in CSS and a small inline script."
+publishedAt: 2026-04-15
+author: "Hans Martens"
+tags: ["astro-rocket", "features", "ux", "animation"]
+featured: false
+locale: en
+svgSlug: "scroll-progress-ring"
+imageAlt: "A circular progress ring surrounding a back-to-top arrow button on a dark background"
+---
+
+Astro Rocket's back-to-top button has been upgraded with a circular scroll-progress ring. As you scroll down the page, the ring fills clockwise around the button — giving the reader a visual sense of how far through the page they are. Clicking the button still scrolls back to the top.
+
+The ring colour is driven by the active colour theme. Switch to a different theme in the header and the ring changes colour instantly, along with every other brand-coloured element on the page.
+
+## The three-layer structure
+
+The button is built in three layers stacked on top of each other.
+
+**Layer 1 — the outer button** is 48 × 48 px (`h-12 w-12`), fixed to the bottom-right corner of the viewport. It holds the other two layers and manages the show/hide transition with opacity and translate classes.
+
+**Layer 2 — the SVG ring** sits `absolute inset-0`, filling the button exactly. It has two circles:
+
+- A faint *track circle* (`class="text-border"`, `opacity="0.5"`) that shows the full ring path at all times, so the reader can see where the progress arc will travel.
+- A *progress arc* (`id="back-to-top-ring"`, `class="text-brand-500"`) that animates via `stroke-dashoffset`.
+
+Both circles use `stroke="currentColor"`, so their colour is inherited from the Tailwind text class — no hardcoded hex, no CSS variable reference in the SVG markup itself.
+
+**Layer 3 — the inner face** is a `<span>` inset by 5 px (`absolute inset-[5px]`), styled as a pill with the site's background, border, and shadow tokens. It contains the up-arrow SVG icon.
+
+```html
+<button id="back-to-top" class="fixed bottom-6 right-6 z-50 h-12 w-12 ...">
+
+  <!-- Ring -->
+  <svg class="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+    <circle cx="24" cy="24" r="21" fill="none"
+      stroke="currentColor" class="text-border"
+      stroke-width="2" opacity="0.5" />
+    <circle id="back-to-top-ring" cx="24" cy="24" r="21" fill="none"
+      stroke="currentColor" class="text-brand-500"
+      stroke-width="2.5" stroke-linecap="round"
+      stroke-dasharray="131.95" stroke-dashoffset="131.95" />
+  </svg>
+
+  <!-- Face -->
+  <span class="absolute inset-[5px] flex items-center justify-center
+               rounded-full bg-background border border-border-strong
+               text-foreground-muted shadow-md" aria-hidden="true">
+    <!-- up-arrow icon -->
+  </span>
+
+</button>
+```
+
+The SVG is rotated `-90°` so that the stroke starts at 12 o'clock rather than 3 o'clock.
+
+## The ring math
+
+The progress arc is animated by changing a single CSS property: `stroke-dashoffset`.
+
+The circle has a radius of 21 px. Its circumference is:
+
+```
+2 × π × 21 ≈ 131.95
+```
+
+Both `stroke-dasharray` and the initial `stroke-dashoffset` are set to `131.95`. When offset equals the full circumference the arc is invisible — the dash starts and ends at the same point, so nothing is drawn. As the offset decreases toward `0`, more of the arc becomes visible.
+
+On each scroll frame:
+
+```js
+var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+var pct = scrollable > 0 ? window.scrollY / scrollable : 0;
+ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - pct));
+```
+
+At the top of the page `pct` is `0`, so `strokeDashoffset` is `131.95` — arc hidden. At the bottom `pct` is `1`, so `strokeDashoffset` is `0` — arc fully drawn.
+
+## requestAnimationFrame throttling
+
+The scroll handler uses the ticking-flag pattern to cap updates at one per animation frame:
+
+```js
+var ticking = false;
+
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(updateFrame);
+  }
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+```
+
+`updateFrame` resets `ticking` to `false` at the end of each frame, allowing the next scroll event to schedule a new update. Combined with `{ passive: true }`, this ensures the scroll handler never blocks the main thread.
+
+## Automatic theme colour
+
+The ring colour requires no JavaScript to follow the active theme. The progress arc has `class="text-brand-500"` and `stroke="currentColor"`. Tailwind maps `text-brand-500` to `--color-brand-500` via the `@theme` block in `global.css`, and `stroke="currentColor"` inherits the CSS `color` value from that class.
+
+When a visitor selects a different colour in the theme selector — Orange, Emerald, Violet, or any of the twelve available themes — the browser sets a new `data-theme` attribute on `<html>`. Each theme file repoints `--brand-500` to a different OKLCH colour. Every element using `text-brand-500` or `stroke="currentColor"` repaints automatically. The ring is one of those elements, so it switches colour at the same moment as the logo badge, the scroll progress bar in the header, the primary buttons, and every other brand-coloured detail on the page.
+
+No extra JavaScript. No theme-switch event listener. The cascade does it.
+
+## View-transition cleanup
+
+Astro Rocket uses Astro View Transitions for client-side page navigation. Because the back-to-top script is `is:inline` and runs once on first load, its scroll listener would otherwise accumulate across page navigations. The script removes the listener before each swap:
+
+```js
+document.addEventListener('astro:before-swap', function () {
+  window.removeEventListener('scroll', onScroll);
+}, { once: true });
+```
+
+`{ once: true }` ensures this cleanup listener itself is removed after firing, so it does not stack up across navigations either. The init function guards against double-initialisation with a `data-btt-init` flag on the button element.
+
+## Show/hide threshold
+
+The button — and ring — remain hidden until the visitor has scrolled past 400 px. Below that threshold the ring would show very little progress and the button would not be useful. Once the threshold is crossed, the button fades in and the ring immediately reflects the correct position.
+
+```js
+if (window.scrollY > THRESHOLD) {
+  btn.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+  btn.classList.add('opacity-100', 'translate-y-0');
+}
+```
+
+The transition is handled entirely by Tailwind's `transition-[opacity,transform] duration-200` on the outer button — no inline transition style required.
+
+## Related features
+
+The scroll progress ring joins two other scroll-aware UX features in Astro Rocket:
+
+- **[Scroll progress bar](/blog/scroll-progress-bar)** — a 2 px brand-coloured line in the header that fills as you scroll, enabled on the homepage, blog index, and individual post pages.
+- **Scroll reveal animations** — elements with a `data-reveal` attribute fade and slide into view as they enter the viewport, powered by `IntersectionObserver`.
+
+Both also use `--color-brand-500` and update automatically when the active theme changes.
