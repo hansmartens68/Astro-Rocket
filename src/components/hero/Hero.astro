@@ -14,8 +14,6 @@ interface Props extends HTMLAttributes<'section'> {
   showGlow?: boolean;
   /** Fade the bottom of the section into the next section's background */
   bottomFade?: boolean;
-  /** Show an animated scroll indicator at the bottom (desktop only, hides on scroll) */
-  showScrollIndicator?: boolean;
   /** Apply the dark-mode hero gradient (black → brand). Homepage only. */
   gradient?: boolean;
 }
@@ -26,7 +24,6 @@ const {
   showGrid = false,
   showGlow = false,
   bottomFade = false,
-  showScrollIndicator = false,
   gradient = false,
   class: className,
   ...attrs
@@ -75,19 +72,6 @@ const gridClasses = cn(
 
   {bottomFade && (
     <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background-secondary hidden dark:block" aria-hidden="true" />
-  )}
-
-  {showScrollIndicator && (
-    <div class="hidden md:block absolute bottom-20 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
-      <div class="scroll-indicator flex flex-col items-center gap-0.5">
-        <svg class="scroll-indicator-chevron w-7 h-7 text-brand-500/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-        <svg class="scroll-indicator-chevron-2 w-7 h-7 text-brand-500/35" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-      </div>
-    </div>
   )}
 
   <div class={gridClasses}>
@@ -145,58 +129,7 @@ const gridClasses = cn(
   </div>
 </section>
 
-<style>
-  .scroll-indicator {
-    animation: si-fade-in 0.6s ease-out 1.4s both;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .scroll-indicator.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(4px);
-  }
-  @keyframes si-fade-in {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .scroll-indicator-chevron {
-    animation: si-bounce 2s ease-in-out 2s infinite;
-  }
-  .scroll-indicator-chevron-2 {
-    animation: si-bounce 2s ease-in-out 2.15s infinite;
-  }
-  @keyframes si-bounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(5px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-indicator              { animation: none; opacity: 1; }
-    .scroll-indicator-chevron,
-    .scroll-indicator-chevron-2    { animation: none; }
-  }
-</style>
-
 <script>
-  function initScrollIndicator() {
-    const indicator = document.querySelector('.scroll-indicator');
-    if (!indicator) return;
-
-    function onScroll() {
-      if (window.scrollY > 50) {
-        indicator.classList.add('is-hidden');
-        window.removeEventListener('scroll', onScroll);
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    document.addEventListener('astro:before-swap', () => {
-      window.removeEventListener('scroll', onScroll);
-    }, { once: true });
-  }
-
-  document.addEventListener('astro:page-load', initScrollIndicator);
-
   // Parallax: move [data-parallax] layers at a fraction of scroll speed.
   // Elements with -inset-y-[20%] have extra room to move without clipping.
   // Skipped entirely when the user prefers reduced motion.
