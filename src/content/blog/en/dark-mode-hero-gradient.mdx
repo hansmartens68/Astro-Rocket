@@ -48,15 +48,21 @@ This means the `.dark` class is toggled on the root element based on the user's 
 
 ## Applying it
 
-The class is applied once, directly on the `Hero` component in `src/pages/index.astro`:
+The class is applied to the `Hero` component on any page that should carry the gradient. Currently that is the homepage and the projects page:
 
 ```astro
+{/* src/pages/index.astro */}
 <Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator descriptionClass="max-w-3xl">
+  ...
+</Hero>
+
+{/* src/pages/projects/index.astro */}
+<Hero layout="centered" size="sm" class="hero-dark-gradient">
   ...
 </Hero>
 ```
 
-That is the only place it is used. The class exists for this one purpose.
+Adding it to any other page is a one-prop change.
 
 ## The gradient follows the brand colour
 
