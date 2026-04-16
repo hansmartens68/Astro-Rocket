@@ -1,6 +1,6 @@
 ---
 title: "Hero Gradient — Radial Glow in Light Mode, Brand-to-Black in Dark Mode"
-description: "Light mode gets a subtle radial brand-colour glow at 20% opacity from above. Dark mode gets a bold linear gradient from brand-600 to black. Both adapt to the active theme automatically."
+description: "Light mode gets a subtle radial brand-colour glow at 12% opacity from above. Dark mode gets a bold linear gradient from brand-600 to black. Both adapt to the active theme automatically."
 publishedAt: 2026-04-16
 author: "Hans Martens"
 tags: ["astro-rocket", "dark-mode", "css", "design", "features"]
@@ -17,29 +17,23 @@ The homepage hero in [Astro Rocket](https://astrorocket.dev) uses a different ba
 
 ### Light mode
 
-A soft elliptical glow of the active `--color-brand-500` at 20% opacity sits at the very top of the hero, fading to transparent. The effect is subtle — a quiet brand-coloured halo at the top edge of the page. Everywhere the glow fades, the normal background takes over. The sections below the hero are completely unaffected.
+A soft circular glow of the active `--brand-500` at 12% opacity originates from a point centred horizontally and 20% above the top edge of the hero, fading to transparent before the 60% mark. The effect is subtle — a quiet brand-coloured halo at the top edge of the page. Everywhere the glow fades, the normal background takes over. The sections below the hero are completely unaffected.
 
 ### Dark mode
 
-The hero becomes a rich branded canvas. The gradient starts at the active `--color-brand-600` at the top and fades to pure black at the bottom. The brand colour bleeds through behind the floating header, creating a seamless connection between the navigation and the hero content. Switch themes and the gradient colour changes instantly along with every other brand element on the page.
+The hero becomes a rich branded canvas. The gradient starts at the active `--brand-600` at the top and fades to pure black at the bottom. The brand colour bleeds through behind the floating header, creating a seamless connection between the navigation and the hero content. Switch themes and the gradient colour changes instantly along with every other brand element on the page.
 
 ## The CSS
 
 Both rules live in `src/styles/global.css`:
 
 ```css
-/* Hero gradient — mode-specific */
+/* Hero gradient — theme-aware */
 .hero-dark-gradient {
-  /* Light mode: radial brand-500 glow at top, fading to transparent */
-  background: radial-gradient(
-    ellipse 80% 50% at 50% 0%,
-    color-mix(in oklch, var(--color-brand-500) 20%, transparent),
-    transparent
-  );
+  background: radial-gradient(circle at 50% -20%, oklch(from var(--brand-500) l c h / 0.12), transparent 60%), var(--background);
 }
 .dark .hero-dark-gradient {
-  /* Dark mode: linear brand-600 top to black bottom */
-  background: linear-gradient(to bottom, var(--color-brand-600), black);
+  background: linear-gradient(to bottom, var(--brand-600), black);
 }
 ```
 
@@ -47,9 +41,9 @@ The base `.hero-dark-gradient` rule applies the light-mode radial gradient. The 
 
 ## How the colours work
 
-**Light mode** uses `color-mix(in oklch, var(--color-brand-500) 20%, transparent)`. This blends 20% of the active brand-500 token with transparent in the OKLCH colour space, giving a perceptually accurate semi-transparent tint. The hue is always right — no hardcoded colour values anywhere.
+**Light mode** uses CSS relative colour syntax: `oklch(from var(--brand-500) l c h / 0.12)` reads the lightness, chroma, and hue directly from the `--brand-500` token and applies an alpha of `0.12`. The result is a semi-transparent tint of whatever brand colour is active — the hue is always correct without any hardcoded values. The `var(--background)` at the end of the declaration is the base layer the radial gradient sits on top of, so the hero retains the correct background colour wherever the glow fades to transparent.
 
-**Dark mode** uses `var(--color-brand-600)` as the start colour — one step darker than the primary accent — and fades to black. The darker shade holds up against the black endpoint and looks saturated rather than washed out.
+**Dark mode** uses `var(--brand-600)` as the start colour — one step darker than the primary accent — and fades to black. The darker shade holds up against the black endpoint and looks saturated rather than washed out.
 
 Both colours come from the active theme's tokens, so switching themes in the header selector updates both gradients immediately. Read more about how the token system works in [How Astro Rocket's Design System Works — Tokens, Colors, and Dark Mode](/blog/design-system-color-tokens).
 
@@ -58,9 +52,7 @@ Both colours come from the active theme's tokens, so switching themes in the hea
 The "Web Designer" highlight in the hero H1 adapts to match the gradient. In light mode it uses the brand-500 accent colour to stand out against a plain background. In dark mode the vivid gradient already provides the branded feel, so the text switches to `text-foreground` to stay legible:
 
 ```astro
-<span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] dark:text-foreground dark:[-webkit-text-fill-color:var(--color-foreground)]">
-  Web Designer
-</span>
+<span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] dark:text-foreground dark:[-webkit-text-fill-color:currentColor]">Web Designer</span>
 ```
 
 The `-webkit-text-fill-color` overrides are needed because some browsers use this property for text rendering and it takes precedence over `color`. Setting both ensures consistent rendering across browsers.
