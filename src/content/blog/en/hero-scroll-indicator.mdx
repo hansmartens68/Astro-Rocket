@@ -1,0 +1,184 @@
+---
+title: "Hero Scroll Indicator — Desktop-Only, Hides on Scroll"
+description: "Astro Rocket's hero has an animated scroll indicator: two bouncing chevrons that fade in after the hero animation and disappear the moment you start scrolling. Here's how every part of it works."
+publishedAt: 2026-04-16
+author: "Hans Martens"
+tags: ["astro-rocket", "features", "ux", "animation"]
+featured: false
+locale: en
+image: "../../../assets/blog/hero-scroll-indicator.svg"
+svgSlug: "hero-scroll-indicator"
+imageAlt: "Two stacked chevron-down arrows on a brand-coloured background, representing the hero scroll indicator"
+---
+
+The homepage hero in [Astro Rocket](https://astrorocket.dev) has a small detail at the bottom: two stacked chevrons that gently bounce, drawing the eye downward. They appear after the hero content has finished animating in and vanish the moment you start scrolling — quietly doing their job without getting in the way.
+
+This post covers how it is built, why it is desktop-only, and a non-obvious CSS cascade issue that caused the hide-on-scroll to not work until it was fixed.
+
+## Enabling it
+
+The scroll indicator is a prop on the `Hero` component. It is off by default:
+
+```astro
+<Hero showScrollIndicator>
+  ...
+</Hero>
+```
+
+That single prop renders the indicator and wires up all the behaviour — animation, responsive visibility, and the scroll-triggered hide.
+
+## The markup
+
+The indicator is two `<svg>` chevrons stacked in a flex column, wrapped in a positioning container:
+
+```html
+<div class="scroll-indicator-wrapper absolute bottom-14 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
+  <div class="scroll-indicator flex flex-col items-center gap-0.5">
+
+    <svg class="scroll-indicator-chevron w-7 h-7 text-brand-500/70" ...>
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+
+    <svg class="scroll-indicator-chevron-2 w-7 h-7 text-brand-500/35" ...>
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+
+  </div>
+</div>
+```
+
+The outer wrapper is absolutely positioned at `bottom-14` in the centre of the hero, sitting above the page content via `z-10`. The two chevrons are identical in shape but differ in opacity — the first at `text-brand-500/70`, the second at `text-brand-500/35` — creating a fading-depth effect. Both colours follow the active theme automatically: switch to a different colour in the header selector and the chevrons update instantly along with every other brand-coloured element.
+
+The entire element is `aria-hidden="true"` — it is purely decorative and contributes nothing to the accessibility tree.
+
+## Desktop-only: the media query
+
+The scroll indicator is hidden by default and made visible only when the viewport is wide enough and tall enough to be a desktop screen:
+
+```css
+.scroll-indicator-wrapper {
+  display: none;
+}
+
+@media (min-width: 1024px) and (min-height: 500px) {
+  .scroll-indicator-wrapper {
+    display: block;
+  }
+}
+```
+
+The `min-width: 1024px` condition alone is not enough. Phones in landscape mode can reach 930 px wide — well past the `md` (768 px) and `lg` (1024 px) Tailwind breakpoints — while remaining clearly on a phone. The distinguishing dimension in landscape is height: landscape phones top out at around 430 px tall. The `min-height: 500px` condition cleanly separates them from every laptop and desktop screen, which all have at least 600 px of viewport height available. The two conditions together mean the indicator only appears on a genuine desktop or large-tablet screen.
+
+## The animation
+
+The `.scroll-indicator` element fades in with a delayed CSS animation, giving the hero slide-up animation time to finish first:
+
+```css
+.scroll-indicator {
+  animation: si-fade-in 0.6s ease-out 1.4s backwards;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes si-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+```
+
+The `1.4s` delay ensures the chevrons appear only after the hero content has settled. The `backwards` fill mode applies the `from` state during that delay, so the element starts invisible with no flash before the animation begins.
+
+The two chevrons bounce independently on a looping animation with a small phase offset between them:
+
+```css
+.scroll-indicator-chevron {
+  animation: si-bounce 2s ease-in-out 2s infinite;
+}
+
+.scroll-indicator-chevron-2 {
+  animation: si-bounce 2s ease-in-out 2.15s infinite;
+}
+
+@keyframes si-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
+```
+
+The first chevron starts bouncing at 2 s; the second follows at 2.15 s. The 150 ms stagger gives the pair a flowing, wave-like motion rather than a rigid simultaneous bounce.
+
+Both animations are disabled when the user prefers reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator              { animation: none; opacity: 1; }
+  .scroll-indicator-chevron,
+  .scroll-indicator-chevron-2    { animation: none; }
+}
+```
+
+## Hides on scroll
+
+Once the user scrolls past 50 px, the indicator fades out and the scroll listener removes itself:
+
+```js
+function initScrollIndicator() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (!indicator) return;
+
+  function onScroll() {
+    if (window.scrollY > 50) {
+      indicator.classList.add('is-hidden');
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  document.addEventListener('astro:before-swap', () => {
+    window.removeEventListener('scroll', onScroll);
+  }, { once: true });
+}
+
+document.addEventListener('astro:page-load', initScrollIndicator);
+```
+
+The `is-hidden` class drives the visual change entirely through CSS:
+
+```css
+.scroll-indicator.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+}
+```
+
+The `transition` on `.scroll-indicator` picks it up and fades it out smoothly.
+
+The `astro:before-swap` cleanup removes the scroll listener before Astro tears down the page during client-side navigation. `{ once: true }` ensures the cleanup listener itself does not accumulate across repeated visits to the page.
+
+## The fill-mode fix
+
+There was a subtle bug here: adding `is-hidden` had no visible effect. The indicator stayed on screen regardless of how far the page was scrolled.
+
+The cause is the CSS cascade. CSS animations have higher precedence than regular class declarations. The original animation used `fill-mode: both`, which includes `forwards` — meaning after the fade-in completes, the animation continues to hold `opacity: 1` on the element. When `is-hidden` set `opacity: 0` via a regular class rule, the animation fill simply outranked it and nothing changed.
+
+The fix is `animation-fill-mode: backwards` instead of `both`. The `backwards` fill mode still applies the `from` state during the delay (preventing the flash), but it does not hold the final state after the animation ends. Once the animation finishes, the element's properties are determined by regular CSS again — which means the `is-hidden` transition can take over normally.
+
+```css
+/* Before — forwards fill blocks the is-hidden transition */
+animation: si-fade-in 0.6s ease-out 1.4s both;
+
+/* After — backwards fill only; hides cleanly on scroll */
+animation: si-fade-in 0.6s ease-out 1.4s backwards;
+```
+
+One word changed. The `backwards` fill is enough: it prevents the initial flash during the 1.4 s delay, and the `to` state of the animation (`opacity: 1`) matches the browser default anyway, so there is no visible difference when the animation ends — only the hide-on-scroll now works correctly.
+
+## Related scroll features
+
+The scroll indicator joins two other scroll-aware elements in Astro Rocket:
+
+- **[Scroll progress bar](/blog/scroll-progress-bar)** — a thin brand-coloured line in the header that fills as you scroll, enabled on the homepage, blog index, and post pages.
+- **[Scroll progress ring](/blog/scroll-progress-ring)** — a circular arc around the back-to-top button that fills clockwise as you scroll down.
+
+All three use `--color-brand-500` and update automatically when the active theme changes.
