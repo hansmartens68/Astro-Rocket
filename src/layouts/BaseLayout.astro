@@ -198,11 +198,14 @@ if (includeProfessionalServiceSchema) {
     <button
       id="back-to-top"
       aria-label="Back to top"
-      class="fixed bottom-6 right-6 z-50 h-12 w-12 opacity-0 translate-y-2 pointer-events-none transition-[opacity,transform] duration-200"
+      class="fixed bottom-6 right-6 z-50 h-12 w-12"
+      style="opacity:0;translate:0 2rem;pointer-events:none"
     >
-      <!-- Scroll-progress ring -->
+      <!-- Scroll-progress ring (rotated so arc starts at 12 o'clock) -->
       <svg class="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+        <!-- Faint grey track -->
         <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" class="text-border" stroke-width="2" opacity="0.5" />
+        <!-- Brand progress arc -->
         <circle id="back-to-top-ring" cx="24" cy="24" r="21" fill="none" stroke="currentColor" class="text-brand-500" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="131.95" />
       </svg>
       <!-- Inner face -->
@@ -222,7 +225,38 @@ if (includeProfessionalServiceSchema) {
           btn.dataset.bttInit = 'true';
 
           const ring = document.getElementById('back-to-top-ring');
+          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           let ticking = false;
+          let visible = false;
+
+          // Ensure initial hidden state is applied via JS (guards against any cascade override)
+          btn.style.opacity = '0';
+          btn.style.translate = '0 2rem';
+          btn.style.pointerEvents = 'none';
+
+          function show() {
+            if (reducedMotion) {
+              btn.style.transition = 'none';
+            } else {
+              btn.style.transition = 'opacity 250ms cubic-bezier(0,0,0.2,1), translate 250ms cubic-bezier(0,0,0.2,1)';
+            }
+            btn.style.opacity = '1';
+            btn.style.translate = '0 0';
+            btn.style.pointerEvents = 'auto';
+            visible = true;
+          }
+
+          function hide() {
+            if (reducedMotion) {
+              btn.style.transition = 'none';
+            } else {
+              btn.style.transition = 'opacity 300ms cubic-bezier(0.4,0,1,1), translate 300ms cubic-bezier(0.4,0,1,1)';
+            }
+            btn.style.opacity = '0';
+            btn.style.translate = '0 2rem';
+            btn.style.pointerEvents = 'none';
+            visible = false;
+          }
 
           function updateFrame() {
             const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -231,11 +265,9 @@ if (includeProfessionalServiceSchema) {
               ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - pct));
             }
             if (window.scrollY > THRESHOLD) {
-              btn.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
-              btn.classList.add('opacity-100', 'translate-y-0');
+              if (!visible) show();
             } else {
-              btn.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
-              btn.classList.remove('opacity-100', 'translate-y-0');
+              if (visible) hide();
             }
             ticking = false;
           }
@@ -249,7 +281,7 @@ if (includeProfessionalServiceSchema) {
 
           window.addEventListener('scroll', onScroll, { passive: true });
           btn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
           });
 
           document.addEventListener('astro:before-swap', function () {
