@@ -3,7 +3,7 @@
    =============================================================================
    This file aggregates primitive color scales and all themes.
    The active theme is selected at runtime via the data-theme attribute on
-   <html>. Default: midnight.
+   <html>. Default: sky.
 
    To add a new theme: create a file in ../themes/ following the same token
    contract, scope it under html[data-theme="name"], and import it below.
