@@ -260,7 +260,7 @@ if (includeProfessionalServiceSchema) {
 
           function updateFrame() {
             const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
+            const pct = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
             if (ring) {
               ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - pct));
             }
