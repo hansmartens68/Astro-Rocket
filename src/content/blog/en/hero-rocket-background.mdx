@@ -1,6 +1,6 @@
 ---
-title: "Hero Rocket Background — Dark Mode on Desktop and Portrait Mobile"
-description: "A large faint rocket icon in the homepage hero background, visible in dark mode on desktop and on portrait mobile. Animates in on load, floats gently, and follows the active colour theme."
+title: "Hero Rocket Background — Dark Mode on the Homepage"
+description: "A large faint rocket icon in the homepage hero background, visible in dark mode on desktop. Animates in on load, floats gently, and follows the active colour theme."
 publishedAt: 2026-04-17
 author: "Hans Martens"
 tags: ["astro-rocket", "features", "dark-mode", "hero", "design"]
@@ -8,10 +8,10 @@ featured: false
 locale: en
 image: "../../../assets/blog/hero-rocket-background.svg"
 svgSlug: "hero-rocket-background"
-imageAlt: "A large faint rocket icon behind a smaller sharp rocket above the words 'dark hero' on a brand-coloured background"
+imageAlt: "A sharp rocket icon above the words 'dark hero' on a brand-coloured background"
 ---
 
-The homepage hero in [Astro Rocket](https://astrorocket.dev) has a large rocket icon sitting quietly in the background in dark mode. It fades in on page load, then floats slowly up and down in a continuous loop. It is low-opacity, centered behind the content, and colored with the active brand color — so it adapts automatically when you switch themes. It appears on desktop at all orientations and on mobile when the screen is in portrait mode. In light mode it is never shown.
+The homepage hero in [Astro Rocket](https://astrorocket.dev) has a large rocket icon sitting quietly in the background in dark mode. It fades in on page load, then floats slowly up and down in a continuous loop. It is low-opacity, centered behind the content, and colored with the active brand color — so it adapts automatically when you switch themes. It appears on desktop at all orientations. In light mode it is never shown.
 
 ## How it works
 
@@ -20,14 +20,13 @@ The rocket is a plain inline SVG rendered inside the `Hero` component. It is abs
 The visibility is controlled entirely with Tailwind utility classes on the wrapper:
 
 ```html
-<div class="pointer-events-none absolute inset-0 hidden dark:portrait:flex dark:lg:flex items-center justify-center">
+<div class="pointer-events-none absolute inset-0 hidden dark:lg:flex items-center justify-center">
 ```
 
 - `hidden` — invisible by default on all screen sizes and orientations
-- `dark:portrait:flex` — visible on portrait-oriented screens (typically phones held upright) when dark mode is active
 - `dark:lg:flex` — visible at the `lg` breakpoint (1024 px) or wider when dark mode is active
 
-The two dark-mode rules are additive: a tablet held in landscape at `lg` width satisfies `dark:lg:flex`; a phone held upright satisfies `dark:portrait:flex`. Neither rule fires in light mode. No JavaScript is involved.
+The rule does not fire in light mode. No JavaScript is involved.
 
 ## The SVG
 
@@ -54,8 +53,7 @@ The icon is the Lucide rocket, rendered with `fill="none"` and `stroke="currentC
 A few things worth noting:
 
 - **`stroke-width="0.75"`** — thinner than the default Lucide stroke. At 420 px the paths are large, so a thinner stroke keeps the icon from looking heavy.
-- **`w-[min(55vw,420px)]`** — the base size: scales with the viewport up to a maximum of 420 px on desktop.
-- **`portrait:w-[min(80vw,420px)]`** — on portrait screens the icon grows to 80 vw (still capped at 420 px). A phone in portrait mode is narrow, so the larger fraction fills the background more convincingly without exceeding the cap.
+- **`w-[min(55vw,420px)]`** — scales with the viewport up to a maximum of 420 px on desktop.
 - **`style="opacity: 0;"`** — the element starts fully transparent so there is no flash before the fade-in animation fires. The final opacity (0.27) is applied by the CSS animation, not a Tailwind class.
 
 ## Animation
@@ -124,9 +122,7 @@ Remove the `showRocketBg` prop from the `<Hero>` call in `src/pages/index.astro`
 
 One word removed, feature gone. No CSS to clean up, no variables to reset.
 
-## Why portrait mobile and dark mode only
-
-On landscape mobile and small tablets the screen is wide but short, so a large centered icon would compete directly with the hero text and buttons. Portrait mode gives the rocket enough vertical room to sit comfortably behind the content without crowding it.
+## Why dark mode only
 
 Light mode was considered but the icon at 0.27 opacity on a light background reads more as clutter than atmosphere. The dark hero gradient — brand colour fading to black — gives the rocket exactly the right contrast to feel intentional. See [Hero Gradient — Brand to Black, Dark Mode Only](/blog/dark-mode-hero-gradient) for how that gradient is set up.
 
