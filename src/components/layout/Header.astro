@@ -663,10 +663,18 @@ const buttonId = `${menuId}-button`;
     transition: opacity 200ms, filter 200ms;
   }
 
-  /* ===== Floating header: scroll state ===== */
+  /* ===== Floating header: always-on frosted glass ===== */
+  [data-header-shape="floating"] {
+    background: color-mix(in oklch, var(--color-background) 30%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: color-mix(in oklch, var(--color-border) 40%, transparent);
+  }
+
   [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 92%, transparent);
+    background: color-mix(in oklch, var(--color-background) 45%, transparent);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
   }
