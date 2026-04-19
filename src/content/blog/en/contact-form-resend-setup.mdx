@@ -1,0 +1,125 @@
+---
+title: "Contact Form Setup: Resend, Vercel, and GoDaddy Step by Step"
+description: "Astro Rocket's contact form is wired up but needs three things to actually deliver email: a Resend account, a verified domain, and one environment variable on Vercel."
+publishedAt: 2026-03-31
+author: "Hans Martens"
+tags: ["astro-rocket", "tutorial", "email", "vercel", "deployment"]
+featured: false
+locale: en
+image: "../../../assets/blog/contact-form-resend-setup.svg"
+svgSlug: "contact-form-resend-setup"
+imageAlt: "A paper-plane send icon above the words 'send email' on a brand-coloured background"
+---
+
+[Astro Rocket](https://astrorocket.dev) ships with a fully working contact form — validation, honeypot spam protection, error handling, the lot. The one thing it does not include is an email service account, because that belongs to you. Getting the form to actually deliver requires three external pieces: a [Resend](https://resend.com) account, a verified sending domain, and one environment variable on Vercel. Here is exactly how to connect them.
+
+**[Resend](https://resend.com)** is a developer-focused email delivery service. You send email through their API and they handle the infrastructure — deliverability, authentication, and sending reputation. It has a generous free tier and is what Astro Rocket uses under the hood.
+
+**[Vercel](https://vercel.com)** is the hosting platform this site runs on. It builds and deploys your Astro project on every push, and manages environment variables like API keys so they stay out of your source code.
+
+**[GoDaddy](https://godaddy.com)** is the domain registrar where `yourdomain.com` is registered. To send email from an address on your domain, you need to add a few DNS records there so Resend can prove to receiving mail servers that the emails are legitimate.
+
+## What you need before you start
+
+- A Resend account (free tier is fine)
+- Access to your domain's DNS settings in GoDaddy
+- Access to your project's environment variables on Vercel
+
+The form sends to your inbox from an address on your domain. The only moving part is convincing Resend that you own that domain.
+
+## Step 1 — Create a Resend account
+
+Go to **resend.com** and sign up. The free tier allows 3,000 emails per month and 100 per day — more than enough for a contact form.
+
+## Step 2 — Verify your domain in Resend
+
+This is the most involved step. Resend needs to verify that you own your domain before it will send email from addresses on it.
+
+1. In Resend, go to **Domains → Add Domain**
+2. Enter `yourdomain.com` and click **Add**
+3. Resend shows you a set of DNS records to add — typically an SPF record, two or three DKIM CNAME records, and an optional DMARC record
+
+Now add those records in GoDaddy:
+
+1. Log in to GoDaddy and go to **My Products**
+2. Next to your domain, click **DNS** (or **Manage DNS**)
+3. For each record Resend gives you, click **Add New Record** and fill in the type, name, and value exactly as shown
+
+A few GoDaddy-specific notes:
+- GoDaddy calls the **Host** field what Resend labels **Name**. If Resend shows `@` as the name, leave the GoDaddy host field empty or enter `@`.
+- GoDaddy sometimes appends your domain to the name automatically. If a CNAME record name already ends in `.yourdomain.com` in Resend, enter only the part before the dot in GoDaddy.
+- TTL can be left at the default (1 hour).
+
+Once all records are added, go back to Resend and click **Verify DNS Records**. DNS propagation usually takes a few minutes but can take up to an hour. The domain status changes to **Verified** when it is ready.
+
+## Step 3 — Create an API key
+
+1. In Resend, go to **API Keys → Create API Key**
+2. Give it a name — `yourdomain.com production` works well
+3. Permission: **Sending access** is sufficient
+4. Click **Add** and copy the key immediately — Resend only shows it once
+
+## Step 4 — Add the API key to Vercel
+
+1. In Vercel, open your project and go to **Settings → Environment Variables**
+2. Add a new variable:
+   - **Name:** `RESEND_API_KEY`
+   - **Value:** the key you just copied
+   - **Environment:** Production (and Preview if you want to test on preview deployments)
+3. Click **Save**
+
+## Step 5 — Redeploy
+
+Environment variable changes do not take effect on running deployments. Trigger a new deployment to pick up the key:
+
+1. In Vercel, go to **Deployments**
+2. Find your latest deployment, click the three-dot menu, and choose **Redeploy**
+
+Alternatively, push any small change to your main branch — Vercel will build and deploy automatically.
+
+## Step 6 — Test it
+
+Open your live site, fill in the contact form, and submit. Within a few seconds you should receive the message at your inbox address. The reply-to is set to whatever email the visitor entered, so you can reply directly from your inbox.
+
+If the form returns an error, the most common causes are:
+
+| Problem | Likely cause |
+|---------|-------------|
+| "API key not authorized" | Domain not verified in Resend yet, or the API key was added without saving the Vercel deployment |
+| No email received | Check your spam folder; Resend's dashboard shows delivery status under **Emails** |
+| 500 error on submit | `RESEND_API_KEY` env variable is missing or the deployment has not been re-run since adding it |
+
+## Which Astro Rocket files to update
+
+There are two files to touch. Nothing else needs changing for the contact form to work.
+
+### 1. `src/pages/api/contact.ts`
+
+This is the only file with hardcoded email addresses. There are three values to replace:
+
+```ts
+// Line 67–68 — the subject line prefix that appears in your inbox
+const subject = result.data.subject
+  ? `[yourdomain.com] ${result.data.subject}`
+  : `[yourdomain.com] New contact from ${result.data.name}`;
+
+// Line 71 — the sender address (must be on your Resend-verified domain)
+from: 'Contact Form <hello@yourdomain.com>',
+
+// Line 72 — your inbox: where contact form submissions are delivered
+to: 'you@gmail.com',
+```
+
+Replace `yourdomain.com` with your actual domain and `you@gmail.com` with the address where you want to receive messages. The `from` address must always be on a domain you have verified in Resend — `to` can be any email address.
+
+### 2. `.env` (local) or Vercel environment variables (production)
+
+The API key is never stored in the source code. For local development, add it to `.env` at the project root:
+
+```bash
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxx
+```
+
+For production, add it as an environment variable in your Vercel project settings as described in Step 4 above. The variable name must be exactly `RESEND_API_KEY`.
+
+Those two files are everything. The rest of the contact form — validation, spam protection, error handling, the HTML email template — works without any changes.
