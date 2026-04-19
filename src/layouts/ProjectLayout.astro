@@ -7,7 +7,6 @@ import Footer from '@/components/layout/Footer.astro';
 import Breadcrumbs from '@/components/seo/Breadcrumbs.astro';
 import ProjectHero from '@/components/projects/ProjectHero.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import siteConfig from '@/config/site.config';
 
@@ -85,14 +84,6 @@ const breadcrumbs = [
     <article class="pt-8 pb-[var(--space-section-md)]">
       <div class="mx-auto max-w-4xl px-6">
         <Breadcrumbs items={breadcrumbs} class="mb-8" />
-
-        {services.length > 0 && (
-          <div class="mb-10 flex flex-wrap gap-2 pb-10 border-b border-border" data-reveal>
-            {services.map((service) => (
-              <Badge variant="brand">{service}</Badge>
-            ))}
-          </div>
-        )}
 
         <div class="prose prose-lg max-w-none">
           <slot />

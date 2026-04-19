@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+
+interface Props {
+  lightImage: ImageMetadata;
+  darkImage: ImageMetadata;
+  lightAlt?: string;
+  darkAlt?: string;
+  demoUrl: string;
+}
+
+const {
+  lightImage,
+  darkImage,
+  lightAlt = 'Light mode screenshot',
+  darkAlt = 'Dark mode screenshot',
+  demoUrl,
+} = Astro.props;
+---
+
+<div class="not-prose my-12 space-y-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="rounded-xl border border-border shadow-xl overflow-hidden">
+      <Image
+        src={lightImage}
+        alt={lightAlt}
+        class="aspect-video w-full object-cover"
+        loading="lazy"
+      />
+      <p class="text-xs text-foreground-subtle text-center py-2 bg-background-secondary">Light mode</p>
+    </div>
+
+    <div class="rounded-xl border border-border shadow-xl overflow-hidden">
+      <Image
+        src={darkImage}
+        alt={darkAlt}
+        class="aspect-video w-full object-cover"
+        loading="lazy"
+      />
+      <p class="text-xs text-foreground-subtle text-center py-2 bg-background-secondary">Dark mode</p>
+    </div>
+  </div>
+
+  <div class="bg-background-secondary border border-border rounded-xl px-8 py-10 text-center">
+    <p class="font-display text-xl font-bold text-foreground mb-3">See it live</p>
+    <p class="text-foreground-muted mb-6 max-w-md mx-auto">
+      The best way to experience Astro Rocket is to open it. Switch themes, toggle dark mode, read a blog post.
+    </p>
+    <Button href={demoUrl} target="_blank" rel="noopener noreferrer" size="md">
+      <Icon name="external-link" size="sm" />
+      View live demo
+    </Button>
+  </div>
+</div>

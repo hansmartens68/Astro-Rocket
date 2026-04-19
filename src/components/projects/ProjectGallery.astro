@@ -1,0 +1,244 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface GalleryImage {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+const id = Math.random().toString(36).slice(2, 8);
+---
+
+<div class="not-prose my-12" id={`gallery-${id}`}>
+  <div class="relative">
+    <!-- Carousel track -->
+    <div
+      id={`track-${id}`}
+      class="flex overflow-x-auto snap-x snap-mandatory rounded-xl border border-border"
+      style="scrollbar-width: none;"
+    >
+      {images.map((img, i) => (
+        <div
+          class="shrink-0 w-full snap-start cursor-zoom-in"
+          data-index={i}
+          data-gallery-slide={`gallery-${id}`}
+        >
+          <Image
+            src={img.src}
+            alt={img.alt}
+            class="aspect-video w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Prev button -->
+    <button
+      id={`prev-${id}`}
+      class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 border border-border shadow-md text-foreground backdrop-blur-sm transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-background"
+      aria-label="Previous image"
+      disabled
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <!-- Next button -->
+    <button
+      id={`next-${id}`}
+      class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 border border-border shadow-md text-foreground backdrop-blur-sm transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-background"
+      aria-label="Next image"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dots + counter -->
+  <div class="mt-4 flex flex-col items-center gap-2">
+    <div id={`dots-${id}`} class="flex items-center gap-1.5" role="tablist">
+      {images.map((_, i) => (
+        <button
+          role="tab"
+          aria-label={`Go to slide ${i + 1}`}
+          data-dot={i}
+          data-dots-gallery={`gallery-${id}`}
+          class={`h-1.5 rounded-full transition-all duration-300 ${i === 0 ? 'w-5 bg-brand-500' : 'w-1.5 bg-border'}`}
+        />
+      ))}
+    </div>
+    <span id={`counter-${id}`} class="text-xs text-foreground-muted">
+      1 / {images.length}
+    </span>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div
+  id={`lightbox-${id}`}
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image lightbox"
+>
+  <button
+    id={`lb-close-${id}`}
+    class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+    aria-label="Close lightbox"
+  >
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <button
+    id={`lb-prev-${id}`}
+    class="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+    aria-label="Previous image"
+  >
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <div class="mx-16 flex flex-col items-center gap-3 max-w-5xl w-full px-4">
+    <img id={`lb-img-${id}`} src="" alt="" class="max-h-[80vh] w-auto rounded-lg object-contain" />
+    <p id={`lb-caption-${id}`} class="text-sm text-white/70 text-center"></p>
+  </div>
+
+  <button
+    id={`lb-next-${id}`}
+    class="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+    aria-label="Next image"
+  >
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<script define:vars={{ id, imageData: images.map(img => ({ src: img.src.src, alt: img.alt, caption: img.caption ?? '' })) }}>
+(function () {
+  const galleryId = id;
+  const track = document.getElementById('track-' + galleryId);
+  const prevBtn = document.getElementById('prev-' + galleryId);
+  const nextBtn = document.getElementById('next-' + galleryId);
+  const counter = document.getElementById('counter-' + galleryId);
+  const dotsContainer = document.getElementById('dots-' + galleryId);
+  const lightbox = document.getElementById('lightbox-' + galleryId);
+  const lbImg = document.getElementById('lb-img-' + galleryId);
+  const lbCaption = document.getElementById('lb-caption-' + galleryId);
+  const lbClose = document.getElementById('lb-close-' + galleryId);
+  const lbPrev = document.getElementById('lb-prev-' + galleryId);
+  const lbNext = document.getElementById('lb-next-' + galleryId);
+
+  if (!track || !prevBtn || !nextBtn || !counter || !dotsContainer || !lightbox) return;
+
+  const slides = Array.from(track.querySelectorAll('[data-index]'));
+  const dots = Array.from(dotsContainer.querySelectorAll('[data-dot]'));
+  const total = slides.length;
+  let current = 0;
+  let lbCurrent = 0;
+
+  function scrollTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+    slides[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    sync(current);
+  }
+
+  function sync(index) {
+    current = index;
+    counter.textContent = (index + 1) + ' / ' + total;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === total - 1;
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.className = 'h-1.5 rounded-full transition-all duration-300 w-5 bg-brand-500';
+      } else {
+        dot.className = 'h-1.5 rounded-full transition-all duration-300 w-1.5 bg-border';
+      }
+    });
+  }
+
+  // Scroll spy
+  let scrollTimer;
+  track.addEventListener('scroll', function () {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      const scrollLeft = track.scrollLeft;
+      const width = track.clientWidth;
+      const idx = Math.round(scrollLeft / width);
+      sync(idx);
+    }, 50);
+  }, { passive: true });
+
+  prevBtn.addEventListener('click', function () { scrollTo(current - 1); });
+  nextBtn.addEventListener('click', function () { scrollTo(current + 1); });
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { scrollTo(i); });
+  });
+
+  // Keyboard nav
+  document.getElementById('gallery-' + galleryId).addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') scrollTo(current - 1);
+    if (e.key === 'ArrowRight') scrollTo(current + 1);
+  });
+
+  // Click to open lightbox
+  slides.forEach(function (slide, i) {
+    slide.addEventListener('click', function () { openLightbox(i); });
+  });
+
+  function openLightbox(index) {
+    lbCurrent = index;
+    lbSync(index);
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function lbSync(index) {
+    lbCurrent = index;
+    const img = imageData[index];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = img.caption || '';
+    lbPrev.disabled = index === 0;
+    lbNext.disabled = index === total - 1;
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', function () { lbSync(lbCurrent - 1); });
+  lbNext.addEventListener('click', function () { lbSync(lbCurrent + 1); });
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('flex')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && lbCurrent > 0) lbSync(lbCurrent - 1);
+    if (e.key === 'ArrowRight' && lbCurrent < total - 1) lbSync(lbCurrent + 1);
+  });
+
+  sync(0);
+})();
+</script>
