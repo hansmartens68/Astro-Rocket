@@ -20,7 +20,7 @@ Astro Rocket inherits a complete UI component library from [Velocity](https://gi
   <Button href="/components" class="!bg-brand-500 ![background-image:none] !text-white dark:!border-transparent hover:!bg-brand-600"><Icon name="component" />See every component live<Icon name="arrow-right" /></Button>
 </div>
 
-The library is organized in three layers: 31 UI primitives that form the building blocks, 7 higher-level pattern components, and a set of page-structure components for the Hero, Header, Footer, Blog, and SEO layers.
+The library is organized in three layers: 33 UI primitives that form the building blocks, 7 higher-level pattern components, and a set of page-structure components for the Hero, Header, Footer, Blog, and SEO layers.
 
 ---
 
@@ -54,7 +54,7 @@ import Input from '@/components/ui/form/Input/Input.astro';
 <Input label="Email address" type="email" placeholder="you@example.com" />
 ```
 
-### Data display (8 components)
+### Data display (9 components)
 
 | Component | What it does |
 |-----------|--------------|
@@ -66,6 +66,7 @@ import Input from '@/components/ui/form/Input/Input.astro';
 | `Pagination` | Page navigation with prev/next and numbered page buttons. |
 | `Progress` | Horizontal progress bar that fills to a percentage value. |
 | `Skeleton` | Loading placeholder that pulses in the shape of the content it replaces. |
+| `GoogleMap` | Embeds an interactive Google Map via iframe. Accepts address, zoom, and size props. |
 
 ```astro
 ---
@@ -203,9 +204,9 @@ Place new components in the matching subdirectory under `src/components/`:
 src/components/
 ├── ui/
 │   ├── form/          # Button, Input, Select, Checkbox, Radio, Switch, Textarea
-│   ├── data-display/  # Card, Badge, Avatar, Table, Pagination, Progress, Skeleton
+│   ├── data-display/  # Card, Badge, Avatar, AvatarGroup, GoogleMap, Table, Pagination, Progress, Skeleton
 │   ├── feedback/      # Alert, Toast, Tooltip
-│   ├── overlay/       # Dialog, Dropdown, Tabs, VerticalTabs, Accordion
+│   ├── overlay/       # Dialog, Dropdown, Tabs, VerticalTabs, Accordion, ConsentBanner
 │   ├── layout/        # Separator
 │   ├── primitives/    # Icon
 │   ├── content/       # CodeBlock
@@ -284,7 +285,7 @@ import { Counter } from '@/components/ui';
 
 ## Browse the live demo
 
-The fastest way to get a feel for all 57 components is the live component demo. Every component is rendered with live props you can inspect:
+The fastest way to get a feel for all 59 components is the live component demo. Every component is rendered with live props you can inspect:
 
 **[/components](/components)**
 

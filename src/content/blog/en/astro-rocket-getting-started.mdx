@@ -50,18 +50,26 @@ Start here. The `name` field populates the logo badge, page titles, footer copyr
 
 ### Brand colour
 
-Set your brand colour in the `branding.colors` section:
+Astro Rocket ships with 12 ready-to-use colour themes. Pick your preferred theme by setting the `data-theme` attribute in `src/layouts/BaseLayout.astro`:
+
+```html
+<html lang="en" class="scroll-smooth dark" data-theme="blue">
+```
+
+Available values: `orange`, `amber`, `lime`, `emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`, `violet`, `purple`, `magenta`. The theme CSS files live in `src/styles/themes/` — open the active one to fine-tune the `--brand-*` colour scale if needed.
+
+The `branding.colors` section in `site.config.ts` controls two unrelated browser values:
 
 ```ts
 branding: {
   colors: {
-    themeColor: '#F94C10',       // Your primary brand colour
-    backgroundColor: '#ffffff',  // Used in the web app manifest
+    themeColor: '#3b82f6',       // Browser toolbar colour on mobile Chrome/Safari
+    backgroundColor: '#ffffff',  // PWA splash screen background
   },
 },
 ```
 
-The `themeColor` drives every brand-coloured element across the site — buttons, links, the logo badge, highlights, and the favicon — through a single CSS custom property. Change it once and the entire site updates.
+Update `themeColor` to a hex that matches your chosen brand colour so the mobile browser chrome looks polished — it does not affect any on-page colours.
 
 ### Navigation
 
@@ -69,10 +77,10 @@ Open `src/config/nav.config.ts`. This is the only file you need to touch to chan
 
 ```ts
 export const navItems: NavItem[] = [
-  { label: 'Home',    href: '/'        },
-  { label: 'Blog',    href: '/blog'    },
-  { label: 'About',   href: '/about'   },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Blog',     href: '/blog',     order: 1 },
+  { label: 'Projects', href: '/projects', order: 2 },
+  { label: 'About',    href: '/about',    order: 3 },
+  { label: 'Contact',  href: '/contact',  order: 4 },
 ];
 ```
 

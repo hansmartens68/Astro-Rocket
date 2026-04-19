@@ -1,8 +1,8 @@
 ---
 /**
  * ThemeSelector
- * A row of five colour swatches that switches the active colour theme at
- * runtime by writing `data-theme` on <html> and persisting to localStorage.
+ * A row of twelve colour swatches that switches the active colour theme at
+ * runtime by writing `data-theme` on <html> and persisting to sessionStorage.
  *
  * Usage in Header:  <ThemeSelector />
  * Pass `class` to tint the label colour for floating / inverted headers.
@@ -13,7 +13,7 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-// All 13 themes in Tailwind color order
+// All 12 themes in Tailwind color order
 const themes = [
   { id: 'orange',  name: 'Orange',  color: 'oklch(62.5% 0.22  38)'  },
   { id: 'amber',   name: 'Amber',   color: 'oklch(68%   0.19  75)'  },

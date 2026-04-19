@@ -73,13 +73,13 @@ When `true`, a translucent brand-colour tint is applied over blog cover images. 
 The default mode is set directly in the HTML element in `src/layouts/BaseLayout.astro`:
 
 ```html
-<html lang="en" class="scroll-smooth dark" data-theme="sky">
+<html lang="en" class="scroll-smooth dark" data-theme="blue">
 ```
 
 The `dark` class is what activates dark mode on first load. Remove it to default to light:
 
 ```html
-<html lang="en" class="scroll-smooth" data-theme="sky">
+<html lang="en" class="scroll-smooth" data-theme="blue">
 ```
 
 The user's preference during their session is stored in `sessionStorage` — so it persists while the tab is open but resets when they open a new tab. This is intentional for a portfolio or marketing site. If you want it to persist across sessions, swap the `sessionStorage` calls for `localStorage` in the same file.
@@ -92,7 +92,7 @@ The landing page (`src/pages/index.astro`) passes three boolean props to `Landin
 <LandingLayout
   includePersonSchema={true}
   includeOrgSchema={false}
-  includeProfessionalServiceSchema={false}
+  includeProfessionalServiceSchema={true}
 >
 ```
 
@@ -158,7 +158,7 @@ Astro Rocket ships with **12 colour themes**. All 12 are shown as coloured swatc
 The default theme is set with `data-theme` on the `<html>` element in `src/layouts/BaseLayout.astro`:
 
 ```html
-data-theme="sky"
+data-theme="blue"
 ```
 
 Available values — all 12 themes:
@@ -171,16 +171,16 @@ Available values — all 12 themes:
 | `emerald` | 160° | All-rounder — works for SaaS, portfolios, and organic brands |
 | `teal` | 190° | Developer tooling, modern SaaS, trustworthy services |
 | `cyan` | 200° | Fresh, vibrant tech — more energetic than teal |
-| `sky` | 222° | Clean and airy — between teal and blue, great for services — the default |
-| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative |
+| `sky` | 222° | Clean and airy — between teal and blue, great for services |
+| `blue` | 255° | Studio aesthetic (Linear/Raycast feel), authoritative — the default |
 | `indigo` | 264° | Enterprise, productivity tools, serious B2B |
 | `violet` | 277° | Creative and premium — sweet spot between indigo and purple |
-| `purple` | 292° | Expressive, personality-forward, vivid |
+| `purple` | 303° | Expressive, personality-forward, vivid |
 | `magenta` | 330° | Creative agencies, bold personal brands — maximum vivid |
 
 ### The live theme selector
 
-All 12 themes appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `localStorage` and persists across sessions.
+All 12 themes appear as colour swatches in the header dropdown (desktop) and in the mobile menu when `showThemeSelector` is enabled on the `<Header>` component. The visitor's choice is saved to `sessionStorage` and persists for the duration of the tab session — consistent with how the dark/light mode preference is stored.
 
 The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. The current set:
 
@@ -213,7 +213,7 @@ All colour values in Astro Rocket use the OKLCH colour space: `oklch(lightness% 
 | **Chroma** | 0 (grey) → ~0.37 (maximum vivid) | How saturated the colour is |
 | **Hue** | 0–360° | The colour angle on the wheel |
 
-Common hue landmarks: 0°/360° = red, 38° = orange, 75° = amber, 130° = lime, 155–160° = green, 190–200° = teal/cyan, 222° = sky, 255° = blue, 264° = indigo, 292° = purple, 330° = magenta.
+Common hue landmarks: 0°/360° = red, 38° = orange, 75° = amber, 130° = lime, 155–160° = green, 190–200° = teal/cyan, 222° = sky, 255° = blue, 264° = indigo, 277° = violet, 303° = purple, 330° = magenta.
 
 To shift a theme to a completely different colour, you only need to change the hue number across the `--brand-50` to `--brand-900` scale — keep the lightness and chroma values the same and the whole palette moves together. Use [oklch.com](https://oklch.com) to pick visually.
 
@@ -222,7 +222,7 @@ To shift a theme to a completely different colour, you only need to change the h
 Every theme is a CSS file in `src/styles/themes/`. Each file defines the full set of colour tokens for both light and dark mode. Open the relevant file and adjust the `--brand-*` scale — all ten steps from 50 to 900:
 
 ```css
-html[data-theme="sky"] {
+html[data-theme="blue"] {
   --brand-50:  oklch(97.5% 0.02 255);
   --brand-100: oklch(94.8% 0.04 255);
   --brand-200: oklch(87.5% 0.08 255);
@@ -479,9 +479,10 @@ Edit `src/config/nav.config.ts` to change the header and footer navigation in on
 
 ```ts
 export const navItems: NavItem[] = [
-  { label: 'Blog',    href: '/blog',    order: 1 },
-  { label: 'About',   href: '/about',   order: 2 },
-  { label: 'Contact', href: '/contact', order: 3 },
+  { label: 'Blog',     href: '/blog',     order: 1 },
+  { label: 'Projects', href: '/projects', order: 2 },
+  { label: 'About',    href: '/about',    order: 3 },
+  { label: 'Contact',  href: '/contact',  order: 4 },
 ];
 ```
 
@@ -534,12 +535,12 @@ Remove any URL you don't use. The footer won't render an empty social section. I
 | Twitter card handles | `src/config/site.config.ts` | `twitter.site`, `twitter.creator` |
 | Search console verification | `.env` or `site.config.ts` | `verification.google/bing` |
 | Navigation items | `src/config/nav.config.ts` | `navItems` array |
-| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="sky"` |
+| Default colour theme | `src/layouts/BaseLayout.astro` | `data-theme="blue"` |
 | Default dark/light mode | `src/layouts/BaseLayout.astro` | `class="dark"` on `<html>` |
 | JSON-LD schema switches | `src/pages/index.astro` | `includePersonSchema`, `includeOrgSchema` |
 | noindex / nofollow | any layout | `noindex={true}`, `nofollow={true}` |
 | Live theme selector (12 swatches) | `src/components/layout/ThemeSelector.astro` | `themes` array |
-| All 12 theme files | `src/styles/themes/` | One CSS file per theme |
+| All 12 theme files | `src/styles/themes/` | One CSS file per theme (13 files exist — `green.css` is available but not in the picker) |
 | Brand colour scale (light & dark) | `src/styles/themes/*.css` | `--brand-50` → `--brand-900` |
 | Typography (fonts, weight, tracking) | `src/styles/themes/*.css` | `--theme-font-*`, `--theme-heading-*` |
 | Border radius (global roundness) | `src/styles/themes/*.css` | `--theme-radius-sm/md/lg/xl/full` |

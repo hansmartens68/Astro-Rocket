@@ -30,11 +30,11 @@ None of these require per-page setup. They are wired into the base layout and ru
 
 Structured data is the part most themes skip. Astro Rocket outputs [JSON-LD](https://json-ld.org/) schema.org markup on every page.
 
-**Home page** outputs three schemas:
+**Home page** outputs three schemas (exact set depends on which schema props are enabled in `src/pages/index.astro`):
 
-- `WebSite` — site name, URL, and search action
-- `Organization` — your organisation name, logo, and contact details
-- `Person` — the site author
+- `WebSite` — site name, URL, and search action (always included)
+- `Person` — the site author (enabled by default via `includePersonSchema`)
+- `ProfessionalService` — professional service details with address and area served (enabled by default via `includeProfessionalServiceSchema`)
 
 **Blog posts** output `BlogPosting` with full metadata:
 

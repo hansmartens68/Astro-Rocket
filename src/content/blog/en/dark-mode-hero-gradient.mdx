@@ -44,7 +44,7 @@ Dark mode in Astro Rocket is class-based, not media-query-based. The custom vari
 @custom-variant dark (&:where(.dark, .dark *));
 ```
 
-This means the `.dark` class is toggled on the root element based on the user's explicit theme choice, or their system preference on first visit. The `.dark .hero-dark-gradient` rule activates the moment that class is present — no JavaScript is needed for the gradient itself. See [Why Astro Rocket Uses sessionStorage for Dark Mode](/blog/dark-mode-sessionstorage) for how that choice is stored and restored between page loads.
+This means the `.dark` class is toggled on the root element based on the user's explicit theme choice during the current session. The `.dark .hero-dark-gradient` rule activates the moment that class is present — no JavaScript is needed for the gradient itself. See [Why Astro Rocket Uses sessionStorage for Dark Mode](/blog/dark-mode-sessionstorage) for how that choice is stored and restored between page loads.
 
 ## Applying it
 
