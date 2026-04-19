@@ -12,12 +12,11 @@ services: ["Design System", "Component Library", "Open Source"]
 ---
 
 import ProjectShowcase from '@/components/projects/ProjectShowcase.astro';
-import screenshotLight from '@/assets/projects/astro-rocket-light.jpeg';
-import screenshotDark from '@/assets/projects/astro-rocket-dark.jpeg';
+import screenshotPlaceholder from '@/assets/blog/astro-rocket-intro.svg';
 
 <ProjectShowcase
-  lightImage={screenshotLight}
-  darkImage={screenshotDark}
+  lightImage={screenshotPlaceholder}
+  darkImage={screenshotPlaceholder}
   lightAlt="Astro Rocket homepage in light mode"
   darkAlt="Astro Rocket homepage in dark mode"
   demoUrl="https://astrorocket.dev"
