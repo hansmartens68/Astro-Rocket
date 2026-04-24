@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { heroSectionVariants } from './hero.variants';
+import { heroSectionVariants, heroBlobVariants } from './hero.variants';
 
 interface Props extends HTMLAttributes<'section'> {
   /** Layout mode: centered single column or split two-column */
@@ -12,25 +12,25 @@ interface Props extends HTMLAttributes<'section'> {
   showGrid?: boolean;
   /** Show brand-coloured radial glow blobs behind the content */
   showGlow?: boolean;
-  /** Show two asymmetric brand blobs (dark mode only) */
+  /** Show decorative gradient blob */
   showBlob?: boolean;
+  /** Blob position (only applies when showBlob is true) */
+  blobPosition?: 'left' | 'right' | 'center';
   /** Fade the bottom of the section into the next section's background */
   bottomFade?: boolean;
   /** Show an animated scroll indicator at the bottom (desktop only, hides on scroll) */
   showScrollIndicator?: boolean;
-  /** Max-width class for the description wrapper (default: max-w-xl) */
-  descriptionClass?: string;
 }
 
 const {
   layout = 'centered',
   size = 'lg',
-  showGrid = true,
-  showGlow = true,
+  showGrid = false,
   showBlob = false,
-  bottomFade = true,
+  blobPosition = 'center',
+  showGlow = false,
+  bottomFade = false,
   showScrollIndicator = false,
-  descriptionClass = 'max-w-xl',
   class: className,
   ...attrs
 } = Astro.props;
@@ -95,6 +95,7 @@ const gridClasses = cn(
     <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background-secondary hidden dark:block" aria-hidden="true" />
   )}
 
+
   {showScrollIndicator && (
     <div class="scroll-indicator-wrapper absolute bottom-14 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
       <div class="scroll-indicator flex flex-col items-center gap-0.5">
@@ -132,8 +133,7 @@ const gridClasses = cn(
       {/* Description Slot */}
       {hasDescriptionSlot && (
         <div class={cn(
-          'mb-[var(--space-stack-lg)] text-lg leading-relaxed text-foreground-muted',
-          descriptionClass,
+          'mb-[var(--space-stack-lg)] max-w-xl text-lg leading-relaxed text-foreground-muted',
           '[&>p]:text-lg [&>p]:leading-relaxed [&>p]:text-foreground-muted',
           layout === 'centered' && 'mx-auto'
         )}>
@@ -165,8 +165,7 @@ const gridClasses = cn(
 </section>
 
 <style>
-  /* Desktop-only: require both a minimum width and minimum height so phones
-     in landscape mode (wide but short) are excluded. */
+  /* Desktop only: hide on landscape mobile (phones max out ~430px tall) */
   .scroll-indicator-wrapper {
     display: none;
   }
@@ -207,6 +206,7 @@ const gridClasses = cn(
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(5px); }
   }
+
 
   @media (prefers-reduced-motion: reduce) {
     .scroll-indicator              { animation: none; opacity: 1; }
@@ -258,7 +258,7 @@ const gridClasses = cn(
 
     function onScroll() {
       if (window.scrollY > 50) {
-        indicator!.classList.add('is-hidden');
+        indicator.classList.add('is-hidden');
         window.removeEventListener('scroll', onScroll);
       }
     }
