@@ -1,5 +1,5 @@
 ---
-import LandingLayout from '@/layouts/LandingLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 // Form Components
 import Button from '@/components/ui/form/Button/Button.astro';
 import Input from '@/components/ui/form/Input/Input.astro';
@@ -59,7 +59,7 @@ const categories = [
 ];
 ---
 
-<LandingLayout
+<PageLayout
   title="Component Showcase"
   description="Explore Astro Rocket's comprehensive UI component library. Production-ready, accessible, and beautifully designed."
   noindex={true}
@@ -2052,7 +2052,7 @@ const categories = [
     </Fragment>
   </CTA>
 
-</LandingLayout>
+</PageLayout>
 
 <style>
   /* Showcase card styling */

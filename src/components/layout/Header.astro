@@ -196,7 +196,7 @@ const buttonId = `${menuId}-button`;
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
                 isFloating && 'md:hidden',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-400')
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500 dark:text-brand-400')
               )}
             >
               {logoText || siteConfig.name}
@@ -777,15 +777,15 @@ const buttonId = `${menuId}-button`;
     border-color: color-mix(in oklch, var(--color-brand-300), transparent 50%);
   }
 
-  /* Logo text: brand-400 for all floating states */
+  /* Logo text: brand-500 in light mode, brand-400 in dark mode */
   [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
     color: var(--color-brand-400);
   }
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
     color: var(--color-brand-400);
