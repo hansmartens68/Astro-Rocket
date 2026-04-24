@@ -42,21 +42,6 @@ import SearchInput from '@/components/patterns/SearchInput.astro';
 import PasswordInput from '@/components/patterns/PasswordInput.astro';
 import StatCard from '@/components/patterns/StatCard.astro';
 import EmptyState from '@/components/patterns/EmptyState.astro';
-
-// Component categories for navigation
-const categories = [
-  { id: 'hero', label: 'Hero', icon: 'star' },
-  { id: 'layout', label: 'Layout', icon: 'layout' },
-  { id: 'buttons', label: 'Buttons', icon: 'box' },
-  { id: 'inputs', label: 'Form Inputs', icon: 'terminal' },
-  { id: 'feedback', label: 'Feedback', icon: 'alert-circle' },
-  { id: 'overlays', label: 'Overlays', icon: 'layers' },
-  { id: 'navigation', label: 'Navigation', icon: 'menu' },
-  { id: 'data', label: 'Data Display', icon: 'layers' },
-  { id: 'loading', label: 'Loading', icon: 'loader' },
-  { id: 'toggles', label: 'Toggles', icon: 'toggle-left' },
-  { id: 'patterns', label: 'Patterns', icon: 'layers' },
-];
 ---
 
 <PageLayout
@@ -90,22 +75,7 @@ const categories = [
     </Fragment>
   </Hero>
 
-  <!-- Category Navigation -->
-  <nav class="sticky top-16 z-40 bg-background/95 backdrop-blur-md border-y border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="flex items-center gap-1 py-3 overflow-x-auto scrollbar-hide">
-        {categories.map((cat) => (
-          <a
-            href={`#${cat.id}`}
-            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground-muted hover:text-foreground hover:bg-secondary rounded-md transition-all whitespace-nowrap group"
-          >
-            <Icon name={cat.icon} size="sm" class="text-foreground-subtle group-hover:text-brand-500 transition-colors" />
-            {cat.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  </nav>
+
 
   <!-- Components Showcase -->
   <div class="mx-auto max-w-6xl px-6 py-20 space-y-32">
