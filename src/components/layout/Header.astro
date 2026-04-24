@@ -191,11 +191,12 @@ const buttonId = `${menuId}-button`;
           <slot name="logo" />
         ) : (
           <a href="/" class="flex items-center gap-2">
-            <Logo size={size === 'lg' ? 'lg' : 'md'} forceDark={isInvert} />
+            <Logo size={size === 'sm' ? 'md' : 'lg'} forceDark={isInvert} />
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500')
+                isFloating && 'md:hidden',
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-400')
               )}
             >
               {logoText || siteConfig.name}
@@ -223,7 +224,7 @@ const buttonId = `${menuId}-button`;
                   isFloating
                     ? (isActive(href)
                         ? 'hdr-nav-active font-semibold'
-                        : 'font-medium opacity-80 hover:opacity-100')
+                        : 'font-medium')
                     : (isActive(href)
                         ? 'nav-link-active font-semibold text-foreground bg-secondary'
                         : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
@@ -343,11 +344,23 @@ const buttonId = `${menuId}-button`;
 
   {/* Scroll Progress Bar */}
   {showScrollProgress && (
-    <div
-      id="scroll-progress-bar"
-      class={`absolute left-0 h-[2px] w-0 bg-brand-500 transition-none ${scrollProgressPosition === 'top' ? 'top-0' : 'bottom-0'}`}
-      aria-hidden="true"
-    />
+    isFloating ? (
+      <div
+        class={`absolute inset-x-3 h-[2px] overflow-hidden rounded-full ${scrollProgressPosition === 'top' ? 'top-[2px]' : 'bottom-[2px]'}`}
+        aria-hidden="true"
+      >
+        <div
+          id="scroll-progress-bar"
+          class="absolute left-0 top-0 h-full w-0 bg-brand-500 transition-none"
+        />
+      </div>
+    ) : (
+      <div
+        id="scroll-progress-bar"
+        class={`absolute left-0 h-[2px] w-0 bg-brand-500 transition-none ${scrollProgressPosition === 'top' ? 'top-0' : 'bottom-0'}`}
+        aria-hidden="true"
+      />
+    )
   )}
 
   {/* Mobile Menu */}
@@ -749,5 +762,44 @@ const buttonId = `${menuId}-button`;
     [data-header-shape="floating"] .nav-link::after {
       transition: none !important;
     }
+  }
+
+  /* Dark mode: lighten floating header background */
+  .dark [data-header-shape="floating"] {
+    background: color-mix(in oklch, var(--color-background) 50%, transparent);
+  }
+  .dark [data-header-shape="floating"][data-scrolled] {
+    background: color-mix(in oklch, var(--color-background) 75%, transparent);
+  }
+
+  /* Light mode: subtle brand-tinted border before scrolling */
+  html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
+    border-color: color-mix(in oklch, var(--color-brand-300), transparent 50%);
+  }
+
+  /* Logo text: brand-400 for all floating states */
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+
+  /* Nav links: foreground-muted in light, foreground-subtle in dark */
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+    color: var(--color-foreground-muted);
+    transition: color 300ms;
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+    color: var(--color-foreground-subtle);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+    color: var(--color-foreground);
   }
 </style>
