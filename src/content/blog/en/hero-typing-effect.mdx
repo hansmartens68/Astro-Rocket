@@ -31,7 +31,7 @@ The component currently lives in the About page hero, inside a brand-coloured `<
 <h1 slot="title">
   <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br />
   <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-    <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Blogger", "Coffee lover"]} />
+    <TypingEffect words={["Web Designer", "Web Developer", "Astro Developer", "Claude Code User", "UI / UX Enthusiast", "Blogger", "Coffee lover"]} />
   </span>
 </h1>
 ```
@@ -286,7 +286,7 @@ To change the blink speed, adjust the `0.75s` value. Faster blinking (`0.5s`) re
 The component wraps everything in a `<span>` with an `aria-label` set to all words joined by a comma:
 
 ```html
-<span id="typing-abc123" class="typing-effect" aria-label="Web Designer, Web Developer, Astro Developer, Blogger, Coffee lover">
+<span id="typing-abc123" class="typing-effect" aria-label="Web Designer, Web Developer, Astro Developer, Claude Code User, UI / UX Enthusiast, Blogger, Coffee lover">
 ```
 
 Screen readers announce the full list of words from the `aria-label` and ignore the animated content inside (the cursor has `aria-hidden="true"`). The text is therefore both readable and not disruptive to assistive technology.

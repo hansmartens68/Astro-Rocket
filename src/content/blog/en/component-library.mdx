@@ -26,7 +26,7 @@ The library is organized in three layers: 33 UI primitives that form the buildin
 
 ## UI primitives
 
-These 31 components cover every common UI need. They accept variants and sizes through props and are built with accessibility in mind — keyboard navigation, ARIA attributes, and focus management are handled for you.
+These 33 components cover every common UI need. They accept variants and sizes through props and are built with accessibility in mind — keyboard navigation, ARIA attributes, and focus management are handled for you.
 
 ### Form (7 components)
 
@@ -166,9 +166,9 @@ Pattern components compose the UI primitives into specific real-world use cases.
 
 These components are fixed parts of the site architecture. They are used once per page type and are not generally composed with other components — they define the page.
 
-**Hero** — the `Hero` component supports four layouts (`centered`, `split`, `minimal`, `card`) and three sizes. All hero content uses named slots: `badge`, `title`, `description`, `actions`, and optionally `image`.
+**Hero** — the `Hero` component supports two layouts (`centered`, `split`) and four sizes (`sm`, `md`, `lg`, `xl`). All hero content uses named slots: `badge`, `title`, `description`, `actions`, and optionally `image`.
 
-**Header** — fixed top navigation bar with logo, nav links, dark mode toggle, theme selector, and optional CTA button. Three rendering variants: `solid` (solid bar), `transparent` (transparent, used on blog posts), and `floating` (the capsule header on the homepage). Includes the scroll progress bar when enabled.
+**Header** — fixed top navigation bar with logo, nav links, dark mode toggle, theme selector, and optional CTA button. Three rendering variants: `solid`, `transparent`, and `default`. The capsule header on the homepage is a separate `shape="floating"` prop — distinct from the variant. Includes the scroll progress bar when enabled.
 
 **Footer** — bottom navigation with site links, social icons, and copyright text.
 
@@ -285,7 +285,7 @@ import { Counter } from '@/components/ui';
 
 ## Browse the live demo
 
-The fastest way to get a feel for all 59 components is the live component demo. Every component is rendered with live props you can inspect:
+The fastest way to get a feel for all 57 components is the live component demo. Every component is rendered with live props you can inspect:
 
 **[/components](/components)**
 
