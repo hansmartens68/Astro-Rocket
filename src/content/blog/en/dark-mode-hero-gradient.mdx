@@ -1,6 +1,6 @@
 ---
-title: "Hero Gradient — Brand to Black, Dark Mode Only"
-description: "The Astro Rocket homepage hero has a gradient in dark mode — brand colour at the top fading to black at the bottom. In light mode, there is no gradient at all. Here is how it works."
+title: "Hero Gradient — Radial Glow, Grid Overlay, and a Subtle Light Mode Tint"
+description: "The homepage hero uses a radial gradient and dot-grid overlay. Dark mode gets a deep brand-800 glow fading to the page background. Light mode gets a subtle brand tint at the top."
 publishedAt: 2026-04-16
 author: "Hans Martens"
 tags: ["astro-rocket", "features", "dark-mode", "css"]
@@ -10,9 +10,9 @@ svgSlug: "dark-mode-hero-gradient"
 imageAlt: "A sunset icon above the word gradient on a brand-coloured background, representing the dark mode hero gradient"
 ---
 
-The homepage hero in [Astro Rocket](https://astrorocket.dev) looks different depending on which mode you are in. In dark mode, the background opens with the active brand colour at the top and fades smoothly to black at the bottom. Switch to light mode and the gradient is gone entirely — the hero sits on a plain background like the rest of the page.
+The homepage hero in [Astro Rocket](https://astrorocket.dev) uses layered visual effects that respond to both the active colour theme and the current light/dark mode. Dark mode gets a radial glow from a deep brand colour at the top that fades into the page background, combined with a dot-grid texture overlay. Light mode gets a very subtle, almost-invisible brand tint at the very top — just enough to anchor the hero without overpowering the content.
 
-This is not two separate implementations. It is one CSS class with two rules.
+This is not two separate implementations. It is one CSS class with two rules, plus the `showGrid` prop on the Hero component.
 
 ## The CSS
 
@@ -20,21 +20,29 @@ A single utility class named `.hero-dark-gradient` lives in `global.css`:
 
 ```css
 .hero-dark-gradient {
-  background: var(--background);
+  background: radial-gradient(
+    ellipse 80% 40% at 50% 0%,
+    color-mix(in oklch, var(--color-brand-400), transparent 94%),
+    transparent
+  );
 }
 
 .dark .hero-dark-gradient {
-  background: linear-gradient(to bottom, var(--brand-600), black);
+  background: radial-gradient(
+    ellipse 100% 60% at 50% 0%,
+    var(--color-brand-800) 0%,
+    var(--color-background) 100%
+  );
 }
 ```
 
-In light mode, the class sets the background to `var(--background)` — the same plain surface colour used everywhere else on the page. No gradient, no special treatment. The hero blends into the layout.
+In light mode, the gradient is an ellipse centred at the very top of the hero (50% 0%), 80% wide and 40% tall. It starts with `brand-400` mixed 94% transparent — so only 6% of the brand colour bleeds through — and fades to fully transparent. The result is barely perceptible: a whisper of brand colour at the top that gives the section just a hint of identity without adding visual weight.
 
-In dark mode, the `.dark` parent selector activates and replaces that with a `linear-gradient`. It runs from `var(--brand-600)` at the top to `black` at the bottom. The result is a rich, saturated opening that settles into the deep dark of the rest of the page.
+In dark mode, the ellipse expands to full width (100%) and 60% height. It starts from `brand-800` at the centre of the ellipse and fades to `var(--color-background)` at the edges. `brand-800` is the darkest step in the brand scale — rich and saturated but never harsh — and fading to the actual background colour (rather than to black) means the gradient blends seamlessly into the rest of the page regardless of which theme is active.
 
-## Why brand-600 and not brand-500
+## Why brand-800 and not brand-600 or brand-500
 
-`var(--brand-600)` is one step darker than the primary brand colour (`brand-500`). On a dark background, lighter shades can appear washed out or low-contrast. The `600` shade is saturated enough to read clearly against the black it fades into, without looking too light at the top where it meets the header.
+`var(--color-brand-800)` is three steps darker than the primary `brand-500` accent. On a dark background, lighter brand shades produce a vivid, high-contrast glow that can overpower the content sitting on top. `brand-800` is saturated enough to read clearly as a branded background without competing with the heading and buttons in front of it. It creates atmosphere rather than spectacle — the right balance for a hero that is meant to introduce content, not steal the show.
 
 ## How dark mode is detected
 
@@ -56,18 +64,18 @@ The class is applied once, directly on the `Hero` component in `src/pages/index.
 </Hero>
 ```
 
-The `showGrid` prop adds a dot-grid overlay that is `hidden dark:block` — it only appears in dark mode, layering a subtle texture over the gradient. That is the only place this combination is used.
+The `showGrid` prop adds a dot-grid overlay that is `hidden dark:block` — it only appears in dark mode, layering a subtle texture over the radial glow. The grid uses a radial mask so it fades out toward the edges, keeping the centre of the hero clean. Together with the gradient, it gives the dark mode hero a depth and texture that the light mode deliberately avoids.
 
 ## The gradient follows the brand colour
 
-`var(--brand-600)` is not a fixed hex value. It is a CSS custom property that updates when the user picks a different colour theme — blue, purple, orange, or any other option in the header colour picker. The gradient adapts automatically. Switch from blue to orange and the top of the hero becomes orange. No extra code needed; the custom property does the work. See [How Astro Rocket's Design System Works](/blog/design-system-color-tokens) for a full walkthrough of every colour token and how they are structured.
+`var(--color-brand-800)` is not a fixed hex value. It is a CSS custom property that updates when the user picks a different colour theme — blue, purple, orange, or any of the twelve options in the header colour picker. The gradient adapts automatically. Switch from blue to orange and the glow at the top of the hero becomes a deep orange. No extra code needed; the custom property does the work. See [How Astro Rocket's Design System Works](/blog/design-system-color-tokens) for a full walkthrough of every colour token and how they are structured.
 
-## Light mode: intentionally nothing
+## Light mode: a subtle brand anchor
 
-The decision to skip the gradient in light mode is deliberate. A brand-to-white gradient on a light background tends to look heavy and can make text harder to read. The plain background keeps the hero clean and lets the content carry the visual weight. The gradient is a dark-mode affordance — it uses the depth of a dark palette to create visual interest that simply does not translate the same way in the light.
+Unlike the previous version of this hero — which had no gradient in light mode at all — the current light mode applies a very faint brand tint. At 6% opacity it is not intended to be noticed as a gradient; it is there to give the hero a slight sense of place and brand identity without the heavy feel that a stronger gradient would create on a light background. The plain white background of the rest of the page flows into it seamlessly.
 
 ## Other hero features
 
-The gradient is one of several layers that make up the homepage hero:
+The gradient and grid are two of several layers that make up the homepage hero:
 
 - **[Hero Scroll Indicator](/blog/hero-scroll-indicator)** — two bouncing chevrons that appear after the hero animation and disappear the moment you start scrolling.
