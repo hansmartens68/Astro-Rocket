@@ -684,19 +684,6 @@ const buttonId = `${menuId}-button`;
     box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
   }
 
-  /* Dark mode: lighten the floating header background */
-  .dark [data-header-shape="floating"] {
-    background: color-mix(in oklch, var(--color-background) 50%, transparent);
-  }
-  .dark [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 75%, transparent);
-  }
-
-  /* Light mode: subtle brand-tinted border before scrolling */
-  html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
-    border-color: color-mix(in oklch, var(--color-brand-300), transparent 50%);
-  }
-
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
 
   /* Text elements: on-invert → foreground */
@@ -708,33 +695,22 @@ const buttonId = `${menuId}-button`;
     color: var(--color-foreground);
   }
 
-  /* Logo text: on-invert → brand-400 */
+  /* Logo text: on-invert → brand-500 */
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-logo-text {
     color: var(--color-on-invert);
     transition: color 300ms;
   }
   [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
-    color: var(--color-brand-400);
-  }
-  .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
 
-  /* Non-invert floating: brand-400 in all modes */
+  /* Non-invert floating: use normal colors */
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
-  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
-    color: var(--color-brand-400);
-  }
-
-  /* Nav links: foreground-muted light / foreground-subtle dark */
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
     color: var(--color-foreground-muted);
     transition: color 300ms;
-  }
-  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
-    color: var(--color-foreground-subtle);
   }
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
     color: var(--color-foreground);
@@ -788,4 +764,42 @@ const buttonId = `${menuId}-button`;
     }
   }
 
+  /* Dark mode: lighten floating header background */
+  .dark [data-header-shape="floating"] {
+    background: color-mix(in oklch, var(--color-background) 50%, transparent);
+  }
+  .dark [data-header-shape="floating"][data-scrolled] {
+    background: color-mix(in oklch, var(--color-background) 75%, transparent);
+  }
+
+  /* Light mode: subtle brand-tinted border before scrolling */
+  html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
+    border-color: color-mix(in oklch, var(--color-brand-300), transparent 50%);
+  }
+
+  /* Logo text: brand-400 for all floating states */
+  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+    color: var(--color-brand-400);
+  }
+
+  /* Nav links: foreground-muted in light, foreground-subtle in dark */
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+    color: var(--color-foreground-muted);
+    transition: color 300ms;
+  }
+  .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+    color: var(--color-foreground-subtle);
+  }
+  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+    color: var(--color-foreground);
+  }
 </style>

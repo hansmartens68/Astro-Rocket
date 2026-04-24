@@ -294,7 +294,7 @@
     );
   }
 
-  /* Hero gradient — mode-specific */
+  /* Hero gradient — theme-aware */
   .hero-dark-gradient {
     background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in oklch, var(--color-brand-400), transparent 94%), transparent);
   }
