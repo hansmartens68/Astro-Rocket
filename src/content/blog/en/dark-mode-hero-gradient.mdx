@@ -51,12 +51,12 @@ This means the `.dark` class is toggled on the root element based on the user's 
 The class is applied once, directly on the `Hero` component in `src/pages/index.astro`:
 
 ```astro
-<Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator descriptionClass="max-w-3xl">
+<Hero layout="centered" size="xl" class="hero-dark-gradient" showScrollIndicator showGrid>
   ...
 </Hero>
 ```
 
-That is the only place it is used. The class exists for this one purpose.
+The `showGrid` prop adds a dot-grid overlay that is `hidden dark:block` — it only appears in dark mode, layering a subtle texture over the gradient. That is the only place this combination is used.
 
 ## The gradient follows the brand colour
 

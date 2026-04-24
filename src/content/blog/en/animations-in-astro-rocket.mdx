@@ -34,21 +34,21 @@ The default transition is `animate-slide-up`, applied to all pages. Astro also s
 
 ## Scroll-triggered counter animation
 
-On the homepage, the stats block — Years Experience, Projects Delivered, Worldwide Clients — doesn't just sit there as static numbers. When the block scrolls into the viewport, each number counts up from zero to its target value.
+Astro Rocket has a built-in countup utility wired into `src/pages/index.astro`. Any element with a `data-countup` attribute will animate its number from zero to the target value when it scrolls into view.
 
-The animation is driven by an `IntersectionObserver` in `src/pages/index.astro`:
+The animation is driven by an `IntersectionObserver`:
 
 - The observer fires once per element, when it first reaches 40% visibility
 - Each counter runs for 1.2 seconds with a cubic ease-out curve (`1 - (1 - progress)³`)
 - After completing, the observer disconnects — so scrolling back up and down doesn't re-trigger it
 
-To add a counter to any element, give it a `data-countup` attribute with the target number and an optional `data-suffix`:
+To add a counter to any element on the homepage, give it a `data-countup` attribute with the target number and an optional `data-suffix`:
 
 ```html
 <p data-countup="50" data-suffix="+">50+</p>
 ```
 
-The script picks up any element with `[data-countup]` on the page, so you can place counter elements anywhere.
+The script picks up any element with `[data-countup]` on the page, so you can place counter elements anywhere in `index.astro`.
 
 ## Scroll-triggered Lighthouse scores
 
