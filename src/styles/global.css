@@ -296,10 +296,10 @@
 
   /* Hero gradient — theme-aware */
   .hero-dark-gradient {
-    background: var(--background);
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in oklch, var(--color-brand-400), transparent 94%), transparent);
   }
   .dark .hero-dark-gradient {
-    background: linear-gradient(to bottom, var(--brand-600), black);
+    background: radial-gradient(ellipse 100% 60% at 50% 0%, var(--color-brand-800) 0%, var(--color-background) 100%);
   }
 
   /* Gradient border */

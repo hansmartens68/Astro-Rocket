@@ -12,6 +12,8 @@ interface Props extends HTMLAttributes<'section'> {
   showGrid?: boolean;
   /** Show brand-coloured radial glow blobs behind the content */
   showGlow?: boolean;
+  /** Show two asymmetric brand blobs (dark mode only) */
+  showBlob?: boolean;
   /** Fade the bottom of the section into the next section's background */
   bottomFade?: boolean;
   /** Show an animated scroll indicator at the bottom (desktop only, hides on scroll) */
@@ -25,6 +27,7 @@ const {
   size = 'lg',
   showGrid = true,
   showGlow = true,
+  showBlob = false,
   bottomFade = true,
   showScrollIndicator = false,
   descriptionClass = 'max-w-xl',
@@ -70,6 +73,21 @@ const gridClasses = cn(
     <>
       <div class="pointer-events-none absolute left-1/2 top-1/4 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-[120px] hidden dark:block" aria-hidden="true" />
       <div class="pointer-events-none absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-brand-600/10 blur-[100px] hidden dark:block" aria-hidden="true" />
+    </>
+  )}
+
+  {showBlob && (
+    <>
+      <div
+        class="pointer-events-none absolute hidden dark:block dark:opacity-[0.20] rounded-full blur-[120px] h-[500px] w-[500px] -left-20 top-0 -translate-y-1/4"
+        style="background: radial-gradient(ellipse at center, var(--color-brand-400) 0%, transparent 70%);"
+        aria-hidden="true"
+      />
+      <div
+        class="pointer-events-none absolute hidden dark:block dark:opacity-[0.20] rounded-full blur-[120px] h-[500px] w-[500px] -right-20 top-0 -translate-y-1/4"
+        style="background: radial-gradient(ellipse at center, var(--color-brand-400) 0%, transparent 70%);"
+        aria-hidden="true"
+      />
     </>
   )}
 
