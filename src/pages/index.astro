@@ -43,7 +43,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
 
    <Fragment slot="actions">
-      <Button size="lg" href="https://github.com/hansmartens68/Astro-Rocket" class="hero-cta-btn">
+      <Button size="lg" href="https://github.com/hansmartens68/Astro-Rocket">
         Get it on GitHub
         <Icon name="arrow-right" size="sm" />
       </Button>
@@ -375,12 +375,4 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   document.addEventListener('astro:page-load', initCountup);
 </script>
 
-<style is:global>
-  html:not(.dark) .hero-cta-btn {
-    background-color: var(--color-brand-500);
-  }
-  html:not(.dark) .hero-cta-btn:hover {
-    background-color: var(--color-brand-600);
-  }
-</style>
 </LandingLayout>
