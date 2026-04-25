@@ -294,10 +294,7 @@
     );
   }
 
-  /* Hero gradient — theme-aware */
-  .hero-dark-gradient {
-    background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in oklch, var(--color-brand-400), transparent 94%), transparent);
-  }
+  /* Hero gradient — dark mode only */
   .dark .hero-dark-gradient {
     background: radial-gradient(ellipse 100% 60% at 50% 0%, var(--color-brand-800) 0%, var(--color-background) 100%);
   }
