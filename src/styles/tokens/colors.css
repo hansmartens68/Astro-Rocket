@@ -11,10 +11,10 @@
    Theme files
    -----------
    Active in selector (ThemeSelector.astro):
-     orange, lime, emerald, teal, sky, blue, purple
+     green, lime, emerald, teal, sky, blue, purple
 
    Hidden from selector (files kept for re-use):
-     cyan, green, indigo
+     cyan, orange, indigo
 
    Available but not exposed in selector:
      amber, magenta
