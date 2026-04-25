@@ -183,7 +183,7 @@ const buttonId = `${menuId}-button`;
   data-header-color-scheme={colorScheme}
   {...attrs}
 >
-  <div class={innerClasses}>
+  <div class={cn(innerClasses, 'hdr-inner')}>
     {/* Logo */}
     {
       !hideLogo &&
@@ -195,7 +195,6 @@ const buttonId = `${menuId}-button`;
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isFloating && 'md:hidden',
                 isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-500 dark:text-brand-500 md:text-on-invert' : 'text-brand-500 dark:text-brand-500')
               )}
             >
@@ -681,7 +680,15 @@ const buttonId = `${menuId}-button`;
     background: color-mix(in oklch, var(--color-background) 96%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
-    box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ===== Floating header: height shrink on scroll ===== */
+  [data-header-shape="floating"] .hdr-inner {
+    transition: height 300ms ease, box-shadow 300ms;
+  }
+  [data-header-shape="floating"][data-scrolled] .hdr-inner {
+    height: 3rem; /* h-12 = 48px, down from h-14 = 56px */
   }
 
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
@@ -756,6 +763,7 @@ const buttonId = `${menuId}-button`;
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
     [data-header-shape="floating"],
+    [data-header-shape="floating"] .hdr-inner,
     [data-header-shape="floating"] .hdr-invert-text,
     [data-header-shape="floating"] .hdr-logo-text,
     [data-header-shape="floating"] .hdr-invert-cta,
