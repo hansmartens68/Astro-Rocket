@@ -196,7 +196,7 @@ const buttonId = `${menuId}-button`;
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
                 isFloating && 'md:hidden',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-500 dark:text-brand-400 md:text-on-invert' : 'text-brand-500 dark:text-brand-400')
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-500 dark:text-brand-500 md:text-on-invert' : 'text-brand-500 dark:text-brand-500')
               )}
             >
               {logoText || siteConfig.name}
@@ -782,13 +782,13 @@ const buttonId = `${menuId}-button`;
     color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
     color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
-    color: var(--color-brand-400);
+    color: var(--color-brand-500);
   }
 
   /* Nav links: foreground-muted in light, foreground-subtle in dark */
