@@ -27,7 +27,7 @@ export const headerVariants = cva('z-50', {
     // Floating + transparent: glass effect
     { shape: 'floating', variant: 'transparent', class: 'bg-white/[0.06] backdrop-blur-xl border border-white/[0.08]' },
     // Floating + default: semi-transparent with blur
-    { shape: 'floating', variant: 'default', class: '!bg-background/80 backdrop-blur-xl !border border-border/50 !border-b-border/50' },
+    { shape: 'floating', variant: 'default', class: '!bg-background/90 backdrop-blur-xl !border border-border/50 !border-b-border/50' },
     // Floating + solid: opaque
     { shape: 'floating', variant: 'solid', class: '!bg-background !border border-border !border-b-border' },
   ],

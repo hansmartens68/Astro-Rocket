@@ -678,7 +678,7 @@ const buttonId = `${menuId}-button`;
 
   /* ===== Floating header: scroll state ===== */
   [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 92%, transparent);
+    background: color-mix(in oklch, var(--color-background) 96%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.1);
@@ -766,10 +766,10 @@ const buttonId = `${menuId}-button`;
 
   /* Dark mode: lighten floating header background */
   .dark [data-header-shape="floating"] {
-    background: color-mix(in oklch, var(--color-background) 50%, transparent);
+    background: color-mix(in oklch, var(--color-background) 65%, transparent);
   }
   .dark [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 75%, transparent);
+    background: color-mix(in oklch, var(--color-background) 88%, transparent);
   }
 
   /* Light mode: subtle brand-tinted border before scrolling */
