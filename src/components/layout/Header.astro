@@ -223,7 +223,7 @@ const buttonId = `${menuId}-button`;
                   isFloating
                     ? (isActive(href)
                         ? 'hdr-nav-active font-semibold'
-                        : 'font-medium')
+                        : 'font-medium opacity-80 hover:opacity-100')
                     : (isActive(href)
                         ? 'nav-link-active font-semibold text-foreground bg-secondary'
                         : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
@@ -677,7 +677,7 @@ const buttonId = `${menuId}-button`;
 
   /* ===== Floating header: scroll state ===== */
   [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 96%, transparent);
+    background: color-mix(in oklch, var(--color-background) 92%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
