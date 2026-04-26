@@ -1,6 +1,6 @@
 ---
 title: "Animations in Astro Rocket — Every Effect Explained"
-description: "A complete breakdown of every animation built into Astro Rocket — page transitions, scroll-triggered counters, the reactive header, card hovers, and the full micro-animation library."
+description: "A complete breakdown of every animation built into Astro Rocket — page transitions, scroll-triggered reveals, the reactive floating header, hero entrance, Lighthouse score arcs, and the full micro-animation library."
 publishedAt: 2026-03-23
 author: "Hans Martens"
 tags: ["astro-rocket", "animations", "components", "customization", "css"]
@@ -30,39 +30,106 @@ import { ClientRouter } from 'astro:transitions';
 
 That single line is all it takes. Every internal link in the site benefits from it automatically. No per-page configuration, no JavaScript hydration overhead.
 
-The default transition is `animate-slide-up`, applied to all pages. Astro also supports `fade` and `none` transitions per element via `transition:animate`, and you can assign persistent elements a `transition:name` so they morph in place rather than slide out and back in — useful for shared headers, logos, or images that appear on multiple pages.
+Astro also supports `fade` and `none` transitions per element via `transition:animate`, and you can assign persistent elements a `transition:name` so they morph in place rather than slide out and back in — useful for shared headers, logos, or images that appear on multiple pages.
+
+## Scroll-triggered reveals
+
+Any element with a `data-reveal` attribute fades in when it scrolls into view. The reveal system is built into `src/layouts/BaseLayout.astro` and works on every page without any extra setup.
+
+The animation is a CSS opacity transition driven by an `IntersectionObserver`:
+
+```css
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+}
+```
+
+When an element reaches 12% visibility (`threshold: 0.12`), the observer adds the `.is-visible` class and unobserves — the element will not re-animate if the user scrolls back up.
+
+Elements that are already in the viewport when the page loads are revealed immediately, with `transition: none` applied momentarily so they appear without animating.
+
+### Staggered reveals
+
+You can delay a reveal relative to others using the `data-reveal-delay` attribute:
+
+```html
+<div data-reveal>First — reveals immediately</div>
+<div data-reveal data-reveal-delay="1">Second — 100ms delay</div>
+<div data-reveal data-reveal-delay="2">Third — 200ms delay</div>
+<div data-reveal data-reveal-delay="3">Fourth — 300ms delay</div>
+```
+
+The delays are defined in `global.css`:
+
+```css
+[data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
+[data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
+[data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
+```
+
+### Eager reveal mode
+
+Adding `data-eager-reveal` to the `<body>` element expands the observer's root margin to `0px 0px 200px 0px`, triggering reveals 200px before the element enters the viewport. This gives a more "loaded" feel to content-heavy pages where you want sections to be visible before the user reaches them.
 
 ## Scroll-triggered counter animation
 
-Astro Rocket has a built-in countup utility wired into `src/pages/index.astro`. Any element with a `data-countup` attribute will animate its number from zero to the target value when it scrolls into view.
+Any element with a `data-countup` attribute will animate its number from zero to the target value when it scrolls into view. The animation is wired into `src/pages/index.astro`.
 
-The animation is driven by an `IntersectionObserver`:
+The observer fires when the element reaches 40% visibility. Each counter runs for 1,200ms with a cubic ease-out curve:
 
-- The observer fires once per element, when it first reaches 40% visibility
-- Each counter runs for 1.2 seconds with a cubic ease-out curve (`1 - (1 - progress)³`)
-- After completing, the observer disconnects — so scrolling back up and down doesn't re-trigger it
+```javascript
+const eased = 1 - Math.pow(1 - progress, 3);
+el.textContent = Math.round(eased * target) + suffix;
+```
 
-To add a counter to any element on the homepage, give it a `data-countup` attribute with the target number and an optional `data-suffix`:
+After completing, the observer disconnects — scrolling back up and down does not re-trigger it.
+
+To add a counter, give any element a `data-countup` attribute with the target number and an optional `data-suffix`:
 
 ```html
 <p data-countup="50" data-suffix="+">50+</p>
 ```
 
-The script picks up any element with `[data-countup]` on the page, so you can place counter elements anywhere in `index.astro`.
+## Hero entrance animation
 
-## Scroll-triggered Lighthouse scores
+The hero section uses its own entrance animation, separate from the page transition. Any element with the `.animate-hero-slide-up` class plays:
 
-The `LighthouseScores` landing component in `src/components/landing/LighthouseScores.astro` uses its own `IntersectionObserver` to animate the score bars and numbers into place when the section enters the viewport.
+```css
+@keyframes hero-slide-up {
+  from { transform: translateY(28px); }
+  to   { transform: translateY(0); }
+}
 
-The bars expand from zero width to their final value as the section becomes visible. Like the counter animation, this fires once and cleans itself up. It gives the performance section a satisfying reveal that draws attention to the scores without requiring the user to read static numbers.
+.animate-hero-slide-up {
+  animation: hero-slide-up 0.7s cubic-bezier(0, 0, 0.2, 1) both;
+}
+```
+
+The 28px upward travel is more dramatic than the standard `slide-up` (10px), so hero content feels like it's emerging from below the fold rather than just fading in.
+
+### Scroll indicator
+
+When `showScrollIndicator` is enabled on the `Hero` component, a chevron pair appears at the bottom of the section with its own two-phase animation:
+
+1. **Fade-in**: the indicator appears 1.4 seconds after page load — after the hero content has settled — with a 600ms `ease-out` transition from `translateY(6px)`.
+2. **Bounce loop**: two chevrons oscillate with a 5px vertical travel on a 2-second `ease-in-out` loop. The second chevron starts 150ms later, creating a cascading wave.
+
+The indicator hides with an opacity transition when the user scrolls more than 50px.
 
 ## Scroll-reactive header
 
-The floating header changes its appearance as the user scrolls. This is driven by a scroll event listener in `src/components/layout/Header.astro`.
+The floating header changes its appearance as the user scrolls. A scroll event listener in `src/components/layout/Header.astro` tracks the scroll position against a 60px threshold.
 
-When the page is at the top (within 60px of the scroll origin), the header renders without a background — transparent, with inverted text designed to sit over the hero section. Once the user scrolls past the 60px threshold, the header receives a `data-scrolled` attribute:
+When the page scrolls past 60px, the header receives a `data-scrolled` attribute. CSS transitions on the header element then animate the background, border, and height changes:
 
 ```javascript
+const SCROLL_THRESHOLD = 60;
+
 if (window.scrollY > SCROLL_THRESHOLD) {
   header.setAttribute('data-scrolled', '');
 } else {
@@ -70,9 +137,67 @@ if (window.scrollY > SCROLL_THRESHOLD) {
 }
 ```
 
-CSS transitions on the header element animate the background, border, and text color changes smoothly. There is no layout shift — the header stays in place and only its visual style transitions.
+### Height shrink
 
-The threshold is 60px. To adjust it, change the `SCROLL_THRESHOLD` constant in `Header.astro`.
+The floating header's inner container shrinks from 56px to 48px on scroll:
+
+```css
+[data-header-shape="floating"] .hdr-inner {
+  transition: height 300ms ease, box-shadow 300ms;
+}
+
+[data-header-shape="floating"][data-scrolled] .hdr-inner {
+  height: 3rem; /* 48px, down from 56px */
+}
+```
+
+The 300ms ease transition makes this feel like the header is settling into a more compact state rather than snapping.
+
+### Color flip
+
+When the header uses `colorScheme="invert"` — designed to sit over a dark hero image — all text, icons, and the CTA button start in their inverted (light) colors and transition to their standard colors once the user scrolls past the threshold. The transition duration for all color changes is 300ms.
+
+To adjust the scroll threshold, change the `SCROLL_THRESHOLD` constant in `Header.astro`.
+
+## Scroll-triggered Lighthouse scores
+
+The `LighthouseScores` landing component in `src/components/landing/LighthouseScores.astro` uses an `IntersectionObserver` with a `threshold: 0.3` to start its animations when the section is 30% visible. Until then, all animations are paused via `.animation-paused`; the observer switches them to `.animation-running` on entry and then disconnects.
+
+Each score card fades in and slides up 10px:
+
+```css
+@keyframes score-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+```
+
+Cards animate in sequence: the first starts at 200ms, each subsequent card adds 80ms (`0.2s + index × 80ms`).
+
+Each score also has an SVG arc that fills from empty to its value. The arc is drawn as a circle with `stroke-dasharray: 339.292` (the full circumference at `r="54"`), and the `stroke-dashoffset` animates from the full circumference down to zero:
+
+```css
+@keyframes progress-fill {
+  from { stroke-dashoffset: 339.292; }
+  to   { stroke-dashoffset: 0; }
+}
+```
+
+This runs for 1 second with `ease-out`, starting 300ms after the card starts entering — so the number and the arc arrive together.
+
+## Back-to-top button with progress ring
+
+`BaseLayout.astro` includes a back-to-top button that appears after the user scrolls 400px. It animates in and out with independent easings:
+
+- **Show**: `opacity` 0→1 and `translate` `0 2rem` → `0 0`, both 250ms with `cubic-bezier(0, 0, 0.2, 1)`
+- **Hide**: `opacity` 1→0 and `translate` `0 0` → `0 2rem`, both 300ms with `cubic-bezier(0.4, 0, 1, 1)` (faster acceleration out)
+
+The button also carries a circular SVG progress ring. As the user scrolls, the ring's `stroke-dashoffset` updates on each animation frame to reflect the scroll percentage through the page:
+
+```javascript
+ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - pct));
+// CIRCUMFERENCE = 131.95 (2π × r at r="21")
+```
 
 ## Card hover effects
 
@@ -82,76 +207,86 @@ Every interactive card in the site lifts slightly when hovered. This is a Tailwi
 <div class="transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
 ```
 
-The card moves 4px upward and gains a subtle shadow over 200ms. It creates a tactile feeling that helps users understand which cards are clickable. The transition uses `duration-200` (200ms linear) — fast enough to feel immediate, slow enough to be visible.
+The card moves 4px upward and gains a subtle shadow over 200ms. It creates a tactile feeling that helps users understand which cards are clickable.
 
 ## UI micro-animations
 
 The full animation library lives in `src/styles/global.css`. These classes are used throughout the component library and are available for use in your own components.
 
+### Transition tokens
+
+All components share a set of CSS custom properties for consistent durations and easings:
+
+```css
+--transition-fast:   150ms;
+--transition-normal: 200ms;
+--transition-slow:   300ms;
+
+--ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+--ease-out:     cubic-bezier(0, 0, 0.2, 1);
+--ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+```
+
 ### Entrance animations
 
 ```css
 .animate-fade-in    /* fades from transparent to visible — 0.5s ease-out */
-.animate-slide-up   /* slides up from 12px below while fading in — 0.5s ease-out */
-.animate-slide-down /* slides down from 12px above while fading in — 0.5s ease-out */
+.animate-slide-up   /* slides up from 10px below while fading in — 0.5s ease-out */
+.animate-slide-down /* slides down from 10px above while fading in — 0.5s ease-out */
 ```
-
-Use these to reveal content sections, modals, or any element that appears after interaction.
 
 ### Overlay and menu animations
 
 ```css
-.animate-sheet-up      /* bottom sheet slides up from off-screen — 0.25s spring */
+.animate-sheet-up      /* bottom sheet slides up from off-screen — 0.25s */
 .animate-sheet-down    /* bottom sheet exits downward — 0.2s */
-.animate-menu-down     /* mobile nav drawer opens downward — 0.25s spring */
+.animate-menu-down     /* mobile nav drawer opens downward — 0.25s */
 .animate-menu-up       /* mobile nav drawer closes upward — 0.2s */
 .animate-backdrop      /* backdrop fades in — 0.2s ease-out */
 .animate-backdrop-out  /* backdrop fades out — 0.2s ease-out */
 ```
 
-These are used by the `Dialog`, mobile menu sheet, and overlay components. The spring easing (`cubic-bezier(0.32, 0.72, 0, 1)`) gives the open motion a slight overshoot that feels natural and fast.
+These are used by the `Dialog`, mobile menu, and overlay components. The open motions use `cubic-bezier(0.32, 0.72, 0, 1)`, which produces a fast initial movement that decelerates sharply — a natural, physical feel without overshoot.
 
 ### Dropdown animations
 
 ```css
-.animate-dropdown-in   /* slides down and scales in — 0.2s spring */
-.animate-dropdown-out  /* collapses upward and scales out — 0.15s */
+.animate-dropdown-in   /* slides down 8px and scales from 0.96 — 0.2s */
+.animate-dropdown-out  /* collapses upward and scales back to 0.96 — 0.15s */
 ```
 
-Used by the `Dropdown` component. The dropdown originates from its trigger point and expands outward, which keeps the motion spatially coherent.
+The dropdown originates from its trigger point and expands outward, which keeps the motion spatially coherent with the element that opened it.
 
 ### Feedback animations
 
 ```css
-.animate-tab-enter     /* crossfades tab panel content — uses --transition-normal */
-.animate-toast-in      /* slides toast in from the edge — 350ms spring */
-.animate-tooltip-in    /* fades and scales tooltip into view */
-.animate-shake         /* brief shake for error feedback — 400ms */
+.animate-tab-enter   /* crossfades tab panel content — 200ms ease-out */
+.animate-toast-in    /* slides toast in from the edge — 350ms ease-spring */
+.animate-tooltip-in  /* fades and scales tooltip into view — 150ms ease-out */
+.animate-shake       /* brief shake for error feedback — 400ms */
 ```
 
-The toast uses `--ease-spring` for a satisfying bounce on entry. The shake animation is useful for form validation — apply it to an input when the user submits an invalid value.
+The toast uses `--ease-spring` (`cubic-bezier(0.34, 1.56, 0.64, 1)`) for a satisfying overshoot on entry. The shake animation oscillates ±4px horizontally — apply it to a form input on failed validation.
 
 ### Loading states
 
 ```css
-.animate-pulse   /* breathing opacity pulse for skeleton loaders — 2s infinite */
-.animate-spin    /* continuous rotation for loading spinners — 1s linear */
+.animate-pulse  /* breathing opacity pulse for skeleton loaders — 2s infinite */
+.animate-spin   /* continuous rotation for loading spinners — 1s linear */
 ```
-
-These are used by the `Skeleton` and `Progress` components. They loop indefinitely until the element is removed from the DOM.
 
 ### Stagger utilities
 
 ```css
-.delay-0   /* 0ms */
-.delay-1   /* 50ms */
-.delay-2   /* 100ms */
-.delay-3   /* 150ms */
-.delay-4   /* 200ms */
-.delay-5   /* 250ms */
+.delay-0  /*   0ms */
+.delay-1  /*  50ms */
+.delay-2  /* 100ms */
+.delay-3  /* 150ms */
+.delay-4  /* 200ms */
+.delay-5  /* 250ms */
 ```
 
-Combine with any entrance animation to stagger multiple elements into view:
+Combine with any entrance animation to stagger multiple elements:
 
 ```html
 <div class="animate-slide-up delay-0">First item</div>
@@ -159,36 +294,24 @@ Combine with any entrance animation to stagger multiple elements into view:
 <div class="animate-slide-up delay-2">Third item</div>
 ```
 
-Each item appears 50ms after the last, creating a cascading reveal that guides the eye down the list.
+## Adding scroll-triggered reveals to your own content
 
-## Adding animations to your own content
-
-All of these classes are available anywhere in the project — in your page content, custom components, or Tailwind HTML. To animate a section heading into view, for example:
+The built-in `data-reveal` system in `BaseLayout.astro` handles scroll-triggered reveals for you. Add `data-reveal` to any element and it will fade in when it enters the viewport — no JavaScript required on your end:
 
 ```html
-<h2 class="animate-slide-up">My heading</h2>
+<section data-reveal>
+  This section fades in when scrolled into view.
+</section>
+
+<p data-reveal data-reveal-delay="1">This paragraph is delayed by 100ms.</p>
 ```
 
-For scroll-triggered reveals (elements that should only animate when they enter the viewport, not immediately on page load), you can replicate the pattern from the homepage counter — create an `IntersectionObserver` that adds the animation class when the element becomes visible:
-
-```javascript
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    observer.unobserve(entry.target);
-    entry.target.classList.add('animate-slide-up');
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
-```
-
-Add `data-reveal` to any element you want to reveal on scroll, and the observer handles the rest.
+For immediate reveals on page load (elements already in the viewport), they appear instantly without the fade transition.
 
 ## Disabling animations
 
-To disable all micro-animations globally (while keeping page transitions), remove or comment out the animation class definitions in `src/styles/global.css`. The `@media (prefers-reduced-motion: reduce)` block at the bottom of that file already disables the most intensive ones for users with that preference set.
+To disable all micro-animations globally while keeping page transitions, remove or comment out the animation class definitions in `src/styles/global.css`. The `@media (prefers-reduced-motion: reduce)` block already handles this for users with that system preference set.
 
 To disable page transitions, remove `<ClientRouter />` from `src/layouts/BaseLayout.astro`.
 
-To disable individual component animations, remove the animation class from the component's markup.
+To disable individual component animations, remove the animation class from the component's markup, or set `transition: none` on the element.
