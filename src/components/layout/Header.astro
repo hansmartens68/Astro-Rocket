@@ -70,6 +70,7 @@ interface Props extends HTMLAttributes<'header'> {
   scrollProgressPosition?: 'top' | 'bottom';
   autoHide?: boolean;
   invertOnReturn?: boolean;
+  morphToBar?: boolean;
 }
 
 const {
@@ -93,6 +94,7 @@ const {
   scrollProgressPosition = 'bottom',
   autoHide = true,
   invertOnReturn = true,
+  morphToBar = false,
   logoText,
   hideLogo = false,
   class: className,
@@ -154,6 +156,8 @@ const buttonId = `${menuId}-button`;
   data-header-color-scheme={colorScheme}
   data-header-auto-hide={autoHide ? 'true' : 'false'}
   data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
+  data-morph-to-bar={morphToBar ? 'true' : 'false'}
+  transition:name="site-header"
   {...attrs}
 >
   <div class={cn(innerClasses, 'hdr-inner')}>
@@ -652,6 +656,43 @@ const buttonId = `${menuId}-button`;
   document.addEventListener('astro:after-swap', initScrollProgress);
 </script>
 
+<script>
+  import { navigate } from 'astro:transitions/client';
+
+  function initNavMorph() {
+    const header = document.querySelector<HTMLElement>(
+      'header[data-morph-to-bar="true"][data-header-shape="floating"]'
+    );
+    if (!header) return;
+    if (header.dataset.navMorphInit) return;
+    header.dataset.navMorphInit = 'true';
+
+    header.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((link) => {
+      link.addEventListener('click', async (e) => {
+        const href = link.getAttribute('href');
+        if (
+          !href ||
+          href.startsWith('#') ||
+          href.startsWith('http') ||
+          href.startsWith('//') ||
+          href.startsWith('mailto:') ||
+          href.startsWith('tel:')
+        ) return;
+        if (href === window.location.pathname) return;
+        if (header.hasAttribute('data-scrolled')) return; // already bar shape, navigate normally
+
+        e.preventDefault();
+        header.setAttribute('data-scrolled', '');
+        await new Promise((r) => setTimeout(r, 300));
+        navigate(href);
+      });
+    });
+  }
+
+  initNavMorph();
+  document.addEventListener('astro:page-load', initNavMorph);
+</script>
+
 <style is:global>
   .mobile-menu-blur {
     opacity: 0.3;
@@ -660,7 +701,7 @@ const buttonId = `${menuId}-button`;
   }
 
   [data-header-shape="floating"] {
-    transition-property: translate, background, border-color, box-shadow;
+    transition-property: translate, background, border-color, box-shadow, width, max-width, border-radius, margin-top;
     transition-duration: 300ms;
     transition-timing-function: ease;
   }
@@ -676,7 +717,17 @@ const buttonId = `${menuId}-button`;
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
   }
 
+  [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    margin-top: 0;
+  }
+
   [data-header-shape="floating"] .hdr-inner {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
     transition: height 300ms ease, box-shadow 300ms;
   }
   [data-header-shape="floating"][data-scrolled] .hdr-inner {
@@ -756,6 +807,12 @@ const buttonId = `${menuId}-button`;
     }
     [data-header-shape="floating"][data-header-hidden] {
       translate: -50% calc(-100% - 1.5rem) !important;
+    }
+    [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      margin-top: 0;
     }
   }
 
@@ -860,6 +917,33 @@ const buttonId = `${menuId}-button`;
   }
   html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper button {
     border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ===== View Transition: header morph across page navigation ===== */
+
+  ::view-transition-group(site-header) {
+    animation-duration: 350ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(site-header) {
+    animation-duration: 180ms;
+    animation-timing-function: ease-in;
+  }
+
+  ::view-transition-new(site-header) {
+    animation-duration: 280ms;
+    animation-timing-function: ease-out;
+    animation-delay: 80ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(site-header),
+    ::view-transition-old(site-header),
+    ::view-transition-new(site-header) {
+      animation-duration: 0ms !important;
+      animation-delay: 0ms !important;
+    }
   }
 
   /* ===== Returned state: fix button hover backgrounds ===== */
