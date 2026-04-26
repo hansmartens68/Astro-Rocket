@@ -754,9 +754,9 @@ const buttonId = `${menuId}-button`;
     box-shadow: 0 4px 32px rgba(255, 255, 255, 0.06), 0 8px 24px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   .dark [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 88%, transparent);
-    border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 4px 32px rgba(255, 255, 255, 0.07), 0 12px 40px -8px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45), 0 2px 8px -2px rgba(0, 0, 0, 0.25);
   }
 
   html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
@@ -764,7 +764,9 @@ const buttonId = `${menuId}-button`;
     box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   html:not(.dark) [data-header-shape="floating"][data-scrolled] {
-    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.35), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+    background: oklch(12% 0.005 250 / 0.93);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45), 0 2px 8px -2px rgba(0, 0, 0, 0.25);
   }
 
   .dark [data-header-shape="floating"] .theme-dropdown-wrapper button {
@@ -802,5 +804,30 @@ const buttonId = `${menuId}-button`;
     html:not(.dark) [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
       color: var(--color-brand-500);
     }
+  }
+
+  /* ===== Inverted scrolled text: dark mode → dark text on white header ===== */
+  .dark [data-header-shape="floating"][data-scrolled] .hdr-invert-text {
+    color: oklch(20% 0.005 250);
+  }
+  .dark [data-header-shape="floating"][data-scrolled] .hdr-invert-text:hover {
+    color: oklch(8% 0 0);
+  }
+  .dark [data-header-shape="floating"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-500);
+  }
+  .dark [data-header-shape="floating"][data-scrolled] .theme-dropdown-wrapper button {
+    border-color: var(--color-border);
+  }
+
+  /* ===== Inverted scrolled text: light mode → light text on dark header ===== */
+  html:not(.dark) [data-header-shape="floating"][data-scrolled] .hdr-invert-text {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  html:not(.dark) [data-header-shape="floating"][data-scrolled] .hdr-invert-text:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+  html:not(.dark) [data-header-shape="floating"][data-scrolled] .hdr-logo-text {
+    color: var(--color-brand-400);
   }
 </style>
