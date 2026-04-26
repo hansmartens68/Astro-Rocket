@@ -545,6 +545,7 @@ const buttonId = `${menuId}-button`;
       const isTransparentBar = isBar && header.dataset.headerVariant === 'transparent';
       let ticking = false;
       let lastScrollY = window.scrollY;
+      let lastShownAtY = 0;
 
       function onScroll() {
         if (ticking) return;
@@ -566,6 +567,7 @@ const buttonId = `${menuId}-button`;
             if (!menuOpen) {
               header.removeAttribute('data-scrolled');
               header.removeAttribute('data-header-hidden');
+              lastShownAtY = 0;
               if (isTransparentBar) {
                 header.classList.remove(...BAR_SCROLLED_CLASSES);
                 header.classList.add('bg-transparent');
@@ -576,12 +578,18 @@ const buttonId = `${menuId}-button`;
           if (isFloating && !menuOpen) {
             if (currentScrollY > AUTO_HIDE_THRESHOLD) {
               if (currentScrollY > lastScrollY) {
-                header.setAttribute('data-header-hidden', '');
+                if (currentScrollY - lastShownAtY >= AUTO_HIDE_THRESHOLD) {
+                  header.setAttribute('data-header-hidden', '');
+                }
               } else {
+                if (header.hasAttribute('data-header-hidden')) {
+                  lastShownAtY = currentScrollY;
+                }
                 header.removeAttribute('data-header-hidden');
               }
             } else {
               header.removeAttribute('data-header-hidden');
+              lastShownAtY = 0;
             }
           }
 
