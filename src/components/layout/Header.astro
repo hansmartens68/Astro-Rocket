@@ -70,6 +70,7 @@ interface Props extends HTMLAttributes<'header'> {
   scrollProgressPosition?: 'top' | 'bottom';
   autoHide?: boolean;
   invertOnReturn?: boolean;
+  morphToBar?: boolean;
 }
 
 const {
@@ -93,6 +94,7 @@ const {
   scrollProgressPosition = 'bottom',
   autoHide = true,
   invertOnReturn = true,
+  morphToBar = false,
   logoText,
   hideLogo = false,
   class: className,
@@ -154,6 +156,7 @@ const buttonId = `${menuId}-button`;
   data-header-color-scheme={colorScheme}
   data-header-auto-hide={autoHide ? 'true' : 'false'}
   data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
+  data-morph-to-bar={morphToBar ? 'true' : 'false'}
   {...attrs}
 >
   <div class={cn(innerClasses, 'hdr-inner')}>
@@ -674,6 +677,9 @@ const buttonId = `${menuId}-button`;
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
     width: 100%;
     max-width: 100%;
     border-radius: 0;
@@ -764,7 +770,7 @@ const buttonId = `${menuId}-button`;
     [data-header-shape="floating"][data-header-hidden] {
       translate: -50% calc(-100% - 1.5rem) !important;
     }
-    [data-header-shape="floating"][data-scrolled] {
+    [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
       width: 100%;
       max-width: 100%;
       border-radius: 0;
