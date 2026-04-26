@@ -847,4 +847,19 @@ const buttonId = `${menuId}-button`;
   html:not(.dark) [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper button {
     border-color: rgba(255, 255, 255, 0.2);
   }
+
+  /* ===== Returned state: fix button hover backgrounds ===== */
+  /* Dark mode: white header needs light hover, not dark-mode secondary */
+  .dark [data-header-shape="floating"][data-header-returned] button.hdr-invert-text:hover,
+  .dark [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper > button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: oklch(8% 0 0);
+  }
+
+  /* Light mode: dark header needs dark hover, not light-mode secondary */
+  html:not(.dark) [data-header-shape="floating"][data-header-returned] button.hdr-invert-text:hover,
+  html:not(.dark) [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper > button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 1);
+  }
 </style>
