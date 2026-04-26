@@ -68,6 +68,7 @@ interface Props extends HTMLAttributes<'header'> {
   showSocialLinks?: boolean;
   showScrollProgress?: boolean;
   scrollProgressPosition?: 'top' | 'bottom';
+  autoHide?: boolean;
 }
 
 const {
@@ -89,6 +90,7 @@ const {
   showActiveState = true,
   showScrollProgress = false,
   scrollProgressPosition = 'bottom',
+  autoHide = true,
   logoText,
   hideLogo = false,
   class: className,
@@ -96,6 +98,7 @@ const {
 } = Astro.props;
 
 const isFloating = shape === 'floating';
+const effectiveShowScrollProgress = showScrollProgress || (isFloating && !autoHide);
 const isInvert = colorScheme === 'invert';
 
 const defaultNav = getNavItems().map((item: NavConfigItem) => ({
@@ -147,6 +150,7 @@ const buttonId = `${menuId}-button`;
   data-header-shape={shape}
   data-header-variant={variant}
   data-header-color-scheme={colorScheme}
+  data-header-auto-hide={autoHide ? 'true' : 'false'}
   {...attrs}
 >
   <div class={cn(innerClasses, 'hdr-inner')}>
@@ -303,7 +307,7 @@ const buttonId = `${menuId}-button`;
     </div>
   </div>
 
-  {showScrollProgress && (
+  {effectiveShowScrollProgress && (
     isFloating ? (
       <div
         class={`absolute inset-x-3 h-[2px] overflow-hidden rounded-full ${scrollProgressPosition === 'top' ? 'top-[2px]' : 'bottom-[2px]'}`}
@@ -542,6 +546,7 @@ const buttonId = `${menuId}-button`;
 
       const isBar = header.dataset.headerShape === 'bar';
       const isFloating = header.dataset.headerShape === 'floating';
+      const isAutoHide = header.dataset.headerAutoHide !== 'false';
       const isTransparentBar = isBar && header.dataset.headerVariant === 'transparent';
       let ticking = false;
       let lastScrollY = window.scrollY;
@@ -575,7 +580,7 @@ const buttonId = `${menuId}-button`;
             }
           }
 
-          if (isFloating && !menuOpen) {
+          if (isFloating && isAutoHide && !menuOpen) {
             if (currentScrollY > AUTO_HIDE_THRESHOLD) {
               if (currentScrollY > lastScrollY) {
                 if (currentScrollY - lastShownAtY >= AUTO_HIDE_THRESHOLD) {
