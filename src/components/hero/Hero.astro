@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { heroSectionVariants, heroBlobVariants } from './hero.variants';
+import { heroSectionVariants } from './hero.variants';
 
 interface Props extends HTMLAttributes<'section'> {
   /** Layout mode: centered single column or split two-column */
@@ -27,7 +27,7 @@ const {
   size = 'lg',
   showGrid = false,
   showBlob = false,
-  blobPosition = 'center',
+  blobPosition: _blobPosition = 'center',
   showGlow = false,
   bottomFade = false,
   showScrollIndicator = false,
