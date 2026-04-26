@@ -132,7 +132,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
             </h2>
           </div>
           <p class="text-lg text-foreground-muted leading-relaxed mb-4">
-           Sixteen years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}` : ''} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
+           Sixteen years of hands-on experience{siteConfig.address?.city ? `, based in ${siteConfig.address.city}${siteConfig.address.country ? `, ${siteConfig.address.country}` : ''}` : ''} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed mb-8">
            On the blog, I share the ideas and decisions that shape my work.
