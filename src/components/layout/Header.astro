@@ -69,6 +69,7 @@ interface Props extends HTMLAttributes<'header'> {
   showScrollProgress?: boolean;
   scrollProgressPosition?: 'top' | 'bottom';
   autoHide?: boolean;
+  invertOnReturn?: boolean;
 }
 
 const {
@@ -91,6 +92,7 @@ const {
   showScrollProgress = false,
   scrollProgressPosition = 'bottom',
   autoHide = true,
+  invertOnReturn = true,
   logoText,
   hideLogo = false,
   class: className,
@@ -151,6 +153,7 @@ const buttonId = `${menuId}-button`;
   data-header-variant={variant}
   data-header-color-scheme={colorScheme}
   data-header-auto-hide={autoHide ? 'true' : 'false'}
+  data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
   {...attrs}
 >
   <div class={cn(innerClasses, 'hdr-inner')}>
@@ -820,56 +823,56 @@ const buttonId = `${menuId}-button`;
   }
 
   /* Dark mode: flip to white capsule */
-  .dark [data-header-shape="floating"][data-header-returned] {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] {
     background: rgba(255, 255, 255, 0.95);
     border-color: rgba(0, 0, 0, 0.06);
     box-shadow: 0 4px 32px rgba(255, 255, 255, 0.12), 0 8px 24px -4px rgba(0, 0, 0, 0.25);
   }
-  .dark [data-header-shape="floating"][data-header-returned] .hdr-invert-text {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text {
     color: oklch(20% 0.005 250);
     transition: color 300ms;
   }
-  .dark [data-header-shape="floating"][data-header-returned] .hdr-invert-text:hover {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text:hover {
     color: oklch(8% 0 0);
   }
-  .dark [data-header-shape="floating"][data-header-returned] .hdr-logo-text {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-logo-text {
     color: var(--color-brand-500);
   }
-  .dark [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper button {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper button {
     border-color: var(--color-border);
   }
 
   /* Light mode: flip to dark capsule */
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] {
     background: oklch(12% 0.005 250 / 0.93);
     border-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45), 0 2px 8px -2px rgba(0, 0, 0, 0.25);
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] .hdr-invert-text {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text {
     color: rgba(255, 255, 255, 0.82);
     transition: color 300ms;
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] .hdr-invert-text:hover {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text:hover {
     color: rgba(255, 255, 255, 1);
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] .hdr-logo-text {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-logo-text {
     color: var(--color-brand-400);
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper button {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper button {
     border-color: rgba(255, 255, 255, 0.2);
   }
 
   /* ===== Returned state: fix button hover backgrounds ===== */
   /* Dark mode: white header needs light hover, not dark-mode secondary */
-  .dark [data-header-shape="floating"][data-header-returned] button.hdr-invert-text:hover,
-  .dark [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper > button:hover {
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] button.hdr-invert-text:hover,
+  .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper > button:hover {
     background-color: rgba(0, 0, 0, 0.08);
     color: oklch(8% 0 0);
   }
 
   /* Light mode: dark header needs dark hover, not light-mode secondary */
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] button.hdr-invert-text:hover,
-  html:not(.dark) [data-header-shape="floating"][data-header-returned] .theme-dropdown-wrapper > button:hover {
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] button.hdr-invert-text:hover,
+  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper > button:hover {
     background-color: rgba(255, 255, 255, 0.12);
     color: rgba(255, 255, 255, 1);
   }
