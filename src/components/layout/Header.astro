@@ -583,6 +583,7 @@ const buttonId = `${menuId}-button`;
 
 <script>
   const SCROLL_THRESHOLD = 60;
+  const AUTO_HIDE_THRESHOLD = 150;
   const BAR_SCROLLED_CLASSES = ['bg-background/80', 'backdrop-blur-lg', 'border-b', 'border-border/50'];
 
   function initScrollWatcher() {
@@ -592,33 +593,52 @@ const buttonId = `${menuId}-button`;
       header.dataset.scrollInit = 'true';
 
       const isBar = header.dataset.headerShape === 'bar';
+      const isFloating = header.dataset.headerShape === 'floating';
       const isTransparentBar = isBar && header.dataset.headerVariant === 'transparent';
       let ticking = false;
+      let lastScrollY = window.scrollY;
 
       function onScroll() {
         if (ticking) return;
         ticking = true;
 
         requestAnimationFrame(() => {
-          if (window.scrollY > SCROLL_THRESHOLD) {
+          const currentScrollY = window.scrollY;
+          const menuId = header.dataset.menuId;
+          const menu = menuId ? document.getElementById(menuId) : null;
+          const menuOpen = menu && !menu.classList.contains('hidden');
+
+          if (currentScrollY > SCROLL_THRESHOLD) {
             header.setAttribute('data-scrolled', '');
             if (isTransparentBar) {
               header.classList.add(...BAR_SCROLLED_CLASSES);
               header.classList.remove('bg-transparent');
             }
           } else {
-            // Don't remove if mobile menu is open
-            const menuId = header.dataset.menuId;
-            const menu = menuId ? document.getElementById(menuId) : null;
-            const menuOpen = menu && !menu.classList.contains('hidden');
             if (!menuOpen) {
               header.removeAttribute('data-scrolled');
+              header.removeAttribute('data-header-hidden');
               if (isTransparentBar) {
                 header.classList.remove(...BAR_SCROLLED_CLASSES);
                 header.classList.add('bg-transparent');
               }
             }
           }
+
+          // Auto-hide floating header on scroll down, reveal on scroll up
+          if (isFloating && !menuOpen) {
+            if (currentScrollY > AUTO_HIDE_THRESHOLD) {
+              if (currentScrollY > lastScrollY) {
+                header.setAttribute('data-header-hidden', '');
+              } else {
+                header.removeAttribute('data-header-hidden');
+              }
+            } else {
+              header.removeAttribute('data-header-hidden');
+            }
+          }
+
+          lastScrollY = currentScrollY;
           ticking = false;
         });
       }
@@ -673,6 +693,17 @@ const buttonId = `${menuId}-button`;
     opacity: 0.3;
     filter: blur(4px);
     transition: opacity 200ms, filter 200ms;
+  }
+
+  /* ===== Floating header: auto-hide on scroll down ===== */
+  [data-header-shape="floating"] {
+    transition-property: translate, background, border-color, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
+
+  [data-header-shape="floating"][data-header-hidden] {
+    translate: -50% calc(-100% - 1.5rem) !important;
   }
 
   /* ===== Floating header: scroll state ===== */
@@ -769,6 +800,9 @@ const buttonId = `${menuId}-button`;
     [data-header-shape="floating"] .hdr-invert-cta,
     [data-header-shape="floating"] .nav-link::after {
       transition: none !important;
+    }
+    [data-header-shape="floating"][data-header-hidden] {
+      translate: -50% calc(-100% - 1.5rem) !important;
     }
   }
 
