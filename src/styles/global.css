@@ -307,6 +307,14 @@
     background: linear-gradient(to bottom, var(--color-brand-800) 0%, #000 100%);
   }
 
+  /* Article hero gradient — brand-900, blue/sky/teal/cyan dark mode only */
+  html.dark[data-theme="blue"] .hero-article-gradient,
+  html.dark[data-theme="sky"] .hero-article-gradient,
+  html.dark[data-theme="teal"] .hero-article-gradient,
+  html.dark[data-theme="cyan"] .hero-article-gradient {
+    background: linear-gradient(to bottom, var(--color-brand-900) 0%, #000 100%);
+  }
+
   /* Gradient border */
   .border-gradient {
     position: relative;
