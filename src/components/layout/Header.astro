@@ -728,10 +728,7 @@ const buttonId = `${menuId}-button`;
     max-width: 72rem;
     margin-left: auto;
     margin-right: auto;
-    transition: height 300ms ease, box-shadow 300ms;
-  }
-  [data-header-shape="floating"][data-scrolled] .hdr-inner {
-    height: 3rem;
+    transition: box-shadow 300ms;
   }
 
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-text {
@@ -818,8 +815,8 @@ const buttonId = `${menuId}-button`;
 
   .dark [data-header-shape="floating"] {
     background: color-mix(in oklch, var(--color-background) 65%, transparent);
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 4px 32px rgba(255, 255, 255, 0.06), 0 8px 24px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-color: color-mix(in oklch, var(--color-brand-400) 35%, transparent);
+    box-shadow: none;
   }
   .dark [data-header-shape="floating"][data-scrolled] {
     background: color-mix(in oklch, var(--color-background) 88%, transparent);
@@ -828,8 +825,8 @@ const buttonId = `${menuId}-button`;
   }
 
   html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
-    border-color: color-mix(in oklch, var(--color-brand-300), transparent 50%);
-    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: color-mix(in oklch, var(--color-brand-500) 35%, transparent);
+    box-shadow: none;
   }
   html:not(.dark) [data-header-shape="floating"][data-scrolled] {
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.35), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
@@ -873,11 +870,6 @@ const buttonId = `${menuId}-button`;
   }
 
   /* ===== Returned state: color flip only when header comes back after being hidden ===== */
-
-  /* Restore original height — override the scrolled height shrink */
-  [data-header-shape="floating"][data-header-returned] .hdr-inner {
-    height: 3.5rem;
-  }
 
   /* Dark mode: flip to white capsule */
   .dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] {
