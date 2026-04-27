@@ -299,6 +299,11 @@
     background: linear-gradient(to bottom, var(--color-brand-600) 0%, #000 100%);
   }
 
+  /* Hero gradient — blue theme dark mode only */
+  html.dark[data-theme="blue"] .hero-page-gradient {
+    background: linear-gradient(to bottom, var(--color-brand-800) 0%, #000 100%);
+  }
+
   /* Gradient border */
   .border-gradient {
     position: relative;
