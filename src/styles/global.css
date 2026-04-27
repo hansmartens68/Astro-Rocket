@@ -299,10 +299,6 @@
     background: linear-gradient(to bottom, var(--color-brand-600) 0%, #000 100%);
   }
 
-  .dark .hero-page-gradient {
-    background: linear-gradient(to bottom, var(--color-brand-800) 0%, #000 100%);
-  }
-
   /* Gradient border */
   .border-gradient {
     position: relative;
