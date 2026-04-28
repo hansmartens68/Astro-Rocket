@@ -976,19 +976,6 @@
   }
 }
 
-/* During client-side navigation (Astro view transitions) the page-change
-   cross-fade already provides a smooth entrance. Re-running hero-slide-up
-   and data-reveal on top of that cross-fade creates a jarring double-animation
-   that is most visible on mobile. Suppress both while the transition is live. */
-html[data-navigating] .animate-hero-slide-up {
-  animation: none;
-}
-
-html[data-navigating] [data-reveal] {
-  opacity: 1;
-  transition: none;
-}
-
 /* ── Hero / CTA button styles ───────────────────────────────────────────────
    Shared across all pages. Re-enable by applying these classes to buttons.
    hero-btn-brand : brand-coloured primary action

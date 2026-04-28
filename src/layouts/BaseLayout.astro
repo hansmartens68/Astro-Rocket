@@ -90,19 +90,27 @@ if (includeProfessionalServiceSchema) {
     <!-- View Transitions (client-side routing with animated page transitions) -->
     <ClientRouter />
 
-    <!-- Mark document during view transitions so entrance animations don't
-         double-fire on top of the page-change cross-fade (most visible on mobile). -->
+    <!-- Strip first-paint entrance animations from pages reached via client-side
+         navigation. The view-transition cross-fade is already the entrance, so
+         re-running hero-slide-up / data-reveal on top of it produced a visible
+         "aftershake" once the cross-fade ended (most noticeable on mobile).
+         Initial full page loads are unaffected and animate normally. -->
     <script is:inline>
       (function () {
-        if (!window.__navAnimGuardInit) {
-          window.__navAnimGuardInit = true;
-          document.addEventListener('astro:before-swap', function () {
-            document.documentElement.setAttribute('data-navigating', '');
-          });
-          document.addEventListener('astro:page-load', function () {
-            document.documentElement.removeAttribute('data-navigating');
-          });
-        }
+        if (window.__navAnimGuardInit) return;
+        window.__navAnimGuardInit = true;
+        document.addEventListener('astro:before-swap', function (e) {
+          const doc = e.newDocument;
+          if (!doc) return;
+          const heroes = doc.querySelectorAll('.animate-hero-slide-up');
+          for (let i = 0; i < heroes.length; i++) {
+            heroes[i].classList.remove('animate-hero-slide-up');
+          }
+          const reveals = doc.querySelectorAll('[data-reveal]');
+          for (let j = 0; j < reveals.length; j++) {
+            reveals[j].classList.add('is-visible');
+          }
+        });
       })();
     </script>
 
