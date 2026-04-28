@@ -74,7 +74,6 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
     let wordIndex = 0;
     let charIndex = 0;       // start empty — cursor only, then type the first word
     let isDeleting = false;
-    let timer;
 
     function tick() {
       const current = words[wordIndex];
@@ -86,30 +85,26 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
         if (charIndex === 0) {
           isDeleting = false;
           wordIndex = (wordIndex + 1) % words.length;
-          timer = setTimeout(tick, pauseAfterDelete);
+          setTimeout(tick, pauseAfterDelete);
           return;
         }
-        timer = setTimeout(tick, deleteSpeed);
+        setTimeout(tick, deleteSpeed);
       } else {
         charIndex++;
         textEl.textContent = current.slice(0, charIndex);
 
         if (charIndex === current.length) {
           isDeleting = true;
-          timer = setTimeout(tick, pauseAfterType);
+          setTimeout(tick, pauseAfterType);
           return;
         }
-        timer = setTimeout(tick, typeSpeed);
+        setTimeout(tick, typeSpeed);
       }
     }
 
     // Show the blinking cursor briefly, then begin typing the first word
-    timer = setTimeout(tick, pauseAfterDelete);
-
-    // Clean up pending timer when navigating away
-    document.addEventListener('astro:before-swap', () => clearTimeout(timer), { once: true });
+    setTimeout(tick, pauseAfterDelete);
   }
 
-  // Run on initial load and on every client-side navigation back to this page
-  document.addEventListener('astro:page-load', startTyping);
+  startTyping();
 </script>

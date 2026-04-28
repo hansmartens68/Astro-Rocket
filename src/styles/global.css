@@ -954,19 +954,6 @@
   animation: hero-slide-up 0.7s cubic-bezier(0, 0, 0.2, 1) both;
 }
 
-/* Shorter entrance used for pages reached via Astro view transitions.
-   The 0.7s slide-up above visibly continues for ~450ms after Astro's
-   cross-fade ends — this 220ms variant finishes with the cross-fade
-   so there's no post-fade "aftershake" on mobile. */
-@keyframes hero-slide-up-nav {
-  from { transform: translateY(8px); opacity: 0.85; }
-  to   { transform: translateY(0); opacity: 1; }
-}
-
-.animate-hero-slide-up-nav {
-  animation: hero-slide-up-nav 0.22s cubic-bezier(0, 0, 0.2, 1) both;
-}
-
 [data-reveal] {
   opacity: 0;
   transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1);
@@ -981,8 +968,7 @@
 [data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-hero-slide-up,
-  .animate-hero-slide-up-nav { animation: none; }
+  .animate-hero-slide-up { animation: none; }
 
   [data-reveal] {
     opacity: 1;
