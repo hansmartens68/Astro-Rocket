@@ -157,7 +157,6 @@ const buttonId = `${menuId}-button`;
   data-header-auto-hide={autoHide ? 'true' : 'false'}
   data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
   data-morph-to-bar={morphToBar ? 'true' : 'false'}
-  transition:name="site-header"
   {...attrs}
 >
   <div class={cn(innerClasses, 'hdr-inner')}>
@@ -621,9 +620,7 @@ const buttonId = `${menuId}-button`;
     });
   }
 
-  initScrollWatcher();
   document.addEventListener('astro:page-load', initScrollWatcher);
-  document.addEventListener('astro:after-swap', initScrollWatcher);
 </script>
 
 <script>
@@ -912,33 +909,6 @@ const buttonId = `${menuId}-button`;
   }
   html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .theme-dropdown-wrapper button {
     border-color: rgba(255, 255, 255, 0.2);
-  }
-
-  /* ===== View Transition: header morph across page navigation ===== */
-
-  ::view-transition-group(site-header) {
-    animation-duration: 350ms;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  ::view-transition-old(site-header) {
-    animation-duration: 180ms;
-    animation-timing-function: ease-in;
-  }
-
-  ::view-transition-new(site-header) {
-    animation-duration: 280ms;
-    animation-timing-function: ease-out;
-    animation-delay: 80ms;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(site-header),
-    ::view-transition-old(site-header),
-    ::view-transition-new(site-header) {
-      animation-duration: 0ms !important;
-      animation-delay: 0ms !important;
-    }
   }
 
   /* ===== Returned state: fix button hover backgrounds ===== */
