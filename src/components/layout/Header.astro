@@ -171,7 +171,7 @@ const buttonId = `${menuId}-button`;
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-500 dark:text-brand-500 md:text-on-invert' : 'text-brand-500 dark:text-brand-500')
+                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-500 dark:text-foreground md:text-on-invert' : 'text-brand-500 dark:text-foreground')
               )}
             >
               {logoText || siteConfig.name}
@@ -840,13 +840,13 @@ const buttonId = `${menuId}-button`;
     color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
-    color: var(--color-brand-500);
+    color: var(--color-foreground);
   }
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
     color: var(--color-brand-500);
   }
   .dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
-    color: var(--color-brand-500);
+    color: var(--color-foreground);
   }
 
   [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
