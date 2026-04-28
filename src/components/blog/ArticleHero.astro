@@ -35,7 +35,7 @@ const estimatedWords = description.split(' ').length * 15;
 const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 ---
 
-<header class="relative overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)] hero-page-gradient">
+<header class="relative overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
 <div class="relative mx-auto max-w-4xl px-6 animate-hero-slide-up">
     <!-- Tags -->
     {tags.length > 0 && (
@@ -108,8 +108,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)] animate-hero-slide-up [animation-delay:200ms]">
       {svgSlug ? (
         <div
-          class="relative overflow-hidden rounded-xl border border-border shadow-2xl
-            bg-gradient-to-br from-brand-100/50 to-brand-50/30 dark:from-brand-900/50 dark:to-brand-600/30"
+          class="relative overflow-hidden rounded-xl border border-border shadow-2xl"
           style="color: var(--brand-500);"
         >
           <BlogImageSVG slug={svgSlug} title={imageAlt || title} />
