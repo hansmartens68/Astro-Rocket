@@ -173,6 +173,21 @@ if (includeProfessionalServiceSchema) {
         }
       })();
     </script>
+
+    <!-- Suppress hero slide-up animation during client-side navigations -->
+    <script is:inline>
+      (function () {
+        if (!window.__heroNavAnimInit) {
+          window.__heroNavAnimInit = true;
+          document.addEventListener('astro:before-swap', function () {
+            document.documentElement.classList.add('is-navigating');
+          });
+          document.addEventListener('astro:page-load', function () {
+            document.documentElement.classList.remove('is-navigating');
+          });
+        }
+      })();
+    </script>
   </head>
 
   <body class="min-h-screen bg-background text-foreground antialiased" data-eager-reveal={eagerReveal ? '' : undefined}>
