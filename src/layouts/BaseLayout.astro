@@ -90,11 +90,11 @@ if (includeProfessionalServiceSchema) {
     <!-- View Transitions (client-side routing with animated page transitions) -->
     <ClientRouter />
 
-    <!-- Strip first-paint entrance animations from pages reached via client-side
-         navigation. The view-transition cross-fade is already the entrance, so
-         re-running hero-slide-up / data-reveal on top of it produced a visible
-         "aftershake" once the cross-fade ended (most noticeable on mobile).
-         Initial full page loads are unaffected and animate normally. -->
+    <!-- For pages reached via Astro view transitions, swap the dramatic 0.7s
+         hero entrance for a shorter variant that finishes with the cross-fade.
+         The original animation visibly continued for ~450ms after the fade
+         ended, producing a post-fade "aftershake" on mobile. Initial full
+         page loads keep the original 0.7s slide-up. -->
     <script is:inline>
       (function () {
         if (window.__navAnimGuardInit) return;
@@ -105,6 +105,7 @@ if (includeProfessionalServiceSchema) {
           const heroes = doc.querySelectorAll('.animate-hero-slide-up');
           for (let i = 0; i < heroes.length; i++) {
             heroes[i].classList.remove('animate-hero-slide-up');
+            heroes[i].classList.add('animate-hero-slide-up-nav');
           }
           const reveals = doc.querySelectorAll('[data-reveal]');
           for (let j = 0; j < reveals.length; j++) {
