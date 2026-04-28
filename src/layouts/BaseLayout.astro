@@ -4,7 +4,6 @@ import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
-import { ClientRouter } from 'astro:transitions';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
 import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -87,33 +86,12 @@ if (includeProfessionalServiceSchema) {
     <!-- Analytics (loads if PUBLIC_GA_MEASUREMENT_ID or PUBLIC_GTM_ID is set) -->
     <Analytics />
 
-    <!-- View Transitions (client-side routing with animated page transitions) -->
-    <ClientRouter />
+    <!-- Client-side view transitions are intentionally disabled. They composed
+         poorly with the theme's CSS keyframe animations (hero slide-up,
+         data-reveal fades) and produced a visible post-fade "aftershake" on
+         mobile. Each navigation now does a normal page load, so animations
+         run cleanly from frame 0 every time. -->
 
-    <!-- For pages reached via Astro view transitions, swap the dramatic 0.7s
-         hero entrance for a shorter variant that finishes with the cross-fade.
-         The original animation visibly continued for ~450ms after the fade
-         ended, producing a post-fade "aftershake" on mobile. Initial full
-         page loads keep the original 0.7s slide-up. -->
-    <script is:inline>
-      (function () {
-        if (window.__navAnimGuardInit) return;
-        window.__navAnimGuardInit = true;
-        document.addEventListener('astro:before-swap', function (e) {
-          const doc = e.newDocument;
-          if (!doc) return;
-          const heroes = doc.querySelectorAll('.animate-hero-slide-up');
-          for (let i = 0; i < heroes.length; i++) {
-            heroes[i].classList.remove('animate-hero-slide-up');
-            heroes[i].classList.add('animate-hero-slide-up-nav');
-          }
-          const reveals = doc.querySelectorAll('[data-reveal]');
-          for (let j = 0; j < reveals.length; j++) {
-            reveals[j].classList.add('is-visible');
-          }
-        });
-      })();
-    </script>
 
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script is:inline define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
