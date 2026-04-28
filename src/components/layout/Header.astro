@@ -56,7 +56,7 @@ interface Props extends HTMLAttributes<'header'> {
   nav?: NavItem[];
   extraNav?: NavItem[];
   showCta?: boolean;
-  cta?: { label?: string; href?: string; icon?: string };
+  cta?: { label?: string; href?: string; icon?: string; trailingIcon?: string };
   actions?: HeaderAction[];
   showThemeToggle?: boolean;
   showThemeSelector?: boolean;
@@ -278,6 +278,7 @@ const buttonId = `${menuId}-button`;
                 >
                   {cta.icon && <Icon name={cta.icon} size="sm" />}
                   {cta.label}
+                  {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
                 </Button>
               </div>
             )}
@@ -386,7 +387,9 @@ const buttonId = `${menuId}-button`;
             {showCta && (
               <div class="border-border mt-3 border-t pt-3">
                 <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
+                  {cta.icon && <Icon name={cta.icon} size="sm" />}
                   {cta.label}
+                  {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
                 </Button>
               </div>
             )}
