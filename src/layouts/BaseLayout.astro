@@ -90,6 +90,22 @@ if (includeProfessionalServiceSchema) {
     <!-- View Transitions (client-side routing with animated page transitions) -->
     <ClientRouter />
 
+    <!-- Mark document during view transitions so entrance animations don't
+         double-fire on top of the page-change cross-fade (most visible on mobile). -->
+    <script is:inline>
+      (function () {
+        if (!window.__navAnimGuardInit) {
+          window.__navAnimGuardInit = true;
+          document.addEventListener('astro:before-swap', function () {
+            document.documentElement.setAttribute('data-navigating', '');
+          });
+          document.addEventListener('astro:page-load', function () {
+            document.documentElement.removeAttribute('data-navigating');
+          });
+        }
+      })();
+    </script>
+
     <!-- Dynamic favicon: syncs letter (first letter of site name) and color (brand-500) with active theme -->
     <script is:inline define:vars={{ _faviconLetter: siteConfig.name.charAt(0).toUpperCase() }}>
       (function () {
