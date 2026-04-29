@@ -975,6 +975,24 @@
 .animate-hero-stagger > *:nth-child(5)   { animation-delay: 360ms; }
 .animate-hero-stagger > *:nth-child(n+6) { animation-delay: 450ms; }
 
+/* Floating header drop-in: lands from above as the hero rises from below.
+   The translate values mirror the auto-hide hidden state so the entrance
+   plays cleanly with the existing transition system. */
+@keyframes header-drop-in {
+  from {
+    translate: -50% calc(-100% - 1.5rem);
+    opacity: 0;
+  }
+  to {
+    translate: -50% 0;
+    opacity: 1;
+  }
+}
+
+.animate-header-drop {
+  animation: header-drop-in 0.8s cubic-bezier(0.22, 1.6, 0.36, 1) 150ms both;
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(56px) scale(0.94);
@@ -1054,7 +1072,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-slide-up,
-  .animate-hero-stagger > * {
+  .animate-hero-stagger > *,
+  .animate-header-drop {
     animation: none;
   }
 
