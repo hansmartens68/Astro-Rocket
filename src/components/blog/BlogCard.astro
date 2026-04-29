@@ -34,7 +34,7 @@ const estimatedWords = description.split(' ').length * 10; // Rough estimate
 const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
 ---
 
-<article class="group rounded-lg border border-brand-500/30 bg-background p-6 ring-1 ring-brand-500/20 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md">
+<article class="group rounded-lg border border-brand-500/30 bg-background p-6 ring-1 ring-brand-500/20 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md" data-reveal>
 
   <a href={href} class="block">
     <div

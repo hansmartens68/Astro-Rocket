@@ -305,13 +305,15 @@ if (includeProfessionalServiceSchema) {
           const els = document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)');
           if (!els.length) return;
 
-          // Above-the-fold elements cascade in after the hero entrance starts.
-          // Below-the-fold elements wait for the IntersectionObserver.
+          // Above-the-fold = elements whose top is at least 25% inside the
+          // initial viewport. Anything just barely poking above the fold
+          // would otherwise animate while the user can't see it.
+          const fold = window.innerHeight * 0.75;
           const aboveFold = [];
           const belowFold = [];
           els.forEach(function (el) {
             const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
+            if (rect.top < fold && rect.bottom > 0) {
               aboveFold.push(el);
             } else {
               belowFold.push(el);
@@ -325,6 +327,9 @@ if (includeProfessionalServiceSchema) {
           });
 
           if (!belowFold.length) return;
+          // Negative bottom rootMargin: trigger only when the element is
+          // meaningfully on screen, so the user actually sees the animation
+          // play instead of finding it already finished.
           const eager = document.body.hasAttribute('data-eager-reveal');
           const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -333,7 +338,7 @@ if (includeProfessionalServiceSchema) {
                 observer.unobserve(entry.target);
               }
             });
-          }, { threshold: 0.12, rootMargin: eager ? '0px 0px 200px 0px' : '0px 0px 120px 0px' });
+          }, { threshold: 0.15, rootMargin: eager ? '0px 0px -5% 0px' : '0px 0px -10% 0px' });
           belowFold.forEach(function (el) { observer.observe(el); });
         }
 

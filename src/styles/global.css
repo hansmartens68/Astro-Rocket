@@ -946,11 +946,11 @@
    ------------------------------------------------------------------------- */
 
 /* Spring curve approximating Framer Motion's spring(stiffness:100, damping:15).
-   Slight overshoot gives elements a "settle" feel on entrance. */
+   Pronounced overshoot gives elements a "settle" feel on entrance. */
 @keyframes hero-slide-up {
   from {
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -959,35 +959,35 @@
 }
 
 .animate-hero-slide-up {
-  animation: hero-slide-up 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: hero-slide-up 1s cubic-bezier(0.22, 1.6, 0.36, 1) both;
 }
 
-/* Stagger direct children of a hero container. Each child springs in 80ms
+/* Stagger direct children of a hero container. Each child springs in 90ms
    behind the previous — used on the Hero content column to cascade
    badge → title → description → actions. */
 .animate-hero-stagger > * {
-  animation: hero-slide-up 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: hero-slide-up 1s cubic-bezier(0.22, 1.6, 0.36, 1) both;
 }
 .animate-hero-stagger > *:nth-child(1)   { animation-delay: 0ms;   }
-.animate-hero-stagger > *:nth-child(2)   { animation-delay: 80ms;  }
-.animate-hero-stagger > *:nth-child(3)   { animation-delay: 160ms; }
-.animate-hero-stagger > *:nth-child(4)   { animation-delay: 240ms; }
-.animate-hero-stagger > *:nth-child(5)   { animation-delay: 320ms; }
-.animate-hero-stagger > *:nth-child(n+6) { animation-delay: 400ms; }
+.animate-hero-stagger > *:nth-child(2)   { animation-delay: 90ms;  }
+.animate-hero-stagger > *:nth-child(3)   { animation-delay: 180ms; }
+.animate-hero-stagger > *:nth-child(4)   { animation-delay: 270ms; }
+.animate-hero-stagger > *:nth-child(5)   { animation-delay: 360ms; }
+.animate-hero-stagger > *:nth-child(n+6) { animation-delay: 450ms; }
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(56px) scale(0.94);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.22, 1.6, 0.36, 1);
   will-change: opacity, transform;
 }
 
-[data-reveal="down"]  { transform: translateY(-40px); }
-[data-reveal="left"]  { transform: translateX(40px); }
-[data-reveal="right"] { transform: translateX(-40px); }
-[data-reveal="scale"] { transform: scale(0.92); }
+[data-reveal="down"]  { transform: translateY(-56px) scale(0.94); }
+[data-reveal="left"]  { transform: translateX(56px) scale(0.94); }
+[data-reveal="right"] { transform: translateX(-56px) scale(0.94); }
+[data-reveal="scale"] { transform: scale(0.88); }
 
 [data-reveal].is-visible {
   opacity: 1;
@@ -999,21 +999,20 @@
 [data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
 [data-reveal][data-reveal-delay="4"] { transition-delay: 400ms; }
 
-/* Cascading reveal for grids of cards. The parent grid gets `is-visible`
-   from the IntersectionObserver (or the above-the-fold setTimeout cascade),
-   then each direct child animates in behind the previous one. Stagger and
-   distance are tunable per-instance via custom properties. */
+/* Cascading reveal for grids of cards. Each direct child stages in behind
+   the previous when the parent intersects. Stagger and travel distance are
+   tunable per-instance via custom properties. */
 [data-reveal-children] {
-  --reveal-stagger: 90ms;
-  --reveal-distance: 32px;
+  --reveal-stagger: 100ms;
+  --reveal-distance: 48px;
 }
 
 [data-reveal-children] > * {
   opacity: 0;
-  transform: translateY(var(--reveal-distance)) scale(0.96);
+  transform: translateY(var(--reveal-distance)) scale(0.94);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.22, 1.6, 0.36, 1);
 }
 
 [data-reveal-children].is-visible > * {
