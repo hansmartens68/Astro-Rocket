@@ -956,11 +956,13 @@
 
 [data-reveal] {
   opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1);
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1), transform 0.6s cubic-bezier(0, 0, 0.2, 1);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
 [data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
@@ -972,6 +974,7 @@
 
   [data-reveal] {
     opacity: 1;
+    transform: none;
     transition: none;
   }
 }
