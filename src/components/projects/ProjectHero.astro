@@ -35,7 +35,7 @@ const hasMeta = year || client || role;
 ---
 
 <header class="relative overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
-  <div class="relative mx-auto max-w-4xl px-6 animate-hero-slide-up">
+  <div class="relative mx-auto max-w-4xl px-6 animate-hero-stagger">
 
     <!-- Tags -->
     {tags.length > 0 && (
@@ -116,7 +116,7 @@ const hasMeta = year || client || role;
   </div>
 
   {image && (
-    <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)] animate-hero-slide-up [animation-delay:200ms]">
+    <div class="relative mx-auto max-w-5xl px-6 mt-[var(--space-section)] animate-hero-slide-up [animation-delay:450ms]">
       <div class="relative overflow-hidden rounded-xl border border-border shadow-2xl">
         <Image
           src={image}
