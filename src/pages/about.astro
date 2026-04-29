@@ -38,7 +38,7 @@ import TechStack from '@/components/landing/TechStack.astro';
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
         <!-- Left: text -->
-        <div class="flex flex-col gap-4" data-reveal>
+        <div class="flex flex-col gap-4" data-reveal="right">
           <div class="flex flex-col gap-6">
             <Badge variant="brand" pill class="self-start">The partnership</Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -53,7 +53,7 @@ import TechStack from '@/components/landing/TechStack.astro';
           </p>
         </div>
         <!-- Right: two stacked partner cards -->
-        <div class="flex flex-col gap-4 h-full" data-reveal data-reveal-delay="1">
+        <div class="flex flex-col gap-4 h-full" data-reveal="left" data-reveal-delay="1">
           <Card variant="elevated" hover class="flex-1 flex flex-col justify-center">
             <div class="flex items-start gap-4">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">

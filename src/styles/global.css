@@ -945,58 +945,101 @@
    transition shorthand is always valid.
    ------------------------------------------------------------------------- */
 
+/* Spring curve approximating Framer Motion's spring(stiffness:100, damping:15).
+   Slight overshoot gives elements a "settle" feel on entrance. */
 @keyframes hero-slide-up {
-  from { transform: translateY(28px); }
-  to   { transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-hero-slide-up {
-  animation: hero-slide-up 0.7s cubic-bezier(0, 0, 0.2, 1) both;
+  animation: hero-slide-up 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+
+/* Stagger direct children of a hero container. Each child springs in 80ms
+   behind the previous — used on the Hero content column to cascade
+   badge → title → description → actions. */
+.animate-hero-stagger > * {
+  animation: hero-slide-up 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.animate-hero-stagger > *:nth-child(1)   { animation-delay: 0ms;   }
+.animate-hero-stagger > *:nth-child(2)   { animation-delay: 80ms;  }
+.animate-hero-stagger > *:nth-child(3)   { animation-delay: 160ms; }
+.animate-hero-stagger > *:nth-child(4)   { animation-delay: 240ms; }
+.animate-hero-stagger > *:nth-child(5)   { animation-delay: 320ms; }
+.animate-hero-stagger > *:nth-child(n+6) { animation-delay: 400ms; }
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
 }
+
+[data-reveal="down"]  { transform: translateY(-40px); }
+[data-reveal="left"]  { transform: translateX(40px); }
+[data-reveal="right"] { transform: translateX(-40px); }
+[data-reveal="scale"] { transform: scale(0.92); }
 
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 [data-reveal][data-reveal-delay="1"] { transition-delay: 100ms; }
 [data-reveal][data-reveal-delay="2"] { transition-delay: 200ms; }
 [data-reveal][data-reveal-delay="3"] { transition-delay: 300ms; }
+[data-reveal][data-reveal-delay="4"] { transition-delay: 400ms; }
 
 /* Cascading reveal for grids of cards. The parent grid gets `is-visible`
    from the IntersectionObserver (or the above-the-fold setTimeout cascade),
-   then each direct child animates in 80ms behind the previous one. Gives
-   a "premium settle" feel on lists of blog posts, projects, features. */
+   then each direct child animates in behind the previous one. Stagger and
+   distance are tunable per-instance via custom properties. */
+[data-reveal-children] {
+  --reveal-stagger: 90ms;
+  --reveal-distance: 32px;
+}
+
 [data-reveal-children] > * {
   opacity: 0;
-  transform: translateY(32px) scale(0.96);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(var(--reveal-distance)) scale(0.96);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-reveal-children].is-visible > * {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: none;
 }
 
-[data-reveal-children] > *:nth-child(1)    { transition-delay: 0ms;   }
-[data-reveal-children] > *:nth-child(2)    { transition-delay: 80ms;  }
-[data-reveal-children] > *:nth-child(3)    { transition-delay: 160ms; }
-[data-reveal-children] > *:nth-child(4)    { transition-delay: 240ms; }
-[data-reveal-children] > *:nth-child(5)    { transition-delay: 320ms; }
-[data-reveal-children] > *:nth-child(6)    { transition-delay: 400ms; }
-[data-reveal-children] > *:nth-child(7)    { transition-delay: 480ms; }
-[data-reveal-children] > *:nth-child(8)    { transition-delay: 560ms; }
-[data-reveal-children] > *:nth-child(9)    { transition-delay: 640ms; }
-[data-reveal-children] > *:nth-child(n+10) { transition-delay: 720ms; }
+[data-reveal-children] > *:nth-child(1)    { transition-delay: calc(var(--reveal-stagger) * 0);  }
+[data-reveal-children] > *:nth-child(2)    { transition-delay: calc(var(--reveal-stagger) * 1);  }
+[data-reveal-children] > *:nth-child(3)    { transition-delay: calc(var(--reveal-stagger) * 2);  }
+[data-reveal-children] > *:nth-child(4)    { transition-delay: calc(var(--reveal-stagger) * 3);  }
+[data-reveal-children] > *:nth-child(5)    { transition-delay: calc(var(--reveal-stagger) * 4);  }
+[data-reveal-children] > *:nth-child(6)    { transition-delay: calc(var(--reveal-stagger) * 5);  }
+[data-reveal-children] > *:nth-child(7)    { transition-delay: calc(var(--reveal-stagger) * 6);  }
+[data-reveal-children] > *:nth-child(8)    { transition-delay: calc(var(--reveal-stagger) * 7);  }
+[data-reveal-children] > *:nth-child(9)    { transition-delay: calc(var(--reveal-stagger) * 8);  }
+[data-reveal-children] > *:nth-child(10)   { transition-delay: calc(var(--reveal-stagger) * 9);  }
+[data-reveal-children] > *:nth-child(11)   { transition-delay: calc(var(--reveal-stagger) * 10); }
+[data-reveal-children] > *:nth-child(12)   { transition-delay: calc(var(--reveal-stagger) * 11); }
+[data-reveal-children] > *:nth-child(n+13) { transition-delay: calc(var(--reveal-stagger) * 12); }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-hero-slide-up { animation: none; }
+  .animate-hero-slide-up,
+  .animate-hero-stagger > * {
+    animation: none;
+  }
 
   [data-reveal],
   [data-reveal-children] > * {
