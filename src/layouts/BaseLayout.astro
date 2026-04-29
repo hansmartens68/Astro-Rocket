@@ -305,21 +305,26 @@ if (includeProfessionalServiceSchema) {
           const els = document.querySelectorAll('[data-reveal]:not(.is-visible)');
           if (!els.length) return;
 
+          // Above-the-fold elements cascade in after the hero entrance starts.
+          // Below-the-fold elements wait for the IntersectionObserver.
+          const aboveFold = [];
+          const belowFold = [];
           els.forEach(function (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom > 0) {
-              el.style.setProperty('transition', 'none');
-              el.classList.add('is-visible');
-              requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                  el.style.removeProperty('transition');
-                });
-              });
+              aboveFold.push(el);
+            } else {
+              belowFold.push(el);
             }
           });
 
-          const remaining = document.querySelectorAll('[data-reveal]:not(.is-visible)');
-          if (!remaining.length) return;
+          aboveFold.forEach(function (el, i) {
+            setTimeout(function () {
+              el.classList.add('is-visible');
+            }, 250 + i * 80);
+          });
+
+          if (!belowFold.length) return;
           const eager = document.body.hasAttribute('data-eager-reveal');
           const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -329,7 +334,7 @@ if (includeProfessionalServiceSchema) {
               }
             });
           }, { threshold: 0.12, rootMargin: eager ? '0px 0px 200px 0px' : '0px 0px 80px 0px' });
-          remaining.forEach(function (el) { observer.observe(el); });
+          belowFold.forEach(function (el) { observer.observe(el); });
         }
 
         if (document.readyState === 'loading') {
@@ -337,8 +342,6 @@ if (includeProfessionalServiceSchema) {
         } else {
           initReveal();
         }
-
-        document.addEventListener('astro:after-swap', initReveal);
       })();
     </script>
   </body>
