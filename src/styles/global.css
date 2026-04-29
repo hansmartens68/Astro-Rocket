@@ -136,6 +136,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
 
   body {
@@ -144,6 +145,7 @@
     font-size: var(--font-size-base);
     line-height: var(--theme-body-leading);
     min-height: 100vh;
+    overflow-x: clip;
   }
 
   /* Typography - headings use explicit foreground color to prevent any
