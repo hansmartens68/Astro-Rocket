@@ -1034,6 +1034,24 @@
 [data-reveal-children] > *:nth-child(12)   { transition-delay: calc(var(--reveal-stagger) * 11); }
 [data-reveal-children] > *:nth-child(n+13) { transition-delay: calc(var(--reveal-stagger) * 12); }
 
+/* Per-block reveal for long-form article bodies (single blog posts /
+   single project pages). Each direct child of the prose container —
+   paragraph, heading, list, image, blockquote, custom MDX block — is
+   given its own observer so it springs in as the reader scrolls to it. */
+[data-reveal-content] > * {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.22, 1.6, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal-content] > *.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-slide-up,
   .animate-hero-stagger > * {
@@ -1041,7 +1059,8 @@
   }
 
   [data-reveal],
-  [data-reveal-children] > * {
+  [data-reveal-children] > *,
+  [data-reveal-content] > * {
     opacity: 1;
     transform: none;
     transition: none;
