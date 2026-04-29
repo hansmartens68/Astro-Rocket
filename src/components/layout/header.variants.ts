@@ -19,7 +19,7 @@ export const headerVariants = cva('z-50', {
   },
   compoundVariants: [
     // Floating + fixed: centered with gap
-    { shape: 'floating', position: 'fixed', class: '!left-1/2 !right-auto -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl mt-4' },
+    { shape: 'floating', position: 'fixed', class: '!left-1/2 !right-auto -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl mt-4 animate-header-drop' },
     // Floating + sticky: centered with gap
     { shape: 'floating', position: 'sticky', class: '!top-4 mx-auto max-w-6xl' },
     // Floating + static: centered
