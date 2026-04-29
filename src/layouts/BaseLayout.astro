@@ -302,7 +302,18 @@ if (includeProfessionalServiceSchema) {
     <script is:inline>
       (function () {
         function initReveal() {
-          const els = document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)');
+          const els = Array.prototype.slice.call(
+            document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)')
+          );
+
+          // Also observe each direct child of [data-reveal-content] so long
+          // article bodies (blog posts, project pages) animate block-by-block.
+          document.querySelectorAll('[data-reveal-content]').forEach(function (container) {
+            Array.prototype.forEach.call(container.children, function (child) {
+              if (!child.classList.contains('is-visible')) els.push(child);
+            });
+          });
+
           if (!els.length) return;
 
           // Above-the-fold = elements whose top is at least 25% inside the

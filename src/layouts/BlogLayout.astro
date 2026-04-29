@@ -97,6 +97,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
       <!-- Article Content -->
       <div
         class="prose prose-lg max-w-none"
+        data-reveal-content
       >
         <slot />
       </div>
