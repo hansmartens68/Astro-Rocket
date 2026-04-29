@@ -60,7 +60,13 @@ Most starters ship three meta tags and call it SEO. Astro Rocket ships the compl
 
 **Typing effect.** The hero headline cycles through configurable phrases. The width is locked to the longest word before the animation starts, using a hidden off-screen measurer that inherits the exact computed font metrics — so the layout never shifts. A Core Web Vitals detail most typing effects get wrong.
 
-**Scroll reveal.** Elements with `data-reveal` fade and slide into view as they enter the viewport via `IntersectionObserver`. The hero and all major sections animate in on load.
+**Scroll reveal.** Three distinct modes handle every case. `data-reveal` animates a single element into view — with direction variants for up, down, left, right, and scale. `data-reveal-children` cascades an entire grid of cards in sequence, each child staggering 100ms behind the last with a tunable `--reveal-stagger` custom property. `data-reveal-content` gives long-form pages like blog posts and project write-ups a per-block reveal: every paragraph, heading, and code block springs in individually as the reader scrolls to it. All three modes use an `IntersectionObserver` with a 15% threshold and a slight negative bottom margin, so the animation plays when the element is genuinely on screen — never off-screen where nobody sees it.
+
+**Spring curve.** Every entrance in Astro Rocket uses `cubic-bezier(0.22, 1.6, 0.36, 1)` — a curve with the second control point above 1.0, which produces a controlled overshoot. The element travels a few pixels past its final position and snaps back, approximating a physics spring without any runtime library. This is the single detail that separates the animation feel from a standard ease-out: things arrive rather than stop. The same curve drives the hero stagger, the header drop-in, and every scroll-reveal transition across the site.
+
+**Hero entrance stagger.** On page load, the hero content cascades in element by element — badge first, then title, description, and action buttons, each 90ms behind the last. A single parent class (`animate-hero-stagger`) handles all the timing with `:nth-child` selectors. No JavaScript scheduling, no component props. Simultaneously, the header drops in from above on its own spring curve, arriving 150ms after the hero starts rising — a counterpoint that feels choreographed rather than coincidental.
+
+**Header drop-in.** The floating header slides in from above on its own spring entrance — `cubic-bezier(0.22, 1.6, 0.36, 1)` over 0.8 seconds, delayed 150ms so it lands just as the hero content is mid-rise. The `from` state mirrors the header's auto-hide position exactly, so the entrance and the scroll-hide behaviour use the same transform values and never conflict.
 
 ## Dark Mode — Done Right
 
