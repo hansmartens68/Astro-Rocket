@@ -59,7 +59,7 @@ const getPostUrl = (postId: string) => {
             Featured
           </h2>
 
-          <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
+          <div class="grid gap-6 md:grid-cols-2" data-reveal-children>
             {featuredPosts.map((post) => (
               <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
                 <BlogCard
@@ -118,7 +118,7 @@ const getPostUrl = (postId: string) => {
 
       {
         regularPosts.length > 0 ? (
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal-children>
             {regularPosts.map((post) => (
               <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
                 <BlogCard
