@@ -24,11 +24,11 @@ It's built for designers, freelancers, and developers who want a site that genui
 
 The theme switcher is one of Astro Rocket's most satisfying details. Twelve colour themes — **Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, and Magenta** — toggle instantly in the header. Click a colour, and every button, link, badge, progress bar, and accent on the page updates in a single frame. No waiting, no code changes, no deploy.
 
-The secret is CSS custom properties scoped to `data-theme` attributes on `<html>`. The browser does all the work — the server never needs to know.
+The secret is CSS custom properties scoped to `data-theme` attributes on `<html>`. The browser does all the work — the server never needs to know. The full token system — how colours, spacing, and typography are wired together — is covered in [How Astro Rocket's Design System Works](/blog/design-system-color-tokens).
 
 ## 57+ Components, Six Categories
 
-The component library is the core of the project. Every component is built for Astro, typed with TypeScript, styled with Tailwind CSS, dark-mode-aware, and theme-aware:
+The [component library](/blog/component-library) is the core of the project. Every component is built for Astro, typed with TypeScript, styled with Tailwind CSS, dark-mode-aware, and theme-aware. Browse them all on the [components page](/components):
 
 - **UI** — Badge, Button, Card, Alert, Toast, Tooltip, Progress, Table, Avatar, Accordion, Tabs, Dialog, Dropdown, Skeleton
 - **Patterns** — Feature grids, pricing tables, testimonials, stats, step-by-step flows
@@ -39,7 +39,7 @@ The component library is the core of the project. Every component is built for A
 
 ## Auto-Generated Branding
 
-Change `siteConfig.name` and the logo badge and favicon update at runtime — automatically, in the right brand colour, with no design tools required. This is the detail that makes Astro Rocket genuinely forkable: new name, new colour, new site.
+Change `siteConfig.name` and the logo badge and favicon update at runtime — automatically, in the right brand colour, with no design tools required. This is the detail that makes Astro Rocket genuinely forkable: new name, new colour, new site. Every available toggle is documented in the [configuration guide](/blog/astro-rocket-configuration-guide).
 
 ## SEO — The Complete Stack
 
@@ -52,13 +52,17 @@ Most starters ship three meta tags and call it SEO. Astro Rocket ships the compl
 - **Per-page robots control** — `noindex` / `nofollow` on any page via a prop
 - **Search Console verification** — Google and Bing codes via `.env`, no template edits
 
+The full setup — what each piece does, how to configure it, and what rich results it unlocks — is in [SEO in Astro Rocket](/blog/seo-in-astro-rocket).
+
 ## The Interactions
 
-**Scroll progress bar.** A 2px brand-coloured line runs along the bottom of the fixed header and fills as you scroll. Enabled on the homepage, blog index, and individual posts. Smooth, passive, `requestAnimationFrame`-throttled.
+**[Scroll progress bar](/blog/scroll-progress-bar).** A 2px brand-coloured line runs along the bottom of the fixed header and fills as you scroll. Enabled on the homepage, blog index, and individual posts. Smooth, passive, `requestAnimationFrame`-throttled.
 
-**Scroll progress ring.** As you scroll down the page, a thin arc traces around the back-to-top button — clockwise, from empty at the top to fully drawn at the bottom. It's a quiet, satisfying way to know where you are on a long page without looking at a scrollbar. Click the button and you're back at the top. The arc colour follows the active theme automatically — switch to a different colour and it updates instantly, no extra code needed.
+**[Scroll progress ring](/blog/scroll-progress-ring).** As you scroll down the page, a thin arc traces around the back-to-top button — clockwise, from empty at the top to fully drawn at the bottom. It's a quiet, satisfying way to know where you are on a long page without looking at a scrollbar. Click the button and you're back at the top. The arc colour follows the active theme automatically — switch to a different colour and it updates instantly, no extra code needed.
 
-**Typing effect.** The hero headline cycles through configurable phrases. The width is locked to the longest word before the animation starts, using a hidden off-screen measurer that inherits the exact computed font metrics — so the layout never shifts. A Core Web Vitals detail most typing effects get wrong.
+**[Hero scroll indicator](/blog/hero-scroll-indicator).** Two stacked chevrons gently bounce at the bottom of the homepage hero, drawing the eye downward. They appear after the hero content has finished animating in and vanish the moment you start scrolling — desktop-only, zero intrusion.
+
+**[Typing effect](/blog/hero-typing-effect).** The hero headline cycles through configurable phrases. The width is locked to the longest word before the animation starts, using a hidden off-screen measurer that inherits the exact computed font metrics — so the layout never shifts. A Core Web Vitals detail most typing effects get wrong.
 
 **Scroll reveal.** Three distinct modes handle every case. `data-reveal` animates a single element into view — with direction variants for up, down, left, right, and scale. `data-reveal-children` cascades an entire grid of cards in sequence, each child staggering 100ms behind the last with a tunable `--reveal-stagger` custom property. `data-reveal-content` gives long-form pages like blog posts and project write-ups a per-block reveal: every paragraph, heading, and code block springs in individually as the reader scrolls to it. All three modes use an `IntersectionObserver` with a 15% threshold and a slight negative bottom margin, so the animation plays when the element is genuinely on screen — never off-screen where nobody sees it.
 
@@ -72,7 +76,7 @@ A full technical breakdown of every animation layer — spring curve, stagger lo
 
 ## Dark Mode — Done Right
 
-Dark mode uses `sessionStorage` rather than `localStorage`. The difference: every new tab resets to the intended theme. A visitor who switched modes out of curiosity arrives back in the right one. First impressions are intentional, every time.
+Dark mode uses `sessionStorage` rather than `localStorage`. The difference: every new tab resets to the intended theme. A visitor who switched modes out of curiosity arrives back in the right one. First impressions are intentional, every time. The full reasoning is in [Why Astro Rocket Uses sessionStorage for Dark Mode](/blog/dark-mode-sessionstorage).
 
 ## Zero JavaScript by Default
 
