@@ -302,7 +302,7 @@ if (includeProfessionalServiceSchema) {
     <script is:inline>
       (function () {
         function initReveal() {
-          const els = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+          const els = document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)');
           if (!els.length) return;
 
           // Above-the-fold elements cascade in after the hero entrance starts.

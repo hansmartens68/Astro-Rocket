@@ -70,7 +70,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-delay="1">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal-children>
         <!-- Web Design -->
         <Card hover>
           <div class="flex items-start gap-4">
@@ -184,7 +184,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
+      <div class="grid gap-6 md:grid-cols-2" data-reveal-children>
         {featuredProjects.map((project) => (
           <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
             <div class="flex flex-1 flex-col">
@@ -228,7 +228,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2" data-reveal data-reveal-delay="1">
+      <div class="grid gap-6 md:grid-cols-2" data-reveal-children>
         <!-- Testimonial 1 -->
         <Card variant="elevated" padding="lg" hover>
           <div class="flex flex-col h-full gap-4">
@@ -298,7 +298,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </a>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3" data-reveal data-reveal-delay="1">
+      <div class="grid gap-6 md:grid-cols-3" data-reveal-children>
         {posts.map((post) => (
           <BlogCard
             title={post.data.title}
