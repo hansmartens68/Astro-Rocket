@@ -68,6 +68,8 @@ Most starters ship three meta tags and call it SEO. Astro Rocket ships the compl
 
 **Header drop-in.** The floating header slides in from above on its own spring entrance — `cubic-bezier(0.22, 1.6, 0.36, 1)` over 0.8 seconds, delayed 150ms so it lands just as the hero content is mid-rise. The `from` state mirrors the header's auto-hide position exactly, so the entrance and the scroll-hide behaviour use the same transform values and never conflict.
 
+A full technical breakdown of every animation layer — spring curve, stagger logic, observer tuning, and the reason view transitions are intentionally disabled — is in the [Animations in Astro Rocket](/blog/animations-in-astro-rocket) post.
+
 ## Dark Mode — Done Right
 
 Dark mode uses `sessionStorage` rather than `localStorage`. The difference: every new tab resets to the intended theme. A visitor who switched modes out of curiosity arrives back in the right one. First impressions are intentional, every time.
