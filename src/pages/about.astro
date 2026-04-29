@@ -113,8 +113,8 @@ import TechStack from '@/components/landing/TechStack.astro';
           These aren't aspirations — they're the constraints every project is held to, from the first conversation to the final handover.
         </p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3" data-reveal-children>
-        <Card hover>
+      <div class="grid gap-8 md:grid-cols-3">
+        <Card hover data-reveal>
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="zap" size="md" />
@@ -127,7 +127,7 @@ import TechStack from '@/components/landing/TechStack.astro';
             </div>
           </div>
         </Card>
-        <Card hover>
+        <Card hover data-reveal data-reveal-delay="1">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="award" size="md" />
@@ -140,7 +140,7 @@ import TechStack from '@/components/landing/TechStack.astro';
             </div>
           </div>
         </Card>
-        <Card hover>
+        <Card hover data-reveal data-reveal-delay="2">
           <div class="flex items-start gap-4">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="rocket" size="md" />

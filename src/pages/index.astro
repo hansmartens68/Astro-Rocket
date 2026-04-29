@@ -70,9 +70,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal-children>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <!-- Web Design -->
-        <Card hover>
+        <Card hover data-reveal>
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="layout" size="sm" />
@@ -87,7 +87,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </Card>
 
         <!-- Web Development -->
-        <Card hover>
+        <Card hover data-reveal data-reveal-delay="1">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="code" size="sm" />
@@ -102,7 +102,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </Card>
 
         <!-- Performance -->
-        <Card hover>
+        <Card hover data-reveal data-reveal-delay="2">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
               <Icon name="zap" size="sm" />
@@ -184,9 +184,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2" data-reveal-children>
+      <div class="grid gap-6 md:grid-cols-2">
         {featuredProjects.map((project) => (
-          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col">
+          <Card variant="elevated" hover padding="lg" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="group flex flex-col" data-reveal>
             <div class="flex flex-1 flex-col">
               <div class="mb-3 flex items-start justify-between gap-4">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
@@ -228,9 +228,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2" data-reveal-children>
+      <div class="grid gap-6 md:grid-cols-2">
         <!-- Testimonial 1 -->
-        <Card variant="elevated" padding="lg" hover>
+        <Card variant="elevated" padding="lg" hover data-reveal>
           <div class="flex flex-col h-full gap-4">
             <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
               {[...Array(5)].map(() => (
@@ -255,7 +255,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </Card>
 
         <!-- Testimonial 2 -->
-        <Card variant="elevated" padding="lg" hover>
+        <Card variant="elevated" padding="lg" hover data-reveal data-reveal-delay="1">
           <div class="flex flex-col h-full gap-4">
             <div class="flex gap-1 text-brand-500" role="img" aria-label="5 out of 5 stars">
               {[...Array(5)].map(() => (
@@ -298,7 +298,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </a>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3" data-reveal-children>
+      <div class="grid gap-6 md:grid-cols-3">
         {posts.map((post) => (
           <BlogCard
             title={post.data.title}
