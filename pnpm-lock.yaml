@@ -68,6 +68,9 @@ importers:
       schema-dts:
         specifier: ^1.1.2
         version: 1.1.5
+      sharp:
+        specifier: ^0.34.0
+        version: 0.34.5
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -10373,7 +10376,7 @@ snapshots:
     dependencies:
       '@img/colour': 1.0.0
       detect-libc: 2.1.2
-      semver: 7.7.3
+      semver: 7.7.4
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.5
       '@img/sharp-darwin-x64': 0.34.5
