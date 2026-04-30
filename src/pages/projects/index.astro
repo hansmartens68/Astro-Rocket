@@ -41,15 +41,18 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
 
         <div class="grid gap-6 md:grid-cols-2">
           {projects.map((project) => (
-            <Card variant="elevated" hover padding="none" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class:list={['group flex flex-col overflow-hidden', project.data.featured && 'md:col-span-2']} data-reveal>
+            <Card variant="elevated" hover padding="none" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class:list={['group overflow-hidden flex flex-col', project.data.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:flex-row']} data-reveal>
               {project.data.image && (
                 <div class="overflow-hidden">
                   <Image
                     src={project.data.image}
                     alt={project.data.imageAlt || project.data.title}
                     widths={[640, 960]}
-                    sizes="(max-width: 768px) 640px, 960px"
-                    class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes={project.data.featured ? '(max-width: 768px) 640px, 480px' : '(max-width: 768px) 640px, 960px'}
+                    class:list={[
+                      'w-full object-cover transition-transform duration-300 group-hover:scale-105',
+                      project.data.featured ? 'aspect-video md:aspect-auto md:h-full' : 'aspect-video'
+                    ]}
                     loading="lazy"
                   />
                 </div>
