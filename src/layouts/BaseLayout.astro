@@ -297,7 +297,11 @@ if (includeProfessionalServiceSchema) {
             window.removeEventListener('scroll', onScroll);
           }, { once: true });
 
-          updateFrame();
+          // Defer initial layout read to the next frame so it doesn't force
+          // a sync reflow during page load (the JS style writes above
+          // invalidate layout; reading scrollHeight immediately would force
+          // the browser to recompute before returning).
+          requestAnimationFrame(updateFrame);
         }
 
         document.addEventListener('astro:page-load', initBackToTop);
@@ -359,10 +363,17 @@ if (includeProfessionalServiceSchema) {
           belowFold.forEach(function (el) { observer.observe(el); });
         }
 
+        // Defer to the next frame so getBoundingClientRect reads happen
+        // after the browser has computed initial layout, turning a forced
+        // sync reflow into a cheap cached read.
+        function deferredInitReveal() {
+          requestAnimationFrame(initReveal);
+        }
+
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initReveal);
+          document.addEventListener('DOMContentLoaded', deferredInitReveal);
         } else {
-          initReveal();
+          deferredInitReveal();
         }
       })();
     </script>
