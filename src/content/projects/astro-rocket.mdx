@@ -78,6 +78,12 @@ A full technical breakdown of every animation layer — spring curve, stagger lo
 
 Dark mode uses `sessionStorage` rather than `localStorage`. The difference: every new tab resets to the intended theme. A visitor who switched modes out of curiosity arrives back in the right one. First impressions are intentional, every time. The full reasoning is in [Why Astro Rocket Uses sessionStorage for Dark Mode](/blog/dark-mode-sessionstorage).
 
+## Lighthouse: 100 Across the Board
+
+Astro Rocket scores **100 on every Lighthouse category** — Performance, Accessibility, Best Practices, and SEO — on the live demo at [astrorocket.dev](https://astrorocket.dev). That's not a tuned benchmark page; it's the full site with animations, a theme switcher, typed headlines, and a contact form.
+
+The scores are a side-effect of decisions made throughout the build: Astro's static-first output keeps JavaScript off pages that don't need it, images are processed through Astro's built-in image pipeline, every interactive component meets WCAG contrast and keyboard requirements by default, and the SEO layer ships the full stack rather than just meta tags. Nothing is sacrificed to hit the number — the number reflects how the site is built.
+
 ## Zero JavaScript by Default
 
 Astro's island architecture means every page ships pure HTML unless a component explicitly needs JavaScript. Interactive islands — theme switcher, contact form, typing effect, scroll indicators — hydrate themselves. Everything else stays static.
