@@ -10,6 +10,7 @@ import netlify from '@astrojs/netlify';
 const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 
 export default defineConfig({
+  output: 'static',
   adapter: isNetlify ? netlify() : vercel(),
   site: process.env.SITE_URL || 'https://example.com',
 

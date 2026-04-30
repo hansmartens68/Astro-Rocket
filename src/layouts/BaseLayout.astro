@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import outfitFont from '@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url';
 import SEO from '@/components/seo/SEO.astro';
 import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
@@ -60,6 +61,9 @@ if (includeProfessionalServiceSchema) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload display font (used by hero h1) so it's ready for first paint -->
+    <link rel="preload" as="font" type="font/woff2" href={outfitFont} crossorigin="anonymous" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={siteConfig.branding.favicon.svg} />
