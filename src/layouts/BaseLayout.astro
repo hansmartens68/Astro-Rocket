@@ -7,7 +7,7 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
-import type { WebSite, Organization, Person, WithContext } from 'schema-dts';
+import type { Thing, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
 
 interface Props {
@@ -26,6 +26,7 @@ interface Props {
   includeOrgSchema?: boolean;
   includePersonSchema?: boolean;
   includeProfessionalServiceSchema?: boolean;
+  extraSchemas?: WithContext<Thing>[];
   eagerReveal?: boolean;
 }
 
@@ -40,11 +41,12 @@ const {
   includeOrgSchema = false,
   includePersonSchema = false,
   includeProfessionalServiceSchema = false,
+  extraSchemas = [],
   eagerReveal = false,
 } = Astro.props;
 
 // Build JSON-LD schemas
-const schemas: Array<WithContext<WebSite> | WithContext<Organization> | WithContext<Person>> = [createWebsiteSchema()];
+const schemas: WithContext<Thing>[] = [createWebsiteSchema()];
 if (includeOrgSchema) {
   schemas.push(createOrganizationSchema());
 }
@@ -54,6 +56,7 @@ if (includePersonSchema) {
 if (includeProfessionalServiceSchema) {
   schemas.push(createProfessionalServiceSchema());
 }
+schemas.push(...extraSchemas);
 ---
 
 <!doctype html>

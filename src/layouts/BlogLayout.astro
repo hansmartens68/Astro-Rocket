@@ -11,6 +11,7 @@ import RelatedPosts from '@/components/blog/RelatedPosts.astro';
 import CTA from '@/components/ui/marketing/CTA/CTA.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { resolveSocialLinks } from '@/lib/utils';
+import { createBlogPostSchema } from '@/lib/schema';
 
 const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
 
@@ -50,6 +51,16 @@ const breadcrumbs = [
 
 // Get full URL for sharing
 const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const blogPostingSchema = createBlogPostSchema({
+  title,
+  description,
+  url: fullUrl,
+  image: new URL(ogImage, Astro.site).toString(),
+  datePublished: publishedAt,
+  dateModified: updatedAt,
+  author: { name: author, url: siteConfig.url },
+});
 ---
 
 <BaseLayout
@@ -63,6 +74,7 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     authors: [author],
     tags,
   }}
+  extraSchemas={[blogPostingSchema]}
 >
   <Header
     slot="header"
