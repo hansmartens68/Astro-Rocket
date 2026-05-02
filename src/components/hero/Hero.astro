@@ -62,8 +62,8 @@ const gridClasses = cn(
 <section class={sectionClasses} {...attrs}>
   {showGrid && (
     <div
-      class="bg-grid-pattern pointer-events-none absolute inset-x-0 -inset-y-[20%] opacity-30 hidden dark:block"
-      style="mask-image: radial-gradient(ellipse 50% 50% at 50% 40%, black 0%, transparent 70%);"
+      class="bg-grid-pattern pointer-events-none absolute inset-x-0 -inset-y-[20%] opacity-30 hidden md:dark:block"
+      style="mask-image: radial-gradient(ellipse 50% 50% at 50% 40%, black 0%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 40%, black 0%, transparent 70%);"
       aria-hidden="true"
     />
   )}
