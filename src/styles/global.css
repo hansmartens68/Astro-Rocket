@@ -359,8 +359,8 @@
 
   .dark .bg-grid-pattern {
     background-image:
-      linear-gradient(to right, var(--gray-800) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--gray-800) 1px, transparent 1px);
+      linear-gradient(to right, var(--color-brand-600) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-brand-600) 1px, transparent 1px);
   }
 
   /* Animations */
