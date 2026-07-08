@@ -187,20 +187,20 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "Over — Astro 7 starterthema",
-        "description": "Astro Rocket is een productieklaar Astro 7 starterthema met 12 thema's, 57+ componenten, ingebouwde i18n, donkere modus en alles wat je nodig hebt om snel te lanceren."
+        "title": "Over — Gratis open-source Astro 7 thema",
+        "description": "Astro Rocket is een gratis, open-source Astro 7 thema gebouwd rond een complete componentbibliotheek: 57 ontworpen componenten, 12 kleurthema's, ingebouwde i18n en donkere modus."
       },
       "hero": {
         "badge": "Over",
         "titleLead": "Astro Rocket —",
-        "typingWords": ["Astro 7 Starter", "Productieklaar", "12 Thema's", "57+ Componenten", "Donkere modus", "Ingebouwde i18n", "Zero-config SEO"],
-        "description": "Een gratis, productieklaar Astro 7 starterthema met alles wat je nodig hebt om snelle, moderne websites te bouwen — zonder vanaf nul te beginnen."
+        "typingWords": ["Astro 7 Thema", "Componentbibliotheek", "12 Thema's", "57+ Componenten", "Donkere modus", "Ingebouwde i18n", "Zero-config SEO"],
+        "description": "Een gratis, open-source Astro 7 thema — een complete componentbibliotheek om mooie websites mee te bouwen, zonder vanaf nul te beginnen."
       },
       "intro": {
         "badge": "Gratis & open source",
         "heading": "Een stevige basis voor elk project",
         "paragraphs": [
-          "Astro Rocket is een productieklaar starterthema gebouwd op Astro 7. Het wordt geleverd met een volledige componentbibliotheek, 12 met de hand gemaakte thema's, donkere modus, ingebouwde i18n en een blog — zodat jij je kunt richten op je project in plaats van op de boilerplate.",
+          "Astro Rocket is een gratis, open-source thema gebouwd op Astro 7, ontworpen rond een complete componentbibliotheek: 57 ontworpen componenten, 12 met de hand gemaakte kleurthema's, donkere modus, ingebouwde i18n en een blog — zodat je een mooie website bouwt in plaats van boilerplate.",
           "Het is gratis, MIT-gelicentieerd en vermeld in de officiële Astro-themamap. Kloon het, pas het aan en lanceer iets waar je trots op bent."
         ],
         "facts": [
@@ -378,15 +378,15 @@
     },
     "home": {
       "meta": {
-        "title": "Astro 7 starterthema",
-        "description": "Een productieklaar Astro 7 starterthema met 12 prachtige thema's, 57+ componenten, ingebouwde i18n, donkere modus en een snelle, moderne basis om alles op te bouwen."
+        "title": "Gratis open-source Astro 7 thema",
+        "description": "Een gratis, open-source Astro 7 thema: een complete componentbibliotheek om mooie websites mee te bouwen — 12 kleurthema's, 57+ componenten, ingebouwde i18n en donkere modus."
       },
       "hero": {
         "badge": "Beschikbaar voor nieuwe projecten",
         "titleLine1": "Astro Rocket —",
         "titleLine2": "Webdesigner",
         "titleLine3": "& Ontwikkelaar",
-        "description": "Astro 7 starter met 12 prachtige thema's, 57+ componenten, donkere modus en een snelle, moderne basis om alles op te bouwen.",
+        "description": "Een gratis Astro 7 thema: 57+ ontworpen componenten, 12 prachtige kleurthema's, donkere modus — een complete componentbibliotheek om alles op te bouwen.",
         "github": "Bekijk op GitHub",
         "getStarted": "Aan de slag"
       },

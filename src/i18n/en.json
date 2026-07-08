@@ -187,20 +187,20 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "About — Astro 7 Starter Theme",
-        "description": "Astro Rocket is a production-ready Astro 7 starter theme with 12 themes, 57+ components, built-in i18n, dark mode, and everything you need to launch fast."
+        "title": "About — Free Open-Source Astro 7 Theme",
+        "description": "Astro Rocket is a free, open-source Astro 7 theme built around a complete component library: 57 designed components, 12 colour themes, built-in i18n, and dark mode."
       },
       "hero": {
         "badge": "About",
         "titleLead": "Astro Rocket —",
-        "typingWords": ["Astro 7 Starter", "Production-Ready", "12 Themes", "57+ Components", "Dark Mode", "Built-in i18n", "Zero Config SEO"],
-        "description": "A free, production-ready Astro 7 starter theme with everything you need to build fast, modern websites — without starting from scratch."
+        "typingWords": ["Astro 7 Theme", "Component Library", "12 Themes", "57+ Components", "Dark Mode", "Built-in i18n", "Zero Config SEO"],
+        "description": "A free, open-source Astro 7 theme — a complete component library for building beautiful websites, without starting from zero."
       },
       "intro": {
         "badge": "Free & Open Source",
         "heading": "A solid foundation for any project",
         "paragraphs": [
-          "Astro Rocket is a production-ready starter theme built on Astro 7. It ships with a full component library, 12 hand-crafted themes, dark mode, built-in i18n, and a blog — so you can focus on building your project, not the boilerplate.",
+          "Astro Rocket is a free, open-source theme built on Astro 7, designed around a complete component library: 57 designed components, 12 hand-crafted colour themes, dark mode, built-in i18n, and a blog — so you can build a beautiful website instead of boilerplate.",
           "It's free, MIT licensed, and listed on the official Astro themes directory. Clone it, customise it, and ship something you're proud of."
         ],
         "facts": [
@@ -378,15 +378,15 @@
     },
     "home": {
       "meta": {
-        "title": "Astro 7 starter theme",
-        "description": "A production-ready Astro 7 starter with 12 beautiful themes, 57+ components, built-in i18n, dark mode and a fast, modern foundation to build anything on."
+        "title": "Free open-source Astro 7 theme",
+        "description": "A free, open-source Astro 7 theme: a complete component library for building beautiful websites — 12 colour themes, 57+ components, built-in i18n, and dark mode."
       },
       "hero": {
         "badge": "Available for new projects",
         "titleLine1": "Astro Rocket —",
         "titleLine2": "Web Designer",
         "titleLine3": "& Developer",
-        "description": "Astro 7 starter with 12 beautiful themes, 57+ components, dark mode and a fast, modern foundation to build anything on.",
+        "description": "A free Astro 7 theme: 57+ designed components, 12 beautiful colour themes, dark mode — a complete component library to build anything on.",
         "github": "Get it on GitHub",
         "getStarted": "Get started"
       },

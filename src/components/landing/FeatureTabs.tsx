@@ -163,7 +163,7 @@ export default {
   'nav.home': 'Home',
   'nav.about': 'About',
   'hero.title': 'Ship faster with Astro Rocket',
-  'hero.subtitle': 'The modern Astro starter',
+  'hero.subtitle': 'The modern Astro theme',
 } as const;
 
 // Usage in components
