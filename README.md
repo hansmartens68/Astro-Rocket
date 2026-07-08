@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Astro Rocket</strong> — A production-ready Astro 7 starter theme. Change the text, launch your site.
+  <strong>Astro Rocket</strong> — A free, open-source Astro 7 theme: a complete component library for building beautiful websites.
 </p>
 
 <p align="center">
@@ -28,7 +28,7 @@
 
 ## Overview
 
-Astro Rocket is a **launch-ready starter theme** for web designers, developers, bloggers, and anyone who needs a portfolio website. Every page is already built and styled — you change the text and content, and your site is ready to go live.
+Astro Rocket is a **free, open-source Astro theme** built around a complete component library: 57 designed, accessible, TypeScript components that all speak one design language — so whatever you build with them looks right. Around that library it brings everything a real website needs: pages to start from, a full blog, search, SEO, i18n, dark mode, and 12 colour themes. It's made for web designers, developers, bloggers, and anyone who wants to build a beautiful website without starting from zero. Use all of it or only the parts you need — the website you build on it is yours.
 
 It ships with a full blog, a complete component library, a built-in SEO layer, dark mode, a contact form, and 12 colour themes you can switch with one click. It's built on Astro 7 and Tailwind CSS v4.
 
