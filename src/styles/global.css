@@ -341,10 +341,12 @@
     isolation: isolate;
     background: linear-gradient(to bottom, var(--color-brand-500) 0%, #000 100%);
   }
-  /* The hero panel stays dark in light mode, so its text colours come from
-     the active theme's on-invert tokens (text on inverted surfaces) rather
-     than hard-coded values — this keeps the hero correct across all colour
-     themes. */
+  /* The hero panel stays dark in light mode, so its text needs the same
+     hierarchy the panel has in dark mode: a near-white heading (91%
+     lightness), secondary text at 83%, and a clearly muted description at
+     68% — tinted with the active theme's brand hue. The on-invert tokens
+     are the fallback for browsers without relative color syntax; they are
+     hue-correct but lighter, so text stays readable there too. */
   html:not(.dark) .hero-dark-gradient {
     --color-foreground:           var(--on-invert);
     --color-foreground-secondary: var(--on-invert-secondary);
@@ -353,6 +355,14 @@
     --color-secondary:            var(--surface-invert-secondary);
     --color-secondary-hover:      var(--surface-invert-tertiary);
     --color-ring:                 var(--on-invert);
+  }
+  @supports (color: oklch(from red 50% 0.1 h)) {
+    html:not(.dark) .hero-dark-gradient {
+      --color-foreground:           oklch(from var(--color-brand-500) 91% 0.010 h);
+      --color-foreground-secondary: oklch(from var(--color-brand-500) 83% 0.015 h);
+      --color-foreground-muted:     oklch(from var(--color-brand-500) 68% 0.012 h);
+      --color-ring:                 oklch(from var(--color-brand-500) 91% 0.010 h);
+    }
   }
 
   /* H1 spans: one colour for every span, matching dark mode's uniform
