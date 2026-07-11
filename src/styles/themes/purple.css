@@ -11,15 +11,21 @@
 
 html[data-theme="purple"] {
   /* -------------------------------------------------------------------------
-     Brand Scale Override — Purple (hue 292)
+     Brand Scale Override — Purple
      Inspired by Tailwind purple-*. Vivid and full of character.
+     The 50–500 steps are written as the sRGB colours they actually
+     render as: the previous higher-chroma values sat outside the sRGB
+     gamut, so browsers clipped them — and gradients that interpolated
+     through that out-of-gamut zone showed a visible hue band (see the
+     homepage hero). These values are identical on screen and keep
+     gradients inside the displayable range.
      ------------------------------------------------------------------------- */
-  --brand-50:  oklch(97.5% 0.02  292);
-  --brand-100: oklch(94.5% 0.05  292);
-  --brand-200: oklch(86%   0.13  292);
-  --brand-300: oklch(76%   0.21  292);
-  --brand-400: oklch(68%   0.26  292);
-  --brand-500: oklch(62%   0.28  292);
+  --brand-50:  oklch(97.5% 0.013 295);
+  --brand-100: oklch(94.2% 0.031 296);
+  --brand-200: oklch(84.7% 0.087 298);
+  --brand-300: oklch(73.8% 0.157 298);
+  --brand-400: oklch(65.1% 0.215 298);
+  --brand-500: oklch(59.7% 0.251 296);
   --brand-600: oklch(52.5% 0.25  292);
   --brand-700: oklch(44.5% 0.20  292);
   --brand-800: oklch(36%   0.15  292);
