@@ -61,7 +61,7 @@ const readingTime = getReadingTime(body ?? description);
 
     <!-- Tags (directly below the abstract, where the issue marked them) -->
     {tags.length > 0 && (
-      <TagList tags={tags} class="mb-[var(--space-stack-lg)]" />
+      <TagList tags={tags} locale={locale} class="mb-[var(--space-stack-lg)]" />
     )}
 
     <!-- Meta info -->
