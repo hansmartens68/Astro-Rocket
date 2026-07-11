@@ -13,6 +13,7 @@
     "sectionLanguage": "Taal",
     "sectionConnect": "Volgen",
     "items": {
+      "home": "Home",
       "services": "Diensten",
       "projects": "Projecten",
       "blog": "Blog",

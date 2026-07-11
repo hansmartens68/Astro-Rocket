@@ -34,7 +34,7 @@ import ThemeSelector from '@/components/layout/ThemeSelector.astro';
 import ThemeSelectorDropdown from '@/components/layout/ThemeSelectorDropdown.astro';
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher.astro';
 import siteConfig from '@/config/site.config';
-import { isEnabled as i18nIsEnabled, getLocaleFromPath, t } from '@/i18n';
+import { isEnabled as i18nIsEnabled, getLocaleFromPath, stripLocaleFromPath, t } from '@/i18n';
 
 export interface NavItem {
   label: string;
@@ -175,6 +175,12 @@ const innerClasses = cn(headerInnerVariants({ size, shape }), !isFloating && max
 function isActive(href: string): boolean {
   if (!showActiveState) return false;
   if (href.startsWith('#')) return false;
+  // The home item — site root `/` or a locale root like `/nl` — must match
+  // exactly: the startsWith check below would light it up on every page of
+  // its locale.
+  if (stripLocaleFromPath(href) === '/') {
+    return currentPath === href || currentPath === `${href}/`;
+  }
   return currentPath === href || currentPath.startsWith(href + '/');
 }
 

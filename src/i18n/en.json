@@ -13,6 +13,7 @@
     "sectionLanguage": "Language",
     "sectionConnect": "Connect",
     "items": {
+      "home": "Home",
       "services": "Services",
       "projects": "Projects",
       "blog": "Blog",
