@@ -374,19 +374,23 @@
 
   /* Primary CTA — near-white gradient pill. Targets .btn-primary, which is
      the homepage primary CTA marker (added by the primary button variant). */
+  /* !important throughout: the Button component's own light-mode styles
+     (brand-700 fill, brand-800 hover) otherwise win the cascade for
+     background-color, so hovering or tapping the near-white hero pill
+     flashed it dark blue. */
   html:not(.dark) .hero-dark-gradient .btn-primary {
-    background-color: var(--color-foreground);
+    background-color: var(--color-foreground) !important;
     background-image: linear-gradient(
       180deg,
       var(--color-foreground) 0%,
       color-mix(in oklch, var(--color-foreground) 55%, var(--color-foreground-secondary)) 100%
-    );
-    border: 1px solid var(--color-foreground-secondary);
-    color: var(--color-background);
+    ) !important;
+    border: 1px solid var(--color-foreground-secondary) !important;
+    color: var(--color-background) !important;
   }
   html:not(.dark) .hero-dark-gradient .btn-primary:hover {
-    background-image: none;
-    background-color: color-mix(in oklch, var(--color-foreground) 90%, transparent);
+    background-image: none !important;
+    background-color: color-mix(in oklch, var(--color-foreground) 90%, transparent) !important;
   }
 
   html:not(.dark) .hero-dark-gradient .border-foreground\/25 {
