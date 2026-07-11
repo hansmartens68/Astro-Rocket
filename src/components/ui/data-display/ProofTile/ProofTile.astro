@@ -1,0 +1,75 @@
+---
+/**
+ * ProofTile
+ * A centered tile for facts, features, and process steps: a bare brand
+ * icon — or a step number — above bold text, on the tertiary background
+ * with a soft brand border and a gentle hover lift.
+ *
+ * Two sizes:
+ * - `md` (default) — feature tile: icon, title, and a short description
+ *   in the default slot.
+ * - `sm` — compact proof tile: icon and a single bold line (the title),
+ *   vertically centered.
+ *
+ * Pass `icon` for an icon tile or `number` for a numbered step tile.
+ * Pass `href` to render the whole tile as a link.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { cn } from '@/lib/cn';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { proofTileVariants } from './proof-tile.variants';
+
+interface Props extends HTMLAttributes<'div'>, Pick<HTMLAttributes<'a'>, 'target' | 'rel'> {
+  /** Icon name, rendered bare in the brand colour above the text */
+  icon?: string;
+  /** Step number, rendered in place of an icon (process steps) */
+  number?: string | number;
+  /** Bold tile title */
+  title?: string;
+  /** Heading element for the title. Match your page's heading hierarchy. */
+  titleTag?: 'h3' | 'h4' | 'p';
+  /** Render the tile as a link */
+  href?: string;
+  size?: 'sm' | 'md';
+}
+
+const {
+  icon,
+  number,
+  title,
+  titleTag = 'h3',
+  href,
+  size = 'md',
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const Element = href ? 'a' : 'div';
+const TitleTag = titleTag;
+const hasBody = Astro.slots.has('default');
+---
+
+<Element
+  class={cn(proofTileVariants({ size }), !href && 'cursor-default', className)}
+  href={href}
+  {...attrs}
+>
+  {icon && <Icon name={icon} class="w-10 h-10 text-brand-500" />}
+  {number !== undefined && (
+    <span class="font-display text-3xl font-bold text-brand-500 leading-none">{number}</span>
+  )}
+  {(title || hasBody) && (
+    <div>
+      {title && (
+        <TitleTag class={cn('font-semibold text-foreground', size === 'sm' ? 'text-sm' : 'text-base')}>
+          {title}
+        </TitleTag>
+      )}
+      {hasBody && (
+        <p class={cn('text-sm text-foreground-muted leading-relaxed', title && 'mt-1.5')}>
+          <slot />
+        </p>
+      )}
+    </div>
+  )}
+</Element>

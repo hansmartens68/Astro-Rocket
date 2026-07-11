@@ -1,5 +1,6 @@
 // Data Display Components
 export * from './Card';
+export * from './ProofTile';
 export * from './Badge';
 export * from './Avatar';
 export * from './AvatarGroup';

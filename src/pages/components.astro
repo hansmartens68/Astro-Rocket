@@ -10,6 +10,7 @@ import Radio from '@/components/ui/form/Radio/Radio.astro';
 import Switch from '@/components/ui/form/Switch/Switch.astro';
 // Data Display Components
 import Card from '@/components/ui/data-display/Card/Card.astro';
+import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Avatar from '@/components/ui/data-display/Avatar/Avatar.astro';
 import AvatarGroup from '@/components/ui/data-display/AvatarGroup/AvatarGroup.astro';
@@ -1452,6 +1453,58 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
                   Built-in translation system with SEO-friendly URLs and automatic locale detection.
                 </p>
               </Card>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proof Tiles -->
+        <div class="component-showcase">
+          <div class="showcase-header">
+            <span class="showcase-label">Proof Tiles</span>
+            <span class="showcase-hint">Centered tiles for facts, features, and process steps</span>
+          </div>
+          <div class="showcase-content">
+            <div class="flex flex-col gap-5">
+              <!-- Feature tiles: icon, title, description -->
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <ProofTile icon="layout" title="Designed">
+                  Every piece speaks the same design language, so whatever you build looks right.
+                </ProofTile>
+                <ProofTile icon="zap" title="Fast">
+                  Zero JavaScript by default. Pages open instantly, on every device.
+                </ProofTile>
+                <ProofTile icon="shield-check" title="Accessible">
+                  Keyboard navigation, focus states, and semantic markup, built in from the start.
+                </ProofTile>
+              </div>
+              <!-- Compact proof tiles: icon and one bold line -->
+              <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
+                <ProofTile size="sm" icon="star" title="Loved on GitHub" />
+                <ProofTile size="sm" icon="award" title="Officially listed" href="#data" />
+                <ProofTile size="sm" icon="users" title="Built in the open" />
+                <ProofTile size="sm" icon="rocket" title="Production proven" />
+              </div>
+              <!-- Numbered step tiles: process walkthroughs -->
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <ProofTile number="1" title="First contact">
+                  Send a message and plan a first talk.
+                </ProofTile>
+                <ProofTile number="2" title="Proposal">
+                  One clear document: scope, timeline, price.
+                </ProofTile>
+                <ProofTile number="3" title="Design & build">
+                  Follow the progress on a staging link.
+                </ProofTile>
+                <ProofTile number="4" title="Launch">
+                  Live on your own domain, in your name.
+                </ProofTile>
+              </div>
+              <p class="text-xs text-foreground-subtle">
+                <code class="rounded bg-secondary px-1.5 py-0.5 text-xs">&lt;ProofTile icon="zap" title="Fast"&gt;Description&lt;/ProofTile&gt;</code>
+                {' '}— use <code class="rounded bg-secondary px-1.5 py-0.5 text-xs">size="sm"</code> for compact tiles,{' '}
+                <code class="rounded bg-secondary px-1.5 py-0.5 text-xs">number</code> for steps, and{' '}
+                <code class="rounded bg-secondary px-1.5 py-0.5 text-xs">href</code> to make a tile a link.
+              </p>
             </div>
           </div>
         </div>

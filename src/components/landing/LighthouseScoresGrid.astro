@@ -11,7 +11,6 @@
  * context (e.g. inside a `data-reveal-content` prose container) so the
  * inner card stagger doesn't fight the parent's block-level reveal.
  */
-import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
 interface Props {
@@ -39,11 +38,9 @@ const wrapperProps = staggered ? { 'data-reveal-children': true } : {};
 
 <div class="grid grid-cols-2 gap-[var(--space-content-gap)] md:grid-cols-4" {...wrapperProps}>
   {scores.map((score, i) => (
-    <Card variant="elevated" padding="sm" hover class="h-full text-center border-t-2 border-t-brand-500/40 transition-colors duration-200 hover:border-t-brand-500">
+    <div class="bg-background-tertiary rounded-xl p-5 text-center border border-brand-500/40 ring-1 ring-brand-500/15 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-brand-500/80 hover:ring-brand-500/30 cursor-default h-full">
       <div class="flex flex-col items-center gap-[var(--space-stack-sm)]">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-          <Icon name={score.icon} size="md" />
-        </div>
+        <Icon name={score.icon} class="w-10 h-10 text-brand-500" />
         <span
           class="lh-number font-display text-4xl font-bold text-brand-500"
           data-target={score.value}
@@ -52,7 +49,7 @@ const wrapperProps = staggered ? { 'data-reveal-children': true } : {};
         >0</span>
         <span class="text-base font-medium text-foreground-muted">{score.label}</span>
       </div>
-    </Card>
+    </div>
   ))}
 </div>
 

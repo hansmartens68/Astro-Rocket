@@ -6,7 +6,7 @@
  *
  * Categories:
  * - form: Button, Input, Textarea, Select, Checkbox, Radio, Switch
- * - data-display: Card, Badge, Avatar, AvatarGroup, Table, Pagination, Progress, Skeleton
+ * - data-display: Card, ProofTile, Badge, Avatar, AvatarGroup, Table, Pagination, Progress, Skeleton
  * - feedback: Alert, Toast, Tooltip
  * - overlay: Dialog, Dropdown, Tabs, VerticalTabs, Accordion
  * - layout: Separator
