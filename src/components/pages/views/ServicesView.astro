@@ -12,6 +12,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
+import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
@@ -280,19 +281,9 @@ const aboutUrl = localizedPath('/about', locale);
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {processSection.steps.map((step, i) => (
-          <Card hover data-reveal data-reveal-delay={i || undefined}>
-            <div class="flex flex-col items-center text-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 font-bold text-base shrink-0">
-                {i + 1}
-              </div>
-              <div>
-                <h3 class="text-base font-semibold text-foreground">{step.title}</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          </Card>
+          <ProofTile number={i + 1} title={step.title} data-reveal data-reveal-delay={i || undefined}>
+            {step.description}
+          </ProofTile>
         ))}
       </div>
     </div>

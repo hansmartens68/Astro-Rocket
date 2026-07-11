@@ -15,6 +15,7 @@ import { Hero } from '@/components/hero';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
+import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
@@ -212,23 +213,15 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
 
       <div class="grid gap-6 sm:grid-cols-3">
         {servicesSection.cards.map((card, i) => (
-          <Card hover href={servicesUrl} class="group flex flex-col" data-reveal data-reveal-delay={i || undefined}>
-            <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name={card.icon} size="sm" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-base font-semibold text-foreground">{card.title}</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  {card.description}
-                </p>
-                <span class="inline-flex items-center gap-1 text-sm font-medium text-brand-500 mt-3 group-hover:gap-2 transition-all">
-                  {servicesSection.learnMore}
-                  <Icon name="arrow-right" size="sm" />
-                </span>
-              </div>
-            </div>
-          </Card>
+          <ProofTile
+            href={servicesUrl}
+            icon={card.icon}
+            title={card.title}
+            data-reveal
+            data-reveal-delay={i || undefined}
+          >
+            {card.description}
+          </ProofTile>
         ))}
       </div>
     </div>

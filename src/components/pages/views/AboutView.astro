@@ -15,6 +15,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
+import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
@@ -116,19 +117,11 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
         <!-- Right: theme facts card -->
         <div class="flex flex-col h-full" data-reveal data-reveal-eager data-reveal-ease="smooth">
           <Card variant="elevated" padding="lg" class="flex-1 flex flex-col justify-center">
-            <div class="grid grid-cols-2 sm:grid-cols-3 glitch:grid-cols-2 gap-x-6 gap-y-8">
+            <div class="grid grid-cols-2 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr">
               {intro.facts.map((fact) => (
-                <div class="flex flex-col items-center text-center gap-3">
-                  <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                    <Icon name={fact.icon} size="md" />
-                  </div>
-                  <div>
-                    <h3 class="text-base font-semibold text-foreground">{fact.title}</h3>
-                    <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                      {fact.description}
-                    </p>
-                  </div>
-                </div>
+                <ProofTile size="sm" icon={fact.icon} title={fact.title}>
+                  {fact.description}
+                </ProofTile>
               ))}
             </div>
           </Card>
@@ -151,21 +144,11 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
           {principles.lead}
         </p>
       </div>
-      <div class="grid gap-6 sm:gap-8 sm:grid-cols-3">
+      <div class="grid gap-6 sm:grid-cols-3">
         {principles.items.map((item, i) => (
-          <Card hover data-reveal data-reveal-delay={i || undefined}>
-            <div class="flex items-start gap-4 sm:flex-col sm:items-center sm:gap-3 sm:text-center lg:flex-row lg:items-start lg:gap-4 lg:text-left">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name={item.icon} size="md" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-base font-semibold text-foreground">{item.title}</h3>
-                <p class="text-sm text-foreground-muted leading-relaxed mt-1.5">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          </Card>
+          <ProofTile icon={item.icon} title={item.title} data-reveal data-reveal-delay={i || undefined}>
+            {item.description}
+          </ProofTile>
         ))}
       </div>
     </div>
