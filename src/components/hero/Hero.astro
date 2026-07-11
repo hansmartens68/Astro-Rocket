@@ -82,7 +82,12 @@ const contentClasses = cn(
 
 const gridClasses = cn(
   'relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-[var(--space-section-gap)] px-6',
-  layout === 'split' && 'lg:grid-cols-2 lg:gap-[var(--space-section-gap)]'
+  layout === 'split' && 'lg:grid-cols-2 lg:gap-[var(--space-section-gap)]',
+  // Full-height hero with a floored bottom slot: centre the content in the
+  // leftover height (my-auto splits it evenly above and below), so the hero
+  // stays balanced on tall windows instead of pooling all spare space
+  // between the actions and the bottom slot.
+  isFlooredBottom && 'my-auto'
 );
 ---
 
@@ -193,14 +198,15 @@ const gridClasses = cn(
   </div>
 
   {/* Bottom slot — e.g. the homepage tech-stack marquee, in place of the scroll
-      indicator. In a full-height hero it's the last flex child, pushed to the
-      floor with mt-auto so the content stays at the top and leftover height opens
-      up between them; the section's column `gap` guarantees a minimum gap so it
-      never crowds on short windows. Outside full-height it falls back to absolute. */}
+      indicator. In a full-height hero it's the last flex child, so it sits on
+      the floor while the content grid centres itself in the leftover height
+      (my-auto above); the section's column `gap` guarantees a minimum gap so
+      the slot never crowds the content on short windows. Outside full-height
+      it falls back to absolute. */}
   {hasBottomSlot && (
     <div class={cn(
       'hero-bottom-slot z-10 w-full',
-      isFlooredBottom ? 'relative mt-auto' : 'absolute inset-x-0 bottom-0'
+      isFlooredBottom ? 'relative' : 'absolute inset-x-0 bottom-0'
     )}>
       <slot name="bottom" />
     </div>
