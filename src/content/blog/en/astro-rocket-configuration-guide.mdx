@@ -74,19 +74,19 @@ When `true`, a translucent brand-colour tint is applied over blog cover images. 
 Astro Rocket uses a 3-state colour-mode system — **System / Light / Dark** — instead of a binary toggle. Defaults are declared on the `<html>` element in `src/layouts/BaseLayout.astro`:
 
 ```html
-<html lang="en" class="scroll-smooth dark" data-theme="purple" data-theme-mode="system">
+<html lang="en" class="scroll-smooth dark" data-theme="violet" data-theme-mode="system">
 ```
 
 Three pieces of state cooperate:
 
 - `class="dark"` is the SSR fallback for visitors with JavaScript disabled — Tailwind's dark variant keys off it.
 - `data-theme-mode="system"` mirrors the user's saved choice and drives the icon shown in the header pill.
-- `data-theme="purple"` is the default colour palette.
+- `data-theme="violet"` is the default colour palette.
 
 For visitors with JavaScript enabled, the inline bootstrap script in `<head>` runs before body paint and reconciles all three values from storage:
 
 - `localStorage.theme` ∈ `'system' | 'light' | 'dark'` — the user's saved colour mode (default `'system'`)
-- `sessionStorage['color-theme']` — the active colour palette (default `'purple'`, resets per tab session)
+- `sessionStorage['color-theme']` — the active colour palette (default `'violet'`, resets per tab session)
 
 Under `'system'`, the bootstrap also subscribes to `window.matchMedia('(prefers-color-scheme: dark)')` once and re-applies on every OS flip. The full design — including the no-flash bootstrap, view-transition handling, and the header pill — is written up in [System, Light, Dark — How Astro Rocket's Colour-Mode System Works](/blog/colour-mode-system).
 

@@ -344,7 +344,7 @@ Astro Rocket uses a three-tier design token system with OKLCH colors for percept
 
 Astro Rocket ships with 12 colour themes, all based on Tailwind's color palette. All 12 are shown as colour swatches in the header dropdown (`ThemeSelectorDropdown`) on desktop and in the mobile menu (`ThemeSelector`). Clicking a swatch applies the theme instantly — the logo badge, blog image gradients, and every brand color on the page update live. No file edits, no rebuilds. This is a key difference from the original Velocity theme, where switching theme requires editing a CSS import file and rebuilding.
 
-The 12 themes in order: Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple (default), and Magenta. The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. You can also **remove the selector from the header entirely** once you've settled on a color — just remove `showThemeSelector` from the layout file.
+The 12 themes in order: Orange, Amber, Lime, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet (default), Purple, and Magenta. The `themes` array in `src/components/layout/ThemeSelector.astro` controls which swatches are shown and in what order. You can also **remove the selector from the header entirely** once you've settled on a color — just remove `showThemeSelector` from the layout file.
 
 The theme files live in `src/styles/themes/`:
 
@@ -414,7 +414,7 @@ State contract:
 Defaults are seeded directly on the `<html>` element in `src/layouts/BaseLayout.astro` so JS-disabled visitors still see a sensible state:
 
 ```html
-<html lang="en" class="scroll-smooth dark" data-theme="purple" data-theme-mode="system">
+<html lang="en" class="scroll-smooth dark" data-theme="violet" data-theme-mode="system">
 ```
 
 Flash-of-wrong-theme is prevented by an inline `<script>` in `<head>` that runs synchronously before body paint, reads `localStorage.theme`, and reconciles `data-theme-mode` + `.dark`. The same script also re-applies on `astro:before-swap` / `astro:after-swap` to handle view transitions, and subscribes once to the OS-preference media query.

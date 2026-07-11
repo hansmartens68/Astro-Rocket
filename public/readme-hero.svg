@@ -1,6 +1,6 @@
 <svg width="880" height="260" viewBox="0 0 880 260" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="880" height="260" fill="#a855f7"/>
+  <rect width="880" height="260" fill="#6b65ff"/>
 
   <!-- Lucide Rocket — scale(5), visual centre at (440, 100) -->
   <g transform="translate(379, 41) scale(5)"
@@ -16,7 +16,7 @@
         text-anchor="middle"
         font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
         font-weight="800" font-size="62" letter-spacing="-1.5"
-        fill="#faf5ff">Astro Rocket</text>
+        fill="#f3f6ff">Astro Rocket</text>
 
   <!-- Corner marks -->
   <path d="M 30 50 L 30 30 L 50 30"     stroke="#93c5fd" stroke-width="1.5" fill="none" stroke-opacity="0.45"/>
