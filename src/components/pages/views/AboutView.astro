@@ -118,8 +118,8 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
              read like every other tile grid and keep their full width on
              phones. justify-center keeps the grid vertically centred against
              the text column on desktop. -->
-        <div class="flex flex-col h-full justify-center" data-reveal data-reveal-eager data-reveal-ease="smooth">
-          <div class="grid grid-cols-1 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr">
+        <div class="flex flex-col h-full justify-center">
+          <div class="grid grid-cols-1 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr" data-reveal-children>
             {intro.facts.map((fact) => (
               <ProofTile icon={fact.icon} title={fact.title}>
                 {fact.description}
