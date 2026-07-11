@@ -15,11 +15,11 @@ html[data-theme="indigo"] {
      Inspired by Tailwind indigo-*. Deep blue-purple, authoritative.
      ------------------------------------------------------------------------- */
   --brand-50:  oklch(97.5% 0.02  264);
-  --brand-100: oklch(94.5% 0.05  264);
-  --brand-200: oklch(86%   0.11  264);
-  --brand-300: oklch(75%   0.18  264);
-  --brand-400: oklch(67%   0.22  264);
-  --brand-500: oklch(60%   0.24  264);
+  --brand-100: oklch(93.9% 0.030 250);
+  --brand-200: oklch(85.0% 0.076 254);
+  --brand-300: oklch(73.3% 0.138 259);
+  --brand-400: oklch(65.2% 0.185 262);
+  --brand-500: oklch(58.9% 0.224 263);
   --brand-600: oklch(52%   0.22  264);
   --brand-700: oklch(44%   0.18  264);
   --brand-800: oklch(36%   0.14  264);

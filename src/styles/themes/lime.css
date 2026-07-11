@@ -22,12 +22,12 @@ html[data-theme="lime"] {
   --brand-100: oklch(94%   0.06  130);
   --brand-200: oklch(87%   0.12  130);
   --brand-300: oklch(80%   0.19  130);
-  --brand-400: oklch(72%   0.25  130);
-  --brand-500: oklch(64%   0.27  130);
-  --brand-600: oklch(54%   0.23  130);
-  --brand-700: oklch(45%   0.19  130);
-  --brand-800: oklch(36%   0.14  130);
-  --brand-900: oklch(25%   0.09  130);
+  --brand-400: oklch(72.3% 0.206 133);
+  --brand-500: oklch(64.8% 0.194 136);
+  --brand-600: oklch(54.5% 0.164 137);
+  --brand-700: oklch(45.4% 0.136 136);
+  --brand-800: oklch(36.2% 0.106 135);
+  --brand-900: oklch(25.2% 0.072 134);
 
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode

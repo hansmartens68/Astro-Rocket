@@ -18,12 +18,12 @@ html[data-theme="sky"] {
   --brand-100: oklch(95%   0.04  222);
   --brand-200: oklch(88%   0.09  222);
   --brand-300: oklch(78%   0.15  222);
-  --brand-400: oklch(68%   0.20  222);
-  --brand-500: oklch(62.5% 0.22  222);
-  --brand-600: oklch(53%   0.20  222);
-  --brand-700: oklch(45%   0.17  222);
-  --brand-800: oklch(37%   0.13  222);
-  --brand-900: oklch(26.5% 0.09  222);
+  --brand-400: oklch(71.0% 0.148 234);
+  --brand-500: oklch(66.5% 0.150 239);
+  --brand-600: oklch(56.7% 0.133 241);
+  --brand-700: oklch(48.1% 0.113 241);
+  --brand-800: oklch(39.3% 0.089 239);
+  --brand-900: oklch(28.2% 0.062 238);
 
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode

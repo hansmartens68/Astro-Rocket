@@ -22,9 +22,9 @@ html[data-theme="magenta"] {
   --brand-200: oklch(87%   0.10  330);
   --brand-300: oklch(78%   0.17  330);
   --brand-400: oklch(68%   0.24  330);
-  --brand-500: oklch(58%   0.28  330);
-  --brand-600: oklch(50%   0.25  330);
-  --brand-700: oklch(42%   0.20  330);
+  --brand-500: oklch(58.8% 0.268 330);
+  --brand-600: oklch(51.2% 0.234 330);
+  --brand-700: oklch(42.5% 0.194 330);
   --brand-800: oklch(33%   0.15  330);
   --brand-900: oklch(23%   0.10  330);
 

@@ -15,11 +15,11 @@ html[data-theme="violet"] {
      Inspired by Tailwind violet-*. Rich and expressive.
      ------------------------------------------------------------------------- */
   --brand-50:  oklch(97.5% 0.02  277);
-  --brand-100: oklch(94.5% 0.05  277);
-  --brand-200: oklch(86%   0.12  277);
-  --brand-300: oklch(76%   0.20  277);
-  --brand-400: oklch(68%   0.24  277);
-  --brand-500: oklch(62.5% 0.26  277);
+  --brand-100: oklch(94.1% 0.028 270);
+  --brand-200: oklch(84.7% 0.076 274);
+  --brand-300: oklch(73.4% 0.139 277);
+  --brand-400: oklch(65.2% 0.189 279);
+  --brand-500: oklch(59.9% 0.222 279);
   --brand-600: oklch(53%   0.23  277);
   --brand-700: oklch(45%   0.19  277);
   --brand-800: oklch(36.5% 0.14  277);

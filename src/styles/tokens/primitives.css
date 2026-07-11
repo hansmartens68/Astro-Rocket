@@ -27,12 +27,12 @@
      OKLCH for perceptual uniformity across the scale
      ------------------------------------------------------------------------- */
   --brand-50: oklch(97.5% 0.02 45);
-  --brand-100: oklch(94.8% 0.04 45);
+  --brand-100: oklch(94.1% 0.033 51);
   --brand-200: oklch(87.5% 0.08 45);
   --brand-300: oklch(77.8% 0.14 45);
   --brand-400: oklch(68.5% 0.19 40);
-  --brand-500: oklch(62.5% 0.22 38);
-  --brand-600: oklch(53.2% 0.19 38);
+  --brand-500: oklch(62.7% 0.218 35);
+  --brand-600: oklch(53.4% 0.187 35);
   --brand-700: oklch(45.5% 0.16 38);
   --brand-800: oklch(37.2% 0.13 38);
   --brand-900: oklch(26.5% 0.09 38);

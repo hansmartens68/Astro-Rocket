@@ -18,11 +18,11 @@ html[data-theme="blue"] {
      Any component using brand-* classes picks this up automatically.
      ------------------------------------------------------------------------- */
   --brand-50:  oklch(97.5% 0.02  255);
-  --brand-100: oklch(94.8% 0.04  255);
-  --brand-200: oklch(87.5% 0.08  255);
-  --brand-300: oklch(77.8% 0.14  255);
-  --brand-400: oklch(68.5% 0.19  255);
-  --brand-500: oklch(62.5% 0.22  255);
+  --brand-100: oklch(94.5% 0.029 240);
+  --brand-200: oklch(87.1% 0.066 249);
+  --brand-300: oklch(77.2% 0.121 250);
+  --brand-400: oklch(67.7% 0.175 253);
+  --brand-500: oklch(62.1% 0.207 255);
   --brand-600: oklch(53.2% 0.19  255);
   --brand-700: oklch(45.5% 0.16  255);
   --brand-800: oklch(37.2% 0.13  255);
