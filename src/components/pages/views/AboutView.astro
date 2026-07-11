@@ -114,17 +114,18 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
             </p>
           ))}
         </div>
-        <!-- Right: theme facts card -->
-        <div class="flex flex-col h-full" data-reveal data-reveal-eager data-reveal-ease="smooth">
-          <Card variant="elevated" padding="lg" class="flex-1 flex flex-col justify-center">
-            <div class="grid grid-cols-2 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr">
-              {intro.facts.map((fact) => (
-                <ProofTile icon={fact.icon} title={fact.title}>
-                  {fact.description}
-                </ProofTile>
-              ))}
-            </div>
-          </Card>
+        <!-- Right: theme fact tiles — standalone, no wrapping card, so they
+             read like every other tile grid and keep their full width on
+             phones. justify-center keeps the grid vertically centred against
+             the text column on desktop. -->
+        <div class="flex flex-col h-full justify-center" data-reveal data-reveal-eager data-reveal-ease="smooth">
+          <div class="grid grid-cols-1 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr">
+            {intro.facts.map((fact) => (
+              <ProofTile icon={fact.icon} title={fact.title}>
+                {fact.description}
+              </ProofTile>
+            ))}
+          </div>
         </div>
       </div>
     </div>
