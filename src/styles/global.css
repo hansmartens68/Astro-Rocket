@@ -341,24 +341,24 @@
     isolation: isolate;
     background: linear-gradient(to bottom, var(--color-brand-500) 0%, #000 100%);
   }
+  /* The hero panel stays dark in light mode, so its text colours come from
+     the active theme's on-invert tokens (text on inverted surfaces) rather
+     than hard-coded values — this keeps the hero correct across all colour
+     themes. */
   html:not(.dark) .hero-dark-gradient {
-    --color-foreground:           oklch(91% 0.008 250);
-    --color-foreground-secondary: oklch(82% 0.012 250);
-    --color-foreground-muted:     oklch(68% 0.01 250);
+    --color-foreground:           var(--on-invert);
+    --color-foreground-secondary: var(--on-invert-secondary);
+    --color-foreground-muted:     var(--on-invert-muted);
     --color-background:           var(--surface-invert);
     --color-secondary:            var(--surface-invert-secondary);
     --color-secondary-hover:      var(--surface-invert-tertiary);
-    --color-ring:                 oklch(91% 0.008 250);
+    --color-ring:                 var(--on-invert);
   }
 
-  /* H1 spans: first span uses remapped foreground (near-white), remaining
-     spans use pure #fff. Mirrors the dark-mode treatment. */
-  html:not(.dark) .hero-dark-gradient h1 > span:first-of-type {
+  /* H1 spans: one colour for every span, matching dark mode's uniform
+     treatment. */
+  html:not(.dark) .hero-dark-gradient h1 > span {
     color: var(--color-foreground);
-    -webkit-text-fill-color: currentColor;
-  }
-  html:not(.dark) .hero-dark-gradient h1 > span:not(:first-of-type) {
-    color: #fff;
     -webkit-text-fill-color: currentColor;
   }
 
