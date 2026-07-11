@@ -901,22 +901,22 @@ const buttonId = `${menuId}-button`;
     color: var(--color-foreground);
   }
 
-  [data-header-shape="floating"] .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    right: 50%;
-    height: 2px;
-    background: currentColor;
-    border-radius: 1px;
-    transition: left 200ms, right 200ms;
+  /* Nav pills — the same treatment the fixed bar uses (bg-secondary pill on
+     the active item, softer pill on hover). While the capsule floats over the
+     hero gradient the pill is a translucent tint of the current text colour,
+     so it reads on the brand blue; once the header gains its solid background
+     on scroll ([data-scrolled]) it switches to the fixed bar's exact colours. */
+  [data-header-shape="floating"] .nav-link:hover {
+    background: color-mix(in srgb, currentColor 12%, transparent);
   }
-
-  [data-header-shape="floating"] .nav-link:hover::after,
-  [data-header-shape="floating"] .nav-link.hdr-nav-active::after {
-    left: 12px;
-    right: 12px;
+  [data-header-shape="floating"] .nav-link.hdr-nav-active {
+    background: color-mix(in srgb, currentColor 16%, transparent);
+  }
+  [data-header-shape="floating"][data-scrolled] .nav-link:hover {
+    background: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+  }
+  [data-header-shape="floating"][data-scrolled] .nav-link.hdr-nav-active {
+    background: var(--color-secondary);
   }
 
   [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
@@ -942,7 +942,7 @@ const buttonId = `${menuId}-button`;
     [data-header-shape="floating"] .hdr-invert-text,
     [data-header-shape="floating"] .hdr-logo-text,
     [data-header-shape="floating"] .hdr-invert-cta,
-    [data-header-shape="floating"] .nav-link::after {
+    [data-header-shape="floating"] .nav-link {
       transition: none !important;
     }
     [data-header-shape="floating"][data-header-hidden] {
