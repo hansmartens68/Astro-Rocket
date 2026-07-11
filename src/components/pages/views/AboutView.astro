@@ -119,9 +119,9 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
              phones. justify-center keeps the grid vertically centred against
              the text column on desktop. -->
         <div class="flex flex-col h-full justify-center">
-          <div class="grid grid-cols-1 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr" data-reveal-children>
-            {intro.facts.map((fact) => (
-              <ProofTile icon={fact.icon} title={fact.title}>
+          <div class="grid grid-cols-1 sm:grid-cols-3 glitch:grid-cols-2 gap-3 auto-rows-fr">
+            {intro.facts.map((fact, i) => (
+              <ProofTile icon={fact.icon} title={fact.title} data-reveal data-reveal-delay={i % 2 || undefined}>
                 {fact.description}
               </ProofTile>
             ))}
