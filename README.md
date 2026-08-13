@@ -80,14 +80,6 @@ docker compose up --build
 
 Either way the site is on **http://localhost:4321**. [Quick Start](#quick-start) has the detail.
 
-### Good to know
-
-Three things people reasonably expect that this theme does not do:
-
-- **There is no CMS or admin.** Posts, projects and pages are Markdown files in `src/content/`, edited in your editor and deployed by pushing. That is what keeps the whole site static and fast.
-- **The contact form and newsletter need a key.** They post to server routes that send through [Resend](https://resend.com), so they need `RESEND_API_KEY` before they will deliver. Both forms say so themselves rather than failing silently.
-- **Search is built, not live.** Pagefind indexes the site at build time, so `astro dev` has no index and the search modal explains that instead of erroring. Run `pnpm build && pnpm preview` to try it.
-
 > **Origins & credits.** Astro Rocket was originally forked from [Velocity](https://github.com/southwellmedia/velocity) by [Southwell Media](https://southwellmedia.com). Velocity provided the solid base — a well-engineered Astro boilerplate with a thoughtful design system and component library — and full credit for that foundation goes to the Southwell Media team. Since then, Astro Rocket has evolved into a theme in its own right, with far more to offer than the original: live colour-theme switching, built-in i18n, static search, project galleries with video, blog comments, durable internal links, and much more — see [What Astro Rocket has to offer](#what-astro-rocket-has-to-offer) below.
 
 ---
